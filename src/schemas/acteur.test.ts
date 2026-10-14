@@ -16,8 +16,50 @@ describe('schéma acteur — brouillon (validation souple)', () => {
   });
 
   it('exige quand même les champs indispensables', () => {
-    const sansNomNiLat = sans(acteurBrouillon(), 'nom', 'lat');
-    expect(chemins(sansNomNiLat)).toEqual(expect.arrayContaining(['nom', 'lat']));
+    const incomplet = sans(acteurBrouillon(), 'nom', 'commune', 'categories');
+    expect(chemins(incomplet)).toEqual(expect.arrayContaining(['nom', 'commune', 'categories']));
+  });
+
+  it('considère un brouillon comme non membre par défaut', () => {
+    const resultat = valider(acteurBrouillon());
+    expect(resultat.success && resultat.data.membre).toBe(false);
+  });
+});
+
+describe('schéma acteur — brouillon importé d’OpenStreetMap (champs minimaux)', () => {
+  it.each([
+    ['adresse', '12 rue du Port'],
+    ['code_postal', '63000'],
+    ['telephone', '04 73 00 00 00'],
+    ['email', 'contact@exemple.fr'],
+    ['site', 'https://exemple.fr'],
+    ['horaires', 'Mo-Fr 09:00-18:00'],
+    ['services', ['reparation']],
+  ])('refuse le champ %s', (champ, valeur) => {
+    expect(chemins({ ...acteurBrouillon(), [champ]: valeur })).toContain(champ);
+  });
+
+  it('refuse des coordonnées', () => {
+    expect(chemins({ ...acteurBrouillon(), lat: 45.7772, lon: 3.087 })).toEqual(
+      expect.arrayContaining(['lat', 'lon']),
+    );
+  });
+
+  it('exige l’identifiant OSM', () => {
+    expect(chemins(sans(acteurBrouillon(), 'osm_id'))).toContain('osm_id');
+  });
+
+  it('autorise un brouillon proposé par formulaire à être plus complet', () => {
+    const propose = {
+      ...sans(acteurBrouillon(), 'osm_id'),
+      source: 'formulaire',
+      adresse: '12 rue du Port',
+      code_postal: '63000',
+      lat: 45.7772,
+      lon: 3.087,
+      site: 'https://exemple.fr',
+    };
+    expect(valider(propose).success).toBe(true);
   });
 });
 
@@ -26,7 +68,7 @@ describe('schéma acteur — publié (validation stricte)', () => {
     expect(valider(acteurPublie()).success).toBe(true);
   });
 
-  it.each(['adresse', 'code_postal', 'commune', 'verifie_le'])(
+  it.each(['adresse', 'code_postal', 'lat', 'lon', 'verifie_le'])(
     'refuse une fiche publiée sans %s',
     (champ) => {
       expect(chemins(sans(acteurPublie(), champ))).toContain(champ);
@@ -45,13 +87,18 @@ describe('schéma acteur — publié (validation stricte)', () => {
 
 describe('schéma acteur — règles communes', () => {
   it('lie le collège au statut de membre', () => {
-    expect(chemins({ ...acteurBrouillon(), membre: true })).toContain('college');
-    expect(chemins({ ...acteurBrouillon(), college: 'usagers' })).toContain('college');
-    expect(valider({ ...acteurBrouillon(), membre: true, college: 'usagers' }).success).toBe(true);
+    expect(chemins({ ...acteurPublie(), membre: true })).toContain('college');
+    expect(chemins({ ...acteurPublie(), college: 'usagers' })).toContain('college');
+    expect(valider({ ...acteurPublie(), membre: true, college: 'usagers' }).success).toBe(true);
+  });
+
+  it('refuse une latitude sans longitude', () => {
+    const propose = { ...sans(acteurBrouillon(), 'osm_id'), source: 'formulaire', lat: 45.7772 };
+    expect(chemins(propose)).toContain('lat');
   });
 
   it('refuse des coordonnées hors d’Auvergne', () => {
-    expect(chemins({ ...acteurBrouillon(), lat: 3.087, lon: 45.7772 })).toContain('lat');
+    expect(chemins({ ...acteurPublie(), lat: 3.087, lon: 45.7772 })).toContain('lat');
   });
 
   it('refuse un code postal d’un autre département', () => {

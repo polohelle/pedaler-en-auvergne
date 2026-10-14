@@ -8,6 +8,8 @@
  *   pnpm import:osm --sans-ban           sans géocodage inverse des objets sans adresse
  *   pnpm import:osm --overpass <url>     autre instance Overpass si la principale sature
  *
+ * Les brouillons sont minimaux (nom, catégories, commune, département, osm_id — ADR 0019) :
+ * adresse, coordonnées et contacts sont saisis à la vérification humaine, avant publication.
  * Les fiches existantes (même osm_id) ne sont jamais modifiées. La logique est dans
  * src/lib/osm/ ; ce script ne fait que lire les arguments, appeler l'API et écrire.
  */
@@ -127,8 +129,13 @@ export async function executer(
   journal(
     `${String(plan.creations.length)} fiche(s) ${options.essai ? 'à créer (essai, rien écrit)' : 'créée(s) en brouillon'} :`,
   );
-  for (const { nomFichier, manques } of plan.creations) {
-    journal(`  + ${nomFichier}  — à compléter : ${manques.join(', ')}`);
+  for (const { nomFichier } of plan.creations) {
+    journal(`  + ${nomFichier}`);
+  }
+  if (plan.creations.length > 0) {
+    journal(
+      'À compléter avant publication : adresse, code postal, coordonnées, description, verifie_le.',
+    );
   }
   journal(
     `${String(plan.dejaPresents.length)} objet(s) déjà dans l'annuaire, laissé(s) intact(s).`,

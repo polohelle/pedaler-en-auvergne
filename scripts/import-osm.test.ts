@@ -83,12 +83,11 @@ describe('executer', () => {
       deps,
     );
 
-    expect(plan.creations).toHaveLength(3);
+    expect(plan.creations).toHaveLength(2);
     expect((await readdir(dossier)).sort()).toEqual([
       'cycles-du-centre-clermont-ferrand-2.md',
       'cycles-du-centre-clermont-ferrand.md',
       'loc-velo.md',
-      'sport-riom.md',
     ]);
     expect(await readFile(join(dossier, 'loc-velo.md'), 'utf8')).toBe(existante);
     expect(lignes).toContain("1 objet(s) déjà dans l'annuaire, laissé(s) intact(s).");
@@ -114,7 +113,7 @@ describe('executer', () => {
       dossier,
       sansReseau,
     );
-    expect(plan.creations).toHaveLength(4);
+    expect(plan.creations).toHaveLength(2);
   });
 
   it('complète par la BAN la commune des objets sans adresse', async () => {

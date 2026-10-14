@@ -42,7 +42,8 @@ export function lireMarkdown(source: string): FichierMarkdown {
  * guillemets, pour qu'Astro ne les convertisse pas en objets `Date`.
  */
 export function ecrireMarkdown(donnees: Record<string, unknown>, corps: string): string {
-  const yaml = stringify(donnees, { customTags: ['timestamp'], lineWidth: 0 });
+  // Guillemets simples : le style Prettier du projet, pour qu'un fichier généré soit déjà formaté.
+  const yaml = stringify(donnees, { customTags: ['timestamp'], lineWidth: 0, singleQuote: true });
   const texte = corps.trim();
   return `---\n${yaml}---\n${texte === '' ? '' : `\n${texte}\n`}`;
 }

@@ -1,6 +1,6 @@
 # 0012 — Amorçage de l'annuaire par import OpenStreetMap
 
-- Statut : acceptée
+- Statut : acceptée, complétée par 0019 (brouillons OpenStreetMap minimaux)
 - Date : 2026-10-14
 
 ## Contexte

@@ -2,6 +2,7 @@
 import type { CodeDepartement } from '@config/departements';
 import type { ActeurSaisi } from '@schemas/acteur';
 import type { Commune } from '../ban';
+import { departementDuCodePostal } from '../geo';
 import { ecrireMarkdown } from '../frontmatter';
 import { slugLibre } from '../slug';
 import { versActeur, type ElementOsm } from './correspondance';
@@ -44,7 +45,7 @@ export interface Existants {
   osmIds: ReadonlySet<string>;
 }
 
-/** Objets à soumettre au géocodage inverse : ni commune, ni code postal dans OSM. */
+/** Objets à soumettre au géocodage inverse : sans commune dans OSM. */
 export function aGeocoder(
   elements: readonly ElementOsm[],
   existants: Existants,
@@ -54,28 +55,39 @@ export function aGeocoder(
     const lat = element.lat ?? element.center?.lat;
     const lon = element.lon ?? element.center?.lon;
     const tags = element.tags ?? {};
-    const complet = tags['addr:city'] !== undefined && tags['addr:postcode'] !== undefined;
-    if (complet || existants.osmIds.has(osmId) || lat === undefined || lon === undefined) return [];
+    if (
+      tags['addr:city'] !== undefined ||
+      existants.osmIds.has(osmId) ||
+      lat === undefined ||
+      lon === undefined
+    )
+      return [];
     return [{ osmId, lat, lon }];
   });
 }
 
-/** Ajoute aux tags OSM la commune et le code postal trouvés par géocodage inverse, s'ils manquent. */
-function completer(element: ElementOsm, commune: Commune | undefined): ElementOsm {
-  if (commune === undefined) return element;
+/**
+ * Ajoute aux tags OSM la commune trouvée par géocodage inverse si elle manque et qu'elle
+ * relève bien du département importé.
+ */
+function completer(
+  element: ElementOsm,
+  commune: Commune | undefined,
+  departement: CodeDepartement,
+): ElementOsm {
   const tags = element.tags ?? {};
-  return {
-    ...element,
-    tags: {
-      ...tags,
-      'addr:city': tags['addr:city'] ?? commune.commune,
-      'addr:postcode': tags['addr:postcode'] ?? commune.code_postal,
-    },
-  };
+  if (
+    commune === undefined ||
+    tags['addr:city'] !== undefined ||
+    departementDuCodePostal(commune.code_postal) !== departement
+  ) {
+    return element;
+  }
+  return { ...element, tags: { ...tags, 'addr:city': commune.commune } };
 }
 
 export interface PlanImport {
-  creations: { nomFichier: string; contenu: string; nom: string; manques: string[] }[];
+  creations: { nomFichier: string; contenu: string; nom: string }[];
   dejaPresents: string[];
   ignores: string[];
 }
@@ -104,7 +116,7 @@ export function planifierImport(
       plan.dejaPresents.push(osmId);
       continue;
     }
-    const resultat = versActeur(completer(element, communes.get(osmId)), departement);
+    const resultat = versActeur(completer(element, communes.get(osmId), departement), departement);
     if (!resultat.ok) {
       plan.ignores.push(resultat.motif);
       continue;
@@ -117,7 +129,6 @@ export function planifierImport(
       nomFichier: `${slug}.md`,
       contenu: ficheActeur(acteur),
       nom: acteur.nom,
-      manques: resultat.manques,
     });
   }
   return plan;

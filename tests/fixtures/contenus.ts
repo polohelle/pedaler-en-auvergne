@@ -8,15 +8,13 @@ export function sans(donnees: Record<string, unknown>, ...cles: string[]): Recor
   return Object.fromEntries(Object.entries(donnees).filter(([cle]) => !cles.includes(cle)));
 }
 
-/** Fiche telle que l'import OSM la produit : incomplète, jamais vérifiée. */
+/** Fiche telle que l'import OSM la produit : minimale, jamais vérifiée (ADR 0019). */
 const ACTEUR_BROUILLON = {
   nom: 'Cycles du Centre',
   slug: 'cycles-du-centre-clermont-ferrand',
   categories: ['magasin', 'reparateur'],
-  membre: false,
+  commune: 'Clermont-Ferrand',
   departement: '63',
-  lat: 45.7772,
-  lon: 3.087,
   source: 'osm',
   osm_id: 'node/123456',
   statut: 'brouillon',
@@ -26,12 +24,15 @@ export function acteurBrouillon(): Record<string, unknown> {
   return { ...ACTEUR_BROUILLON };
 }
 
+/** Fiche complétée par la vérification humaine et publiée. */
 export function acteurPublie(): Record<string, unknown> {
   return {
     ...ACTEUR_BROUILLON,
+    membre: false,
     adresse: '12 rue du Port',
     code_postal: '63000',
-    commune: 'Clermont-Ferrand',
+    lat: 45.7772,
+    lon: 3.087,
     services: ['reparation-toutes-marques', 'vae'],
     site: 'https://cycles-du-centre.example',
     telephone: '04 73 00 00 00',
