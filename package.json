@@ -22,17 +22,20 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "verify": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test:coverage"
+    "verify": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test:coverage",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "astro": "7.3.8"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
+    "@axe-core/playwright": "4.13.0",
     "@commitlint/cli": "21.2.3",
     "@commitlint/config-conventional": "21.2.3",
     "@commitlint/types": "21.2.3",
     "@eslint/js": "10.0.1",
+    "@playwright/test": "1.64.0",
     "@types/node": "24.19.2",
     "@vitest/coverage-v8": "5.0.4",
     "astro-eslint-parser": "3.2.0",
