@@ -1,0 +1,11 @@
+# Réglages pnpm du projet (pas de monorepo).
+
+# @vite-pwa/astro 1.2.0 ne déclare que jusqu'à Astro 5 ; testé et retenu avec Astro 7 (ADR 0015).
+peerDependencyRules:
+  allowedVersions:
+    '@vite-pwa/astro>astro': '7'
+
+# Le binaire d'esbuild vient d'un paquet propre à la plateforme : son script de
+# vérification à l'installation n'est pas nécessaire.
+ignoredBuiltDependencies:
+  - esbuild

@@ -61,15 +61,5 @@
     "vitest": "5.0.4",
     "workbox-window": "7.4.1",
     "yaml": "2.9.1"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "allowedVersions": {
-        "@vite-pwa/astro>astro": "7"
-      }
-    },
-    "ignoredBuiltDependencies": [
-      "esbuild"
-    ]
   }
 }
