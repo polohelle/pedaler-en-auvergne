@@ -83,7 +83,7 @@ arrivent avec les phases suivantes.
 - `pnpm test:e2e` : Playwright sur un site construit avec les contenus fictifs de
   `tests/fixtures/site/` (ADR 0008, 0014) — parcours, règles de publication, hors connexion,
   axe sur chaque modèle de page en clair et en sombre, absence de script et de style en ligne.
-- CI GitHub Actions (ADR 0009) : qualité → bout en bout et accessibilité → Lighthouse
+- CI GitHub Actions (ADR 0009, 0020), sur chaque pull request et chaque mise à jour de `main` : qualité → bout en bout et accessibilité → Lighthouse
   (seuils bloquants). Dependabot hebdomadaire, release-please pour le CHANGELOG et les tags.
 
 ## Données externes
@@ -129,3 +129,4 @@ changement de code ni d'URL n'est nécessaire.
 | [0016](adr/0016-agents-et-skills.md)                    | Agents et skills                     |
 | [0017](adr/0017-deploiement-cloudflare-pages.md)        | Déploiement                          |
 | [0018](adr/0018-donnees-des-formulaires.md)             | Données personnelles des formulaires |
+| [0020](adr/0020-declencheurs-de-la-ci.md)               | Déclencheurs de la CI                |
