@@ -1,0 +1,25 @@
+{
+  "name": "pedaler-en-auvergne",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Portail des acteurs du vélo du Puy-de-Dôme, extensible à l'Auvergne",
+  "license": "UNLICENSED",
+  "type": "module",
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check && tsc --noEmit"
+  },
+  "dependencies": {
+    "astro": "7.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "typescript": "6.0.3"
+  }
+}
