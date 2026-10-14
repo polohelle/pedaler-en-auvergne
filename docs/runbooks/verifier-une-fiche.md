@@ -4,6 +4,12 @@ Un brouillon importé d'OpenStreetMap est minimal (ADR 0019) : nom, catégories,
 département et `osm_id`. Le publier, c'est le vérifier et le compléter. Durée : 5 à 10 minutes
 par fiche.
 
+**Neutralité** : l'annuaire est exhaustif et non commercial. Toute structure qui exerce une
+activité vélo dans le périmètre y a sa fiche, qu'il s'agisse d'un indépendant, d'une franchise
+ou d'une chaîne nationale (Decathlon, Giant…), avec les mêmes champs et le même traitement.
+Aucune fiche n'est mise en avant ni écartée pour sa taille ou son enseigne ; seul le badge
+« membre » distingue les adhérents de l'association.
+
 1. Ouvrir l'objet sur OpenStreetMap : `https://www.openstreetmap.org/<osm_id>` (par exemple
    `https://www.openstreetmap.org/node/123456`). Vérifier sur le site de la structure, ses
    réseaux ou par téléphone qu'elle existe et exerce toujours.
@@ -33,5 +39,6 @@ par fiche.
 6. Commit `content: publie la fiche <nom>` sur une branche, pull request, vérification de
    l'aperçu, fusion.
 
-Une fiche à ne pas publier (structure fermée, hors périmètre) : passer `statut: archive`, ou
+Une fiche à ne pas publier (structure fermée, hors périmètre — jamais au motif qu'il s'agit
+d'une chaîne) : passer `statut: archive`, ou
 supprimer le fichier si elle n'a jamais été publiée.
