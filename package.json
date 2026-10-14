@@ -7,7 +7,7 @@
   "type": "module",
   "packageManager": "pnpm@10.28.2",
   "engines": {
-    "node": ">=24.0.0 <25"
+    "node": ">=24.16.0 <25"
   },
   "scripts": {
     "dev": "astro dev",
@@ -41,6 +41,7 @@
     "@lhci/cli": "0.15.1",
     "@playwright/test": "1.64.0",
     "@types/node": "24.19.2",
+    "@types/semver": "7.8.0",
     "@vite-pwa/assets-generator": "1.0.4",
     "@vite-pwa/astro": "1.2.0",
     "@vitest/coverage-v8": "5.0.4",
@@ -54,6 +55,7 @@
     "lint-staged": "17.6.0",
     "prettier": "3.9.10",
     "prettier-plugin-astro": "1.1.1",
+    "semver": "7.8.5",
     "tsx": "4.23.15",
     "typescript": "6.0.3",
     "typescript-eslint": "8.71.2",

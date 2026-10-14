@@ -1,6 +1,6 @@
 # 0003 — pnpm, Node 24 et TypeScript 6 en mode strictest
 
-- Statut : acceptée
+- Statut : acceptée, version de Node précisée par 0022
 - Date : 2026-10-14
 
 ## Contexte
