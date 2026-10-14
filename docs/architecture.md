@@ -83,7 +83,7 @@ arrivent avec les phases suivantes.
 - `pnpm test:e2e` : Playwright sur un site construit avec les contenus fictifs de
   `tests/fixtures/site/` (ADR 0008, 0014) — parcours, règles de publication, hors connexion,
   axe sur chaque modèle de page en clair et en sombre, absence de script et de style en ligne.
-- CI GitHub Actions (ADR 0009) : qualité → bout en bout et accessibilité → Lighthouse
+- CI GitHub Actions (ADR 0009, 0020), sur chaque pull request et chaque mise à jour de `main` : qualité → bout en bout et accessibilité → Lighthouse
   (seuils bloquants). Dependabot hebdomadaire, release-please pour le CHANGELOG et les tags.
 
 ## Données externes

@@ -1,12 +1,12 @@
 name: CI
 
-# Les branches du dépôt (humaines, agents, Dependabot) sont contrôlées à chaque push ;
-# les pull requests ne déclenchent la CI que si elles viennent d'un fork, pour éviter
-# de tout exécuter deux fois. Les contrôles s'attachent au commit : ils valent aussi
-# pour la pull request ouverte depuis la branche.
+# Contrôles de toute pull request (branches du dépôt, agents, Dependabot, forks) et de
+# chaque mise à jour de main. Un seul déclencheur par commit : aucun contrôle en double
+# ni « ignoré » qui pourrait satisfaire à tort une règle de protection (ADR 0020).
 on:
-  push:
   pull_request:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -22,7 +22,6 @@ env:
 jobs:
   qualite:
     name: Lint, typage, tests, build
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -37,11 +36,11 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Messages de commit
-        if: github.ref != 'refs/heads/main'
-        run: |
-          git fetch origin main --depth=1000 || true
-          base=$(git merge-base origin/main HEAD 2>/dev/null || git rev-list --max-parents=0 HEAD)
-          pnpm exec commitlint --from "$base" --to HEAD --verbose
+        if: github.event_name == 'pull_request'
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          TETE: ${{ github.event.pull_request.head.sha }}
+        run: pnpm exec commitlint --from "$BASE" --to "$TETE" --verbose
       - name: Lint
         run: pnpm lint
       - name: Format
