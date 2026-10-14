@@ -67,6 +67,9 @@
       "allowedVersions": {
         "@vite-pwa/astro>astro": "7"
       }
-    }
+    },
+    "ignoredBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
