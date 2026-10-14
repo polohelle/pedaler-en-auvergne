@@ -50,6 +50,14 @@ describe('schéma acteur — règles communes', () => {
     expect(valider({ ...acteurBrouillon(), membre: true, college: 'usagers' }).success).toBe(true);
   });
 
+  it('refuse des coordonnées hors d’Auvergne', () => {
+    expect(chemins({ ...acteurBrouillon(), lat: 3.087, lon: 45.7772 })).toContain('lat');
+  });
+
+  it('refuse un code postal d’un autre département', () => {
+    expect(chemins({ ...acteurPublie(), code_postal: '03100' })).toContain('code_postal');
+  });
+
   it('refuse un champ inconnu (faute de frappe)', () => {
     expect(valider({ ...acteurBrouillon(), telephon: '0473000000' }).success).toBe(false);
   });

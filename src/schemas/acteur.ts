@@ -1,5 +1,6 @@
 import { z } from 'astro/zod';
 import { CATEGORIES_ACTEUR, COLLEGES, ORIGINES_ACTEUR, SERVICES } from '@config/acteurs';
+import { departementDuCodePostal, estEnAuvergne } from '@lib/geo';
 import {
   sansDoublon,
   schemaCodePostal,
@@ -61,6 +62,23 @@ const acteurNonPublie = z.strictObject({
 export const schemaActeur = z
   .discriminatedUnion('statut', [acteurPublie, acteurNonPublie])
   .superRefine((acteur, ctx) => {
+    if (!estEnAuvergne(acteur.lat, acteur.lon)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['lat'],
+        message: 'Coordonnées hors d’Auvergne : latitude et longitude inversées ?',
+      });
+    }
+    if (
+      acteur.code_postal !== undefined &&
+      departementDuCodePostal(acteur.code_postal) !== acteur.departement
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['code_postal'],
+        message: `Le code postal ne correspond pas au département ${acteur.departement}.`,
+      });
+    }
     if (acteur.membre && acteur.college === undefined) {
       ctx.addIssue({
         code: 'custom',

@@ -1,6 +1,7 @@
 import { z } from 'astro/zod';
 import { ORIGINES_EVENEMENT, TYPES_EVENEMENT } from '@config/evenements';
 import { STATUTS_EVENEMENT } from '@config/statuts';
+import { estEnAuvergne } from '@lib/geo';
 import {
   schemaDateHeure,
   schemaDepartement,
@@ -39,6 +40,16 @@ export const schemaEvenement = z
         code: 'custom',
         path: ['lat'],
         message: 'Latitude et longitude vont ensemble.',
+      });
+    } else if (
+      evenement.lat !== undefined &&
+      evenement.lon !== undefined &&
+      !estEnAuvergne(evenement.lat, evenement.lon)
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['lat'],
+        message: 'Coordonnées hors d’Auvergne : latitude et longitude inversées ?',
       });
     }
   });

@@ -35,6 +35,10 @@ describe('schéma événement', () => {
     expect(chemins(sansLon)).toContain('lat');
   });
 
+  it('refuse des coordonnées hors d’Auvergne', () => {
+    expect(chemins({ ...evenement(), lat: 48.85, lon: 2.35 })).toContain('lat');
+  });
+
   it('exige la source d’origine', () => {
     const sansSource = sans(evenement(), 'source_url');
     expect(chemins(sansSource)).toContain('source_url');
