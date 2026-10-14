@@ -3,11 +3,11 @@
 Le dépôt mélange du code, des textes rédigés et une base de données d'acteurs
 dont une partie provient d'OpenStreetMap. Chaque famille a sa licence.
 
-| Quoi | Où | Licence |
-| --- | --- | --- |
-| Code source, configuration, scripts, outillage | tout le dépôt, sauf mentions ci-dessous | [MIT](LICENSE) |
-| Textes rédigés : articles et brèves, descriptions des événements, descriptions des acteurs | `src/content/actus/`, `src/content/evenements/`, corps Markdown des fiches de `src/content/acteurs/` | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.fr) |
-| Base de données de l'annuaire : champs structurés des fiches acteurs (nom, adresse, coordonnées, horaires, services…) | frontmatter des fiches de `src/content/acteurs/` | [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/) |
+| Quoi                                                                                                                  | Où                                                                                                   | Licence                                                                |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Code source, configuration, scripts, outillage                                                                        | tout le dépôt, sauf mentions ci-dessous                                                              | [MIT](LICENSE)                                                         |
+| Textes rédigés : articles et brèves, descriptions des événements, descriptions des acteurs                            | `src/content/actus/`, `src/content/evenements/`, corps Markdown des fiches de `src/content/acteurs/` | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.fr) |
+| Base de données de l'annuaire : champs structurés des fiches acteurs (nom, adresse, coordonnées, horaires, services…) | frontmatter des fiches de `src/content/acteurs/`                                                     | [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/)             |
 
 ## Données OpenStreetMap
 
