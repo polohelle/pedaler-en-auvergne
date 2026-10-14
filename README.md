@@ -7,7 +7,8 @@ publié sur Cloudflare Pages à chaque fusion sur `main`.
 
 ## Installer en cinq minutes
 
-Prérequis : [Node.js 24](https://nodejs.org/) et Git.
+Prérequis : [Node.js](https://nodejs.org/) dans la version exacte de `.nvmrc` (`nvm install`
+puis `nvm use` la sélectionnent) et Git.
 
 ```bash
 git clone https://github.com/polohelle/pedaler-en-auvergne.git

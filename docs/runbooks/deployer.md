@@ -9,13 +9,20 @@ propagation DNS. Aucun jeton n'est à copier dans le dépôt.
 2. Autoriser l'application GitHub de Cloudflare **sur le seul dépôt** `pedaler-en-auvergne`.
 3. Réglages de build :
 
-   | Réglage                   | Valeur                                                   |
-   | ------------------------- | -------------------------------------------------------- |
-   | Production branch         | `main`                                                   |
-   | Framework preset          | Astro                                                    |
-   | Build command             | `pnpm build`                                             |
-   | Build output directory    | `dist`                                                   |
-   | Variables d'environnement | `NODE_VERSION` = `24` ; `ASTRO_TELEMETRY_DISABLED` = `1` |
+   | Réglage                   | Valeur                                                          |
+   | ------------------------- | --------------------------------------------------------------- |
+   | Production branch         | `main`                                                          |
+   | Framework preset          | Astro                                                           |
+   | Build command             | `pnpm build`                                                    |
+   | Build output directory    | `dist`                                                          |
+   | Variables d'environnement | `ASTRO_TELEMETRY_DISABLED` = `1` (et **pas** de `NODE_VERSION`) |
+
+   **Version de Node** : Cloudflare la lit dans le fichier `.nvmrc` du dépôt, qui fixe une version
+   exacte (actuellement **24.21.0**), la même que la CI et les postes de développement (ADR 0022).
+   Ne pas définir `NODE_VERSION` : cette variable l'emporte sur `.nvmrc`. Avec `NODE_VERSION=24`,
+   Cloudflare installe sa propre 24.x (24.13.1 en octobre 2026), trop ancienne pour certaines
+   dépendances (`ERR_PNPM_UNSUPPORTED_ENGINE`). Si la variable a été créée, la supprimer
+   (**Settings → Variables and Secrets**) ; à défaut, lui donner exactement la valeur de `.nvmrc`.
 
 4. **Save and Deploy**. Le site répond sur `https://<projet>.pages.dev`.
 5. **Settings → Builds → Branch control** : production sur `main`, aperçus pour toutes les autres
@@ -54,3 +61,14 @@ curl -sI https://www.pedalerenauvergne.fr | grep -i location
 - Le site s'installe sur un téléphone (menu du navigateur → « Ajouter à l'écran d'accueil ») et
   s'ouvre hors connexion après une première visite.
 - Lighthouse depuis Chrome sur la page d'accueil : seuils du cahier des charges atteints.
+
+## 5. Mettre à jour Node
+
+1. Choisir la nouvelle version exacte (dernière version de la ligne LTS en cours) et l'écrire dans
+   `.nvmrc`.
+2. Si une dépendance exige davantage, relever le plancher du champ `engines.node` de
+   `package.json`.
+3. `pnpm verify` : le test `tests/unit/version-node.test.ts` vérifie que `.nvmrc`, `engines` et les
+   exigences de toutes les dépendances concordent.
+4. Pull request : la CI s'exécute avec la nouvelle version, et l'aperçu Cloudflare aussi. Rien à
+   changer dans Cloudflare.

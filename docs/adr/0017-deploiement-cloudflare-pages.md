@@ -1,6 +1,6 @@
 # 0017 — Déploiement par l'intégration Git de Cloudflare Pages
 
-- Statut : acceptée
+- Statut : acceptée, version de Node précisée par 0022
 - Date : 2026-10-14
 
 ## Contexte
