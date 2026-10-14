@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "Portail des acteurs du vélo du Puy-de-Dôme, extensible à l'Auvergne",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module",
   "packageManager": "pnpm@10.28.2",
   "engines": {
