@@ -7,5 +7,5 @@ commune: Clermont-Ferrand
 departement: '63'
 source: osm
 osm_id: node/1483961287
-statut: brouillon
+statut: archive
 ---
