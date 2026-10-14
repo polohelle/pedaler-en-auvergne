@@ -1,0 +1,246 @@
+# Carnet des sources de veille de Pédaler en Auvergne.
+#
+# Lu par les agents de veille et de collecte (.claude/agents/) ; validé par
+# src/schemas/source.ts (pnpm test). Enrichir cette liste suffit à étendre la veille ;
+# ouvrir un département, c'est y ajouter ses sources locales.
+#
+# Champs : nom, url, type (rss | page | agenda), niveau (local | regional | national),
+# departement (null hors local), acteur (slug dans l'annuaire, ou null),
+# fiabilite (inconnue | faible | moyenne | haute, mise à jour par le skill evaluer-source),
+# frequence (quotidienne | bihebdomadaire | hebdomadaire | mensuelle),
+# dernier_passage (AAAA-MM-JJ, ou null), notes (facultatif).
+
+sources:
+  # --- Local : Puy-de-Dôme -------------------------------------------------
+
+  - nom: Vélocité 63
+    url: https://www.helloasso.com/associations/velocite-63
+    type: page
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: inconnue
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Association d'usagers, relais de la FUB depuis 1996, membre fondateur pressenti
+      du collège Usagers. Page HelloAsso (actions, adhésion) ; protégée contre les robots.
+
+  - nom: Miles Republic — épreuves vélo du Puy-de-Dôme
+    url: https://fr.milesrepublic.com/velo/puy-de-dome
+    type: agenda
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: inconnue
+    frequence: bihebdomadaire
+    dernier_passage: null
+    notes: >-
+      Calendrier des épreuves sportives ; source de l'agenda (courses, randonnées).
+      Limite le débit des requêtes (HTTP 429) : espacer les passages.
+
+  - nom: Cyclauvergne — vidéos
+    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCm-ZHU5H9Fep_T4_g3jsN7Q
+    type: rss
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: inconnue
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Média vidéo du cyclisme régional (chaîne @Cyclauvergne63). Contact presse,
+      membre pressenti du collège Sport.
+
+  - nom: Ville de Clermont-Ferrand
+    url: https://clermont-ferrand.fr
+    type: page
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: inconnue
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Actualités municipales, aménagements cyclables, Fête du Vélo (place de Jaude, fin mai).
+      Le serveur présente une chaîne de certificats incomplète : curl échoue là où un
+      navigateur réussit.
+
+  - nom: Clermont Auvergne Métropole
+    url: https://www.clermontmetropole.eu
+    type: page
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: inconnue
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: Mobilités, plan vélo métropolitain, location C.Vélo, aménagements des 21 communes.
+
+  # --- National, utile à l'annuaire et à l'agenda local --------------------
+
+  - nom: Mai à vélo — agenda OpenAgenda
+    url: https://openagenda.com/fr/maiavelo
+    type: agenda
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Carte nationale des événements de mai, alimentée par OpenAgenda : filtrer sur
+      le département. Passage quotidien en avril et mai.
+
+  - nom: Mai à vélo — actualités
+    url: https://maiavelo.fr/feed/
+    type: rss
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: bihebdomadaire
+    dernier_passage: null
+
+  - nom: L'Heureux Cyclage — ateliers participatifs
+    url: https://www.heureux-cyclage.org
+    type: page
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Réseau et carte des ateliers vélo participatifs : source de l'annuaire (catégorie
+      atelier participatif) et de la veille nationale. Protégé contre les robots (HTTP 402).
+
+  - nom: Les Boîtes à Vélo
+    url: https://lesboitesavelo.org/
+    type: page
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Réseau de plus de 350 professionnels à vélo : source de l'annuaire (entreprises à vélo)
+      et de la veille nationale. Annuaire protégé contre les robots (HTTP 403).
+
+  - nom: France Vélo Tourisme — Accueil Vélo
+    url: https://www.francevelotourisme.com/accueil-velo
+    type: page
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Prestataires et hébergeurs labellisés Accueil Vélo (service accueil-velo de l'annuaire).
+      Itinéraires : renvoi, pas de reprise. Label porté localement par le Département
+      et les offices de tourisme.
+
+  # --- National : veille réglementaire, aides, campagnes, chiffres ---------
+
+  - nom: Fédération des usagers de la bicyclette (FUB)
+    url: https://www.fub.fr/rss.xml
+    type: rss
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: bihebdomadaire
+    dernier_passage: null
+    notes: Associations d'usagers, vélo-écoles, baromètre des villes cyclables, campagnes.
+
+  - nom: Réseau vélo et marche
+    url: https://reseau-velo-marche.org/feed/
+    type: rss
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: bihebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ex-Vélo & Territoires : collectivités, schémas cyclables, chiffres de fréquentation.
+      Relaie les communiqués de l'Alliance pour le vélo, qui n'a pas de site propre identifié.
+
+  - nom: Union Sport & Cycle
+    url: https://www.unionsportcycle.com
+    type: page
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: Filière économique du vélo, observatoire du cycle (chiffres de ventes).
+
+  - nom: Ministère chargé des transports
+    url: https://www.ecologie.gouv.fr
+    type: page
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: Plan vélo et marche, fonds mobilités actives, appels à projets.
+
+  - nom: Ministère chargé des sports
+    url: https://www.sports.gouv.fr
+    type: page
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: Savoir rouler à vélo, aides aux clubs, équipements sportifs.
+
+  - nom: ADEME
+    url: https://www.ademe.fr
+    type: page
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: Études, appels à projets et aides (aménagements, cyclologistique). Protégé contre les robots.
+
+  - nom: Journal officiel (Légifrance)
+    url: https://www.legifrance.gouv.fr
+    type: page
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: Lois, décrets et arrêtés relatifs au vélo (code de la route, aides). Protégé contre les robots.
+
+  - nom: Weelz!
+    url: https://weelz.ouest-france.fr/feed/
+    type: rss
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: bihebdomadaire
+    dernier_passage: null
+    notes: Média vélo hors compétition ; ne retenir que ce qui concerne les acteurs locaux.
+
+  - nom: Transition Vélo
+    url: https://www.transitionvelo.com/feed/
+    type: rss
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: inconnue
+    frequence: bihebdomadaire
+    dernier_passage: null
+    notes: Actualité, filière, réglementation ; ne retenir que ce qui concerne les acteurs locaux.
