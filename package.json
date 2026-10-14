@@ -24,7 +24,8 @@
     "test:coverage": "vitest run --coverage",
     "verify": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test:coverage",
     "test:e2e": "astro build && playwright test",
-    "lighthouse": "astro build && lhci autorun"
+    "lighthouse": "astro build && lhci autorun",
+    "import:osm": "tsx scripts/import-osm.ts"
   },
   "dependencies": {
     "astro": "7.3.8"
@@ -50,6 +51,7 @@
     "lint-staged": "17.6.0",
     "prettier": "3.9.10",
     "prettier-plugin-astro": "1.1.1",
+    "tsx": "4.23.15",
     "typescript": "6.0.3",
     "typescript-eslint": "8.71.2",
     "vitest": "5.0.4",

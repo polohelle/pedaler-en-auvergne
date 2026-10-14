@@ -1,0 +1,88 @@
+{
+  "version": 0.6,
+  "generator": "Fixture de test, construite à la main",
+  "elements": [
+    {
+      "type": "node",
+      "id": 1001,
+      "lat": 45.7772,
+      "lon": 3.087,
+      "tags": {
+        "shop": "bicycle",
+        "name": "Cycles du Centre",
+        "addr:housenumber": "12",
+        "addr:street": "Rue du Port",
+        "addr:postcode": "63000",
+        "addr:city": "Clermont-Ferrand",
+        "opening_hours": "Tu-Sa 09:00-12:00,14:00-19:00",
+        "website": "cycles-du-centre.example",
+        "phone": "+33 4 73 00 00 00;+33 6 00 00 00 00",
+        "email": "contact@cycles-du-centre.example",
+        "service:bicycle:repair": "yes",
+        "service:bicycle:retail": "yes",
+        "service:bicycle:second_hand": "yes",
+        "contact:facebook": "https://www.facebook.com/cyclesducentre"
+      }
+    },
+    {
+      "type": "way",
+      "id": 2002,
+      "center": { "lat": 45.8936, "lon": 3.1126 },
+      "tags": { "shop": "sports", "name": "Sport Riom", "service:bicycle:rental": "yes" }
+    },
+    {
+      "type": "node",
+      "id": 1003,
+      "lat": 45.78,
+      "lon": 3.09,
+      "tags": { "amenity": "bicycle_repair_station", "service:bicycle:repair": "yes" }
+    },
+    {
+      "type": "node",
+      "id": 1004,
+      "lat": 45.78,
+      "lon": 3.09,
+      "tags": { "shop": "bicycle" }
+    },
+    {
+      "type": "node",
+      "id": 1005,
+      "lat": 45.77,
+      "lon": 3.08,
+      "tags": {
+        "shop": "bicycle",
+        "name": "Cycles du Centre",
+        "addr:postcode": "03100",
+        "addr:city": "Clermont-Ferrand",
+        "website": "pas une url",
+        "phone": "12"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1006,
+      "lat": 45.7,
+      "lon": 3.1,
+      "tags": { "amenity": "bicycle_rental", "bicycle_rental": "shop", "name": "Loc'Vélo" }
+    },
+    {
+      "type": "node",
+      "id": 1007,
+      "lat": 45.7,
+      "lon": 3.1,
+      "tags": { "shop": "hardware", "name": "Quincaillerie" }
+    },
+    {
+      "type": "relation",
+      "id": 3008,
+      "tags": { "shop": "bicycle", "name": "Sans position" }
+    },
+    {
+      "type": "node",
+      "id": 1009,
+      "lat": 3.1,
+      "lon": 45.7,
+      "tags": { "shop": "bicycle", "name": "Coordonnées inversées" }
+    }
+  ]
+}
