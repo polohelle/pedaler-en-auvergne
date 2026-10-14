@@ -21,13 +21,14 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
     { name: 'bureau', use: { ...devices['Desktop Chrome'] } },
   ],
-  // Les tests tournent sur le site construit (dist/), comme en production : `pnpm test:e2e`
-  // construit d'abord ; la CI réutilise le build de l'étape précédente.
+  // Les tests tournent sur le site construit avec les contenus de test (dist-e2e/), jamais
+  // sur le serveur de développement ni sur les contenus réels.
   webServer: {
     // --ignore-lock garde le serveur au premier plan, même lancé par un agent.
-    command: `pnpm preview --port ${String(port)} --ignore-lock`,
+    command: `pnpm build && pnpm preview --port ${String(port)} --ignore-lock`,
+    env: { PEA_CONTENU: 'tests/fixtures/site' },
     port,
     reuseExistingServer: !estEnCi,
-    timeout: 120_000,
+    timeout: 180_000,
   },
 });

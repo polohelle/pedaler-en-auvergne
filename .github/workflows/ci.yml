@@ -73,11 +73,8 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
-        with:
-          name: dist
-          path: dist/
       - run: pnpm exec playwright install --with-deps chromium
+      # Playwright construit le site avec les contenus de test (dist-e2e/), voir ADR 0014.
       - run: pnpm exec playwright test
       - if: failure()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

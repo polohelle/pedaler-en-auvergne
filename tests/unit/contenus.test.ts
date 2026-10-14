@@ -11,18 +11,24 @@ import { COLLECTIONS, validerFichier, type NomCollection } from '@lib/validation
 import { schemaActeur } from '@schemas/acteur';
 import { schemaEvenement } from '@schemas/evenement';
 
-const racine = join(import.meta.dirname, '../../src/content');
+// Contenus réels, et contenus de test des pages (qui doivent eux aussi être valides).
+const racines = ['src/content', 'tests/fixtures/site'].map((r) =>
+  join(import.meta.dirname, '../..', r),
+);
+const [racine = ''] = racines;
 
-function fichiersDe(collection: NomCollection): string[] {
-  return readdirSync(join(racine, collection))
+function fichiersDe(collection: NomCollection, dossier = racine): string[] {
+  return readdirSync(join(dossier, collection))
     .filter((nom) => nom.endsWith('.md'))
-    .map((nom) => join(racine, collection, nom));
+    .map((nom) => join(dossier, collection, nom));
 }
 
-for (const collection of COLLECTIONS) {
-  const fichiers = fichiersDe(collection);
+for (const [dossier, collection] of racines.flatMap((r) =>
+  COLLECTIONS.map((c) => [r, c] as const),
+)) {
+  const fichiers = fichiersDe(collection, dossier);
 
-  describe(`src/content/${collection}`, () => {
+  describe(`${dossier.split('/').slice(-2).join('/')}/${collection}`, () => {
     it.skipIf(fichiers.length === 0).each(fichiers.map((chemin) => [basename(chemin), chemin]))(
       '%s est valide',
       (nom, chemin) => {
@@ -31,7 +37,7 @@ for (const collection of COLLECTIONS) {
     );
 
     it('ne contient que des fichiers Markdown', () => {
-      const autres = readdirSync(join(racine, collection)).filter(
+      const autres = readdirSync(join(dossier, collection)).filter(
         (nom) => !nom.endsWith('.md') && nom !== '.gitkeep',
       );
       expect(autres).toEqual([]);
@@ -39,13 +45,13 @@ for (const collection of COLLECTIONS) {
   });
 }
 
-describe('cohérence entre fichiers', () => {
+describe.each(racines)('cohérence entre fichiers de %s', (dossier) => {
   it('organisateurs existants et publiés, objets OSM importés une seule fois', () => {
-    const acteurs = fichiersDe('acteurs').flatMap((chemin) => {
+    const acteurs = fichiersDe('acteurs', dossier).flatMap((chemin) => {
       const resultat = schemaActeur.safeParse(lireMarkdown(readFileSync(chemin, 'utf8')).donnees);
       return resultat.success ? [resultat.data] : [];
     });
-    const evenements = fichiersDe('evenements').flatMap((chemin) => {
+    const evenements = fichiersDe('evenements', dossier).flatMap((chemin) => {
       const resultat = schemaEvenement.safeParse(
         lireMarkdown(readFileSync(chemin, 'utf8')).donnees,
       );

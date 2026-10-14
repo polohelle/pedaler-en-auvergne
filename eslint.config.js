@@ -55,6 +55,11 @@ export default defineConfig(
       // astro-eslint-parser ne gère pas projectService : on lui donne le tsconfig explicitement.
       parserOptions: { projectService: false, project: true },
     },
+    rules: {
+      // Faux positifs : le parseur ne résout pas le type des éléments JSX renvoyés par les
+      // `.map()` des templates. Les autres règles typées restent actives.
+      '@typescript-eslint/no-unsafe-return': 'off',
+    },
   },
   {
     files: ['src/services/**', 'src/content.config.ts'],

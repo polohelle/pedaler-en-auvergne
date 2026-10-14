@@ -1,0 +1,24 @@
+---
+/** Premier élément focalisable : permet d'aller directement au contenu au clavier. */
+---
+
+<a class="lien-evitement" href="#contenu">
+  Aller au contenu
+</a>
+
+<style>
+  .lien-evitement {
+    position: absolute;
+    top: var(--espace-2);
+    left: var(--espace-2);
+    z-index: 10;
+    padding: var(--espace-2) var(--espace-3);
+    background: var(--couleur-fond);
+    color: var(--couleur-lien);
+    transform: translateY(-200%);
+  }
+
+  .lien-evitement:focus {
+    transform: none;
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import { LIBELLES_CATEGORIE_ACTEUR } from '@config/acteurs';
+import { SITE } from '@config/site';
+import Base from '@layouts/Base.astro';
+import { acteursPublies } from '@services/contenus';
+
+const acteurs = await acteursPublies();
+---
+
+<Base
+  titre="Annuaire des acteurs du vélo"
+  description="Magasins, réparateurs, loueurs, ateliers, vélo-écoles, associations et clubs du Puy-de-Dôme."
+>
+  <h1>Annuaire des acteurs du vélo</h1>
+  {acteurs.length === 0 ? (
+    <p class="texte">
+      L'annuaire est en cours de constitution : les premières fiches seront publiées après
+      vérification.
+    </p>
+  ) : (
+    <>
+      <p class="discret">{acteurs.length} acteur(s) référencé(s).</p>
+      <ul class="grille liste-simple">
+        {acteurs.map(({ id, data }) => (
+          <li class="carte">
+            <h2>
+              <a href={`/annuaire/${id}/`}>{data.nom}</a>
+            </h2>
+            <p>
+              {data.categories.map((c) => LIBELLES_CATEGORIE_ACTEUR[c]).join(', ')} — {data.commune}
+            </p>
+            {data.membre && <p class="etiquette etiquette-membre">Membre de l'association</p>}
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+  <p class="discret">
+    Une partie des données de l'annuaire provient d'OpenStreetMap, ©{' '}
+    <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, licence ODbL.
+  </p>
+  <p>
+    <a href={`${SITE.depot}/issues/new?template=2-referencer-structure.yml`}>
+      Référencer ma structure
+    </a>
+  </p>
+</Base>

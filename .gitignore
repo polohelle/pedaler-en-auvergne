@@ -152,3 +152,4 @@ vite.config.ts.timestamp-*
 playwright-report/
 test-results/
 .lighthouseci/
+dist-e2e/

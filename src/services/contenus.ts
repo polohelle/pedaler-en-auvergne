@@ -6,6 +6,12 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { estActeurVisible, estActuVisible, estEvenementVisible, estPasse } from '@lib/publication';
 import { descriptionRequise } from '@lib/validation';
+import type { Acteur } from '@schemas/acteur';
+
+/** Fiche publiée : le schéma garantit adresse, code postal, commune et vérification. */
+export type EntreeActeurPublie = CollectionEntry<'acteurs'> & {
+  data: Extract<Acteur, { statut: 'publie' }>;
+};
 
 function exigerDescription(entree: { id: string; collection: string; body?: string | undefined }) {
   if ((entree.body ?? '').trim() === '') {
@@ -13,8 +19,10 @@ function exigerDescription(entree: { id: string; collection: string; body?: stri
   }
 }
 
-export async function acteursPublies(): Promise<CollectionEntry<'acteurs'>[]> {
-  const acteurs = await getCollection('acteurs', ({ data }) => estActeurVisible(data.statut));
+export async function acteursPublies(): Promise<EntreeActeurPublie[]> {
+  const acteurs = await getCollection('acteurs', (acteur): acteur is EntreeActeurPublie =>
+    estActeurVisible(acteur.data.statut),
+  );
   for (const acteur of acteurs) {
     if (descriptionRequise.acteurs(acteur.data)) exigerDescription(acteur);
   }

@@ -1,0 +1,65 @@
+---
+import { SITE } from '@config/site';
+
+const annee = new Date().getFullYear();
+---
+
+<footer class="pied">
+  <div class="conteneur">
+    <nav aria-label="Liens de pied de page">
+      <ul class="liste-simple pied__liens">
+        <li>
+          <a href="/association/">L'association</a>
+        </li>
+        <li>
+          <a href="/mentions-legales/">Mentions légales et confidentialité</a>
+        </li>
+        <li>
+          <a href={SITE.depot}>Code source</a>
+        </li>
+      </ul>
+    </nav>
+    <p class="discret">
+      Code sous licence <a href={`${SITE.depot}/blob/main/LICENSE`}>MIT</a>, textes sous licence
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr" hreflang="fr">
+        CC BY-SA 4.0
+      </a>
+      , données de l'annuaire sous licence
+      <a href="https://opendatacommons.org/licenses/odbl/1-0/" hreflang="en">
+        ODbL 1.0
+      </a>
+      , dont une partie ©{' '}
+      <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>. Le nom et
+      le logo {SITE.nom} ne sont pas sous licence libre.
+      <a href={`${SITE.depot}/blob/main/LICENSES.md`}>Détail des licences</a>.
+    </p>
+    <p class="discret">
+      © {annee} {SITE.nom}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .pied {
+    margin-block-start: var(--espace-5);
+    padding-block: var(--espace-4);
+    border-block-start: 1px solid var(--couleur-bordure);
+    background: var(--couleur-fond-doux);
+  }
+
+  .pied__liens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espace-1) var(--espace-4);
+  }
+
+  .pied__liens a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--cible-tactile);
+  }
+
+  .pied .discret a {
+    color: inherit;
+  }
+</style>
