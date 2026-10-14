@@ -129,3 +129,4 @@ changement de code ni d'URL n'est nécessaire.
 | [0016](adr/0016-agents-et-skills.md)                    | Agents et skills                     |
 | [0017](adr/0017-deploiement-cloudflare-pages.md)        | Déploiement                          |
 | [0018](adr/0018-donnees-des-formulaires.md)             | Données personnelles des formulaires |
+| [0020](adr/0020-declencheurs-de-la-ci.md)               | Déclencheurs de la CI                |
