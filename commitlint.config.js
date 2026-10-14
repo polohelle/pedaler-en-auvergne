@@ -2,6 +2,8 @@
 /** @type {import('@commitlint/types').UserConfig} */
 export default {
   extends: ['@commitlint/config-conventional'],
+  // Les corps des commits Dependabot (notes de version) dépassent la longueur de ligne.
+  ignores: [(message) => message.includes('Signed-off-by: dependabot[bot]')],
   rules: {
     // Les contenus éditoriaux ont leur propre type, comme prévu au cahier des charges.
     'type-enum': [

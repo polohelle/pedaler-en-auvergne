@@ -1,0 +1,33 @@
+name: Corriger ou retirer une fiche
+description: Signaler une erreur dans l'annuaire, l'agenda ou les actualités, ou demander un retrait.
+title: '[Correction] '
+labels: [correction]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Ce dépôt est public : tout ce que vous écrivez ici est visible par tous. N'indiquez aucune donnée personnelle (adresse e-mail ou téléphone personnels, adresse de domicile). Seules les coordonnées professionnelles publiques des structures ont leur place dans l'annuaire.**
+
+        Les demandes de retrait sont traitées sous 7 jours au plus.
+  - type: input
+    id: page
+    attributes:
+      label: Adresse de la page concernée
+      placeholder: https://pedalerenauvergne.fr/annuaire/…
+    validations:
+      required: true
+  - type: dropdown
+    id: nature
+    attributes:
+      label: Nature de la demande
+      options:
+        - Correction
+        - Retrait
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Ce qu'il faut corriger
+    validations:
+      required: true

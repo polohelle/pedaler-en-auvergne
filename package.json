@@ -23,7 +23,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "verify": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test:coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "astro build && playwright test",
+    "lighthouse": "astro build && lhci autorun"
   },
   "dependencies": {
     "astro": "7.3.8"
@@ -35,6 +36,7 @@
     "@commitlint/config-conventional": "21.2.3",
     "@commitlint/types": "21.2.3",
     "@eslint/js": "10.0.1",
+    "@lhci/cli": "0.15.1",
     "@playwright/test": "1.64.0",
     "@types/node": "24.19.2",
     "@vitest/coverage-v8": "5.0.4",

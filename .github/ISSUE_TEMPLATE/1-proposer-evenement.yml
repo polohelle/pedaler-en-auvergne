@@ -1,0 +1,53 @@
+name: Proposer un événement
+description: Signaler une manifestation vélo pour l'agenda (modérée avant publication).
+title: '[Événement] '
+labels: [proposition, evenement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Ce dépôt est public : tout ce que vous écrivez ici est visible par tous. N'indiquez aucune donnée personnelle (adresse e-mail ou téléphone personnels, adresse de domicile). Seules les coordonnées professionnelles publiques des structures ont leur place dans l'annuaire.**
+  - type: input
+    id: titre
+    attributes:
+      label: Titre de l'événement
+    validations:
+      required: true
+  - type: input
+    id: dates
+    attributes:
+      label: Date(s) et horaires
+      placeholder: samedi 8 novembre 2026, 9 h 30 – 12 h
+    validations:
+      required: true
+  - type: input
+    id: lieu
+    attributes:
+      label: Lieu et commune
+    validations:
+      required: true
+  - type: input
+    id: organisateur
+    attributes:
+      label: Structure organisatrice
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Quelques phrases, rédigées par vous (pas de copier-coller d'un autre site).
+    validations:
+      required: true
+  - type: input
+    id: tarif
+    attributes:
+      label: Tarif
+  - type: input
+    id: inscription
+    attributes:
+      label: Lien d'inscription
+  - type: input
+    id: source
+    attributes:
+      label: Page de référence (site de l'organisateur, réseau social…)
+    validations:
+      required: true
