@@ -4,8 +4,15 @@ Liste à cocher avant d'annoncer le site.
 
 ## Association et mentions légales
 
-- [ ] Association déclarée : renseigner `rna`, `adresse`, `directeurPublication` et `email` dans
-      `src/config/association.ts` (les pages affichent sinon une mention neutre).
+Les pages affichent une mention neutre tant que les champs de `src/config/association.ts`
+valent `null`.
+
+- [ ] **Avant la mise en ligne publique** : renseigner `directeurPublication` (nom de la
+      personne) et `email: 'contact@pedalerenauvergne.fr'`.
+- [ ] Créer l'adresse `contact@pedalerenauvergne.fr` : Cloudflare → domaine → **Email → Email
+      Routing** → règle de transfert vers la boîte de l'administrateur (adresse de destination à
+      vérifier). La même boîte reçoit les e-mails des auteurs de formulaires (ADR 0018).
+- [ ] **Après la déclaration de l'association** : renseigner `rna` et `adresse` (siège).
 - [ ] Nom de l'association dans le titulaire du copyright de `LICENSE`.
 - [ ] Page HelloAsso créée : renseigner `adhesionUrl` dans `src/config/site.ts`.
 - [ ] Relire la page « Mentions légales et confidentialité » (responsable de traitement,
