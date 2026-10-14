@@ -1,6 +1,6 @@
 # 0009 — Chaîne d'intégration continue
 
-- Statut : acceptée
+- Statut : acceptée, déclenchement remplacé par 0020
 - Date : 2026-10-14
 
 ## Contexte
