@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { lireMarkdown } from '../frontmatter';
 import { validerFichier } from '../validation';
-import { categoriesEtServices, slugActeur, versActeur, type ElementOsm } from './correspondance';
+import { categoriesOsm, slugActeur, versActeur, type ElementOsm } from './correspondance';
 import { aGeocoder, planifierImport } from './import';
 import { requeteOverpass } from './requete';
 
@@ -27,31 +27,24 @@ describe('requeteOverpass', () => {
   });
 });
 
-describe('categoriesEtServices', () => {
-  it('déduit catégories et services des tags', () => {
-    expect(
-      categoriesEtServices({
-        shop: 'bicycle',
-        'service:bicycle:repair': 'yes',
-        'service:bicycle:diy': 'yes',
-      }),
-    ).toEqual({
-      categories: ['magasin', 'reparateur'],
-      services: ['reparation', 'auto-reparation'],
-    });
+describe('categoriesOsm', () => {
+  it('déduit les catégories des tags vélo', () => {
+    expect(categoriesOsm({ shop: 'bicycle', 'service:bicycle:repair': 'yes' })).toEqual([
+      'magasin',
+      'reparateur',
+    ]);
   });
 
   it('classe un loueur à guichet', () => {
-    expect(categoriesEtServices({ amenity: 'bicycle_rental', bicycle_rental: 'shop' })).toEqual({
-      categories: ['loueur'],
-      services: ['location'],
-    });
+    expect(categoriesOsm({ amenity: 'bicycle_rental', bicycle_rental: 'shop' })).toEqual([
+      'loueur',
+    ]);
   });
 
   it('classe en magasin un revendeur d’occasion seul', () => {
-    expect(
-      categoriesEtServices({ shop: 'second_hand', 'service:bicycle:second_hand': 'only' }),
-    ).toEqual({ categories: ['magasin'], services: ['occasion'] });
+    expect(categoriesOsm({ shop: 'second_hand', 'service:bicycle:second_hand': 'only' })).toEqual([
+      'magasin',
+    ]);
   });
 });
 
@@ -60,35 +53,21 @@ describe('slugActeur', () => {
     ['Cycles du Centre', 'Clermont-Ferrand', 'cycles-du-centre-clermont-ferrand'],
     ['Sport Riom', 'Riom', 'sport-riom'],
     ['Riomois Cycles', 'Riom', 'riomois-cycles-riom'],
-    ['Giant', undefined, 'giant'],
   ])('%s à %s → %s', (nom, commune, attendu) => {
     expect(slugActeur(nom, commune)).toBe(attendu);
   });
 });
 
 describe('versActeur', () => {
-  it('produit un brouillon complet à partir d’un commerce bien renseigné', () => {
-    const resultat = versActeur(element(1001), '63');
-    expect(resultat).toEqual({
+  it('produit un brouillon minimal, même à partir d’un objet très renseigné', () => {
+    expect(versActeur(element(1001), '63')).toEqual({
       ok: true,
-      manques: ['description', 'verifie_le'],
       acteur: {
         nom: 'Cycles du Centre',
         slug: 'cycles-du-centre-clermont-ferrand',
         categories: ['magasin', 'reparateur'],
-        membre: false,
-        adresse: '12 Rue du Port',
-        code_postal: '63000',
         commune: 'Clermont-Ferrand',
         departement: '63',
-        lat: 45.7772,
-        lon: 3.087,
-        services: ['vente-neuf', 'occasion', 'reparation'],
-        horaires: 'Tu-Sa 09:00-12:00,14:00-19:00',
-        site: 'https://cycles-du-centre.example',
-        email: 'contact@cycles-du-centre.example',
-        telephone: '+33 4 73 00 00 00',
-        reseaux: ['https://www.facebook.com/cyclesducentre'],
         source: 'osm',
         osm_id: 'node/1001',
         statut: 'brouillon',
@@ -96,38 +75,30 @@ describe('versActeur', () => {
     });
   });
 
-  it('prend le centre d’un bâtiment et signale l’adresse manquante', () => {
-    const resultat = versActeur(element(2002), '63');
-    expect(resultat.ok && resultat.acteur).toMatchObject({
-      slug: 'sport-riom',
-      categories: ['loueur'],
-      lat: 45.8936,
-      osm_id: 'way/2002',
-    });
-    expect(resultat.ok && resultat.manques).toEqual([
-      'adresse',
-      'code_postal',
-      'commune',
-      'description',
-      'verifie_le',
-    ]);
+  it('ne reprend ni adresse, ni coordonnées, ni contacts', () => {
+    const resultat = versActeur(element(1001), '63');
+    const champs = resultat.ok ? Object.keys(resultat.acteur) : [];
+    for (const champ of ['adresse', 'code_postal', 'lat', 'lon', 'telephone', 'email', 'site']) {
+      expect(champs).not.toContain(champ);
+    }
   });
 
-  it('écarte les valeurs invalides plutôt que la fiche', () => {
-    const resultat = versActeur(element(1005), '63');
-    expect(resultat.ok).toBe(true);
-    if (!resultat.ok) return;
-    expect(resultat.acteur.code_postal).toBeUndefined();
-    expect(resultat.acteur.site).toBeUndefined();
-    expect(resultat.acteur.telephone).toBeUndefined();
+  it('ignore un objet dont la fiche serait invalide (nom sans lettre ni chiffre)', () => {
+    const symboles: ElementOsm = {
+      type: 'node',
+      id: 42,
+      tags: { shop: 'bicycle', name: '★★★', 'addr:city': 'Riom' },
+    };
+    const resultat = versActeur(symboles, '63');
+    expect(!resultat.ok && resultat.motif).toMatch(/^node\/42 \(★★★\) : Slug attendu/);
   });
 
   it.each([
     [1003, /n'est pas un acteur/],
     [1004, /sans nom/],
     [1007, /aucune activité vélo/],
-    [3008, /sans coordonnées/],
-    [1009, /hors d’Auvergne/],
+    [2002, /commune introuvable/],
+    [3008, /commune introuvable/],
   ])('ignore l’élément %i', (id, motif) => {
     const resultat = versActeur(element(id), '63');
     expect(resultat.ok).toBe(false);
@@ -145,47 +116,58 @@ describe('planifierImport', () => {
     expect(plan.creations.map((c) => c.nomFichier)).toEqual([
       'cycles-du-centre-clermont-ferrand.md',
       'cycles-du-centre-clermont-ferrand-2.md',
-      'sport-riom-2.md',
     ]);
     expect(plan.dejaPresents).toEqual(['node/1006']);
-    expect(plan.ignores).toHaveLength(5);
+    expect(plan.ignores).toHaveLength(6);
     for (const { nomFichier, contenu } of plan.creations) {
       expect(validerFichier('acteurs', nomFichier, contenu)).toEqual([]);
     }
   });
 
-  it('écrit les champs dans l’ordre du cahier des charges, en brouillon', () => {
+  it('écrit un frontmatter minimal, dans l’ordre du cahier des charges', () => {
     const [premiere] = planifierImport(
       [element(1001)],
       { slugs: new Set(), osmIds: new Set() },
       '63',
     ).creations;
-    const cles = Object.keys(lireMarkdown(premiere?.contenu ?? '').donnees as object);
-    expect(cles[0]).toBe('nom');
-    expect(cles.at(-1)).toBe('statut');
-    expect(cles.indexOf('osm_id')).toBeGreaterThan(cles.indexOf('source'));
+    expect(Object.keys(lireMarkdown(premiere?.contenu ?? '').donnees as object)).toEqual([
+      'nom',
+      'slug',
+      'categories',
+      'commune',
+      'departement',
+      'source',
+      'osm_id',
+      'statut',
+    ]);
   });
 });
 
 describe('géocodage inverse', () => {
   const vide = { slugs: new Set<string>(), osmIds: new Set<string>() };
 
-  it('ne soumet que les objets sans adresse, positionnés et pas encore importés', () => {
+  it('ne soumet que les objets sans commune, positionnés et pas encore importés', () => {
     expect(
       aGeocoder(elements, { ...vide, osmIds: new Set(['node/1004']) }).map((e) => e.osmId),
     ).toEqual(['way/2002', 'node/1003', 'node/1006', 'node/1007', 'node/1009']);
   });
 
-  it('complète commune et code postal manquants, sans écraser ceux d’OSM', () => {
+  it('complète la commune manquante, sans écraser celle d’OSM ni sortir du département', () => {
     const communes = new Map([
       ['way/2002', { commune: 'Riom', code_postal: '63200' }],
       ['node/1001', { commune: 'Autre', code_postal: '63100' }],
+      ['node/1006', { commune: 'Moulins', code_postal: '03000' }],
     ]);
-    const plan = planifierImport([element(1001), element(2002)], vide, '63', communes);
+    const plan = planifierImport(
+      [element(1001), element(2002), element(1006)],
+      vide,
+      '63',
+      communes,
+    );
     expect(plan.creations.map((c) => c.nomFichier)).toEqual([
       'cycles-du-centre-clermont-ferrand.md',
       'sport-riom.md',
     ]);
-    expect(plan.creations[1]?.manques).toEqual(['adresse', 'description', 'verifie_le']);
+    expect(plan.ignores).toEqual([expect.stringMatching(/^node\/1006 .*commune introuvable/)]);
   });
 });

@@ -1,3 +1,5 @@
+import { join } from 'node:path';
+import { check, resolveConfig } from 'prettier';
 import { describe, expect, it } from 'vitest';
 import { ecrireMarkdown, lireMarkdown } from './frontmatter';
 
@@ -34,8 +36,17 @@ describe('ecrireMarkdown', () => {
       jour: '2026-10-14',
     };
     const source = ecrireMarkdown(donnees, 'Une description.');
-    expect(source).toContain('debut: "2026-11-08T09:30:00+01:00"');
+    expect(source).toContain("debut: '2026-11-08T09:30:00+01:00'");
     expect(lireMarkdown(source)).toEqual({ donnees, corps: '\nUne description.\n' });
+  });
+
+  it('produit un fichier déjà conforme au style Prettier du projet', async () => {
+    const source = ecrireMarkdown(
+      { nom: "L'Atelier", categories: ['magasin', 'reparateur'], departement: '63' },
+      'Une description.',
+    );
+    const options = await resolveConfig(join(import.meta.dirname, 'exemple.md'));
+    expect(await check(source, { ...options, filepath: 'exemple.md' })).toBe(true);
   });
 
   it('omet le corps s’il est vide', () => {

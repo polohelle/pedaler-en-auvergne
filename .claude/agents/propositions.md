@@ -27,7 +27,7 @@ sous 48 h, correction ou retrait sous 7 jours.
    - **Événement** (`evenement`) : skill `normaliser-evenement`, puis `geocoder-adresse`, puis
      `dedoublonner` ; `source: formulaire`, `statut: a_valider`.
    - **Structure** (`acteur`) : vérifier qu'il s'agit d'un acteur du vélo d'un département
-     actif ; créer la fiche `statut: brouillon`, `source: formulaire`, `membre: false`,
+     actif (indépendant, franchise ou chaîne nationale : même traitement) ; créer la fiche `statut: brouillon`, `source: formulaire`, `membre: false`,
      coordonnées professionnelles seulement ; géocoder l'adresse.
    - **Correction** : appliquer la correction demandée si elle est vérifiable (site de
      l'acteur, source publique) ; sinon, demander une précision.
