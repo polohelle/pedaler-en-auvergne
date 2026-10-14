@@ -15,4 +15,5 @@ export const pages = [
   { nom: 'brève', chemin: '/actus/2026-10-05-breve-test/' },
   { nom: 'association', chemin: '/association/' },
   { nom: 'mentions légales', chemin: '/mentions-legales/' },
+  { nom: 'hors connexion', chemin: '/hors-ligne/' },
 ] as const;
