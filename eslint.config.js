@@ -4,8 +4,9 @@ import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import astro from 'eslint-plugin-astro';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: [
       'dist/',
