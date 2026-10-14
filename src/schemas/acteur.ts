@@ -25,10 +25,10 @@ const champs = {
   membre: z.boolean(),
   adresse: schemaTexte.optional(),
   code_postal: schemaCodePostal.optional(),
-  commune: schemaTexte.optional(),
+  commune: schemaTexte,
   departement: schemaDepartement,
-  lat: schemaLatitude,
-  lon: schemaLongitude,
+  lat: schemaLatitude.optional(),
+  lon: schemaLongitude.optional(),
   services: z.array(z.enum(SERVICES)).refine(sansDoublon, 'Service en double.').optional(),
   horaires: schemaTexte.optional(),
   site: schemaUrl.optional(),
@@ -43,31 +43,80 @@ const champs = {
   verifie_le: schemaJour.optional(),
 };
 
+/**
+ * Champs d'un brouillon importé d'OpenStreetMap (ADR 0019). Le dépôt est public : un tel
+ * brouillon ne contient ni adresse, ni coordonnées, ni moyen de contact, qui peuvent être
+ * ceux d'un artisan travaillant à domicile. Ils sont complétés à la vérification humaine.
+ */
+export const CHAMPS_BROUILLON_OSM = [
+  'nom',
+  'slug',
+  'categories',
+  'membre',
+  'commune',
+  'departement',
+  'source',
+  'osm_id',
+  'statut',
+] as const;
+
 /** Une fiche publiée est complète et a été vérifiée par un humain. */
 const acteurPublie = z.strictObject({
   ...champs,
   statut: z.literal('publie'),
   adresse: schemaTexte,
   code_postal: schemaCodePostal,
-  commune: schemaTexte,
+  lat: schemaLatitude,
+  lon: schemaLongitude,
   verifie_le: schemaJour,
 });
 
 /** Un brouillon (import OSM, proposition) ou une fiche archivée peut être incomplet. */
 const acteurNonPublie = z.strictObject({
   ...champs,
+  membre: z.boolean().default(false),
   statut: z.literal(['brouillon', 'archive']),
 });
 
 export const schemaActeur = z
   .discriminatedUnion('statut', [acteurPublie, acteurNonPublie])
   .superRefine((acteur, ctx) => {
-    if (!estEnAuvergne(acteur.lat, acteur.lon)) {
+    if ((acteur.lat === undefined) !== (acteur.lon === undefined)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['lat'],
+        message: 'Latitude et longitude vont ensemble.',
+      });
+    } else if (
+      acteur.lat !== undefined &&
+      acteur.lon !== undefined &&
+      !estEnAuvergne(acteur.lat, acteur.lon)
+    ) {
       ctx.addIssue({
         code: 'custom',
         path: ['lat'],
         message: 'Coordonnées hors d’Auvergne : latitude et longitude inversées ?',
       });
+    }
+    if (acteur.source === 'osm' && acteur.osm_id === undefined) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['osm_id'],
+        message: 'Une fiche issue d’OpenStreetMap garde son identifiant OSM.',
+      });
+    }
+    if (acteur.source === 'osm' && acteur.statut === 'brouillon') {
+      const autorises = new Set<string>(CHAMPS_BROUILLON_OSM);
+      for (const [champ, valeur] of Object.entries(acteur)) {
+        if (valeur !== undefined && !autorises.has(champ)) {
+          ctx.addIssue({
+            code: 'custom',
+            path: [champ],
+            message:
+              'Un brouillon importé d’OpenStreetMap ne contient que les champs minimaux : compléter la fiche lors de sa vérification, au moment de la publier.',
+          });
+        }
+      }
     }
     if (
       acteur.code_postal !== undefined &&

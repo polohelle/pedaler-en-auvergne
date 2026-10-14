@@ -51,6 +51,7 @@ autorisées sont décrits dans [docs/architecture.md](docs/architecture.md) et v
 - Exploitation : [déployer](docs/runbooks/deployer.md),
   [protéger main](docs/runbooks/proteger-main.md),
   [mettre en ligne](docs/runbooks/mettre-en-ligne.md),
+  [vérifier et publier une fiche](docs/runbooks/verifier-une-fiche.md),
   [restaurer une version](docs/runbooks/restaurer-une-version.md),
   [ajouter une source de veille](docs/runbooks/ajouter-une-source.md)
 - Consignes des agents Claude : [CLAUDE.md](CLAUDE.md), [.claude/](.claude/)

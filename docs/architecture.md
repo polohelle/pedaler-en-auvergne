@@ -39,7 +39,9 @@ Les champs, types et valeurs autorisées font foi dans `src/schemas/` et `src/co
   membre, adresse, code postal, commune, département, coordonnées, services, horaires, site,
   e-mail, téléphone, réseaux, source (`osm`, `formulaire`, `agent`, `admin`), `osm_id`,
   `verifie_le`, statut (`brouillon`, `publie`, `archive`). Un brouillon peut être incomplet ;
-  une fiche publiée exige adresse, code postal, commune, vérification et description.
+  un brouillon importé d'OpenStreetMap est minimal (nom, catégories, commune, département,
+  `osm_id` — ADR 0019) ; une fiche publiée exige adresse, code postal, coordonnées, vérification
+  et description.
 - **Événement** (`src/content/evenements/<aaaa-mm-jj>-<slug>.md`) : titre, type, début et fin
   (ISO 8601 avec fuseau), lieu, commune, département, coordonnées, organisateur (slug d'acteur),
   tarif, lien d'inscription, `source_url`, source, statut (`a_valider`, `publie`, `annule`,
@@ -129,5 +131,6 @@ changement de code ni d'URL n'est nécessaire.
 | [0016](adr/0016-agents-et-skills.md)                    | Agents et skills                     |
 | [0017](adr/0017-deploiement-cloudflare-pages.md)        | Déploiement                          |
 | [0018](adr/0018-donnees-des-formulaires.md)             | Données personnelles des formulaires |
+| [0019](adr/0019-brouillons-osm-minimaux.md)             | Brouillons OpenStreetMap minimaux    |
 | [0020](adr/0020-declencheurs-de-la-ci.md)               | Déclencheurs de la CI                |
 | [0021](adr/0021-garde-fou-des-commits.md)               | Garde-fou des commits                |
