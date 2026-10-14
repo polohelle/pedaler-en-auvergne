@@ -133,3 +133,4 @@ changement de code ni d'URL n'est nécessaire.
 | [0018](adr/0018-donnees-des-formulaires.md)             | Données personnelles des formulaires |
 | [0019](adr/0019-brouillons-osm-minimaux.md)             | Brouillons OpenStreetMap minimaux    |
 | [0020](adr/0020-declencheurs-de-la-ci.md)               | Déclencheurs de la CI                |
+| [0021](adr/0021-garde-fou-des-commits.md)               | Garde-fou des commits                |
