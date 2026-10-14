@@ -21,7 +21,20 @@ comme agents planifiés (`.claude/agents/`).
 | `pnpm import:osm --dry-run` | plan d'import OpenStreetMap, sans rien écrire                                        |
 | `pnpm icones`               | régénère les icônes de l'application depuis `public/favicon.svg`                     |
 
-Vérifier le code de sortie d'une commande, pas seulement sa sortie filtrée.
+## Enchaîner les commandes sans masquer un échec
+
+Une étape en échec doit toujours arrêter la suite. Règles :
+
+- Enchaîner les étapes dépendantes avec **`&&`**, jamais avec `;`, un retour à la ligne ou
+  `||` ; un script de plusieurs lignes commence par **`set -euo pipefail`**.
+- Ne jamais filtrer par un tube (`| grep`, `| tail`) une commande dont le code de sortie
+  compte, sauf sous `set -o pipefail` ; vérifier le code de sortie, pas la sortie filtrée.
+- Committer seulement après un `pnpm verify` réussi sur l'état exact à committer : soit
+  `pnpm verify && git add … && git commit …`, soit le commit dans un appel séparé après un
+  verify réussi, sans modification entre les deux.
+
+Un hook PreToolUse (`scripts/garde-commit.ts`, ADR 0021) l'impose aux sessions Claude Code :
+il refuse un `git commit` mal enchaîné ou sans vérification préalable de l'état exact.
 
 ## Où vit quoi
 
