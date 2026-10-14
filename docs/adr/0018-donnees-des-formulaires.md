@@ -1,7 +1,7 @@
 # 0018 — Données personnelles des formulaires publics hors du dépôt
 
-- Statut : acceptée (canal de transmission à confirmer en phase 2)
-- Date : 2026-10-14
+- Statut : acceptée
+- Date : 2026-10-14 (canal et durée de conservation validés par l'administrateur le même jour)
 
 ## Contexte
 
@@ -18,7 +18,7 @@ d'une proposition, l'administrateur a pourtant besoin de son adresse e-mail.
 - **L'adresse e-mail de l'auteur est transmise à l'administrateur par un autre canal**, jamais
   écrite dans le dépôt, dans une issue, dans un commentaire ou dans les journaux de la fonction.
   Le message de transmission contient seulement le numéro de l'issue et l'adresse.
-- **Canal retenu par défaut** (à confirmer à la mise en œuvre) : l'envoi d'e-mails de Cloudflare
+- **Canal retenu** : l'envoi d'e-mails de Cloudflare
   Email Routing depuis la fonction (liaison `send_email`) vers l'adresse de l'administrateur,
   vérifiée dans Cloudflare. Gratuit, sans sous-traitant supplémentaire, aucune donnée stockée par
   la fonction.

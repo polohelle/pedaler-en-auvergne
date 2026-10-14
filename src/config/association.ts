@@ -6,11 +6,14 @@
 export const ASSOCIATION = {
   nom: 'Pédaler en Auvergne',
   forme: 'Association loi 1901',
-  /** Numéro RNA, une fois l'association déclarée. */
+  /** Numéro RNA et siège : après la déclaration de l'association. */
   rna: null as string | null,
   adresse: null as string | null,
   directeurPublication: null as string | null,
-  /** Adresse de contact publique, y compris pour l'exercice des droits RGPD. */
+  /**
+   * Adresse de contact publique, y compris pour l'exercice des droits RGPD :
+   * `contact@pedalerenauvergne.fr`, à renseigner avant la mise en ligne publique.
+   */
   email: null as string | null,
 } as const;
 
