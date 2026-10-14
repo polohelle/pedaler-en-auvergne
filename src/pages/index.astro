@@ -1,0 +1,81 @@
+---
+import { SITE } from '@config/site';
+import Base from '@layouts/Base.astro';
+import { formaterDate, formaterPlage } from '@lib/dates';
+import { actusPubliees, evenementsAVenir } from '@services/contenus';
+
+const prochains = (await evenementsAVenir()).slice(0, 3);
+const dernieres = (await actusPubliees()).slice(0, 3);
+---
+
+<Base titre="Accueil">
+  <h1>{SITE.nom}</h1>
+  <p class="texte">
+    {SITE.slogan} du Puy-de-Dôme, puis de toute l'Auvergne : magasins et réparateurs, ateliers
+    participatifs, vélo-écoles, associations, clubs et entreprises à vélo, réunis en un seul
+    endroit.
+  </p>
+
+  <ul class="grille liste-simple">
+    <li class="carte">
+      <h2>
+        <a href="/annuaire/">Trouver un acteur du vélo</a>
+      </h2>
+      <p>Réparateur, loueur, atelier, club ou vélo-école près de chez vous.</p>
+    </li>
+    <li class="carte">
+      <h2>
+        <a href="/agenda/">Agenda</a>
+      </h2>
+      <p>Sorties, bourses aux vélos, ateliers, courses et fêtes du vélo.</p>
+    </li>
+    <li class="carte">
+      <h2>
+        <a href="/actus/">Actualités</a>
+      </h2>
+      <p>Les nouvelles du vélo local et ce qui change au niveau national.</p>
+    </li>
+  </ul>
+
+  {prochains.length > 0 && (
+    <section aria-labelledby="titre-prochains">
+      <h2 id="titre-prochains">Prochains événements</h2>
+      <ul class="liste-simple">
+        {prochains.map(({ id, data }) => (
+          <li>
+            <a href={`/agenda/${id}/`}>{data.titre}</a>
+            <span class="discret">
+              {' '}
+              — {formaterPlage(data.debut, data.fin)}, {data.commune}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {dernieres.length > 0 && (
+    <section aria-labelledby="titre-actus">
+      <h2 id="titre-actus">Dernières actualités</h2>
+      <ul class="liste-simple">
+        {dernieres.map(({ id, data }) => (
+          <li>
+            <a href={`/actus/${id}/`}>{data.titre}</a>
+            <span class="discret"> — {formaterDate(new Date(`${data.date}T12:00:00Z`))}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section aria-labelledby="titre-rejoindre">
+    <h2 id="titre-rejoindre">Rejoindre le réseau</h2>
+    <p class="texte">
+      Vous êtes un acteur du vélo ? Rejoignez l'association pour donner du poids à la filière vélo
+      locale.
+    </p>
+    <a class="bouton" href="/association/">
+      Découvrir l'association
+    </a>
+  </section>
+</Base>

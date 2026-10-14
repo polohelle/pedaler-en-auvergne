@@ -1,0 +1,46 @@
+name: Référencer ma structure
+description: Ajouter un acteur du vélo à l'annuaire.
+title: '[Annuaire] '
+labels: [proposition, acteur]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Ce dépôt est public : tout ce que vous écrivez ici est visible par tous. N'indiquez aucune donnée personnelle (adresse e-mail ou téléphone personnels, adresse de domicile). Seules les coordonnées professionnelles publiques des structures ont leur place dans l'annuaire.**
+  - type: input
+    id: nom
+    attributes:
+      label: Nom de la structure
+    validations:
+      required: true
+  - type: input
+    id: categories
+    attributes:
+      label: Activité(s)
+      placeholder: magasin, réparateur, club, atelier participatif…
+    validations:
+      required: true
+  - type: input
+    id: adresse
+    attributes:
+      label: Adresse professionnelle
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Présentation
+    validations:
+      required: true
+  - type: textarea
+    id: coordonnees
+    attributes:
+      label: Coordonnées professionnelles publiques
+      description: Site, e-mail et téléphone de la structure, réseaux sociaux, horaires.
+  - type: checkboxes
+    id: accord
+    attributes:
+      label: Accord
+      options:
+        - label: Je représente cette structure ou ces informations sont publiques, et j'accepte leur publication sous licence ODbL.
+          required: true

@@ -1,0 +1,26 @@
+name: Build quotidien
+
+# Relance chaque matin la build de production sur Cloudflare Pages, pour que l'agenda reste
+# juste (événements passés, annulations expirées) même sans fusion. Voir ADR 0017.
+on:
+  schedule:
+    - cron: '30 3 * * *' # 4 h 30 ou 5 h 30 à Paris selon la saison
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  relancer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Appeler le crochet de déploiement Cloudflare
+        env:
+          CROCHET: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$CROCHET" ]; then
+            echo "Secret CLOUDFLARE_DEPLOY_HOOK absent : rien à faire (voir docs/runbooks/deployer.md)."
+            exit 0
+          fi
+          curl --fail --silent --show-error -X POST "$CROCHET" > /dev/null
+          echo "Build de production relancée."

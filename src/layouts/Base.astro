@@ -1,0 +1,50 @@
+---
+import '../styles/tokens.css';
+import '../styles/base.css';
+import EnTete from '@components/EnTete.astro';
+import LienEvitement from '@components/LienEvitement.astro';
+import PiedDePage from '@components/PiedDePage.astro';
+import { SITE } from '@config/site';
+
+interface Props {
+  /** Titre propre à la page ; le nom du site est ajouté automatiquement. */
+  titre: string;
+  description?: string;
+}
+
+const { titre, description = SITE.description } = Astro.props;
+const titreComplet =
+  Astro.url.pathname === '/' ? `${SITE.nom} — ${SITE.slogan}` : `${titre} — ${SITE.nom}`;
+const canonique = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={SITE.langue}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titreComplet}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonique} />
+    <meta name="theme-color" content={SITE.couleurTheme} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={SITE.nom} />
+    <meta property="og:title" content={titre} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonique} />
+    <script is:inline src="/registerSW.js" defer></script>
+  </head>
+  <body>
+    <LienEvitement />
+    <EnTete chemin={Astro.url.pathname} />
+    <main id="contenu" class="conteneur" tabindex="-1">
+      <slot />
+    </main>
+    <PiedDePage />
+  </body>
+</html>

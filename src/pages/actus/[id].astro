@@ -1,0 +1,47 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+import { LIBELLES_CATEGORIE_ACTU, LIBELLES_PORTEE, LIBELLES_TYPE_ACTU } from '@config/actus';
+import Base from '@layouts/Base.astro';
+import { formaterDate } from '@lib/dates';
+import { actusPubliees } from '@services/contenus';
+
+export const getStaticPaths = (async () => {
+  const actus = await actusPubliees();
+  return actus.map((actu) => ({ params: { id: actu.id }, props: { actu } }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { actu } = Astro.props;
+const { data } = actu;
+const { Content } = await render(actu);
+---
+
+<Base titre={data.titre} description={data.resume}>
+  <article>
+    <h1>{data.titre}</h1>
+    <p class="discret">
+      {LIBELLES_TYPE_ACTU[data.type]} · {LIBELLES_PORTEE[data.portee]} ·{' '}
+      <time datetime={data.date}>{formaterDate(new Date(`${data.date}T12:00:00Z`))}</time> ·{' '}
+      {data.categories.map((c) => LIBELLES_CATEGORIE_ACTU[c]).join(', ')}
+    </p>
+    <p class="texte">
+      <strong>{data.resume}</strong>
+    </p>
+    {data.image && (
+      <figure>
+        <img src={data.image.src} alt={data.image.alt} loading="lazy" />
+        <figcaption class="discret">{data.image.credit}</figcaption>
+      </figure>
+    )}
+    <div class="texte">
+      <Content />
+    </div>
+    {data.source_url && (
+      <p class="discret">
+        Source : <a href={data.source_url}>{data.source_nom}</a>
+      </p>
+    )}
+  </article>
+</Base>

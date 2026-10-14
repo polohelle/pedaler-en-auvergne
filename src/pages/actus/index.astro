@@ -1,0 +1,33 @@
+---
+import { LIBELLES_PORTEE, LIBELLES_TYPE_ACTU } from '@config/actus';
+import Base from '@layouts/Base.astro';
+import { formaterDate } from '@lib/dates';
+import { actusPubliees } from '@services/contenus';
+
+const actus = await actusPubliees();
+---
+
+<Base
+  titre="Actualités du vélo"
+  description="Actualités du vélo local et national utiles aux acteurs du Puy-de-Dôme."
+>
+  <h1>Actualités du vélo</h1>
+  {actus.length === 0 ? (
+    <p class="texte">Aucune actualité publiée pour le moment.</p>
+  ) : (
+    <ul class="liste-simple">
+      {actus.map(({ id, data }) => (
+        <li class="carte">
+          <h2>
+            <a href={`/actus/${id}/`}>{data.titre}</a>
+          </h2>
+          <p class="discret">
+            {LIBELLES_TYPE_ACTU[data.type]} · {LIBELLES_PORTEE[data.portee]} ·{' '}
+            <time datetime={data.date}>{formaterDate(new Date(`${data.date}T12:00:00Z`))}</time>
+          </p>
+          <p>{data.resume}</p>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>

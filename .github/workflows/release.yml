@@ -1,0 +1,25 @@
+name: Release
+
+# Tient à jour une pull request de version (CHANGELOG.md, version de package.json)
+# à partir des Conventional Commits ; sa fusion crée le tag SemVer et la release.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+          # Une PR ouverte avec GITHUB_TOKEN ne déclenche pas la CI, et resterait bloquée
+          # par la protection de main : voir docs/runbooks/proteger-main.md.
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}

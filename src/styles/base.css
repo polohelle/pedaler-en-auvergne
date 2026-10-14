@@ -1,0 +1,176 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--couleur-fond);
+  color: var(--couleur-texte);
+  font-family: var(--police);
+  font-size: var(--taille-base);
+  line-height: var(--interligne);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin-block: var(--espace-4) var(--espace-3);
+}
+
+h1 {
+  font-size: var(--taille-h1);
+}
+
+h2 {
+  font-size: var(--taille-h2);
+}
+
+p,
+ul,
+ol,
+dl {
+  margin-block: 0 var(--espace-3);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--couleur-lien);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--couleur-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.conteneur {
+  width: 100%;
+  max-width: var(--largeur-contenu);
+  margin-inline: auto;
+  padding-inline: var(--espace-3);
+}
+
+.texte {
+  max-width: var(--largeur-texte);
+}
+
+.discret {
+  color: var(--couleur-texte-doux);
+  font-size: var(--taille-petite);
+}
+
+.visuellement-masque {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.liste-simple {
+  list-style: none;
+  padding: 0;
+}
+
+.carte {
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon);
+  padding: var(--espace-3);
+  margin-block-end: var(--espace-3);
+  background: var(--couleur-fond);
+}
+
+.carte h2,
+.carte h3 {
+  margin-block-start: 0;
+  font-size: 1.15rem;
+}
+
+.etiquette {
+  display: inline-block;
+  padding: 0 var(--espace-2);
+  border-radius: var(--rayon);
+  background: var(--couleur-fond-doux);
+  color: var(--couleur-texte);
+  font-size: var(--taille-petite);
+}
+
+.etiquette-membre {
+  background: var(--couleur-primaire);
+  color: var(--couleur-primaire-contraste);
+}
+
+.annule {
+  text-decoration: line-through;
+}
+
+.etiquette-annule {
+  background: var(--couleur-alerte);
+  color: var(--couleur-fond);
+  text-decoration: none;
+}
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--cible-tactile);
+  padding: var(--espace-2) var(--espace-4);
+  border-radius: var(--rayon);
+  background: var(--couleur-primaire);
+  color: var(--couleur-primaire-contraste);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.bouton:hover {
+  text-decoration: underline;
+}
+
+.grille {
+  display: grid;
+  gap: var(--espace-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--espace-1) var(--espace-3);
+}
+
+.details dt {
+  font-weight: 600;
+}
+
+.details dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,69 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+import { LIBELLES_TYPE_EVENEMENT } from '@config/evenements';
+import Base from '@layouts/Base.astro';
+import { formaterPlage } from '@lib/dates';
+import { acteursPublies, evenementsVisibles } from '@services/contenus';
+
+export const getStaticPaths = (async () => {
+  const evenements = await evenementsVisibles();
+  return evenements.map((evenement) => ({ params: { id: evenement.id }, props: { evenement } }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { evenement } = Astro.props;
+const { data } = evenement;
+const { Content } = await render(evenement);
+const organisateur = (await acteursPublies()).find((a) => a.id === data.organisateur);
+const annule = data.statut === 'annule';
+---
+
+<Base
+  titre={data.titre}
+  description={`${data.titre}, ${formaterPlage(data.debut, data.fin)}, ${data.commune}.`}
+>
+  <article>
+    <h1 class:list={{ annule }}>{data.titre}</h1>
+    {annule && <p class="etiquette etiquette-annule">Événement annulé</p>}
+    <dl class="details">
+      <dt>Type</dt>
+      <dd>{LIBELLES_TYPE_EVENEMENT[data.type]}</dd>
+      <dt>Date</dt>
+      <dd class:list={{ annule }}>{formaterPlage(data.debut, data.fin)}</dd>
+      <dt>Lieu</dt>
+      <dd>
+        {data.lieu}, {data.commune}
+      </dd>
+      {organisateur && (
+        <>
+          <dt>Organisateur</dt>
+          <dd>
+            <a href={`/annuaire/${organisateur.id}/`}>{organisateur.data.nom}</a>
+          </dd>
+        </>
+      )}
+      {data.tarif && (
+        <>
+          <dt>Tarif</dt>
+          <dd>{data.tarif}</dd>
+        </>
+      )}
+      {data.inscription_url && (
+        <>
+          <dt>Inscription</dt>
+          <dd>
+            <a href={data.inscription_url}>S'inscrire</a>
+          </dd>
+        </>
+      )}
+    </dl>
+    <div class="texte">
+      <Content />
+    </div>
+    <p class="discret">
+      Source : <a href={data.source_url}>{new URL(data.source_url).hostname}</a>
+    </p>
+  </article>
+</Base>

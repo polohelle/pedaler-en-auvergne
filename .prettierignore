@@ -1,0 +1,10 @@
+dist/
+dist-e2e/
+.astro/
+coverage/
+playwright-report/
+test-results/
+.lighthouseci/
+pnpm-lock.yaml
+CHANGELOG.md
+docs/cahier-des-charges.md

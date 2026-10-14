@@ -1,0 +1,52 @@
+/*
+ * Jetons de conception. Toutes les couleurs de texte respectent un contraste AA
+ * (4,5:1 au moins) sur leur fond, en mode clair comme en mode sombre.
+ */
+:root {
+  color-scheme: light dark;
+
+  --couleur-fond: #ffffff;
+  --couleur-fond-doux: #f2f6f3;
+  --couleur-texte: #1a1d1b;
+  --couleur-texte-doux: #46504a;
+  --couleur-primaire: #1f5f3f;
+  --couleur-primaire-contraste: #ffffff;
+  --couleur-lien: #1a5a8a;
+  --couleur-bordure: #c9d3cc;
+  --couleur-focus: #b34700;
+  --couleur-alerte: #a3201a;
+
+  --police: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --taille-base: 1rem;
+  --taille-petite: 0.875rem;
+  --taille-h1: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  --taille-h2: clamp(1.35rem, 1.2rem + 0.8vw, 1.75rem);
+  --interligne: 1.6;
+
+  --espace-1: 0.25rem;
+  --espace-2: 0.5rem;
+  --espace-3: 1rem;
+  --espace-4: 1.5rem;
+  --espace-5: 2.5rem;
+
+  --rayon: 0.5rem;
+  --largeur-contenu: 70rem;
+  --largeur-texte: 42rem;
+  /* Cibles tactiles confortables (WCAG 2.5.8 et usage à vélo). */
+  --cible-tactile: 2.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --couleur-fond: #121614;
+    --couleur-fond-doux: #1c2320;
+    --couleur-texte: #e8ece9;
+    --couleur-texte-doux: #b4c0b8;
+    --couleur-primaire: #7fd1a4;
+    --couleur-primaire-contraste: #0b1f14;
+    --couleur-lien: #8cc8f2;
+    --couleur-bordure: #3a4640;
+    --couleur-focus: #ffb37a;
+    --couleur-alerte: #ff9b94;
+  }
+}

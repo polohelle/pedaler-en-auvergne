@@ -1,0 +1,62 @@
+/**
+ * Valide chaque fichier de src/content/ puis leur cohérence d'ensemble : c'est ce test qui
+ * bloque en CI une fiche publiée incomplète ou un lien cassé, avant même le build.
+ */
+import { readdirSync, readFileSync } from 'node:fs';
+import { basename, join } from 'node:path';
+import { describe, expect, it } from 'vitest';
+import { lireMarkdown } from '@lib/frontmatter';
+import { verifierIntegrite } from '@lib/integrite';
+import { COLLECTIONS, validerFichier, type NomCollection } from '@lib/validation';
+import { schemaActeur } from '@schemas/acteur';
+import { schemaEvenement } from '@schemas/evenement';
+
+// Contenus réels, et contenus de test des pages (qui doivent eux aussi être valides).
+const racines = ['src/content', 'tests/fixtures/site'].map((r) =>
+  join(import.meta.dirname, '../..', r),
+);
+const [racine = ''] = racines;
+
+function fichiersDe(collection: NomCollection, dossier = racine): string[] {
+  return readdirSync(join(dossier, collection))
+    .filter((nom) => nom.endsWith('.md'))
+    .map((nom) => join(dossier, collection, nom));
+}
+
+for (const [dossier, collection] of racines.flatMap((r) =>
+  COLLECTIONS.map((c) => [r, c] as const),
+)) {
+  const fichiers = fichiersDe(collection, dossier);
+
+  describe(`${dossier.split('/').slice(-2).join('/')}/${collection}`, () => {
+    it.skipIf(fichiers.length === 0).each(fichiers.map((chemin) => [basename(chemin), chemin]))(
+      '%s est valide',
+      (nom, chemin) => {
+        expect(validerFichier(collection, nom, readFileSync(chemin, 'utf8'))).toEqual([]);
+      },
+    );
+
+    it('ne contient que des fichiers Markdown', () => {
+      const autres = readdirSync(join(dossier, collection)).filter(
+        (nom) => !nom.endsWith('.md') && nom !== '.gitkeep',
+      );
+      expect(autres).toEqual([]);
+    });
+  });
+}
+
+describe.each(racines)('cohérence entre fichiers de %s', (dossier) => {
+  it('organisateurs existants et publiés, objets OSM importés une seule fois', () => {
+    const acteurs = fichiersDe('acteurs', dossier).flatMap((chemin) => {
+      const resultat = schemaActeur.safeParse(lireMarkdown(readFileSync(chemin, 'utf8')).donnees);
+      return resultat.success ? [resultat.data] : [];
+    });
+    const evenements = fichiersDe('evenements', dossier).flatMap((chemin) => {
+      const resultat = schemaEvenement.safeParse(
+        lireMarkdown(readFileSync(chemin, 'utf8')).donnees,
+      );
+      return resultat.success ? [{ id: basename(chemin, '.md'), ...resultat.data }] : [];
+    });
+    expect(verifierIntegrite(acteurs, evenements)).toEqual([]);
+  });
+});

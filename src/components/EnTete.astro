@@ -1,0 +1,102 @@
+---
+import { SITE } from '@config/site';
+
+interface Props {
+  /** Chemin de la page courante, pour signaler l'entrée active du menu. */
+  chemin: string;
+}
+
+const { chemin } = Astro.props;
+
+const entrees = [
+  { href: '/annuaire/', libelle: 'Annuaire' },
+  { href: '/agenda/', libelle: 'Agenda' },
+  { href: '/actus/', libelle: 'Actus' },
+  { href: '/association/', libelle: "L'association" },
+];
+
+const estActive = (href: string) => chemin.startsWith(href);
+---
+
+<header class="en-tete">
+  <div class="conteneur en-tete__interieur">
+    <a class="marque" href="/">
+      <img src="/favicon.svg" alt="" width="32" height="32" />
+      <span>
+        <span class="marque__nom">{SITE.nom}</span>
+        <span class="marque__slogan">{SITE.slogan}</span>
+      </span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <ul class="menu">
+        {entrees.map(({ href, libelle }) => (
+          <li>
+            <a href={href} aria-current={estActive(href) ? 'page' : undefined}>
+              {libelle}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .en-tete {
+    border-block-end: 1px solid var(--couleur-bordure);
+    background: var(--couleur-fond-doux);
+  }
+
+  .en-tete__interieur {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espace-2) var(--espace-4);
+    padding-block: var(--espace-2);
+  }
+
+  .marque {
+    display: flex;
+    align-items: center;
+    gap: var(--espace-2);
+    min-height: var(--cible-tactile);
+    color: var(--couleur-texte);
+    text-decoration: none;
+  }
+
+  .marque__nom {
+    display: block;
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+
+  .marque__slogan {
+    display: block;
+    color: var(--couleur-texte-doux);
+    font-size: var(--taille-petite);
+  }
+
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espace-1) var(--espace-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .menu a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--cible-tactile);
+    padding-inline: var(--espace-1);
+    color: var(--couleur-texte);
+    font-weight: 600;
+  }
+
+  .menu a[aria-current='page'] {
+    color: var(--couleur-primaire);
+    text-decoration-thickness: 3px;
+  }
+</style>

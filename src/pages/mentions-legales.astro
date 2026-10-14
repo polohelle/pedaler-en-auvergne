@@ -1,0 +1,70 @@
+---
+import { ASSOCIATION, HEBERGEUR } from '@config/association';
+import { SITE } from '@config/site';
+import Base from '@layouts/Base.astro';
+
+const aCompleter = 'communiqué à la déclaration de l’association';
+---
+
+<Base
+  titre="Mentions légales et confidentialité"
+  description="Éditeur, hébergeur, données personnelles, cookies et licences du site Pédaler en Auvergne."
+>
+  <div class="texte">
+    <h1>Mentions légales et confidentialité</h1>
+
+    <h2>Éditeur</h2>
+    <p>
+      {ASSOCIATION.nom}, {ASSOCIATION.forme}.<br />
+      Numéro RNA : {ASSOCIATION.rna ?? aCompleter}.<br />
+      Siège : {ASSOCIATION.adresse ?? aCompleter}.<br />
+      Directeur ou directrice de la publication : {ASSOCIATION.directeurPublication ?? aCompleter}.
+      <br />
+      Contact : {ASSOCIATION.email ?? aCompleter}.
+    </p>
+
+    <h2>Hébergeur</h2>
+    <p>
+      {HEBERGEUR.nom}, {HEBERGEUR.adresse} — <a href={HEBERGEUR.site}>{HEBERGEUR.site}</a>.
+    </p>
+
+    <h2>Données personnelles</h2>
+    <p>
+      Le responsable de traitement est l'association {ASSOCIATION.nom}. Le site publie uniquement
+      les coordonnées professionnelles publiques des structures de l'annuaire, jamais de données de
+      particuliers.
+    </p>
+    <p>
+      Lorsque vous proposez un événement, une fiche ou une correction, seules les informations
+      nécessaires sont demandées. Votre adresse e-mail sert uniquement à vous répondre : elle n'est
+      jamais publiée, ni conservée dans le dépôt public du site, et elle est supprimée une fois la
+      demande traitée.
+    </p>
+    <p>
+      Toute structure peut demander la correction ou le retrait de sa fiche ; la demande est traitée
+      sous 7 jours au plus. Vous disposez d'un droit d'accès, de rectification, d'effacement et
+      d'opposition, à exercer auprès de l'association, et du droit d'introduire une réclamation
+      auprès de la <a href="https://www.cnil.fr">CNIL</a>.
+    </p>
+
+    <h2>Cookies et mesure d'audience</h2>
+    <p>
+      Le site ne dépose aucun cookie et n'utilise aucun traceur publicitaire. Une éventuelle mesure
+      d'audience se fera sans cookie ni donnée personnelle, ce qui ne nécessite pas de bandeau de
+      consentement.
+    </p>
+
+    <h2>Licences et crédits</h2>
+    <p>
+      Code sous licence MIT, textes sous licence CC BY-SA 4.0, données de l'annuaire sous licence
+      ODbL 1.0, dont une partie ©{' '}
+      <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>. Le nom et
+      le logo {ASSOCIATION.nom} sont exclus de ces licences. Détail :
+      <a href={`${SITE.depot}/blob/main/LICENSES.md`}>LICENSES.md</a>.
+    </p>
+    <p>
+      Les actualités et événements repris d'autres sites sont des résumés rédigés, accompagnés d'un
+      lien vers leur source.
+    </p>
+  </div>
+</Base>

@@ -1,0 +1,121 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+import { LIBELLES_CATEGORIE_ACTEUR, LIBELLES_COLLEGE, LIBELLES_SERVICE } from '@config/acteurs';
+import { SITE } from '@config/site';
+import Base from '@layouts/Base.astro';
+import { formaterPlage } from '@lib/dates';
+import { acteursPublies, evenementsAVenir } from '@services/contenus';
+
+export const getStaticPaths = (async () => {
+  const acteurs = await acteursPublies();
+  return acteurs.map((acteur) => ({ params: { slug: acteur.id }, props: { acteur } }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { acteur } = Astro.props;
+const { data } = acteur;
+const { Content } = await render(acteur);
+const evenements = (await evenementsAVenir()).filter((e) => e.data.organisateur === acteur.id);
+const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&title=${encodeURIComponent(`[Correction] ${data.nom}`)}`;
+---
+
+<Base titre={data.nom} description={`${data.nom}, ${data.commune} : coordonnées et services.`}>
+  <article>
+    <h1>{data.nom}</h1>
+    <p>
+      {data.categories.map((c) => LIBELLES_CATEGORIE_ACTEUR[c]).join(', ')}
+      {data.membre && data.college && (
+        <span class="etiquette etiquette-membre">
+          Membre de l'association, collège {LIBELLES_COLLEGE[data.college]}
+        </span>
+      )}
+    </p>
+
+    <div class="texte">
+      <Content />
+    </div>
+
+    <h2>Coordonnées</h2>
+    <dl class="details">
+      <dt>Adresse</dt>
+      <dd>
+        {data.adresse}, {data.code_postal} {data.commune}
+      </dd>
+      {data.horaires && (
+        <>
+          <dt>Horaires</dt>
+          <dd>{data.horaires}</dd>
+        </>
+      )}
+      {data.telephone && (
+        <>
+          <dt>Téléphone</dt>
+          <dd>
+            <a href={`tel:${data.telephone.replace(/[ .-]/g, '')}`}>{data.telephone}</a>
+          </dd>
+        </>
+      )}
+      {data.email && (
+        <>
+          <dt>E-mail</dt>
+          <dd>
+            <a href={`mailto:${data.email}`}>{data.email}</a>
+          </dd>
+        </>
+      )}
+      {data.site && (
+        <>
+          <dt>Site</dt>
+          <dd>
+            <a href={data.site}>{data.site.replace(/^https?:\/\//, '')}</a>
+          </dd>
+        </>
+      )}
+      {data.reseaux && data.reseaux.length > 0 && (
+        <>
+          <dt>Réseaux</dt>
+          <dd>
+            <ul class="liste-simple">
+              {data.reseaux.map((url) => (
+                <li>
+                  <a href={url}>{new URL(url).hostname.replace(/^www\./, '')}</a>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </>
+      )}
+    </dl>
+
+    {data.services && data.services.length > 0 && (
+      <>
+        <h2>Services</h2>
+        <ul>
+          {data.services.map((s) => (
+            <li>{LIBELLES_SERVICE[s]}</li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    {evenements.length > 0 && (
+      <>
+        <h2>Prochains événements</h2>
+        <ul>
+          {evenements.map(({ id, data: e }) => (
+            <li>
+              <a href={`/agenda/${id}/`}>{e.titre}</a> — {formaterPlage(e.debut, e.fin)}
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    <p class="discret">
+      {data.source === 'osm' && <>Fiche issue d'OpenStreetMap, © contributeurs OpenStreetMap. </>}
+      Cette fiche vous concerne ? <a href={correction}>Proposer une correction</a>.
+    </p>
+  </article>
+</Base>

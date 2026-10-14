@@ -1,0 +1,40 @@
+---
+import { LIBELLES_TYPE_EVENEMENT } from '@config/evenements';
+import { SITE } from '@config/site';
+import Base from '@layouts/Base.astro';
+import { formaterPlage } from '@lib/dates';
+import { evenementsAVenir } from '@services/contenus';
+
+const evenements = await evenementsAVenir();
+---
+
+<Base
+  titre="Agenda des manifestations vélo"
+  description="Sorties, bourses aux vélos, ateliers de réparation, courses et fêtes du vélo dans le Puy-de-Dôme."
+>
+  <h1>Agenda des manifestations vélo</h1>
+  {evenements.length === 0 ? (
+    <p class="texte">Aucun événement à venir pour le moment.</p>
+  ) : (
+    <ul class="liste-simple">
+      {evenements.map(({ id, data }) => {
+        const annule = data.statut === 'annule';
+        return (
+          <li class="carte">
+            <h2 class:list={{ annule }}>
+              <a href={`/agenda/${id}/`}>{data.titre}</a>
+            </h2>
+            {annule && <p class="etiquette etiquette-annule">Annulé</p>}
+            <p class:list={{ annule }}>
+              {formaterPlage(data.debut, data.fin)} — {data.commune}
+            </p>
+            <p class="discret">{LIBELLES_TYPE_EVENEMENT[data.type]}</p>
+          </li>
+        );
+      })}
+    </ul>
+  )}
+  <p>
+    <a href={`${SITE.depot}/issues/new?template=1-proposer-evenement.yml`}>Proposer un événement</a>
+  </p>
+</Base>
