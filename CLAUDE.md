@@ -74,6 +74,8 @@ il refuse un `git commit` mal enchaîné ou sans vérification préalable de l'�
   et la couche d'accès la bloquent sinon.
 - Noms de fichiers : `acteurs/<slug>.md` ; `evenements/<aaaa-mm-jj>-<slug>.md` ;
   `actus/<aaaa-mm-jj>-<slug>.md` (date du début, à Paris).
+- Structure sans adresse d'accueil publique (atelier mobile, activité à domicile) :
+  `sans_adresse_publique: true`, commune seule, jamais d'adresse supposée (ADR 0025).
 - Neutralité : l'annuaire est exhaustif et non commercial ; indépendants, franchises et chaînes
   nationales y figurent au même titre, seul le badge « membre » distingue les adhérents.
 - Licences : textes sous CC BY-SA 4.0, données de l'annuaire sous ODbL 1.0 (voir

@@ -39,6 +39,22 @@ Aucune fiche n'est mise en avant ni écartée pour sa taille ou son enseigne ; s
 6. Commit `content: publie la fiche <nom>` sur une branche, pull request, vérification de
    l'aperçu, fusion.
 
+## Structure sans adresse d'accueil publique
+
+Atelier mobile, activité à domicile, accueil sur rendez-vous, ou adresse impossible à confirmer :
+ne publiez pas l'adresse (ADR 0025). Remplacez adresse et coordonnées par :
+
+```yaml
+code_postal: '63000'
+sans_adresse_publique: true
+zone_intervention: Clermont-Ferrand et sa métropole # facultatif
+site: https://exemple.fr # contacts professionnels publics
+verifie_le: 2026-10-20
+statut: publie
+```
+
+La fiche affiche la commune et invite à contacter la structure ; elle n'apparaît pas sur la carte.
+
 Une fiche à ne pas publier (structure fermée, hors périmètre — jamais au motif qu'il s'agit
 d'une chaîne) : passer `statut: archive`, ou
 supprimer le fichier si elle n'a jamais été publiée.
