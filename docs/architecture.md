@@ -136,3 +136,4 @@ changement de code ni d'URL n'est nécessaire.
 | [0021](adr/0021-garde-fou-des-commits.md)               | Garde-fou des commits                |
 | [0022](adr/0022-version-de-node.md)                     | Version de Node                      |
 | [0023](adr/0023-runners-figes.md)                       | Runners figés sur Ubuntu 24.04       |
+| [0024](adr/0024-pages-association-provisoires.md)       | Pages de l'association               |

@@ -174,3 +174,22 @@ a:hover {
   margin: 0;
   overflow-wrap: anywhere;
 }
+
+.tableau {
+  width: 100%;
+  max-width: var(--largeur-texte);
+  margin-block-end: var(--espace-3);
+  border-collapse: collapse;
+}
+
+.tableau th,
+.tableau td {
+  padding: var(--espace-2);
+  border-block-end: 1px solid var(--couleur-bordure);
+  text-align: start;
+  vertical-align: top;
+}
+
+.tableau thead th {
+  border-block-end-width: 2px;
+}

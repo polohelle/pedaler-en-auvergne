@@ -1,0 +1,20 @@
+---
+import AvisProvisoire from '@components/AvisProvisoire.astro';
+import NavAssociation from '@components/NavAssociation.astro';
+import Base from '@layouts/Base.astro';
+
+interface Props {
+  /** Titre de la page, repris en titre de niveau 1. */
+  titre: string;
+  description: string;
+}
+
+const { titre, description } = Astro.props;
+---
+
+<Base titre={titre} description={description}>
+  <h1>{titre}</h1>
+  <NavAssociation chemin={Astro.url.pathname} />
+  <AvisProvisoire />
+  <slot />
+</Base>

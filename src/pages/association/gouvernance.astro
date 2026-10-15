@@ -1,0 +1,88 @@
+---
+import { COLLEGES_ASSOCIATION, DETAILS_COLLEGE, LIBELLES_VOIX } from '@config/association';
+import Association from '@layouts/Association.astro';
+---
+
+<Association
+  titre="Gouvernance"
+  description="Comment Pédaler en Auvergne est gouvernée : six collèges, une assemblée générale où chaque collège pèse à parts égales, un conseil d'administration élu par collège."
+>
+  <div class="texte">
+    <h2>Six collèges</h2>
+    <p>
+      Chaque membre appartient à un seul collège, qu'il choisit à son adhésion selon son activité
+      principale. Les cinq premiers collèges votent ; le collège Partenaires, qui réunit notamment
+      les collectivités, participe aux débats avec voix consultative, pour que l'association garde
+      une parole indépendante.
+    </p>
+  </div>
+
+  <table class="tableau">
+    <caption class="visuellement-masque">Collèges de l'association</caption>
+    <thead>
+      <tr>
+        <th scope="col">Collège</th>
+        <th scope="col">Qui le compose</th>
+        <th scope="col">Voix</th>
+      </tr>
+    </thead>
+    <tbody>
+      {COLLEGES_ASSOCIATION.map((college) => (
+        <tr>
+          <th scope="row">{DETAILS_COLLEGE[college].libelle}</th>
+          <td>{DETAILS_COLLEGE[college].composition}</td>
+          <td>{LIBELLES_VOIX[DETAILS_COLLEGE[college].voix]}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="texte">
+    <h2>L'assemblée générale</h2>
+    <p>
+      Elle réunit tous les membres au moins une fois par an. Elle approuve les comptes et les
+      rapports, vote le budget et le barème des cotisations, et élit le conseil d'administration.
+    </p>
+    <p>
+      Chaque membre a une voix au sein de son collège, et chaque collège votant pèse autant que les
+      autres, quel que soit son nombre de membres : aucune famille d'acteurs ne peut imposer ses
+      vues par le nombre. Les assemblées et les votes peuvent se tenir à distance.
+    </p>
+
+    <h2>Le conseil d'administration</h2>
+    <p>
+      Il est élu par collège : chaque collège votant élit ses représentants, et le collège
+      Partenaires désigne un représentant avec voix consultative. Le nombre de sièges par collège
+      sera fixé par les statuts adoptés. Les mandats sont bénévoles, et un administrateur ne prend
+      pas part à une décision qui concerne directement sa structure.
+    </p>
+    <p>
+      Le conseil élit un bureau : une présidence, une trésorerie et un secrétariat. Le président et
+      le trésorier viennent de collèges différents. La présidence assure la direction de la
+      publication du portail.
+    </p>
+
+    <h2>Les prises de position</h2>
+    <p>
+      L'association s'exprime publiquement par des positions adoptées par le conseil
+      d'administration, après consultation de tous les collèges. Elles sont formulées comme des
+      propositions, étayées par des données et par l'expérience des membres. Un membre peut faire
+      connaître son désaccord, mais pas au nom de l'association.
+    </p>
+
+    <h2>Le portail</h2>
+    <p>
+      Le conseil désigne un administrateur du portail. Des outils automatisés préparent une partie
+      des contenus, mais aucun n'est publié sans validation humaine. La neutralité, la citation des
+      sources et la publication des seules coordonnées professionnelles sont fixées par la
+      <a href="/association/charte/">charte</a>.
+    </p>
+
+    <h2>Les premiers mois</h2>
+    <p>
+      Jusqu'à la première assemblée générale, l'association est administrée par un conseil
+      provisoire formé de ses membres fondateurs, chargé de réunir des membres dans chaque collège.
+      La composition du conseil sera publiée ici après l'assemblée constitutive.
+    </p>
+  </div>
+</Association>

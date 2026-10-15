@@ -1,0 +1,40 @@
+---
+import { ASSOCIATION } from '@config/association';
+import { SITE } from '@config/site';
+import Association from '@layouts/Association.astro';
+---
+
+<Association
+  titre="Contact"
+  description="Écrire à Pédaler en Auvergne : adhésion, presse, collectivités, corrections de l'annuaire."
+>
+  <div class="texte">
+    <h2>Écrire à l'association</h2>
+    {ASSOCIATION.email === null ? (
+      <p>L'adresse de contact sera publiée à la déclaration de l'association.</p>
+    ) : (
+      <p>
+        <a href={`mailto:${ASSOCIATION.email}`}>{ASSOCIATION.email}</a>
+      </p>
+    )}
+    <p>Écrivez-nous notamment pour :</p>
+    <ul>
+      <li>rejoindre l'association ou participer à sa création ;</li>
+      <li>une demande de presse, de collectivité ou de partenariat ;</li>
+      <li>corriger ou retirer une fiche de l'annuaire : nous le faisons sous 7 jours.</li>
+    </ul>
+
+    {ASSOCIATION.adresse !== null && (
+      <>
+        <h2>Siège</h2>
+        <p>{ASSOCIATION.adresse}</p>
+      </>
+    )}
+
+    <h2>Le site</h2>
+    <p>
+      Une erreur technique ou une idée pour le portail ? Le code est ouvert : vous pouvez aussi
+      <a href={`${SITE.depot}/issues`}>signaler un problème sur GitHub</a>.
+    </p>
+  </div>
+</Association>

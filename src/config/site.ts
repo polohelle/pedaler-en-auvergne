@@ -8,7 +8,5 @@ export const SITE = {
   langue: 'fr',
   couleurTheme: '#1f5f3f',
   couleurFond: '#ffffff',
-  /** Formulaire d'adhésion HelloAsso ; `null` tant que la page de l'association n'existe pas. */
-  adhesionUrl: null as string | null,
   depot: 'https://github.com/polohelle/pedaler-en-auvergne',
 } as const;
