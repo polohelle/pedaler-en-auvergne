@@ -33,5 +33,7 @@ test('la fiche événement relie l’organisateur et affiche la date en françai
   await expect(page.getByText('dimanche 14 juin 2099 de 9 h à 17 h')).toBeVisible();
   await page.getByRole('link', { name: 'Vélo Test Riom' }).click();
   await expect(page).toHaveURL(/\/annuaire\/velo-test-riom\/$/);
-  await expect(page.getByText("Membre de l'association, collège Usagers")).toBeVisible();
+  await expect(
+    page.getByRole('img', { name: "Membre de l'association, collège Usagers" }),
+  ).toBeVisible();
 });

@@ -1,25 +1,42 @@
 /*
- * Jetons de conception. Toutes les couleurs de texte respectent un contraste AA
- * (4,5:1 au moins) sur leur fond, en mode clair comme en mode sombre.
+ * Jetons de conception (identité « Les Puys », ADR 0024). Toutes les couleurs de texte
+ * respectent un contraste AA (4,5:1 au moins) sur leur fond, en mode clair comme en mode
+ * sombre ; les ratios sont notés à côté des couleurs de texte.
  */
 :root {
   color-scheme: light dark;
 
-  --couleur-fond: #ffffff;
-  --couleur-fond-doux: #f2f6f3;
-  --couleur-texte: #1a1d1b;
-  --couleur-texte-doux: #46504a;
-  --couleur-primaire: #1f5f3f;
-  --couleur-primaire-contraste: #ffffff;
-  --couleur-lien: #1a5a8a;
-  --couleur-bordure: #c9d3cc;
-  --couleur-focus: #b34700;
+  /* Fonds : brume, prairie pâle, surface des cartes. */
+  --couleur-fond: #f4f6f5;
+  --couleur-fond-doux: #e3e9e6;
+  --couleur-surface: #ffffff;
+  /* Basalte : texte (12,5:1 sur le fond) et bandeau d'en-tête. */
+  --couleur-texte: #22303a;
+  --couleur-texte-doux: #56626c; /* 5,1:1 sur fond doux */
+  /* Prairie : liens (6,0:1), badge « membre », entrée active du menu. */
+  --couleur-primaire: #2d6a3e;
+  --couleur-primaire-contraste: #ffffff; /* 6,5:1 */
+  --couleur-lien: #2d6a3e;
+  /* Lave : boutons d'action et tampons. */
+  --couleur-action: #a8401a;
+  --couleur-action-contraste: #ffffff; /* 6,2:1 */
+  /* Genêt : repères sur le bandeau basalte (6,9:1). */
+  --couleur-genet: #e8b04a;
+  --couleur-entete-fond: #22303a;
+  --couleur-entete-texte: #ffffff;
+  --couleur-entete-texte-doux: #d5dde1; /* 9,8:1 */
+  --couleur-bordure: #c3cdc8;
+  --couleur-focus: #a8401a;
   --couleur-alerte: #a3201a;
 
-  --police: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --taille-base: 1rem;
-  --taille-petite: 0.875rem;
-  --taille-h1: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  /* Polices auto-hébergées (woff2, sous-ensemble latin chargé à la demande), pile système en secours. */
+  --police:
+    'Source Sans 3 Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --police-titres:
+    'Bricolage Grotesque Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --taille-base: 1.0625rem;
+  --taille-petite: 0.9375rem;
+  --taille-h1: clamp(1.85rem, 1.4rem + 1.8vw, 2.75rem);
   --taille-h2: clamp(1.35rem, 1.2rem + 0.8vw, 1.75rem);
   --interligne: 1.6;
 
@@ -30,6 +47,7 @@
   --espace-5: 2.5rem;
 
   --rayon: 0.5rem;
+  --rayon-grand: 0.75rem;
   --largeur-contenu: 70rem;
   --largeur-texte: 42rem;
   /* Cibles tactiles confortables (WCAG 2.5.8 et usage à vélo). */
@@ -38,14 +56,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --couleur-fond: #121614;
-    --couleur-fond-doux: #1c2320;
-    --couleur-texte: #e8ece9;
-    --couleur-texte-doux: #b4c0b8;
-    --couleur-primaire: #7fd1a4;
-    --couleur-primaire-contraste: #0b1f14;
-    --couleur-lien: #8cc8f2;
-    --couleur-bordure: #3a4640;
+    --couleur-fond: #141b20;
+    --couleur-fond-doux: #1d262d;
+    --couleur-surface: #1a2228;
+    --couleur-texte: #e6ece9; /* 14,5:1 */
+    --couleur-texte-doux: #b3bfc7; /* 8,2:1 sur fond doux */
+    --couleur-primaire: #7cc48f;
+    --couleur-primaire-contraste: #141b20; /* 8,4:1 */
+    --couleur-lien: #7cc48f; /* 8,4:1 */
+    --couleur-action: #f08a5d;
+    --couleur-action-contraste: #141b20; /* 7,0:1 */
+    --couleur-genet: #e8b04a;
+    --couleur-entete-fond: #0d1215;
+    --couleur-entete-texte: #ffffff;
+    --couleur-entete-texte-doux: #d5dde1;
+    --couleur-bordure: #3a4650;
     --couleur-focus: #ffb37a;
     --couleur-alerte: #ff9b94;
   }

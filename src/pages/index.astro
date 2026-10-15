@@ -9,12 +9,23 @@ const dernieres = (await actusPubliees()).slice(0, 3);
 ---
 
 <Base titre="Accueil">
-  <h1>{SITE.nom}</h1>
-  <p class="texte">
-    {SITE.slogan} du Puy-de-Dôme, puis de toute l'Auvergne : magasins et réparateurs, ateliers
-    participatifs, vélo-écoles, associations, clubs et entreprises à vélo, réunis en un seul
-    endroit.
-  </p>
+  <section class="bandeau" aria-labelledby="titre-accueil">
+    <h1 id="titre-accueil">{SITE.nom}</h1>
+    <p class="texte">
+      {SITE.slogan} du Puy-de-Dôme, puis de toute l'Auvergne : magasins et réparateurs, ateliers
+      participatifs, vélo-écoles, associations, clubs et entreprises à vélo, réunis en un seul
+      endroit.
+    </p>
+    <svg
+      class="bandeau__relief"
+      viewBox="0 0 320 46"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M0 46V36l40-6c18-20 30-26 40-26l8 6 8-6c16 6 26 20 36 30 12-8 22-12 32-10 12 2 20 10 28 14l40-4c14-10 26-14 38-12 14 2 24 10 50 14v10Z"></path>
+    </svg>
+  </section>
 
   <ul class="grille liste-simple">
     <li class="carte">
@@ -79,3 +90,27 @@ const dernieres = (await actusPubliees()).slice(0, 3);
     </a>
   </section>
 </Base>
+
+<style>
+  /* Bandeau basalte bordé par le relief des Puys (ADR 0024). */
+  .bandeau {
+    margin-block: var(--espace-3) var(--espace-4);
+    padding: var(--espace-2) var(--espace-3) 0;
+    border-radius: var(--rayon-grand);
+    overflow: hidden;
+    background: var(--couleur-entete-fond);
+    color: var(--couleur-entete-texte);
+  }
+
+  .bandeau p {
+    color: var(--couleur-entete-texte-doux);
+  }
+
+  .bandeau__relief {
+    display: block;
+    width: calc(100% + 2 * var(--espace-3));
+    height: 2.75rem;
+    margin-inline: calc(-1 * var(--espace-3));
+    fill: var(--couleur-fond);
+  }
+</style>

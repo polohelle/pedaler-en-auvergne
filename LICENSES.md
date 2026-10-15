@@ -27,6 +27,12 @@ Le nom « Pédaler en Auvergne », ses déclinaisons « Pédaler à… » et le 
 ne sont couverts par aucune de ces licences. Leur usage demande l'accord de
 l'association.
 
+## Polices
+
+Les polices Bricolage Grotesque et Source Sans 3, hébergées avec le site, sont
+sous licence SIL Open Font License 1.1, comme indiqué dans leurs paquets
+`@fontsource-variable`.
+
 ## Contenus de tiers
 
 Les actualités et événements repris de la veille renvoient à leur source
