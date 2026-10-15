@@ -23,9 +23,11 @@ sur maquettes ; l'administrateur a retenu un mélange de « Les Puys » et de «
   lave (boutons, tampons), genêt (repères sur le basalte), brume (fond). Chaque couleur de texte
   a son ratio de contraste noté, en clair et en sombre.
 - **Polices** : Bricolage Grotesque pour les titres, Source Sans 3 pour le texte, en woff2
-  variables auto-hébergées via `@fontsource-variable` (licence SIL OFL 1.1), axe de graisse
-  seul. Le navigateur ne télécharge que le sous-ensemble latin utilisé (environ 70 Ko pour les
-  deux), `font-display: swap`, pile système en secours. La CSP (`font-src 'self'`) est inchangée.
+  variables auto-hébergées depuis `@fontsource-variable` (licence SIL OFL 1.1), axe de graisse
+  seul. Seuls les fichiers du sous-ensemble latin sont déclarés (`src/styles/polices.css`,
+  41 Ko et 29 Ko) et préchargés par `Base.astro`. `font-display: optional` : si une police
+  n'arrive pas à temps, la page garde la pile système, sans décalage de mise en page (la
+  première version en `swap` faisait chuter Lighthouse sous 0,9). La CSP est inchangée.
 
 ## Conséquences
 

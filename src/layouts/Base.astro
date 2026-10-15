@@ -1,6 +1,7 @@
 ---
-import '@fontsource-variable/bricolage-grotesque/wght.css';
-import '@fontsource-variable/source-sans-3/wght.css';
+import policeTitres from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
+import policeTexte from '@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-normal.woff2?url';
+import '../styles/polices.css';
 import '../styles/tokens.css';
 import '../styles/base.css';
 import EnTete from '@components/EnTete.astro';
@@ -28,6 +29,8 @@ const canonique = new URL(Astro.url.pathname, Astro.site);
     <title>{titreComplet}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonique} />
+    <link rel="preload" href={policeTitres} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={policeTexte} as="font" type="font/woff2" crossorigin />
     <meta name="theme-color" content={SITE.couleurTheme} />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
