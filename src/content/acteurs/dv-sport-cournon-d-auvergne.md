@@ -8,5 +8,5 @@ commune: Cournon-d'Auvergne
 departement: '63'
 source: osm
 osm_id: node/9160247694
-statut: brouillon
+statut: archive
 ---

@@ -8,5 +8,5 @@ commune: Issoire
 departement: '63'
 source: osm
 osm_id: way/647676246
-statut: brouillon
+statut: archive
 ---
