@@ -7,6 +7,7 @@ export const pages = [
   { nom: 'accueil', chemin: '/' },
   { nom: 'annuaire', chemin: '/annuaire/' },
   { nom: 'fiche acteur', chemin: '/annuaire/velo-test-riom/' },
+  { nom: 'fiche acteur sans adresse', chemin: '/annuaire/atelier-mobile-test/' },
   { nom: 'agenda', chemin: '/agenda/' },
   { nom: 'fiche événement', chemin: '/agenda/2099-06-14-bourse-test-riom/' },
   { nom: 'événement annulé', chemin: '/agenda/2099-06-21-sortie-test-annulee/' },

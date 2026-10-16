@@ -41,7 +41,20 @@ const champs = {
     .regex(/^(?:node|way|relation)\/\d+$/, 'Identifiant OSM attendu : node/123, way/123…')
     .optional(),
   verifie_le: schemaJour.optional(),
+  /**
+   * Structure sans adresse d'accueil publique (atelier mobile, activité à domicile, accueil sur
+   * rendez-vous, adresse non confirmée) : publiée avec sa commune, sans adresse ni position
+   * (ADR 0025).
+   */
+  sans_adresse_publique: z.literal(true).optional(),
+  /** Zone où une structure sans adresse publique intervient (« Clermont et sa métropole »). */
+  zone_intervention: schemaTexte.optional(),
 };
+
+/** Champs qu'une fiche publiée doit renseigner, sauf ceux qu'exclut l'absence d'adresse publique. */
+const REQUIS_PUBLICATION = ['adresse', 'code_postal', 'lat', 'lon', 'verifie_le'] as const;
+/** Champs interdits à une fiche publiée sans adresse publique. */
+const INTERDITS_SANS_ADRESSE = ['adresse', 'lat', 'lon'] as const;
 
 /**
  * Champs d'un brouillon importé d'OpenStreetMap (ADR 0019). Le dépôt est public : un tel
@@ -60,15 +73,13 @@ export const CHAMPS_BROUILLON_OSM = [
   'statut',
 ] as const;
 
-/** Une fiche publiée est complète et a été vérifiée par un humain. */
+/**
+ * Une fiche publiée est complète et a été vérifiée par un humain ; ses exigences sont vérifiées
+ * ensemble ci-dessous, pour que tous les manques soient signalés d'un coup.
+ */
 const acteurPublie = z.strictObject({
   ...champs,
   statut: z.literal('publie'),
-  adresse: schemaTexte,
-  code_postal: schemaCodePostal,
-  lat: schemaLatitude,
-  lon: schemaLongitude,
-  verifie_le: schemaJour,
 });
 
 /** Un brouillon (import OSM, proposition) ou une fiche archivée peut être incomplet. */
@@ -81,6 +92,32 @@ const acteurNonPublie = z.strictObject({
 export const schemaActeur = z
   .discriminatedUnion('statut', [acteurPublie, acteurNonPublie])
   .superRefine((acteur, ctx) => {
+    if (acteur.statut === 'publie') {
+      const sansAdresse = acteur.sans_adresse_publique === true;
+      for (const champ of REQUIS_PUBLICATION) {
+        const exclu = sansAdresse && champ !== 'code_postal' && champ !== 'verifie_le';
+        if (!exclu && acteur[champ] === undefined) {
+          ctx.addIssue({
+            code: 'custom',
+            path: [champ],
+            message: sansAdresse
+              ? 'Champ requis pour une fiche publiée.'
+              : 'Champ requis pour une fiche publiée (ou indiquer sans_adresse_publique: true).',
+          });
+        }
+      }
+      if (sansAdresse) {
+        for (const champ of INTERDITS_SANS_ADRESSE) {
+          if (acteur[champ] !== undefined) {
+            ctx.addIssue({
+              code: 'custom',
+              path: [champ],
+              message: "Une fiche sans adresse publique n'affiche ni adresse ni position.",
+            });
+          }
+        }
+      }
+    }
     if ((acteur.lat === undefined) !== (acteur.lon === undefined)) {
       ctx.addIssue({
         code: 'custom',

@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { acteurBrouillon, acteurPublie, sans } from '../../tests/fixtures/contenus';
+import {
+  acteurBrouillon,
+  acteurPublie,
+  acteurSansAdressePublique,
+  sans,
+} from '../../tests/fixtures/contenus';
 import { schemaActeur } from './acteur';
 
 const valider = (donnees: Record<string, unknown>) => schemaActeur.safeParse(donnees);
@@ -124,6 +129,42 @@ describe('schéma acteur — règles communes', () => {
     const enErreur = chemins({ ...acteurBrouillon(), [champ]: valeur });
     expect(enErreur.some((chemin) => chemin === champ || chemin.startsWith(`${champ}.`))).toBe(
       true,
+    );
+  });
+});
+
+describe('schéma acteur — publié sans adresse publique', () => {
+  it('accepte une fiche avec commune, zone et contact, sans adresse ni position', () => {
+    expect(valider(acteurSansAdressePublique()).success).toBe(true);
+  });
+
+  it.each([
+    ['adresse', '12 rue du Port'],
+    ['lat', 45.7772],
+    ['lon', 3.087],
+  ])('refuse le champ %s', (champ, valeur) => {
+    const avec = { ...acteurSansAdressePublique(), [champ]: valeur };
+    if (champ === 'lat') Object.assign(avec, { lon: 3.087 });
+    if (champ === 'lon') Object.assign(avec, { lat: 45.7772 });
+    expect(chemins(avec)).toContain(champ);
+  });
+
+  it('exige quand même la vérification et le code postal', () => {
+    expect(chemins(sans(acteurSansAdressePublique(), 'verifie_le', 'code_postal'))).toEqual(
+      expect.arrayContaining(['verifie_le', 'code_postal']),
+    );
+  });
+
+  it('signale tous les manques d’une fiche publiée en une fois', () => {
+    const incomplete = sans(acteurPublie(), 'adresse', 'lat', 'lon', 'verifie_le');
+    expect(chemins(incomplete)).toEqual(
+      expect.arrayContaining(['adresse', 'lat', 'lon', 'verifie_le']),
+    );
+  });
+
+  it('reste interdit dans un brouillon importé d’OpenStreetMap', () => {
+    expect(chemins({ ...acteurBrouillon(), sans_adresse_publique: true })).toContain(
+      'sans_adresse_publique',
     );
   });
 });

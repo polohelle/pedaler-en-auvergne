@@ -1,8 +1,8 @@
 # 0026 — Montée des runners GitHub Actions vers Ubuntu 26.04
 
-- Statut : proposée
+- Statut : acceptée
 - Date : 2026-10-14
-- Remplace, une fois acceptée : l'image `ubuntu-24.04` fixée par 0023 (la règle d'une image
+- Remplace : l'image `ubuntu-24.04` fixée par 0023 (la règle d'une image
   explicite et unique reste en vigueur)
 
 ## Contexte
@@ -28,7 +28,7 @@ La CI complète a tourné sur `ubuntu-26.04` (pull request #8) et, en parallèle
 - Lighthouse trouve le Chrome préinstallé de l'image et respecte les seuils.
 - Au cours du même run, les jobs 26.04 ont tourné sur deux versions d'image (20260927 et 20261012) : GitHub déploie encore l'image, ce qui n'a eu aucun effet sur les résultats.
 
-## Décision proposée
+## Décision
 
 - Passer tous les jobs à **`runs-on: ubuntu-26.04`**, après la fusion de la pull request #7.
 - Garder la règle de l'ADR 0023 : image versionnée, identique pour tous les jobs, vérifiée par

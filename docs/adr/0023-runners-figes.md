@@ -1,6 +1,6 @@
 # 0023 — Runners GitHub Actions figés sur une version d'Ubuntu
 
-- Statut : acceptée
+- Statut : acceptée, image remplacée par 0026 (ubuntu-26.04)
 - Date : 2026-10-14
 
 ## Contexte

@@ -39,10 +39,29 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
 
     <h2>Coordonnées</h2>
     <dl class="details">
-      <dt>Adresse</dt>
-      <dd>
-        {data.adresse}, {data.code_postal} {data.commune}
-      </dd>
+      {data.sans_adresse_publique ? (
+        <>
+          <dt>Commune</dt>
+          <dd>
+            {data.code_postal} {data.commune}
+          </dd>
+          {data.zone_intervention && (
+            <>
+              <dt>Intervient</dt>
+              <dd>{data.zone_intervention}</dd>
+            </>
+          )}
+          <dt>Accueil</dt>
+          <dd>Pas d'adresse d'accueil publique : contactez la structure.</dd>
+        </>
+      ) : (
+        <>
+          <dt>Adresse</dt>
+          <dd>
+            {data.adresse}, {data.code_postal} {data.commune}
+          </dd>
+        </>
+      )}
       {data.horaires && (
         <>
           <dt>Horaires</dt>
