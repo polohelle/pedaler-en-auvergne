@@ -112,30 +112,31 @@ changement de code ni d'URL n'est nécessaire.
 
 ## Décisions
 
-| ADR                                                     | Sujet                                |
-| ------------------------------------------------------- | ------------------------------------ |
-| [0001](adr/0001-consigner-les-decisions.md)             | Consigner les décisions              |
-| [0002](adr/0002-astro-statique.md)                      | Site statique Astro                  |
-| [0003](adr/0003-pnpm-node-typescript.md)                | pnpm, Node 24, TypeScript            |
-| [0004](adr/0004-licences.md)                            | Licences                             |
-| [0005](adr/0005-qualite-du-code.md)                     | Lint, formatage, hooks               |
-| [0006](adr/0006-dates-et-fuseau.md)                     | Dates et fuseau                      |
-| [0007](adr/0007-tests-unitaires.md)                     | Tests unitaires                      |
-| [0008](adr/0008-tests-bout-en-bout-et-accessibilite.md) | Tests bout en bout et accessibilité  |
-| [0009](adr/0009-chaine-ci.md)                           | Chaîne CI                            |
-| [0010](adr/0010-schemas-partages.md)                    | Schémas partagés                     |
-| [0011](adr/0011-acces-au-contenu-et-publication.md)     | Accès au contenu et publication      |
-| [0012](adr/0012-import-osm.md)                          | Import OpenStreetMap                 |
-| [0013](adr/0013-interface-css-natif-sans-javascript.md) | Interface, CSS, CSP                  |
-| [0014](adr/0014-contenus-de-test.md)                    | Contenus de test                     |
-| [0015](adr/0015-pwa.md)                                 | Application installable              |
-| [0016](adr/0016-agents-et-skills.md)                    | Agents et skills                     |
-| [0017](adr/0017-deploiement-cloudflare-pages.md)        | Déploiement                          |
-| [0018](adr/0018-donnees-des-formulaires.md)             | Données personnelles des formulaires |
-| [0019](adr/0019-brouillons-osm-minimaux.md)             | Brouillons OpenStreetMap minimaux    |
-| [0020](adr/0020-declencheurs-de-la-ci.md)               | Déclencheurs de la CI                |
-| [0021](adr/0021-garde-fou-des-commits.md)               | Garde-fou des commits                |
-| [0022](adr/0022-version-de-node.md)                     | Version de Node                      |
-| [0023](adr/0023-runners-figes.md)                       | Runners figés sur Ubuntu 24.04       |
-| [0025](adr/0025-fiches-sans-adresse-publique.md)        | Fiches sans adresse publique         |
-| [0026](adr/0026-montee-ubuntu-26-04.md)                 | Montée des runners vers Ubuntu 26.04 |
+| ADR                                                     | Sujet                                  |
+| ------------------------------------------------------- | -------------------------------------- |
+| [0001](adr/0001-consigner-les-decisions.md)             | Consigner les décisions                |
+| [0002](adr/0002-astro-statique.md)                      | Site statique Astro                    |
+| [0003](adr/0003-pnpm-node-typescript.md)                | pnpm, Node 24, TypeScript              |
+| [0004](adr/0004-licences.md)                            | Licences                               |
+| [0005](adr/0005-qualite-du-code.md)                     | Lint, formatage, hooks                 |
+| [0006](adr/0006-dates-et-fuseau.md)                     | Dates et fuseau                        |
+| [0007](adr/0007-tests-unitaires.md)                     | Tests unitaires                        |
+| [0008](adr/0008-tests-bout-en-bout-et-accessibilite.md) | Tests bout en bout et accessibilité    |
+| [0009](adr/0009-chaine-ci.md)                           | Chaîne CI                              |
+| [0010](adr/0010-schemas-partages.md)                    | Schémas partagés                       |
+| [0011](adr/0011-acces-au-contenu-et-publication.md)     | Accès au contenu et publication        |
+| [0012](adr/0012-import-osm.md)                          | Import OpenStreetMap                   |
+| [0013](adr/0013-interface-css-natif-sans-javascript.md) | Interface, CSS, CSP                    |
+| [0014](adr/0014-contenus-de-test.md)                    | Contenus de test                       |
+| [0015](adr/0015-pwa.md)                                 | Application installable                |
+| [0016](adr/0016-agents-et-skills.md)                    | Agents et skills                       |
+| [0017](adr/0017-deploiement-cloudflare-pages.md)        | Déploiement                            |
+| [0018](adr/0018-donnees-des-formulaires.md)             | Données personnelles des formulaires   |
+| [0019](adr/0019-brouillons-osm-minimaux.md)             | Brouillons OpenStreetMap minimaux      |
+| [0020](adr/0020-declencheurs-de-la-ci.md)               | Déclencheurs de la CI                  |
+| [0021](adr/0021-garde-fou-des-commits.md)               | Garde-fou des commits                  |
+| [0022](adr/0022-version-de-node.md)                     | Version de Node                        |
+| [0023](adr/0023-runners-figes.md)                       | Runners figés sur une version d'Ubuntu |
+| [0024](adr/0024-identite-visuelle.md)                   | Identité visuelle                      |
+| [0025](adr/0025-fiches-sans-adresse-publique.md)        | Fiches sans adresse publique           |
+| [0026](adr/0026-montee-ubuntu-26-04.md)                 | Montée des runners vers Ubuntu 26.04   |
