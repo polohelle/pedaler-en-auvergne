@@ -1,0 +1,45 @@
+---
+import { pastilleDate } from '@lib/dates';
+
+/**
+ * Pastille de date de l'agenda (« dim. 8 nov. »). Décorative : la date complète est
+ * toujours écrite à côté, la pastille est donc masquée aux lecteurs d'écran.
+ */
+interface Props {
+  date: Date;
+}
+
+const { jourSemaine, jour, mois } = pastilleDate(Astro.props.date);
+---
+
+<div class="pastille-date" aria-hidden="true">
+  <span>{jourSemaine}</span>
+  <b>{jour}</b>
+  <span>{mois}</span>
+</div>
+
+<style>
+  .pastille-date {
+    display: grid;
+    place-content: center;
+    width: 3.75rem;
+    min-height: 4.25rem;
+    padding: var(--espace-1);
+    border-radius: var(--rayon);
+    background: var(--couleur-prairie-pale);
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .pastille-date span {
+    color: var(--couleur-action);
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+
+  .pastille-date b {
+    font-family: var(--police-titres);
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+</style>
