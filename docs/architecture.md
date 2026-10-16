@@ -76,8 +76,10 @@ build Astro (schéma), couche d'accès (description manquante).
 ## Sorties du build
 
 HTML statique (`dist/`), `sw.js` et manifeste de l'application (ADR 0015), icônes, `_headers`
-(CSP stricte et en-têtes de sécurité). Flux RSS, iCal, GeoJSON, plan du site et pages par commune
-arrivent avec les phases suivantes.
+(CSP stricte et en-têtes de sécurité), pages par commune (ADR 0027). Agenda en iCal
+(`/agenda.ics`, et `/agenda/<id>.ics` par événement) et flux RSS (`/agenda/rss.xml`,
+`/actus/rss.xml`), générés par `src/lib/ical.ts`, `src/lib/rss.ts` et `src/lib/flux.ts`. GeoJSON et
+plan du site arrivent avec les phases suivantes.
 
 ## Qualité et CI
 
