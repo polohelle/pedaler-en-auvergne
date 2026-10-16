@@ -18,12 +18,20 @@ const dernieres = (await actusPubliees()).slice(0, 3);
     </p>
     <svg
       class="bandeau__relief"
-      viewBox="0 0 320 46"
+      viewBox="0 0 320 60"
       preserveAspectRatio="none"
       aria-hidden="true"
       focusable="false"
     >
-      <path d="M0 46V36l40-6c18-20 30-26 40-26l8 6 8-6c16 6 26 20 36 30 12-8 22-12 32-10 12 2 20 10 28 14l40-4c14-10 26-14 38-12 14 2 24 10 50 14v10Z"></path>
+      <path
+        class="bandeau__collines"
+        d="M0 60V40c30-6 50-14 80-12s50 12 80 8 50-16 80-14 50 10 80 12v26Z"
+      ></path>
+      <path
+        class="bandeau__puys"
+        d="M0 60V46l40-6c18-20 30-26 40-26l8 6 8-6c16 6 26 20 36 30 12-8 22-12 32-10 12 2 20 10 28 14l40-4c14-10 26-14 38-12 14 2 24 10 50 14v14Z"
+      ></path>
+      <circle class="bandeau__cycliste" cx="70" cy="21" r="4.5"></circle>
     </svg>
   </section>
 
@@ -92,25 +100,37 @@ const dernieres = (await actusPubliees()).slice(0, 3);
 </Base>
 
 <style>
-  /* Bandeau basalte bordé par le relief des Puys (ADR 0024). */
+  /* Bandeau « Prairie » : vert pâle, posé sur le relief des Puys (ADR 0024). */
   .bandeau {
     margin-block: var(--espace-3) var(--espace-4);
-    padding: var(--espace-2) var(--espace-3) 0;
+    padding: var(--espace-3) var(--espace-3) 0;
     border-radius: var(--rayon-grand);
     overflow: hidden;
-    background: var(--couleur-entete-fond);
-    color: var(--couleur-entete-texte);
+    background: var(--couleur-prairie-pale);
   }
 
   .bandeau p {
-    color: var(--couleur-entete-texte-doux);
+    color: var(--couleur-texte-doux);
   }
 
   .bandeau__relief {
     display: block;
     width: calc(100% + 2 * var(--espace-3));
-    height: 2.75rem;
+    height: 3.25rem;
     margin-inline: calc(-1 * var(--espace-3));
-    fill: var(--couleur-fond);
+  }
+
+  .bandeau__collines {
+    fill: var(--couleur-colline);
+  }
+
+  .bandeau__puys {
+    fill: var(--couleur-primaire);
+  }
+
+  .bandeau__cycliste {
+    fill: var(--couleur-genet);
+    stroke: var(--couleur-texte);
+    stroke-width: 1.5;
   }
 </style>

@@ -6,7 +6,7 @@ export const SITE = {
     'Le réseau des acteurs du vélo du Puy-de-Dôme : annuaire, agenda et actualités du vélo local.',
   url: 'https://pedalerenauvergne.fr',
   langue: 'fr',
-  couleurTheme: '#22303a',
+  couleurTheme: '#ffffff',
   couleurFond: '#ffffff',
   /** Formulaire d'adhésion HelloAsso ; `null` tant que la page de l'association n'existe pas. */
   adhesionUrl: null as string | null,

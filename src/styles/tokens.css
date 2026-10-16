@@ -10,9 +10,9 @@
   --couleur-fond: #f4f6f5;
   --couleur-fond-doux: #e3e9e6;
   --couleur-surface: #ffffff;
-  /* Basalte : texte (12,5:1 sur le fond) et bandeau d'en-tête. */
+  /* Basalte : texte (12,5:1 sur le fond, 11,4:1 sur la prairie pâle). */
   --couleur-texte: #22303a;
-  --couleur-texte-doux: #56626c; /* 5,1:1 sur fond doux */
+  --couleur-texte-doux: #56626c; /* 5,1:1 sur fond doux, 5,3:1 sur prairie pâle */
   /* Prairie : liens (6,0:1), badge « membre », entrée active du menu. */
   --couleur-primaire: #2d6a3e;
   --couleur-primaire-contraste: #ffffff; /* 6,5:1 */
@@ -20,11 +20,12 @@
   /* Lave : boutons d'action et tampons. */
   --couleur-action: #a8401a;
   --couleur-action-contraste: #ffffff; /* 6,2:1 */
-  /* Genêt : repères sur le bandeau basalte (6,9:1). */
+  /* Genêt : soleil et cycliste, jamais pour du texte. */
   --couleur-genet: #e8b04a;
-  --couleur-entete-fond: #22303a;
-  --couleur-entete-texte: #ffffff;
-  --couleur-entete-texte-doux: #d5dde1; /* 9,8:1 */
+  /* Prairie pâle : bandeau d'accueil et tête des fiches (liens 5,5:1, lave 5,2:1). */
+  --couleur-prairie-pale: #e3efe6;
+  /* Collines : second plan du relief, décoratif. */
+  --couleur-colline: #a9cdb2;
   --couleur-bordure: #c3cdc8;
   --couleur-focus: #a8401a;
   --couleur-alerte: #a3201a;
@@ -67,9 +68,8 @@
     --couleur-action: #f08a5d;
     --couleur-action-contraste: #141b20; /* 7,0:1 */
     --couleur-genet: #e8b04a;
-    --couleur-entete-fond: #0d1215;
-    --couleur-entete-texte: #ffffff;
-    --couleur-entete-texte-doux: #d5dde1;
+    --couleur-prairie-pale: #1a2a21; /* texte 12,6:1, texte doux 8,0:1, liens 7,3:1 */
+    --couleur-colline: #2b4636;
     --couleur-bordure: #3a4650;
     --couleur-focus: #ffb37a;
     --couleur-alerte: #ff9b94;

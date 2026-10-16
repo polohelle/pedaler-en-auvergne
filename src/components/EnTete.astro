@@ -39,13 +39,9 @@ const estActive = (href: string) => chemin.startsWith(href);
 
 <style>
   .en-tete {
-    background: var(--couleur-entete-fond);
-    color: var(--couleur-entete-texte);
-  }
-
-  /* Le focus lave manquerait de contraste sur le basalte : genêt dans le bandeau. */
-  .en-tete :focus-visible {
-    outline-color: var(--couleur-genet);
+    border-block-end: 1px solid var(--couleur-bordure);
+    background: var(--couleur-surface);
+    color: var(--couleur-texte);
   }
 
   .en-tete__interieur {
@@ -62,7 +58,7 @@ const estActive = (href: string) => chemin.startsWith(href);
     align-items: center;
     gap: var(--espace-2);
     min-height: var(--cible-tactile);
-    color: var(--couleur-entete-texte);
+    color: var(--couleur-texte);
     text-decoration: none;
   }
 
@@ -80,13 +76,14 @@ const estActive = (href: string) => chemin.startsWith(href);
     align-items: center;
     min-height: var(--cible-tactile);
     padding-inline: var(--espace-1);
-    color: var(--couleur-entete-texte);
+    color: var(--couleur-texte);
     font-weight: 600;
-    text-decoration-color: var(--couleur-entete-texte-doux);
+    text-decoration-color: var(--couleur-bordure);
   }
 
   .menu a[aria-current='page'] {
-    text-decoration-color: var(--couleur-genet);
+    color: var(--couleur-primaire);
+    text-decoration-color: currentColor;
     text-decoration-thickness: 3px;
   }
 </style>
