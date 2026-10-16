@@ -1,4 +1,4 @@
-# 0024 — Montée des runners GitHub Actions vers Ubuntu 26.04
+# 0026 — Montée des runners GitHub Actions vers Ubuntu 26.04
 
 - Statut : proposée
 - Date : 2026-10-14
