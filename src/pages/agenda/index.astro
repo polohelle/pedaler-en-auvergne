@@ -28,6 +28,23 @@ const evenements = await evenementsAVenir();
       ))}
     </ul>
   )}
+  <section class="abonnement" aria-labelledby="titre-abonnement">
+    <h2 id="titre-abonnement">Suivre l'agenda</h2>
+    <p class="texte">
+      Abonnez votre téléphone ou votre agenda en ligne : les nouveaux événements s'y ajoutent
+      d'eux-mêmes.
+    </p>
+    <ul class="liste-simple liens-abonnement">
+      <li>
+        <a class="bouton" href="/agenda.ics">
+          S'abonner au calendrier (iCal)
+        </a>
+      </li>
+      <li>
+        <a href="/agenda/rss.xml">Flux RSS de l'agenda</a>
+      </li>
+    </ul>
+  </section>
   <Appel
     titre="Vous organisez une sortie ?"
     lien={FORMULAIRES.pageEvenement}
@@ -36,3 +53,16 @@ const evenements = await evenementsAVenir();
     Bourse, balade, atelier ou course : signalez-le, nous l'ajoutons à l'agenda après vérification.
   </Appel>
 </Base>
+
+<style>
+  .abonnement {
+    margin-block-start: var(--espace-5);
+  }
+
+  .liens-abonnement {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espace-3);
+  }
+</style>

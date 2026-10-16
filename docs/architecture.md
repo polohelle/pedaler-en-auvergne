@@ -76,8 +76,13 @@ build Astro (schéma), couche d'accès (description manquante).
 ## Sorties du build
 
 HTML statique (`dist/`), `sw.js` et manifeste de l'application (ADR 0015), icônes, `_headers`
-(CSP stricte et en-têtes de sécurité). Flux RSS, iCal, GeoJSON, plan du site et pages par commune
-arrivent avec les phases suivantes.
+(CSP stricte et en-têtes de sécurité), pages par commune (ADR 0027). Agenda en iCal
+(`/agenda.ics`, et `/agenda/<id>.ics` par événement) et flux RSS (`/agenda/rss.xml`,
+`/actus/rss.xml`), générés par `src/lib/ical.ts`, `src/lib/rss.ts` et `src/lib/flux.ts`. Points de
+l'annuaire en GeoJSON (`/annuaire.geojson`, ADR 0029). Une seule partie dynamique : la fonction
+Cloudflare Pages `functions/api/proposer-evenement.ts` du formulaire « Proposer un événement »
+(ADR 0030), dont la logique est dans `src/lib/formulaire/`. Le plan du site arrive avec les phases
+suivantes.
 
 ## Qualité et CI
 
@@ -140,4 +145,7 @@ changement de code ni d'URL n'est nécessaire.
 | [0024](adr/0024-identite-visuelle.md)                   | Identité visuelle                      |
 | [0025](adr/0025-fiches-sans-adresse-publique.md)        | Fiches sans adresse publique           |
 | [0026](adr/0026-montee-ubuntu-26-04.md)                 | Montée des runners vers Ubuntu 26.04   |
-| [0027](adr/0027-pages-association-provisoires.md)       | Pages de l'association                 |
+| [0027](adr/0027-pages-par-commune.md)                   | Pages par commune « Pédaler à… »       |
+| [0028](adr/0028-pages-association-provisoires.md)       | Pages de l'association                 |
+| [0029](adr/0029-carte-de-l-annuaire.md)                 | Carte de l'annuaire                    |
+| [0030](adr/0030-formulaire-proposer-un-evenement.md)    | Formulaire « Proposer un événement »   |
