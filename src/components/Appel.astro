@@ -1,0 +1,47 @@
+---
+/** Encart d'appel à contribuer : un titre, une phrase et un bouton d'action. */
+interface Props {
+  titre: string;
+  lien: string;
+  libelle: string;
+}
+
+const { titre, lien, libelle } = Astro.props;
+---
+
+<section class="appel">
+  <h2>{titre}</h2>
+  <p>
+    <slot />
+  </p>
+  <a class="bouton" href={lien}>
+    {libelle}
+  </a>
+</section>
+
+<style>
+  .appel {
+    margin-block: var(--espace-5) var(--espace-4);
+    padding: var(--espace-3) var(--espace-3) var(--espace-4);
+    border-radius: var(--rayon-grand);
+    background: var(--couleur-prairie-pale);
+  }
+
+  .appel h2 {
+    margin-block-start: 0;
+  }
+
+  .appel h2::after {
+    content: '';
+    display: block;
+    width: 2.25rem;
+    height: 3px;
+    margin-block-start: var(--espace-2);
+    border-radius: 2px;
+    background: var(--couleur-action);
+  }
+
+  .appel p {
+    max-width: var(--largeur-texte);
+  }
+</style>

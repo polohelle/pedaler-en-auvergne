@@ -119,11 +119,18 @@ a:hover {
 
 .etiquette {
   display: inline-block;
-  padding: 0 var(--espace-2);
-  border-radius: var(--rayon);
+  padding: 0.0625rem var(--espace-2);
+  border-radius: 999px;
   background: var(--couleur-fond-doux);
   color: var(--couleur-texte);
   font-size: var(--taille-petite);
+}
+
+.puces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-1);
+  margin: 0;
 }
 
 .etiquette-membre {

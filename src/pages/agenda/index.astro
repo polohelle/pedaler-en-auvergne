@@ -1,6 +1,9 @@
 ---
 import { LIBELLES_TYPE_EVENEMENT } from '@config/evenements';
 import { SITE } from '@config/site';
+import Appel from '@components/Appel.astro';
+import PastilleDate from '@components/PastilleDate.astro';
+import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
 import { formaterPlage } from '@lib/dates';
 import { evenementsAVenir } from '@services/contenus';
@@ -12,29 +15,61 @@ const evenements = await evenementsAVenir();
   titre="Agenda des manifestations vélo"
   description="Sorties, bourses aux vélos, ateliers de réparation, courses et fêtes du vélo dans le Puy-de-Dôme."
 >
-  <h1>Agenda des manifestations vélo</h1>
+  <TetePage titre="Agenda des manifestations vélo">
+    <p class="texte">
+      Sorties, bourses aux vélos, ateliers de réparation, courses et fêtes du vélo près de chez
+      vous.
+    </p>
+  </TetePage>
   {evenements.length === 0 ? (
     <p class="texte">Aucun événement à venir pour le moment.</p>
   ) : (
-    <ul class="liste-simple">
+    <ul class="liste-simple evenements">
       {evenements.map(({ id, data }) => {
         const annule = data.statut === 'annule';
         return (
-          <li class="carte">
-            <h2 class:list={{ annule }}>
-              <a href={`/agenda/${id}/`}>{data.titre}</a>
-            </h2>
-            {annule && <p class="etiquette etiquette-annule">Annulé</p>}
-            <p class:list={{ annule }}>
-              {formaterPlage(data.debut, data.fin)} — {data.commune}
-            </p>
-            <p class="discret">{LIBELLES_TYPE_EVENEMENT[data.type]}</p>
+          <li class="carte evenement">
+            <PastilleDate date={data.debut} />
+            <div class="evenement__corps">
+              <h2 class:list={{ annule }}>
+                <a href={`/agenda/${id}/`}>{data.titre}</a>
+              </h2>
+              {annule && <p class="etiquette etiquette-annule">Annulé</p>}
+              <p class:list={{ annule }}>
+                {formaterPlage(data.debut, data.fin)} — {data.commune}
+              </p>
+              <p class="discret">{LIBELLES_TYPE_EVENEMENT[data.type]}</p>
+            </div>
           </li>
         );
       })}
     </ul>
   )}
-  <p>
-    <a href={`${SITE.depot}/issues/new?template=1-proposer-evenement.yml`}>Proposer un événement</a>
-  </p>
+  <Appel
+    titre="Vous organisez une sortie ?"
+    lien={`${SITE.depot}/issues/new?template=1-proposer-evenement.yml`}
+    libelle="Proposer un événement"
+  >
+    Bourse, balade, atelier ou course : signalez-le, nous l'ajoutons à l'agenda après vérification.
+  </Appel>
 </Base>
+
+<style>
+  .evenement {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--espace-3);
+  }
+
+  .evenement__corps {
+    min-width: 0;
+  }
+
+  .evenement__corps > * {
+    margin-block: 0 var(--espace-1);
+  }
+
+  .evenement__corps > :last-child {
+    margin-block-end: 0;
+  }
+</style>

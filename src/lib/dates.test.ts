@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formaterDate, formaterHeure, formaterPlage, jourCivil } from './dates';
+import { formaterDate, formaterHeure, formaterPlage, jourCivil, pastilleDate } from './dates';
 
 describe('formaterDate', () => {
   it('écrit le jour en toutes lettres', () => {
@@ -42,6 +42,24 @@ describe('jourCivil', () => {
   it('donne le jour à Paris au format AAAA-MM-JJ', () => {
     expect(jourCivil(new Date('2026-11-07T23:30:00Z'))).toBe('2026-11-08');
     expect(jourCivil(new Date('2026-03-02T08:00:00+01:00'))).toBe('2026-03-02');
+  });
+});
+
+describe('pastilleDate', () => {
+  it('abrège le jour de la semaine et le mois', () => {
+    expect(pastilleDate(new Date('2026-11-08T09:30:00+01:00'))).toEqual({
+      jourSemaine: 'dim.',
+      jour: '8',
+      mois: 'nov.',
+    });
+  });
+
+  it('garde les mois courts entiers', () => {
+    expect(pastilleDate(new Date('2099-06-14T09:00:00+02:00')).mois).toBe('juin');
+  });
+
+  it('donne le jour de Paris', () => {
+    expect(pastilleDate(new Date('2026-11-07T23:30:00Z')).jour).toBe('8');
   });
 });
 
