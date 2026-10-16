@@ -1,0 +1,59 @@
+---
+import TetePage from '@components/TetePage.astro';
+import Base from '@layouts/Base.astro';
+---
+
+<Base
+  titre="Proposition non envoyée"
+  description="Votre proposition d'événement n'a pas pu être envoyée : causes possibles et solutions."
+>
+  <TetePage titre="Votre proposition n'a pas été envoyée" />
+  <div class="texte">
+    <p>
+      Revenez au formulaire avec le bouton « Retour » de votre navigateur : ce que vous avez saisi y
+      est en général conservé. Voici les causes possibles.
+    </p>
+
+    <section id="saisie" class="cause" aria-labelledby="titre-saisie">
+      <h2 id="titre-saisie">Une information n'est pas acceptée</h2>
+      <ul>
+        <li>
+          un numéro de téléphone ou une adresse e-mail figure dans un autre champ que « Votre
+          adresse e-mail » : retirez-le, ces champs sont publics ;
+        </li>
+        <li>l'événement est déjà passé, ou la fin précède le début ;</li>
+        <li>un lien ne commence pas par https:// ou http:// ;</li>
+        <li>la description fait moins de 20 caractères.</li>
+      </ul>
+    </section>
+
+    <section id="verification" class="cause" aria-labelledby="titre-verification">
+      <h2 id="titre-verification">La vérification anti-robot n'a pas abouti</h2>
+      <p>
+        Elle a besoin de JavaScript et d'une connexion à Cloudflare. Rechargez le formulaire,
+        attendez le message « Vérification anti-robot réussie », puis envoyez de nouveau.
+      </p>
+    </section>
+
+    <section id="indisponible" class="cause" aria-labelledby="titre-indisponible">
+      <h2 id="titre-indisponible">Le service est momentanément indisponible</h2>
+      <p>
+        Réessayez un peu plus tard, ou écrivez-nous depuis la page{' '}
+        <a href="/association/contact/">Contact</a>.
+      </p>
+    </section>
+
+    <p>
+      <a href="/agenda/proposer/">Revenir au formulaire</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .cause:target {
+    padding: var(--espace-3);
+    border-inline-start: 0.25rem solid var(--couleur-action);
+    border-radius: var(--rayon);
+    background: var(--couleur-surface);
+  }
+</style>

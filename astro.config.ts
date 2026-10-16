@@ -28,6 +28,10 @@ export default defineConfig({
     // Feuilles de style toujours externes : la CSP n'autorise aucun style en ligne.
     inlineStylesheets: 'never',
   },
+  vite: {
+    // Scripts toujours externes, même petits : la CSP n'autorise aucun script en ligne.
+    build: { assetsInlineLimit: 0 },
+  },
   integrations: [
     AstroPWA({
       registerType: 'autoUpdate',

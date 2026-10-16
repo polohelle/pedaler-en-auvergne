@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { formaterDate, formaterHeure, formaterPlage, jourCivil, pastilleDate } from './dates';
+import {
+  dateHeureParis,
+  formaterDate,
+  formaterHeure,
+  formaterPlage,
+  jourCivil,
+  pastilleDate,
+} from './dates';
 
 describe('formaterDate', () => {
   it('écrit le jour en toutes lettres', () => {
@@ -84,5 +91,35 @@ describe('formaterPlage', () => {
 
   it('refuse une fin antérieure au début', () => {
     expect(() => formaterPlage(debut, new Date('2026-11-08T08:00:00+01:00'))).toThrow(RangeError);
+  });
+});
+
+describe('dateHeureParis', () => {
+  it('ajoute le décalage de l’heure d’hiver', () => {
+    expect(dateHeureParis('2026-11-08', '09:30')).toBe('2026-11-08T09:30:00+01:00');
+  });
+
+  it('ajoute le décalage de l’heure d’été', () => {
+    expect(dateHeureParis('2026-06-14', '14:00')).toBe('2026-06-14T14:00:00+02:00');
+  });
+
+  it('gère le jour du passage à l’heure d’hiver', () => {
+    expect(dateHeureParis('2026-10-25', '10:00')).toBe('2026-10-25T10:00:00+01:00');
+    expect(dateHeureParis('2026-10-25', '01:00')).toBe('2026-10-25T01:00:00+02:00');
+  });
+
+  it('gère minuit', () => {
+    expect(dateHeureParis('2026-11-08', '00:00')).toBe('2026-11-08T00:00:00+01:00');
+  });
+
+  it('refuse une heure sautée au passage à l’heure d’été', () => {
+    expect(() => dateHeureParis('2026-03-29', '02:30')).toThrow(RangeError);
+  });
+
+  it('refuse un jour impossible ou un format inattendu', () => {
+    expect(() => dateHeureParis('2026-02-30', '10:00')).toThrow(RangeError);
+    expect(() => dateHeureParis('2026-13-01', '10:00')).toThrow(RangeError);
+    expect(() => dateHeureParis('8/11/2026', '10:00')).toThrow(RangeError);
+    expect(() => dateHeureParis('2026-11-08', '9h30')).toThrow(RangeError);
   });
 });

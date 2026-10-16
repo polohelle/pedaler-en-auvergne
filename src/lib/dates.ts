@@ -101,3 +101,45 @@ export function formaterPlage(debut: Date, fin?: Date): string {
   }
   return `du ${formaterDate(debut)} à ${formaterHeure(debut)} au ${formaterDate(fin)} à ${formaterHeure(fin)}`;
 }
+
+const formatDecalage = new Intl.DateTimeFormat('en-US', {
+  timeZone: FUSEAU,
+  timeZoneName: 'longOffset',
+});
+
+/** Décalage de Paris par rapport à UTC à un instant donné : « +01:00 » ou « +02:00 ». */
+function decalageParis(instant: number): string {
+  const nom = partie(formatDecalage.formatToParts(new Date(instant)), 'timeZoneName');
+  return nom === 'GMT' ? '+00:00' : nom.slice(3);
+}
+
+/** Heure de Paris au format `HH:MM`. */
+function heureParis(date: Date): string {
+  const parts = formatHeure.formatToParts(date);
+  return `${partie(parts, 'hour').padStart(2, '0')}:${partie(parts, 'minute')}`;
+}
+
+/**
+ * Date-heure ISO 8601 avec le fuseau de Paris, à partir d'un jour `AAAA-MM-JJ` et d'une heure
+ * `HH:MM` saisis à Paris (champs `date` et `time` d'un formulaire) :
+ * « 2026-11-08 » et « 09:30 » donnent « 2026-11-08T09:30:00+01:00 ».
+ * Refuse un jour impossible et une heure sautée au passage à l'heure d'été.
+ */
+export function dateHeureParis(jour: string, heure: string): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(jour) || !/^\d{2}:\d{2}$/.test(heure)) {
+    throw new RangeError('Jour AAAA-MM-JJ et heure HH:MM attendus.');
+  }
+  const naif = Date.parse(`${jour}T${heure}:00Z`);
+  if (Number.isNaN(naif)) {
+    throw new RangeError('Jour ou heure impossible.');
+  }
+  // Paris est en avance d'une ou deux heures sur UTC : on essaie les deux décalages.
+  for (const decalage of [decalageParis(naif - 3_600_000), decalageParis(naif - 7_200_000)]) {
+    const iso = `${jour}T${heure}:00${decalage}`;
+    const date = new Date(iso);
+    if (jourCivil(date) === jour && heureParis(date) === heure) {
+      return iso;
+    }
+  }
+  throw new RangeError('Jour ou heure impossible à Paris.');
+}

@@ -1,0 +1,352 @@
+---
+import { CODES_DEPARTEMENT, DEPARTEMENTS } from '@config/departements';
+import { LIBELLES_TYPE_EVENEMENT, TYPES_EVENEMENT } from '@config/evenements';
+import { FORMULAIRES } from '@config/formulaires';
+import { SITE } from '@config/site';
+import TetePage from '@components/TetePage.astro';
+import Base from '@layouts/Base.astro';
+import { CHAMP_PIEGE } from '@lib/formulaire/evenement';
+
+const cleConfiguree: unknown = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const cleTurnstile =
+  typeof cleConfiguree === 'string' && cleConfiguree !== ''
+    ? cleConfiguree
+    : FORMULAIRES.cleTurnstileTest;
+const departementsActifs = CODES_DEPARTEMENT.filter((code) => DEPARTEMENTS[code].actif);
+const { longueurs } = FORMULAIRES;
+---
+
+<Base
+  titre="Proposer un événement"
+  description="Signalez une sortie, une bourse aux vélos, un atelier ou une course : nous l'ajoutons à l'agenda après vérification."
+>
+  <TetePage titre="Proposer un événement">
+    <p class="texte">
+      Sortie, bourse aux vélos, atelier, course ou fête du vélo : décrivez votre événement, nous le
+      vérifions puis l'ajoutons à l'agenda, en général sous 48 heures.
+    </p>
+  </TetePage>
+
+  <div class="texte avertissement">
+    <p>
+      <strong>Ce que vous écrivez ici sera public</strong>, sauf votre adresse e-mail. N'indiquez
+      aucun numéro de téléphone ni aucune adresse e-mail dans les autres champs : le formulaire les
+      refuse.
+    </p>
+  </div>
+
+  <form
+    class="formulaire"
+    method="post"
+    action={FORMULAIRES.actionEvenement}
+    data-anti-robot
+    aria-describedby="champs-obligatoires"
+  >
+    <p id="champs-obligatoires" class="discret">
+      Les champs marqués d'un astérisque (<span aria-hidden="true">*</span>) sont obligatoires.
+    </p>
+
+    <fieldset>
+      <legend>L'événement</legend>
+      <div class="champ">
+        <label for="titre">
+          Titre <span aria-hidden="true">*</span>
+        </label>
+        <input id="titre" name="titre" type="text" required maxlength={longueurs.titre} />
+      </div>
+      <div class="champ">
+        <label for="type">
+          Type <span aria-hidden="true">*</span>
+        </label>
+        <select id="type" name="type" required>
+          <option value="">Choisir un type</option>
+          {TYPES_EVENEMENT.map((type) => (
+            <option value={type}>{LIBELLES_TYPE_EVENEMENT[type]}</option>
+          ))}
+        </select>
+      </div>
+      <div class="champ">
+        <label for="description">
+          Description <span aria-hidden="true">*</span>
+        </label>
+        <p id="aide-description" class="aide">
+          Quelques phrases écrites par vous : parcours, public, niveau, matériel. Pas de
+          copier-coller d'un autre site.
+        </p>
+        <textarea
+          id="description"
+          name="description"
+          rows="6"
+          required
+          minlength={longueurs.descriptionMin}
+          maxlength={longueurs.description}
+          aria-describedby="aide-description"
+        ></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Date et heure</legend>
+      <div class="ligne">
+        <div class="champ">
+          <label for="jour_debut">
+            Jour de début <span aria-hidden="true">*</span>
+          </label>
+          <input id="jour_debut" name="jour_debut" type="date" required />
+        </div>
+        <div class="champ">
+          <label for="heure_debut">
+            Heure de début <span aria-hidden="true">*</span>
+          </label>
+          <input id="heure_debut" name="heure_debut" type="time" required />
+        </div>
+      </div>
+      <p id="aide-fin" class="aide">
+        Fin facultative ; laissez le jour de fin vide si l'événement finit le même jour.
+      </p>
+      <div class="ligne">
+        <div class="champ">
+          <label for="jour_fin">Jour de fin</label>
+          <input id="jour_fin" name="jour_fin" type="date" aria-describedby="aide-fin" />
+        </div>
+        <div class="champ">
+          <label for="heure_fin">Heure de fin</label>
+          <input id="heure_fin" name="heure_fin" type="time" aria-describedby="aide-fin" />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Lieu</legend>
+      <div class="champ">
+        <label for="lieu">
+          Lieu de rendez-vous <span aria-hidden="true">*</span>
+        </label>
+        <p id="aide-lieu" class="aide">
+          Une adresse publique : place, salle, parking, gare.
+        </p>
+        <input
+          id="lieu"
+          name="lieu"
+          type="text"
+          required
+          maxlength={longueurs.texte}
+          aria-describedby="aide-lieu"
+        />
+      </div>
+      <div class="champ">
+        <label for="commune">
+          Commune <span aria-hidden="true">*</span>
+        </label>
+        <input
+          id="commune"
+          name="commune"
+          type="text"
+          required
+          maxlength={longueurs.texte}
+          autocomplete="address-level2"
+        />
+      </div>
+      {departementsActifs.length > 1 && (
+        <div class="champ">
+          <label for="departement">Département</label>
+          <select id="departement" name="departement">
+            {departementsActifs.map((code) => (
+              <option value={code}>{DEPARTEMENTS[code].nom}</option>
+            ))}
+          </select>
+        </div>
+      )}
+    </fieldset>
+
+    <fieldset>
+      <legend>Organisation</legend>
+      <div class="champ">
+        <label for="organisateur">Structure organisatrice</label>
+        <p id="aide-organisateur" class="aide">
+          Club, association, magasin, collectivité…
+        </p>
+        <input
+          id="organisateur"
+          name="organisateur"
+          type="text"
+          maxlength={longueurs.texte}
+          autocomplete="organization"
+          aria-describedby="aide-organisateur"
+        />
+      </div>
+      <div class="champ">
+        <label for="tarif">Tarif</label>
+        <input
+          id="tarif"
+          name="tarif"
+          type="text"
+          maxlength={longueurs.texte}
+          placeholder="Gratuit, 5 €…"
+        />
+      </div>
+      <div class="champ">
+        <label for="inscription_url">Lien d'inscription</label>
+        <input id="inscription_url" name="inscription_url" type="url" placeholder="https://" />
+      </div>
+      <div class="champ">
+        <label for="source_url">
+          Page de référence <span aria-hidden="true">*</span>
+        </label>
+        <p id="aide-source" class="aide">
+          Site de l'organisateur, page d'un réseau social ou affiche en ligne : elle nous permet de
+          vérifier l'information.
+        </p>
+        <input
+          id="source_url"
+          name="source_url"
+          type="url"
+          required
+          placeholder="https://"
+          aria-describedby="aide-source"
+        />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Vous recontacter</legend>
+      <div class="champ">
+        <label for="courriel">Votre adresse e-mail</label>
+        <p id="aide-courriel" class="aide">
+          Facultative, pour vous poser une question ou vous prévenir de la publication. Elle n'est
+          jamais publiée et elle est supprimée une fois la demande traitée (
+          <a href="/mentions-legales/">données personnelles</a>).
+        </p>
+        <input
+          id="courriel"
+          name="courriel"
+          type="email"
+          maxlength="254"
+          autocomplete="email"
+          aria-describedby="aide-courriel"
+        />
+      </div>
+    </fieldset>
+
+    <div class="piege" aria-hidden="true">
+      <label for={CHAMP_PIEGE}>Ne pas remplir ce champ</label>
+      <input id={CHAMP_PIEGE} name={CHAMP_PIEGE} type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div data-turnstile={cleTurnstile}></div>
+    <p class="aide" role="status" data-etat-turnstile>
+      Une vérification anti-robot, sans cookie, démarre quand vous commencez à remplir le
+      formulaire.
+    </p>
+
+    <button class="bouton" type="submit">
+      Envoyer la proposition
+    </button>
+  </form>
+
+  <p class="texte discret">
+    Vous avez un compte GitHub ? Vous pouvez aussi{' '}
+    <a href={`${SITE.depot}/issues/new?template=1-proposer-evenement.yml`}>
+      proposer l'événement directement sur le dépôt
+    </a>
+    .
+  </p>
+</Base>
+
+<script>
+  import '../../../scripts/turnstile';
+</script>
+
+<style>
+  .avertissement {
+    margin-block-end: var(--espace-4);
+    padding: var(--espace-3);
+    border-inline-start: 0.25rem solid var(--couleur-action);
+    border-radius: var(--rayon);
+    background: var(--couleur-surface);
+  }
+
+  .avertissement p {
+    margin: 0;
+  }
+
+  .formulaire {
+    display: grid;
+    gap: var(--espace-4);
+    max-width: var(--largeur-texte);
+    margin-block-end: var(--espace-4);
+  }
+
+  fieldset {
+    display: grid;
+    gap: var(--espace-3);
+    margin: 0;
+    padding: var(--espace-3);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    background: var(--couleur-surface);
+  }
+
+  legend {
+    padding-inline: var(--espace-2);
+    font-family: var(--police-titres);
+    font-weight: 700;
+  }
+
+  .ligne {
+    display: grid;
+    gap: var(--espace-3);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  }
+
+  .champ {
+    display: grid;
+    gap: var(--espace-1);
+  }
+
+  label {
+    font-weight: 600;
+  }
+
+  .aide {
+    margin: 0;
+    color: var(--couleur-texte-doux);
+    font-size: var(--taille-petite);
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-height: var(--cible-tactile);
+    padding: var(--espace-2);
+    border: 1px solid var(--couleur-texte-doux);
+    border-radius: var(--rayon);
+    background: var(--couleur-fond);
+    color: var(--couleur-texte);
+    font: inherit;
+  }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid var(--couleur-focus);
+    outline-offset: 2px;
+  }
+
+  .piege {
+    position: absolute;
+    left: -100vw;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .formulaire .bouton {
+    justify-self: start;
+    border: 0;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+</style>

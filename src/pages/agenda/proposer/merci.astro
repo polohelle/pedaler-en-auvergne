@@ -1,0 +1,22 @@
+---
+import TetePage from '@components/TetePage.astro';
+import Base from '@layouts/Base.astro';
+---
+
+<Base
+  titre="Proposition reçue"
+  description="Votre proposition d'événement est bien arrivée : nous la vérifions avant de l'ajouter à l'agenda."
+>
+  <TetePage titre="Merci, votre proposition est bien arrivée" />
+  <div class="texte">
+    <p>
+      Nous vérifions l'information à partir de la page de référence indiquée, puis nous ajoutons
+      l'événement à l'agenda, en général sous 48 heures. Si vous avez laissé votre adresse e-mail,
+      nous vous écrirons en cas de question.
+    </p>
+    <p>
+      <a href="/agenda/">Revenir à l'agenda</a> ou{' '}
+      <a href="/agenda/proposer/">proposer un autre événement</a>.
+    </p>
+  </div>
+</Base>
