@@ -41,6 +41,20 @@ export function acteurPublie(): Record<string, unknown> {
   } satisfies ActeurSaisi;
 }
 
+/** Fiche publiée sans adresse publique (atelier mobile, accueil sur rendez-vous). */
+export function acteurSansAdressePublique(): Record<string, unknown> {
+  return {
+    ...ACTEUR_BROUILLON,
+    membre: false,
+    code_postal: '63000',
+    sans_adresse_publique: true,
+    zone_intervention: 'Clermont-Ferrand et sa métropole',
+    site: 'https://atelier-mobile.example',
+    verifie_le: '2026-10-15',
+    statut: 'publie',
+  } satisfies ActeurSaisi;
+}
+
 export function evenement(): Record<string, unknown> {
   return {
     titre: 'Bourse aux vélos de Riom',
