@@ -1,0 +1,75 @@
+---
+import { LIBELLES_CATEGORIE_ACTEUR } from '@config/acteurs';
+import { slugifier } from '@lib/slug';
+import type { EntreeActeurPublie } from '@services/contenus';
+
+/** Carte d'un acteur dans une liste (annuaire, pages par commune). */
+interface Props {
+  acteur: EntreeActeurPublie;
+  /** Titre de la carte : `h2` dans l'annuaire, `h3` sous une section. */
+  niveau?: 'h2' | 'h3';
+  /** Lie la commune à sa page « Pédaler à… » (inutile sur cette page même). */
+  lienCommune?: boolean;
+}
+
+const { acteur, niveau: Titre = 'h2', lienCommune = true } = Astro.props;
+const { id, data } = acteur;
+---
+
+<li class="carte acteur">
+  <Titre>
+    <a href={`/annuaire/${id}/`}>{data.nom}</a>
+  </Titre>
+  <p class="acteur__commune">
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+      <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path>
+      <circle cx="12" cy="9.5" r="2.5"></circle>
+    </svg>
+    {lienCommune ? (
+      <a href={`/communes/${slugifier(data.commune)}/`}>{data.commune}</a>
+    ) : (
+      data.commune
+    )}
+  </p>
+  <ul class="liste-simple puces" aria-label="Catégories">
+    {data.categories.map((c) => (
+      <li class="etiquette">{LIBELLES_CATEGORIE_ACTEUR[c]}</li>
+    ))}
+  </ul>
+  {data.membre && <p class="etiquette etiquette-membre">Membre de l'association</p>}
+</li>
+
+<style>
+  .acteur {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espace-2);
+    margin: 0;
+  }
+
+  .acteur > * {
+    margin: 0;
+  }
+
+  .acteur__commune {
+    display: flex;
+    align-items: center;
+    gap: var(--espace-1);
+    color: var(--couleur-texte-doux);
+  }
+
+  .acteur__commune a {
+    color: inherit;
+  }
+
+  .acteur__commune svg {
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  .acteur .etiquette-membre {
+    align-self: flex-start;
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { LIBELLES_TYPE_EVENEMENT } from '@config/evenements';
+import PastilleDate from '@components/PastilleDate.astro';
+import { formaterPlage } from '@lib/dates';
+
+/** Carte d'un événement dans une liste (agenda, pages par commune). */
+interface Props {
+  evenement: CollectionEntry<'evenements'>;
+  /** Titre de la carte : `h2` dans l'agenda, `h3` sous une section. */
+  niveau?: 'h2' | 'h3';
+}
+
+const { evenement, niveau: Titre = 'h2' } = Astro.props;
+const { id, data } = evenement;
+const annule = data.statut === 'annule';
+---
+
+<li class="carte evenement">
+  <PastilleDate date={data.debut} />
+  <div class="evenement__corps">
+    <Titre class:list={{ annule }}>
+      <a href={`/agenda/${id}/`}>{data.titre}</a>
+    </Titre>
+    {annule && <p class="etiquette etiquette-annule">Annulé</p>}
+    <p class:list={{ annule }}>
+      {formaterPlage(data.debut, data.fin)} — {data.commune}
+    </p>
+    <p class="discret">{LIBELLES_TYPE_EVENEMENT[data.type]}</p>
+  </div>
+</li>
+
+<style>
+  .evenement {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--espace-3);
+  }
+
+  .evenement__corps {
+    min-width: 0;
+  }
+
+  .evenement__corps > * {
+    margin-block: 0 var(--espace-1);
+  }
+
+  .evenement__corps > :last-child {
+    margin-block-end: 0;
+  }
+</style>

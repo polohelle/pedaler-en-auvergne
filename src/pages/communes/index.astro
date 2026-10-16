@@ -1,0 +1,56 @@
+---
+import TetePage from '@components/TetePage.astro';
+import Base from '@layouts/Base.astro';
+import { lieuPedaler, listerCommunes, regrouperParCommune, resumerCommune } from '@lib/communes';
+import { acteursPublies, evenementsAVenir } from '@services/contenus';
+
+const acteurs = await acteursPublies();
+const evenements = await evenementsAVenir();
+const communes = listerCommunes([
+  ...acteurs.map((a) => a.data.commune),
+  ...evenements.map((e) => e.data.commune),
+]);
+const acteursParCommune = regrouperParCommune(acteurs, (a) => a.data.commune);
+const evenementsParCommune = regrouperParCommune(evenements, (e) => e.data.commune);
+---
+
+<Base
+  titre="Le vélo commune par commune"
+  description="Acteurs et manifestations vélo du Puy-de-Dôme, classés par commune."
+>
+  <TetePage titre="Le vélo commune par commune">
+    <p class="texte">
+      Réparateurs, ateliers, clubs et sorties près de chez vous : choisissez votre commune.
+    </p>
+  </TetePage>
+  {communes.length === 0 ? (
+    <p class="texte">Aucune commune pour le moment : l'annuaire est en cours de constitution.</p>
+  ) : (
+    <ul class="grille liste-simple communes">
+      {communes.map(({ slug, nom }) => {
+        const resume = resumerCommune(
+          acteursParCommune.get(slug)?.length ?? 0,
+          evenementsParCommune.get(slug)?.length ?? 0,
+        );
+        return (
+          <li class="carte">
+            <h2>
+              <a href={`/communes/${slug}/`}>Pédaler {lieuPedaler(nom)}</a>
+            </h2>
+            <p class="discret">{resume}</p>
+          </li>
+        );
+      })}
+    </ul>
+  )}
+</Base>
+
+<style>
+  .communes .carte {
+    margin: 0;
+  }
+
+  .communes p {
+    margin: 0;
+  }
+</style>

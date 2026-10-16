@@ -1,0 +1,111 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { DEPARTEMENT_PAR_DEFAUT, DEPARTEMENTS } from '@config/departements';
+import { SITE } from '@config/site';
+import Appel from '@components/Appel.astro';
+import CarteActeur from '@components/CarteActeur.astro';
+import CarteEvenement from '@components/CarteEvenement.astro';
+import Tampon from '@components/Tampon.astro';
+import TetePage from '@components/TetePage.astro';
+import Base from '@layouts/Base.astro';
+import { lieuPedaler, listerCommunes, regrouperParCommune } from '@lib/communes';
+import { acteursPublies, evenementsAVenir } from '@services/contenus';
+
+export const getStaticPaths = (async () => {
+  const acteurs = await acteursPublies();
+  const evenements = await evenementsAVenir();
+  const acteursParCommune = regrouperParCommune(acteurs, (a) => a.data.commune);
+  const evenementsParCommune = regrouperParCommune(evenements, (e) => e.data.commune);
+  const communes = listerCommunes([
+    ...acteurs.map((a) => a.data.commune),
+    ...evenements.map((e) => e.data.commune),
+  ]);
+  return communes.map(({ slug, nom }) => {
+    const acteursIci = acteursParCommune.get(slug) ?? [];
+    const evenementsIci = evenementsParCommune.get(slug) ?? [];
+    const departement =
+      (acteursIci[0] ?? evenementsIci[0])?.data.departement ?? DEPARTEMENT_PAR_DEFAUT;
+    return {
+      params: { commune: slug },
+      props: { nom, departement, acteurs: acteursIci, evenements: evenementsIci },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { nom, departement, acteurs, evenements } = Astro.props;
+const lieu = lieuPedaler(nom);
+const nomDepartement = DEPARTEMENTS[departement].nom;
+---
+
+<Base
+  titre={`Pédaler ${lieu}`}
+  description={`Acteurs du vélo et prochaines manifestations ${lieu} (${nomDepartement}).`}
+>
+  <div class="tete-commune">
+    <TetePage titre={`Pédaler ${lieu}`}>
+      <p>
+        Les acteurs du vélo et les prochaines sorties {lieu}, {nomDepartement}.
+      </p>
+    </TetePage>
+    <Tampon
+      id="tampon-commune"
+      texte={`Pédaler ${lieu} ★ ${nomDepartement}`}
+      {...(departement === DEPARTEMENT_PAR_DEFAUT ? {} : { centre: departement })}
+      libelle={`Pédaler ${lieu}`}
+    />
+  </div>
+
+  {acteurs.length > 0 && (
+    <section aria-labelledby="titre-acteurs">
+      <h2 id="titre-acteurs">Acteurs du vélo</h2>
+      <ul class="grille liste-simple">
+        {acteurs.map((acteur) => (
+          <CarteActeur acteur={acteur} niveau="h3" lienCommune={false} />
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {evenements.length > 0 && (
+    <section aria-labelledby="titre-agenda">
+      <h2 id="titre-agenda">Prochains événements</h2>
+      <ul class="liste-simple">
+        {evenements.map((evenement) => (
+          <CarteEvenement evenement={evenement} niveau="h3" />
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <Appel
+    titre={`Vous faites vivre le vélo ${lieu} ?`}
+    lien={`${SITE.depot}/issues/new?template=2-referencer-structure.yml`}
+    libelle="Référencer ma structure"
+  >
+    Atelier, magasin, club ou association : l'annuaire est gratuit et ouvert à tous.
+  </Appel>
+  <p>
+    <a href="/communes/">Toutes les communes</a>
+  </p>
+</Base>
+
+<style>
+  .tete-commune {
+    position: relative;
+  }
+
+  .tete-commune > :global(.tampon) {
+    position: absolute;
+    top: calc(-1 * var(--espace-2));
+    right: var(--espace-2);
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  /* Laisse la place au tampon à droite du titre. */
+  .tete-commune :global(.tete-page) {
+    padding-inline-end: 6rem;
+  }
+</style>
