@@ -1,0 +1,13 @@
+# Worker d'envoi de l'e-mail de transmission du formulaire (ADR 0032).
+# Construit par l'intégration Git de Cloudflare Workers, répertoire racine workers/courriel.
+name = "pedaler-courriel"
+main = "src/index.ts"
+compatibility_date = "2026-10-14"
+# Aucune adresse publique : seule la fonction du formulaire l'appelle, par liaison de service.
+workers_dev = false
+preview_urls = false
+
+# Destinataire : n'importe quelle adresse vérifiée du compte ; l'adresse elle-même est le
+# secret ADRESSE_ADMINISTRATEUR du Worker, jamais dans le dépôt.
+[[send_email]]
+name = "EMAIL"

@@ -21,21 +21,30 @@ ci-dessous ne sont pas faits (ADR 0030). Aucune de ces valeurs ne va dans le dé
 Projet Pages → **Settings** → **Variables and Secrets**, pour **Production** (et **Preview**
 si l'on veut tester sur les aperçus) :
 
-| Nom                         | Type   | Valeur                                      |
-| --------------------------- | ------ | ------------------------------------------- |
-| `PUBLIC_TURNSTILE_SITE_KEY` | texte  | clé de site Turnstile (lue au build)        |
-| `TURNSTILE_SECRET_KEY`      | secret | clé secrète Turnstile                       |
-| `GITHUB_TOKEN`              | secret | jeton de l'étape 2                          |
-| `ADRESSE_ADMINISTRATEUR`    | secret | adresse qui reçoit les adresses des auteurs |
+| Nom                         | Type   | Valeur                               |
+| --------------------------- | ------ | ------------------------------------ |
+| `PUBLIC_TURNSTILE_SITE_KEY` | texte  | clé de site Turnstile (lue au build) |
+| `TURNSTILE_SECRET_KEY`      | secret | clé secrète Turnstile                |
+| `GITHUB_TOKEN`              | secret | jeton de l'étape 2                   |
 
 Relancer ensuite un déploiement : la clé de site est intégrée à la page au build.
 
-## 4. Transmission de l'adresse des auteurs (ADR 0018)
+## 4. Transmission de l'adresse des auteurs (ADR 0018, 0032)
 
-1. Cloudflare → domaine `pedalerenauvergne.fr` → **Email** → **Email Routing** : l'activer et
-   vérifier l'adresse de l'administrateur comme destination.
-2. Projet Pages → **Settings** → **Bindings** → ajouter une liaison **Send Email** nommée
-   `COURRIEL`, destination l'adresse vérifiée.
+Les fonctions Pages ne peuvent pas envoyer d'e-mail elles-mêmes : un petit Worker,
+`workers/courriel`, s'en charge.
+
+1. Cloudflare → domaine `pedalerenauvergne.fr` → **Email Routing** : intégrer le domaine
+   (enregistrements DNS ajoutés automatiquement), puis, dans **Adresses de destination**,
+   ajouter l'adresse de l'administrateur et cliquer sur le lien de vérification reçu.
+2. **Calcul** → **Workers et Pages** → **Créer** → **Importer un dépôt** :
+   `polohelle/pedaler-en-auvergne`, nom du projet `pedaler-courriel`, **répertoire racine**
+   `workers/courriel`, commande de déploiement par défaut (`npx wrangler deploy`).
+3. Dans le Worker `pedaler-courriel` → **Paramètres** → **Variables et secrets** : ajouter
+   `ADRESSE_ADMINISTRATEUR`, type **Secret**, avec l'adresse vérifiée à l'étape 1.
+4. Projet Pages `pedaler-en-auvergne` → **Paramètres** → **Liaisons** → **Ajouter** →
+   **Liaison de service** : nom `COURRIEL`, service `pedaler-courriel`. Relancer ensuite un
+   déploiement du site.
 
 Sans cette étape, les propositions arrivent quand même en issue, mais l'adresse laissée par
 l'auteur n'est transmise nulle part (le journal de la fonction le signale, sans l'adresse).

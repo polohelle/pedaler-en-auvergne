@@ -81,7 +81,8 @@ HTML statique (`dist/`), `sw.js` et manifeste de l'application (ADR 0015), icôn
 `/actus/rss.xml`), générés par `src/lib/ical.ts`, `src/lib/rss.ts` et `src/lib/flux.ts`. Points de
 l'annuaire en GeoJSON (`/annuaire.geojson`, ADR 0029). Une seule partie dynamique : la fonction
 Cloudflare Pages `functions/api/proposer-evenement.ts` du formulaire « Proposer un événement »
-(ADR 0030), dont la logique est dans `src/lib/formulaire/`. Le plan du site arrive avec les phases
+(ADR 0030), dont la logique est dans `src/lib/formulaire/`, et le Worker `workers/courriel/` qui
+envoie l'e-mail de transmission (ADR 0032). Le plan du site arrive avec les phases
 suivantes.
 
 ## Qualité et CI
@@ -149,3 +150,4 @@ changement de code ni d'URL n'est nécessaire.
 | [0028](adr/0028-pages-association-provisoires.md)       | Pages de l'association                 |
 | [0029](adr/0029-carte-de-l-annuaire.md)                 | Carte de l'annuaire                    |
 | [0030](adr/0030-formulaire-proposer-un-evenement.md)    | Formulaire « Proposer un événement »   |
+| [0032](adr/0032-worker-d-envoi-des-courriels.md)        | Worker d'envoi des e-mails             |

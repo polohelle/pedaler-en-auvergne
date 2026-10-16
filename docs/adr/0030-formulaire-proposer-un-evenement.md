@@ -1,6 +1,6 @@
 # 0030 — Formulaire public « Proposer un événement »
 
-- Statut : proposée
+- Statut : proposée, transmission par e-mail précisée par 0032
 - Date : 2026-10-16
 
 ## Contexte
@@ -33,7 +33,7 @@ l'adresse de l'auteur transmise à part par e-mail. Le site reste statique, sous
   pour un envoi réussi et ne crée rien.
 - **Secrets** dans les variables de la fonction (Cloudflare), jamais dans le dépôt :
   `TURNSTILE_SECRET_KEY`, `GITHUB_TOKEN` (jeton à grain fin limité au dépôt, droit Issues),
-  `ADRESSE_ADMINISTRATEUR` et la liaison `send_email` `COURRIEL`. La clé de site Turnstile,
+  et la liaison de service `COURRIEL` vers le Worker d'envoi (ADR 0032). La clé de site Turnstile,
   publique, est lue au build dans `PUBLIC_TURNSTILE_SITE_KEY` ; sans elle, la clé de test de
   Cloudflare est utilisée et la vérification échoue en production.
 - **Journal** de la fonction : noms des champs refusés et numéros d'issue seulement.

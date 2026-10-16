@@ -7,12 +7,9 @@
  * Variables de la fonction (tableau de bord Cloudflare, jamais dans le dépôt) :
  * - `TURNSTILE_SECRET_KEY` : clé secrète du widget Turnstile ;
  * - `GITHUB_TOKEN` : jeton GitHub limité au dépôt, droit « Issues : lecture et écriture » ;
- * - `ADRESSE_ADMINISTRATEUR` et la liaison `send_email` nommée `COURRIEL` : facultatives ;
- *   sans elles, l'issue est créée mais l'adresse de l'auteur n'est transmise nulle part.
+ * - liaison de service `COURRIEL` vers le Worker `pedaler-courriel` (ADR 0032), facultative ;
+ *   sans elle, l'issue est créée mais l'adresse de l'auteur n'est transmise nulle part.
  */
-import { EmailMessage } from 'cloudflare:email';
-import { FORMULAIRES } from '../../src/config/formulaires';
-import { messageTransmission } from '../../src/lib/formulaire/courriel';
 import { champsTexte } from '../../src/lib/formulaire/evenement';
 import { creerIssue } from '../../src/lib/formulaire/github';
 import {
@@ -20,13 +17,14 @@ import {
   traiterPropositionEvenement,
   type Dependances,
 } from '../../src/lib/formulaire/traitement';
+import type { DemandeTransmission } from '../../src/lib/formulaire/transmission';
 import { verifierTurnstile } from '../../src/lib/formulaire/turnstile';
 
 interface Env {
   TURNSTILE_SECRET_KEY?: string;
   GITHUB_TOKEN?: string;
-  ADRESSE_ADMINISTRATEUR?: string;
-  COURRIEL?: { send: (message: EmailMessage) => Promise<void> };
+  /** Liaison de service vers le Worker d'envoi `workers/courriel`. */
+  COURRIEL?: { fetch: (url: string, init: RequestInit) => Promise<Response> };
 }
 
 interface Contexte {
@@ -52,7 +50,7 @@ export async function onRequestPost({ request, env }: Contexte): Promise<Respons
     return rediriger(request, pageApres({ statut: 'invalide', erreurs: [] }));
   }
 
-  const { ADRESSE_ADMINISTRATEUR: adresseAdmin, COURRIEL: courriel } = env;
+  const { COURRIEL: courriel } = env;
   const ip = request.headers.get('CF-Connecting-IP') ?? undefined;
   const dependances: Dependances = {
     maintenant: new Date(),
@@ -61,20 +59,24 @@ export async function onRequestPost({ request, env }: Contexte): Promise<Respons
     journaliser: (message) => {
       console.log(message);
     },
-    ...(adresseAdmin !== undefined &&
-      courriel !== undefined && {
-        transmettreAdresse: async (issue, adresseAuteur) => {
-          const brut = messageTransmission({
-            de: FORMULAIRES.expediteur,
-            a: adresseAdmin,
-            numeroIssue: issue.numero,
-            urlIssue: issue.url,
-            adresseAuteur,
-            date: new Date(),
-          });
-          await courriel.send(new EmailMessage(FORMULAIRES.expediteur, adresseAdmin, brut));
-        },
-      }),
+    ...(courriel !== undefined && {
+      transmettreAdresse: async (issue, adresseAuteur) => {
+        const demande: DemandeTransmission = {
+          numeroIssue: issue.numero,
+          urlIssue: issue.url,
+          adresseAuteur,
+        };
+        // L'adresse de l'URL est ignorée : la liaison de service mène toujours au Worker.
+        const reponse = await courriel.fetch('https://courriel.interne/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(demande),
+        });
+        if (!reponse.ok) {
+          throw new Error(`Worker d'envoi : ${String(reponse.status)}`);
+        }
+      },
+    }),
   };
 
   const resultat = await traiterPropositionEvenement(champs, dependances);
