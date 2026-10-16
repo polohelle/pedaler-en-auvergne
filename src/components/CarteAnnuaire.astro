@@ -1,0 +1,53 @@
+---
+/**
+ * Carte de l'annuaire, ouverte à la demande (ADR 0029). Sans JavaScript ou hors connexion,
+ * le bouton reste sans effet et la liste de l'annuaire donne les mêmes informations.
+ */
+---
+
+<section class="carte-annuaire" aria-labelledby="titre-carte">
+  <h2 id="titre-carte">Carte des acteurs</h2>
+  <p class="discret">
+    La carte reprend les fiches de la liste ci-dessous qui ont une adresse d'accueil publique.
+  </p>
+  <button
+    type="button"
+    class="bouton"
+    aria-controls="carte-annuaire"
+    aria-expanded="false"
+    data-ouvrir-carte="etat-carte"
+  >
+    Afficher la carte
+  </button>
+  <p id="etat-carte" class="discret" role="status"></p>
+  <div id="carte-annuaire" class="carte-annuaire__fond" hidden></div>
+</section>
+
+<script>
+  import '../scripts/carte';
+</script>
+
+<style>
+  .carte-annuaire {
+    margin-block: var(--espace-4);
+  }
+
+  .carte-annuaire__fond {
+    height: min(70vh, 32rem);
+    border-radius: var(--rayon-grand);
+    overflow: hidden;
+  }
+
+  /* Le marqueur est un point dessiné en CSS : aucune image à charger. */
+  .carte-annuaire :global(.carte__point) {
+    border: 3px solid var(--couleur-surface);
+    border-radius: 50%;
+    background: var(--couleur-primaire);
+    box-shadow: 0 0 0 1px var(--couleur-texte);
+  }
+
+  .carte-annuaire :global(.carte__point:focus-visible) {
+    outline: 3px solid var(--couleur-focus);
+    outline-offset: 2px;
+  }
+</style>

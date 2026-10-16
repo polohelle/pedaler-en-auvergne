@@ -2,6 +2,7 @@
 import { SITE } from '@config/site';
 import Appel from '@components/Appel.astro';
 import CarteActeur from '@components/CarteActeur.astro';
+import CarteAnnuaire from '@components/CarteAnnuaire.astro';
 import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
 import { acteursPublies } from '@services/contenus';
@@ -26,10 +27,12 @@ const acteurs = await acteursPublies();
     </p>
   ) : (
     <>
+      <CarteAnnuaire />
+      <h2>Liste des acteurs</h2>
       <p class="discret">{acteurs.length} acteur(s) référencé(s).</p>
       <ul class="grille liste-simple">
         {acteurs.map((acteur) => (
-          <CarteActeur acteur={acteur} />
+          <CarteActeur acteur={acteur} niveau="h3" />
         ))}
       </ul>
     </>
