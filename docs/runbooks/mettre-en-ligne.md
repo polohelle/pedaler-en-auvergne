@@ -14,7 +14,11 @@ valent `null`.
       vérifier). La même boîte reçoit les e-mails des auteurs de formulaires (ADR 0018).
 - [ ] **Après la déclaration de l'association** : renseigner `rna` et `adresse` (siège).
 - [ ] Nom de l'association dans le titulaire du copyright de `LICENSE`.
-- [ ] Page HelloAsso créée : renseigner `adhesionUrl` dans `src/config/site.ts`.
+- [ ] **Après l'assemblée constitutive** : renseigner `statutsAdoptesLe` ; le bandeau « projet »
+      disparaît des pages de l'association. Mettre à jour la charte et la gouvernance si l'AG a
+      modifié le projet, et le barème `BAREME_COTISATION` tel que voté.
+- [ ] Campagnes HelloAsso créées : renseigner `helloasso.adhesion` et `helloasso.don`
+      (adresses `https://www.helloasso.com/associations/…`, vérifiées par les tests).
 - [ ] Relire la page « Mentions légales et confidentialité » (responsable de traitement,
       contact, conservation des données des formulaires — ADR 0018).
 

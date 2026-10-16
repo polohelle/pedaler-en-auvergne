@@ -1,0 +1,49 @@
+---
+import { DETAILS_COLLEGE } from '@config/association';
+import Association from '@layouts/Association.astro';
+import { membresParCollege } from '@lib/association';
+import { acteursPublies } from '@services/contenus';
+
+const colleges = membresParCollege(await acteursPublies());
+---
+
+<Association
+  titre="Membres"
+  description="Les structures membres de Pédaler en Auvergne, collège par collège, avec un lien vers leur fiche dans l'annuaire."
+>
+  <p class="texte">
+    Cette liste est tirée de l'annuaire : chaque structure adhérente y porte le badge « membre ».
+    L'annuaire, lui, référence tous les acteurs du vélo, membres ou non.
+  </p>
+
+  <div class="grille">
+    {colleges.map(({ college, membres }) => (
+      <section class="carte" aria-labelledby={`college-${college}`}>
+        <h2 id={`college-${college}`}>{DETAILS_COLLEGE[college].libelle}</h2>
+        <p class="discret">{DETAILS_COLLEGE[college].composition}</p>
+        {college === 'cyclistes' ? (
+          <p>
+            Les cyclistes adhèrent à titre personnel : par respect de leur vie privée, leurs noms ne
+            sont pas publiés.
+          </p>
+        ) : membres.length === 0 ? (
+          <p>Aucune structure membre pour l'instant.</p>
+        ) : (
+          <ul>
+            {membres.map(({ id, data }) => (
+              <li>
+                <a href={`/annuaire/${id}/`}>{data.nom}</a>
+                <span class="discret"> — {data.commune}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    ))}
+  </div>
+
+  <p class="texte">
+    Votre structure veut rejoindre l'association ?
+    <a href="/association/adherer/">Voir comment adhérer</a>.
+  </p>
+</Association>
