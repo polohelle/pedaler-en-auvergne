@@ -2,11 +2,20 @@
 nom: Vélo-Boulot-Dodo
 slug: velo-boulot-dodo-clermont-ferrand
 categories:
-  - magasin
-  - reparateur
+  - atelier-participatif
+membre: false
+code_postal: '63000'
 commune: Clermont-Ferrand
 departement: '63'
+sans_adresse_publique: true
+services:
+  - auto-reparation
+  - occasion
+site: https://www.velocite63.fr
 source: osm
 osm_id: node/4743048621
-statut: brouillon
+verifie_le: '2026-10-15'
+statut: publie
 ---
+
+Atelier vélo de l'association d'usagers Vélocité 63 : réparation accompagnée de son propre vélo et vente de vélos d'occasion.
