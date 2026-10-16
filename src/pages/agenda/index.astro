@@ -1,5 +1,5 @@
 ---
-import { SITE } from '@config/site';
+import { FORMULAIRES } from '@config/formulaires';
 import Appel from '@components/Appel.astro';
 import CarteEvenement from '@components/CarteEvenement.astro';
 import TetePage from '@components/TetePage.astro';
@@ -30,7 +30,7 @@ const evenements = await evenementsAVenir();
   )}
   <Appel
     titre="Vous organisez une sortie ?"
-    lien={`${SITE.depot}/issues/new?template=1-proposer-evenement.yml`}
+    lien={FORMULAIRES.pageEvenement}
     libelle="Proposer un événement"
   >
     Bourse, balade, atelier ou course : signalez-le, nous l'ajoutons à l'agenda après vérification.

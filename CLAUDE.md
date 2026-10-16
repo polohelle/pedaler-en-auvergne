@@ -58,7 +58,7 @@ il refuse un `git commit` mal enchaîné ou sans vérification préalable de l'�
 - Logique dans `src/lib/`, jamais dans une page ou un composant ; toute logique a ses tests.
 - Dates : ISO 8601 avec fuseau entre guillemets dans le YAML ; affichage par `src/lib/dates.ts`
   uniquement (Europe/Paris).
-- Pages statiques, aucun JavaScript sauf carte, filtres et PWA ; aucun script ni style en
+- Pages statiques, aucun JavaScript sauf carte, filtres, anti-robot des formulaires et PWA ; aucun script ni style en
   ligne (CSP stricte) ; contrastes AA ; mobile d'abord.
 - Nouvelle page ou nouveau modèle de page : la déclarer dans `tests/pages.ts`.
 - Choix structurant : un ADR court dans `docs/adr/` (skill `ecrire-adr`).
