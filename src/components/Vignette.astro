@@ -15,6 +15,7 @@ interface Props {
 const { acteur, taille = 'petite' } = Astro.props;
 const { id, data } = acteur;
 const cote = taille === 'grande' ? 80 : 48;
+// Un logo garde ses proportions : hauteur fixe, largeur limitée au double.
 ---
 
 {data.logo ? (
@@ -58,10 +59,16 @@ const cote = taille === 'grande' ? 80 : 48;
   }
 
   .vignette--logo {
+    inline-size: auto;
+    max-inline-size: 6rem;
     padding: var(--espace-1);
     border: 1px solid var(--couleur-bordure);
     background: var(--couleur-fond-logo);
     object-fit: contain;
+  }
+
+  .vignette--grande.vignette--logo {
+    max-inline-size: 10rem;
   }
 
   .vignette--monogramme {

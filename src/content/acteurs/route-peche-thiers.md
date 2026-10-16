@@ -12,6 +12,10 @@ services:
   - reparation
   - vae
 site: https://www.routepeche.fr/
+logo:
+  fichier: route-peche-thiers.webp
+  source_url: https://www.routepeche.fr/
+  origine: site-structure
 source: osm
 osm_id: node/12556184157
 verifie_le: '2026-10-15'

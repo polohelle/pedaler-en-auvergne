@@ -15,6 +15,10 @@ services:
 site: https://unguidondanslatete.fr/
 reseaux:
   - https://www.facebook.com/unGuidonDansLaTete/
+logo:
+  fichier: un-guidon-dans-la-tete-clermont-ferrand.webp
+  source_url: https://unguidondanslatete.fr/
+  origine: site-structure
 source: osm
 osm_id: node/3832397207
 verifie_le: '2026-10-14'

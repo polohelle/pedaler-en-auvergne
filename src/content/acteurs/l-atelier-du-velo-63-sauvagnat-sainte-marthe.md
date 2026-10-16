@@ -13,6 +13,10 @@ services:
   - reparation
   - vae
 site: https://latelierduvelo63.fr/
+logo:
+  fichier: l-atelier-du-velo-63-sauvagnat-sainte-marthe.webp
+  source_url: https://latelierduvelo63.fr/
+  origine: site-structure
 source: osm
 osm_id: node/13364369531
 verifie_le: '2026-10-15'

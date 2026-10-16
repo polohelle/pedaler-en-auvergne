@@ -19,6 +19,10 @@ services:
 horaires: Tu-Sa 10:00-12:00,14:00-19:00
 site: https://www.auvieuxbiclou.fr/
 telephone: 04 65 66 18 75
+logo:
+  fichier: au-vieux-biclou-beaumont.webp
+  source_url: https://www.auvieuxbiclou.fr/
+  origine: site-structure
 source: osm
 osm_id: node/13140578104
 verifie_le: '2026-10-14'

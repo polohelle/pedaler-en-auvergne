@@ -16,6 +16,10 @@ services:
   - reparation
 horaires: Mo-Sa 09:30-19:00
 site: https://www.giant-clermont-ferrand.fr/fr/about-the-store
+logo:
+  fichier: giant-clermont-ferrand.webp
+  source_url: https://www.giant-clermont-ferrand.fr/fr/about-the-store
+  origine: site-structure
 source: osm
 osm_id: node/10009808452
 verifie_le: '2026-10-14'

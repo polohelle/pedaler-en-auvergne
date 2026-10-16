@@ -19,6 +19,10 @@ services:
 horaires: Tu-Sa 10:00-13:00,14:00-19:00
 site: https://clermont-ferrand.cyclable.com/
 telephone: 09 83 33 55 70
+logo:
+  fichier: cyclable-clermont-ferrand.webp
+  source_url: https://clermont-ferrand.cyclable.com/
+  origine: site-structure
 source: osm
 osm_id: node/4940602318
 verifie_le: '2026-10-14'

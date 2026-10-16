@@ -16,6 +16,10 @@ horaires: Mo-Fr 08:00-13:00,14:00-17:30; Sa 09:15-12:15,13:00-17:00
 site: https://www.c-velo.fr/
 email: agence@c-velo.fr
 telephone: 04 73 92 65 08
+logo:
+  fichier: agence-c-velo-clermont-ferrand.webp
+  source_url: https://www.c-velo.fr/
+  origine: site-structure
 source: osm
 osm_id: node/2885525713
 verifie_le: '2026-10-14'

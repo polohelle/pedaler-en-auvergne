@@ -19,6 +19,10 @@ services:
   - vae
 site: https://www.volcanic-cycles.com/
 telephone: 04 73 66 57 52
+logo:
+  fichier: volcanic-cycles-enval.webp
+  source_url: https://www.volcanic-cycles.com/
+  origine: site-structure
 source: osm
 osm_id: node/11358807418
 verifie_le: '2026-10-14'
