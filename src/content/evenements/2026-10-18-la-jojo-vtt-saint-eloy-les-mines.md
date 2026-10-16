@@ -8,7 +8,7 @@ departement: '63'
 tarif: 10 €
 source_url: https://www.vttrando.fr/evenement/la-jojo-vtt-2026/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Dixième édition de cette randonnée VTT au départ du plan d'eau de Saint-Éloy-les-Mines. Deux

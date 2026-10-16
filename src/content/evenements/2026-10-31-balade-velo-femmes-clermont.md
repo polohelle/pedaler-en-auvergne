@@ -10,7 +10,7 @@ tarif: Gratuit (prix libre)
 inscription_url: https://www.helloasso.com/associations/osez-le-feminisme-63/evenements/balade-a-velo-reservee-aux-femmes
 source_url: https://www.velocite63.fr/balade-a-velo-pour-les-femmes
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Osez le Féminisme 63 et Vélo-Cité 63 encadrent une balade en ville réservée aux femmes, pensée

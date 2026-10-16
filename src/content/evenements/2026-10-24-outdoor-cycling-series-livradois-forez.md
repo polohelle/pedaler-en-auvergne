@@ -10,7 +10,7 @@ tarif: 85 € (150 km), 125 € (350 km)
 inscription_url: https://new.sportsnconnect.com/client/events/4qQ2SzUHQu2XpvtCYYo4Ue-outdoor-cycling-series-livradois-forez
 source_url: https://outdoorseries.fr/livradois-forez/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Épreuve d'ultradistance en autonomie sur une boucle autour d'Ambert, en vélo de route ou en

@@ -8,7 +8,7 @@ departement: '63'
 tarif: 10 € sur place, 8 € pour les licenciés
 source_url: https://www.nafix.fr/sortie/fiche-randonnee-vtt-de-mozac-la-pierre-saintemarie-90477-1.html
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Mozac Cyclo Club organise sa randonnée VTT au départ du gymnase, avec quatre circuits de 11,
