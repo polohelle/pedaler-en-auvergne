@@ -71,6 +71,13 @@ const annule = data.statut === 'annule';
     <div class="texte">
       <Content />
     </div>
+    {!annule && (
+      <p>
+        <a class="bouton" href={`/agenda/${evenement.id}.ics`} download>
+          Ajouter à mon calendrier
+        </a>
+      </p>
+    )}
     <p class="discret">
       Source : <a href={data.source_url}>{new URL(data.source_url).hostname}</a>
     </p>
