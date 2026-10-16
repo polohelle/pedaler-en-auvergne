@@ -4,7 +4,7 @@ import { render } from 'astro:content';
 import {
   LIBELLES_CATEGORIE_ACTEUR,
   LIBELLES_COLLEGE,
-  LIBELLES_DROITS_LOGO,
+  LIBELLES_ORIGINE_LOGO,
   LIBELLES_SERVICE,
 } from '@config/acteurs';
 import { SITE } from '@config/site';
@@ -148,7 +148,8 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
       {data.source === 'osm' && <>Fiche issue d'OpenStreetMap, © contributeurs OpenStreetMap. </>}
       {data.logo && (
         <>
-          {LIBELLES_DROITS_LOGO[data.logo.droits]} (<a href={data.logo.source_url}>source</a>).{' '}
+          {LIBELLES_ORIGINE_LOGO[data.logo.origine]} (<a href={data.logo.source_url}>source</a>
+          ).{' '}
         </>
       )}
       Cette fiche vous concerne ? <a href={correction}>Proposer une correction</a>.

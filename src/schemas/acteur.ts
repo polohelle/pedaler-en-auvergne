@@ -2,8 +2,8 @@ import { z } from 'astro/zod';
 import {
   CATEGORIES_ACTEUR,
   COLLEGES,
-  DROITS_LOGO,
   ORIGINES_ACTEUR,
+  ORIGINES_LOGO,
   SERVICES,
 } from '@config/acteurs';
 import { departementDuCodePostal, estEnAuvergne } from '@lib/geo';
@@ -21,8 +21,8 @@ import {
 } from './communs';
 
 /**
- * Logo de la structure, servi depuis `public/logos/` (ADR 0031). Il n'est retenu qu'avec sa
- * source et le droit de le reprendre ; sans logo, la carte affiche un monogramme.
+ * Logo de la structure, servi depuis `public/logos/` (ADR 0031), toujours avec sa source et sa
+ * provenance ; sans logo, la carte affiche un monogramme.
  */
 export const schemaLogo = z.strictObject({
   fichier: z
@@ -32,7 +32,7 @@ export const schemaLogo = z.strictObject({
       'Fichier attendu dans public/logos/ : <slug>.svg, .png ou .webp.',
     ),
   source_url: schemaUrl,
-  droits: z.enum(DROITS_LOGO),
+  origine: z.enum(ORIGINES_LOGO),
 });
 
 const champs = {

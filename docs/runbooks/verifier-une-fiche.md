@@ -61,15 +61,16 @@ supprimer le fichier si elle n'a jamais été publiée.
 
 ## Logo de la structure
 
-Le logo n'est affiché qu'avec l'accord écrit de la structure (e-mail, message) ou sous licence
-libre (ADR 0031) ; sinon la carte garde son monogramme. Déposer le fichier dans
-`public/logos/<slug>.svg` (ou `.png`, `.webp`, carré de 160 px au moins), puis :
+Facultatif (ADR 0031). Reprendre le logo sur le site ou les réseaux de la structure (ou utiliser
+celui qu'elle a fourni), le déposer dans `public/logos/<slug>.svg` (ou `.png`, `.webp`, carré de
+160 px au moins), puis :
 
 ```yaml
 logo:
   fichier: <slug>.svg
-  source_url: https://exemple.fr/presse # où le logo a été fourni ou trouvé
-  droits: accord-structure # ou licence-libre
+  source_url: https://exemple.fr/ # page où le logo a été pris
+  origine: site-structure # ou fourni-structure, licence-libre
 ```
 
-Garder la trace de l'accord hors du dépôt (il peut contenir des données personnelles).
+Sans logo, la carte affiche les initiales de la structure. Une structure qui demande le retrait
+de son logo l'obtient : supprimer le fichier et le champ `logo`.

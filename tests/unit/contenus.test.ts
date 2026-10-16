@@ -74,7 +74,7 @@ describe('logos des acteurs (ADR 0031)', () => {
     expect(references.filter((fichier) => !existsSync(join(dossierLogos, fichier)))).toEqual([]);
   });
 
-  it('chaque fichier de public/logos/ est déclaré par une fiche, avec sa source et ses droits', () => {
+  it('chaque fichier de public/logos/ est déclaré par une fiche, avec sa source', () => {
     const presents = existsSync(dossierLogos) ? readdirSync(dossierLogos) : [];
     expect(presents.filter((fichier) => !references.includes(fichier))).toEqual([]);
   });

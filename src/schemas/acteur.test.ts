@@ -173,7 +173,7 @@ describe('schéma acteur — logo', () => {
   const logo = {
     fichier: 'cycles-du-centre-clermont-ferrand.svg',
     source_url: 'https://cycles-du-centre.example/presse',
-    droits: 'accord-structure',
+    origine: 'site-structure',
   };
 
   it('accepte un logo sourcé, au nom de la fiche', () => {
@@ -184,7 +184,7 @@ describe('schéma acteur — logo', () => {
     ['logo.fichier', { ...logo, fichier: 'Logo Final.jpg' }],
     ['logo.fichier', { ...logo, fichier: 'autre-boutique.svg' }],
     ['logo.source_url', sans(logo, 'source_url')],
-    ['logo.droits', { ...logo, droits: 'trouve-sur-internet' }],
+    ['logo.origine', { ...logo, origine: 'trouve-sur-internet' }],
   ])('refuse %s invalide ou manquant', (chemin, valeur) => {
     expect(chemins({ ...acteurPublie(), logo: valeur })).toContain(chemin);
   });
