@@ -1,13 +1,29 @@
 ---
 import { SITE } from '@config/site';
+import Logo from '@components/Logo.astro';
 
 const annee = new Date().getFullYear();
 ---
 
 <footer class="pied">
-  <div class="conteneur">
+  <svg
+    class="pied__relief"
+    viewBox="0 0 320 24"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M0 24V16c30-4 50-9 80-8s50 8 80 5 50-10 80-9 50 6 80 8v12Z"></path>
+  </svg>
+  <div class="conteneur pied__interieur">
+    <a class="pied__marque" href="/">
+      <Logo />
+    </a>
     <nav aria-label="Liens de pied de page">
       <ul class="liste-simple pied__liens">
+        <li>
+          <a href="/communes/">Le vélo par commune</a>
+        </li>
         <li>
           <a href="/association/">L'association</a>
         </li>
@@ -20,17 +36,17 @@ const annee = new Date().getFullYear();
       </ul>
     </nav>
     <p class="discret">
-      Code sous licence <a href={`${SITE.depot}/blob/main/LICENSE`}>MIT</a>, textes sous licence
+      Code sous licence <a href={`${SITE.depot}/blob/main/LICENSE`}>MIT</a>, textes sous licence{' '}
       <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr" hreflang="fr">
         CC BY-SA 4.0
       </a>
-      , données de l'annuaire sous licence
+      , données de l'annuaire sous licence{' '}
       <a href="https://opendatacommons.org/licenses/odbl/1-0/" hreflang="en">
         ODbL 1.0
       </a>
       , dont une partie ©{' '}
       <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>. Le nom et
-      le logo {SITE.nom} ne sont pas sous licence libre.
+      le logo {SITE.nom} ne sont pas sous licence libre.{' '}
       <a href={`${SITE.depot}/blob/main/LICENSES.md`}>Détail des licences</a>.
     </p>
     <p class="discret">
@@ -42,9 +58,28 @@ const annee = new Date().getFullYear();
 <style>
   .pied {
     margin-block-start: var(--espace-5);
+    background: var(--couleur-prairie-pale);
+  }
+
+  /* Les collines du bandeau d'accueil, en écho, sur le bord haut du pied de page. */
+  .pied__relief {
+    display: block;
+    width: 100%;
+    height: 1.5rem;
+    background: var(--couleur-fond);
+    fill: var(--couleur-colline);
+  }
+
+  .pied__interieur {
     padding-block: var(--espace-4);
-    border-block-start: 1px solid var(--couleur-bordure);
-    background: var(--couleur-fond-doux);
+  }
+
+  .pied__marque {
+    display: inline-flex;
+    min-height: var(--cible-tactile);
+    margin-block-end: var(--espace-3);
+    color: var(--couleur-texte);
+    text-decoration: none;
   }
 
   .pied__liens {
