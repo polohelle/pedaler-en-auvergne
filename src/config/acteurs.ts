@@ -87,3 +87,16 @@ export const LIBELLES_SERVICE = {
 /** Origine d'une fiche acteur. */
 export const ORIGINES_ACTEUR = ['osm', 'formulaire', 'agent', 'admin'] as const;
 export type OrigineActeur = (typeof ORIGINES_ACTEUR)[number];
+
+/**
+ * Provenance du logo d'une structure (ADR 0031) : son propre site ou ses réseaux, un fichier
+ * qu'elle a fourni, ou une licence libre (Wikimedia Commons, par exemple).
+ */
+export const ORIGINES_LOGO = ['site-structure', 'fourni-structure', 'licence-libre'] as const;
+export type OrigineLogo = (typeof ORIGINES_LOGO)[number];
+
+export const LIBELLES_ORIGINE_LOGO = {
+  'site-structure': 'Logo repris du site de la structure',
+  'fourni-structure': 'Logo fourni par la structure',
+  'licence-libre': 'Logo sous licence libre',
+} as const satisfies Record<OrigineLogo, string>;

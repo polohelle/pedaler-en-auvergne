@@ -2,7 +2,7 @@
  * Valide chaque fichier de src/content/ puis leur cohérence d'ensemble : c'est ce test qui
  * bloque en CI une fiche publiée incomplète ou un lien cassé, avant même le build.
  */
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { lireMarkdown } from '@lib/frontmatter';
@@ -58,5 +58,24 @@ describe.each(racines)('cohérence entre fichiers de %s', (dossier) => {
       return resultat.success ? [{ id: basename(chemin, '.md'), ...resultat.data }] : [];
     });
     expect(verifierIntegrite(acteurs, evenements)).toEqual([]);
+  });
+});
+
+describe('logos des acteurs (ADR 0031)', () => {
+  const dossierLogos = join(import.meta.dirname, '../../public/logos');
+  const references = racines.flatMap((dossier) =>
+    fichiersDe('acteurs', dossier).flatMap((chemin) => {
+      const resultat = schemaActeur.safeParse(lireMarkdown(readFileSync(chemin, 'utf8')).donnees);
+      return resultat.success && resultat.data.logo ? [resultat.data.logo.fichier] : [];
+    }),
+  );
+
+  it('chaque logo déclaré existe dans public/logos/', () => {
+    expect(references.filter((fichier) => !existsSync(join(dossierLogos, fichier)))).toEqual([]);
+  });
+
+  it('chaque fichier de public/logos/ est déclaré par une fiche, avec sa source', () => {
+    const presents = existsSync(dossierLogos) ? readdirSync(dossierLogos) : [];
+    expect(presents.filter((fichier) => !references.includes(fichier))).toEqual([]);
   });
 });

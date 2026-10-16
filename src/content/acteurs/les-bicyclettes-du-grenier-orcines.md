@@ -16,6 +16,10 @@ services:
   - reparation
   - accueil-velo
 site: https://www.lesbicyclettesdugrenier.com/
+logo:
+  fichier: les-bicyclettes-du-grenier-orcines.webp
+  source_url: https://www.lesbicyclettesdugrenier.com/
+  origine: site-structure
 source: osm
 osm_id: node/9954114315
 verifie_le: '2026-10-15'

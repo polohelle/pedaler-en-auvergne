@@ -1,9 +1,15 @@
 ---
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { render } from 'astro:content';
-import { LIBELLES_CATEGORIE_ACTEUR, LIBELLES_COLLEGE, LIBELLES_SERVICE } from '@config/acteurs';
+import {
+  LIBELLES_CATEGORIE_ACTEUR,
+  LIBELLES_COLLEGE,
+  LIBELLES_ORIGINE_LOGO,
+  LIBELLES_SERVICE,
+} from '@config/acteurs';
 import { SITE } from '@config/site';
 import Tampon from '@components/Tampon.astro';
+import Vignette from '@components/Vignette.astro';
 import Base from '@layouts/Base.astro';
 import { formaterPlage } from '@lib/dates';
 import { acteursPublies, evenementsAVenir } from '@services/contenus';
@@ -25,7 +31,8 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
 <Base titre={data.nom} description={`${data.nom}, ${data.commune} : coordonnées et services.`}>
   <article>
     <div class="fiche-tete">
-      <div>
+      <Vignette acteur={acteur} taille="grande" />
+      <div class="fiche-tete__titre">
         <h1>{data.nom}</h1>
         <p>{data.categories.map((c) => LIBELLES_CATEGORIE_ACTEUR[c]).join(', ')}</p>
       </div>
@@ -139,6 +146,12 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
 
     <p class="discret">
       {data.source === 'osm' && <>Fiche issue d'OpenStreetMap, © contributeurs OpenStreetMap. </>}
+      {data.logo && (
+        <>
+          {LIBELLES_ORIGINE_LOGO[data.logo.origine]} (<a href={data.logo.source_url}>source</a>
+          ).{' '}
+        </>
+      )}
       Cette fiche vous concerne ? <a href={correction}>Proposer une correction</a>.
     </p>
   </article>
@@ -166,7 +179,8 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
     color: var(--couleur-texte-doux);
   }
 
-  .fiche-tete > div {
+  .fiche-tete__titre {
+    flex: 1;
     min-width: 0;
   }
 </style>

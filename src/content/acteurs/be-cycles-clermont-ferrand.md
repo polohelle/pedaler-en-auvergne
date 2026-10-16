@@ -21,6 +21,10 @@ telephone: 04 73 26 26 24
 reseaux:
   - https://www.facebook.com/becycles.clermont/
   - https://www.instagram.com/becycles.clermont/
+logo:
+  fichier: be-cycles-clermont-ferrand.webp
+  source_url: https://www.becycles.fr/
+  origine: site-structure
 source: osm
 osm_id: node/10185341365
 verifie_le: '2026-10-14'

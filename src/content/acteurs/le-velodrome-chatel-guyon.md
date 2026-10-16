@@ -17,6 +17,10 @@ services:
   - reparation
   - vae
 site: https://www.levelodrome.fr
+logo:
+  fichier: le-velodrome-chatel-guyon.webp
+  source_url: https://www.levelodrome.fr
+  origine: site-structure
 source: osm
 osm_id: node/11734296734
 verifie_le: '2026-10-14'

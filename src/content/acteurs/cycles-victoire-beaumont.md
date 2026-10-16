@@ -13,6 +13,10 @@ lon: 3.088
 horaires: Mo-Fr 08:00-17:00
 site: https://www.victoire-cycles.com/
 telephone: 06 07 14 82 18
+logo:
+  fichier: cycles-victoire-beaumont.webp
+  source_url: https://www.victoire-cycles.com/
+  origine: site-structure
 source: osm
 osm_id: node/4408043288
 verifie_le: '2026-10-14'

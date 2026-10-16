@@ -13,6 +13,10 @@ services:
   - apprentissage
   - reparation
 site: https://velo-aventure-63.fr/
+logo:
+  fichier: velo-aventure-63-saint-saturnin.webp
+  source_url: https://velo-aventure-63.fr/
+  origine: site-structure
 source: osm
 osm_id: node/9954114314
 verifie_le: '2026-10-15'

@@ -17,6 +17,10 @@ services:
 site: https://clermont-ferrand.takamaka.fr/
 email: clermont@takamaka.fr
 telephone: 04 73 92 83 64
+logo:
+  fichier: takamaka-clermont-ferrand.webp
+  source_url: https://clermont-ferrand.takamaka.fr/
+  origine: site-structure
 source: osm
 osm_id: node/9161345912
 verifie_le: '2026-10-14'

@@ -19,6 +19,10 @@ services:
 site: https://www.larouevertevtt.fr/
 email: laroueverte@murena.io
 telephone: 06 14 06 03 63
+logo:
+  fichier: la-roue-verte-aydat.webp
+  source_url: https://www.larouevertevtt.fr/
+  origine: site-structure
 source: osm
 osm_id: node/9905473061
 verifie_le: '2026-10-14'

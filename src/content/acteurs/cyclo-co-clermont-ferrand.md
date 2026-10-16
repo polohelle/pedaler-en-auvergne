@@ -22,6 +22,10 @@ horaires: Tu,Th,Fr 08:45-18:00; We 08:45-17:30
 site: https://cycloetco.fr
 email: contact@cycloetco.fr
 telephone: 06 66 48 27 97
+logo:
+  fichier: cyclo-co-clermont-ferrand.webp
+  source_url: https://cycloetco.fr
+  origine: site-structure
 source: osm
 osm_id: node/13703316060
 verifie_le: '2026-10-14'

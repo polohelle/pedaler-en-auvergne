@@ -18,6 +18,10 @@ services:
   - location
 site: https://www.culturevelo.com/-Clermont-Ferrand-
 telephone: 04 73 84 80 90
+logo:
+  fichier: culture-velo-clermont-ferrand.webp
+  source_url: https://www.culturevelo.com/-Clermont-Ferrand-
+  origine: site-structure
 source: osm
 osm_id: node/11776134547
 verifie_le: '2026-10-14'

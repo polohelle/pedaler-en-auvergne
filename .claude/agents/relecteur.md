@@ -22,7 +22,8 @@ plus qu'à décider.
    - **source** : `source_url` présent, accessible (code HTTP 200 après redirections) et qui
      parle bien de l'information ;
    - **pas de copie** : comparer le texte rédigé à la source ; aucune phrase reprise mot pour
-     mot au-delà de quelques mots, aucune image reprise ;
+     mot au-delà de quelques mots, aucune image reprise (sauf le logo d'une structure, avec sa
+     source, ADR 0031) ;
    - **pas de doublon** : appliquer les critères du skill `dedoublonner` à l'existant ;
    - **périmètre** : thème vélo, département actif, ou au national une famille retenue (loi,
      aide, appel à projets, campagne, chiffre clé) ;

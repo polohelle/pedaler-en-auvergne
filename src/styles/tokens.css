@@ -27,6 +27,8 @@
   /* Collines : second plan du relief, décoratif. */
   --couleur-colline: #a9cdb2;
   --couleur-bordure: #c3cdc8;
+  /* Fond des logos des structures, blanc dans les deux modes : ils sont dessinés pour le clair. */
+  --couleur-fond-logo: #ffffff;
   --couleur-focus: #a8401a;
   --couleur-alerte: #a3201a;
 

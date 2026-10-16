@@ -16,6 +16,10 @@ services:
   - reparation
 site: https://www.cycles-gozh.fr/
 telephone: 06 98 98 67 43
+logo:
+  fichier: cycles-gozh-riom.webp
+  source_url: https://www.cycles-gozh.fr/
+  origine: site-structure
 source: osm
 osm_id: node/11162551065
 verifie_le: '2026-10-14'

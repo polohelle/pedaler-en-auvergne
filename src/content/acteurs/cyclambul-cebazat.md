@@ -11,6 +11,10 @@ sans_adresse_publique: true
 services:
   - reparation
 site: https://www.cyclambul.fr/
+logo:
+  fichier: cyclambul-cebazat.webp
+  source_url: https://www.cyclambul.fr/
+  origine: site-structure
 source: osm
 osm_id: node/9176889751
 verifie_le: '2026-10-15'

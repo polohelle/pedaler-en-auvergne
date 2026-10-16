@@ -88,7 +88,8 @@ il refuse un `git commit` mal enchaîné ou sans vérification préalable de l'�
    Aucun agent ne publie : c'est la fusion par l'administrateur qui publie.
 2. **Toujours renseigner `source_url`.** Sans source vérifiable, l'information n'est pas retenue.
 3. **Rédiger avec ses propres mots** : aucune copie de texte, aucune citation longue, aucune
-   image reprise sans droits.
+   image reprise sans droits (seule exception : le logo d'une structure sur sa fiche, avec sa
+   source, ADR 0031).
 4. **Dédoublonner avant de créer** (skill `dedoublonner`) : compléter un contenu existant
    plutôt que d'en créer un second.
 5. **Rester dans le périmètre** géographique (départements actifs de

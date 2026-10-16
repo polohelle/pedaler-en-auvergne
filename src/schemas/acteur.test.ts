@@ -168,3 +168,28 @@ describe('schéma acteur — publié sans adresse publique', () => {
     );
   });
 });
+
+describe('schéma acteur — logo', () => {
+  const logo = {
+    fichier: 'cycles-du-centre-clermont-ferrand.svg',
+    source_url: 'https://cycles-du-centre.example/presse',
+    origine: 'site-structure',
+  };
+
+  it('accepte un logo sourcé, au nom de la fiche', () => {
+    expect(valider({ ...acteurPublie(), logo }).success).toBe(true);
+  });
+
+  it.each([
+    ['logo.fichier', { ...logo, fichier: 'Logo Final.jpg' }],
+    ['logo.fichier', { ...logo, fichier: 'autre-boutique.svg' }],
+    ['logo.source_url', sans(logo, 'source_url')],
+    ['logo.origine', { ...logo, origine: 'trouve-sur-internet' }],
+  ])('refuse %s invalide ou manquant', (chemin, valeur) => {
+    expect(chemins({ ...acteurPublie(), logo: valeur })).toContain(chemin);
+  });
+
+  it('reste interdit dans un brouillon importé d’OpenStreetMap', () => {
+    expect(chemins({ ...acteurBrouillon(), logo })).toContain('logo');
+  });
+});
