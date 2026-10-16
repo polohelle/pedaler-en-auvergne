@@ -18,19 +18,20 @@ sources:
   # --- Local : Puy-de-Dôme -------------------------------------------------
 
   - nom: Vélocité 63
-    url: https://www.helloasso.com/associations/velocite-63
+    url: https://www.velocite63.fr/
     type: page
     niveau: local
     departement: '63'
     acteur: null
     fiabilite: moyenne
-    frequence: mensuelle
-    dernier_passage: null
+    frequence: hebdomadaire
+    dernier_passage: 2026-10-16
     notes: >-
       Association d'usagers, relais de la FUB depuis 1996, membre fondateur pressenti
-      du collège Usagers. Évaluée le 2026-10-14 : page HelloAsso lisible mais sans actualité
-      ni date (adhésion et services seulement). Demander à l'association son canal
-      d'actualité et le substituer à cette adresse.
+      du collège Usagers. Site propre trouvé le 2026-10-16, à la place de la page HelloAsso
+      (sans actualité) : actualités datées, plusieurs par mois (aménagements, recours,
+      compteurs, vélorutions, événements). Source militante : présenter ses positions comme
+      celles de l'association et recouper les faits officiels.
 
   - nom: Miles Republic — épreuves vélo du Puy-de-Dôme
     url: https://fr.milesrepublic.com/velo/puy-de-dome
@@ -105,7 +106,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: hebdomadaire
-    dernier_passage: null
+    dernier_passage: 2026-10-16
     notes: >-
       Évaluée le 2026-10-14 : flux valide, 2 à 4 articles par mois. Éditeur : APIC, pour le
       collectif Mai à vélo ; reproduction interdite sans accord écrit, résumé et lien seulement.
