@@ -1,6 +1,7 @@
 ---
 import { LIBELLES_CATEGORIE_ACTEUR } from '@config/acteurs';
 import { slugifier } from '@lib/slug';
+import Vignette from './Vignette.astro';
 import type { EntreeActeurPublie } from '@services/contenus';
 
 /** Carte d'un acteur dans une liste (annuaire, pages par commune). */
@@ -17,9 +18,12 @@ const { id, data } = acteur;
 ---
 
 <li class="carte acteur">
-  <Titre>
-    <a href={`/annuaire/${id}/`}>{data.nom}</a>
-  </Titre>
+  <div class="acteur__tete">
+    <Vignette acteur={acteur} />
+    <Titre>
+      <a href={`/annuaire/${id}/`}>{data.nom}</a>
+    </Titre>
+  </div>
   <p class="acteur__commune">
     <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
       <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path>
@@ -48,6 +52,17 @@ const { id, data } = acteur;
   }
 
   .acteur > * {
+    margin: 0;
+  }
+
+  .acteur__tete {
+    display: flex;
+    align-items: center;
+    gap: var(--espace-3);
+  }
+
+  .acteur__tete > :is(h2, h3) {
+    min-width: 0;
     margin: 0;
   }
 

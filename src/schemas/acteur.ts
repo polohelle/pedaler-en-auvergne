@@ -1,5 +1,11 @@
 import { z } from 'astro/zod';
-import { CATEGORIES_ACTEUR, COLLEGES, ORIGINES_ACTEUR, SERVICES } from '@config/acteurs';
+import {
+  CATEGORIES_ACTEUR,
+  COLLEGES,
+  DROITS_LOGO,
+  ORIGINES_ACTEUR,
+  SERVICES,
+} from '@config/acteurs';
 import { departementDuCodePostal, estEnAuvergne } from '@lib/geo';
 import {
   sansDoublon,
@@ -13,6 +19,21 @@ import {
   schemaTexte,
   schemaUrl,
 } from './communs';
+
+/**
+ * Logo de la structure, servi depuis `public/logos/` (ADR 0031). Il n'est retenu qu'avec sa
+ * source et le droit de le reprendre ; sans logo, la carte affiche un monogramme.
+ */
+export const schemaLogo = z.strictObject({
+  fichier: z
+    .string()
+    .regex(
+      /^[a-z0-9]+(?:-[a-z0-9]+)*\.(?:svg|png|webp)$/,
+      'Fichier attendu dans public/logos/ : <slug>.svg, .png ou .webp.',
+    ),
+  source_url: schemaUrl,
+  droits: z.enum(DROITS_LOGO),
+});
 
 const champs = {
   nom: schemaTexte,
@@ -35,6 +56,7 @@ const champs = {
   email: z.email('Adresse e-mail invalide.').optional(),
   telephone: schemaTelephone.optional(),
   reseaux: z.array(schemaUrl).optional(),
+  logo: schemaLogo.optional(),
   source: z.enum(ORIGINES_ACTEUR),
   osm_id: z
     .string()
@@ -163,6 +185,13 @@ export const schemaActeur = z
         code: 'custom',
         path: ['code_postal'],
         message: `Le code postal ne correspond pas au département ${acteur.departement}.`,
+      });
+    }
+    if (acteur.logo !== undefined && !acteur.logo.fichier.startsWith(`${acteur.slug}.`)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['logo', 'fichier'],
+        message: `Le fichier du logo porte le slug de la fiche : ${acteur.slug}.svg, .png ou .webp.`,
       });
     }
     if (acteur.membre && acteur.college === undefined) {

@@ -87,3 +87,15 @@ export const LIBELLES_SERVICE = {
 /** Origine d'une fiche acteur. */
 export const ORIGINES_ACTEUR = ['osm', 'formulaire', 'agent', 'admin'] as const;
 export type OrigineActeur = (typeof ORIGINES_ACTEUR)[number];
+
+/**
+ * Droit de reprendre le logo d'une structure (ADR 0031) : son accord écrit, ou une licence
+ * libre (Wikimedia Commons, par exemple). Sans l'un ou l'autre, la carte garde son monogramme.
+ */
+export const DROITS_LOGO = ['accord-structure', 'licence-libre'] as const;
+export type DroitLogo = (typeof DROITS_LOGO)[number];
+
+export const LIBELLES_DROITS_LOGO = {
+  'accord-structure': "Logo reproduit avec l'accord de la structure",
+  'licence-libre': 'Logo sous licence libre',
+} as const satisfies Record<DroitLogo, string>;

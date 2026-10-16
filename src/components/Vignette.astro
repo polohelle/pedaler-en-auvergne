@@ -1,0 +1,105 @@
+---
+import { initiales, teinte } from '@lib/monogramme';
+import type { EntreeActeurPublie } from '@services/contenus';
+
+/**
+ * Logo d'un acteur, ou son monogramme quand aucun logo réutilisable n'est connu (ADR 0031).
+ * Décoratif : le nom de la structure est toujours écrit à côté.
+ */
+interface Props {
+  acteur: EntreeActeurPublie;
+  /** `petite` dans les listes, `grande` en tête de fiche. */
+  taille?: 'petite' | 'grande';
+}
+
+const { acteur, taille = 'petite' } = Astro.props;
+const { id, data } = acteur;
+const cote = taille === 'grande' ? 80 : 48;
+---
+
+{data.logo ? (
+  <img
+    class:list={['vignette', 'vignette--logo', `vignette--${taille}`]}
+    src={`/logos/${data.logo.fichier}`}
+    alt=""
+    width={cote}
+    height={cote}
+    loading="lazy"
+    decoding="async"
+  />
+) : (
+  <span
+    class:list={[
+      'vignette',
+      'vignette--monogramme',
+      `vignette--${taille}`,
+      `teinte-${String(teinte(id))}`,
+    ]}
+    aria-hidden="true"
+  >
+    {initiales(data.nom)}
+  </span>
+)}
+
+<style>
+  .vignette {
+    flex: none;
+    border-radius: var(--rayon);
+  }
+
+  .vignette--petite {
+    inline-size: 3rem;
+    block-size: 3rem;
+  }
+
+  .vignette--grande {
+    inline-size: 5rem;
+    block-size: 5rem;
+  }
+
+  .vignette--logo {
+    padding: var(--espace-1);
+    border: 1px solid var(--couleur-bordure);
+    background: var(--couleur-fond-logo);
+    object-fit: contain;
+  }
+
+  .vignette--monogramme {
+    display: grid;
+    place-items: center;
+    font-family: var(--police-titres);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .vignette--petite.vignette--monogramme {
+    font-size: 1.1rem;
+  }
+
+  .vignette--grande.vignette--monogramme {
+    font-size: 1.8rem;
+  }
+
+  /* Quatre teintes de la palette, chacune avec son texte contrasté, en clair comme en sombre. */
+  .teinte-1 {
+    background: var(--couleur-prairie-pale);
+    box-shadow: inset 0 0 0 1px var(--couleur-colline);
+    color: var(--couleur-lien);
+  }
+
+  .teinte-2 {
+    background: var(--couleur-colline);
+    color: var(--couleur-texte);
+  }
+
+  .teinte-3 {
+    background: var(--couleur-fond-doux);
+    color: var(--couleur-action);
+  }
+
+  .teinte-4 {
+    background: var(--couleur-primaire);
+    color: var(--couleur-primaire-contraste);
+  }
+</style>

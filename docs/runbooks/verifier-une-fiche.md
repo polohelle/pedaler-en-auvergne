@@ -58,3 +58,18 @@ La fiche affiche la commune et invite à contacter la structure ; elle n'appara�
 Une fiche à ne pas publier (structure fermée, hors périmètre — jamais au motif qu'il s'agit
 d'une chaîne) : passer `statut: archive`, ou
 supprimer le fichier si elle n'a jamais été publiée.
+
+## Logo de la structure
+
+Le logo n'est affiché qu'avec l'accord écrit de la structure (e-mail, message) ou sous licence
+libre (ADR 0031) ; sinon la carte garde son monogramme. Déposer le fichier dans
+`public/logos/<slug>.svg` (ou `.png`, `.webp`, carré de 160 px au moins), puis :
+
+```yaml
+logo:
+  fichier: <slug>.svg
+  source_url: https://exemple.fr/presse # où le logo a été fourni ou trouvé
+  droits: accord-structure # ou licence-libre
+```
+
+Garder la trace de l'accord hors du dépôt (il peut contenir des données personnelles).
