@@ -9,7 +9,7 @@ departement: '03'
 tarif: À partir de 7 €
 source_url: https://www.sport-nature.net/calendrier/rando-pedestre-vtt-et-marche-dautomne-commentry/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Randonnée d'automne ouverte aux vététistes et aux marcheurs au départ de Commentry. Les calendriers

@@ -9,7 +9,7 @@ departement: '03'
 tarif: Engagement 12 € (élites et U23)
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4103023027/yzeure-cyclo-cross-du-plan-deau-des-ozieres-elite-et-u23/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Cyclo-cross régional organisé par le club ROMYA autour du plan d'eau des Ozières, avec des courses

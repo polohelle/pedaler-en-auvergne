@@ -8,7 +8,7 @@ commune: Marcillat-en-Combraille
 departement: '03'
 source_url: https://www.montlucon-tourisme.com/offers/la-marci-moustache-7-randonnees-pedestres-et-vtt-marcillat-en-combraille-en-2819107/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Randonnées VTT et pédestres organisées pendant Movember, le mois de sensibilisation aux cancers

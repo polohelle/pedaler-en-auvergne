@@ -8,7 +8,7 @@ commune: Montluçon
 departement: '03'
 source_url: https://auvergnerhonealpescyclisme.com/cyclo-cross/calendrier
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Cyclo-cross organisé par Montluçon Cyclisme, ouvert à toutes les catégories et inscrit au calendrier

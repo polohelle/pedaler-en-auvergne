@@ -7,7 +7,7 @@ commune: Montsalvy
 departement: '15'
 source_url: https://www.cantal-destination.com/fiche/38e-ronde-de-la-chataigneraie/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Course en relais d'environ 70 km sur les routes et chemins de la Châtaigneraie cantalienne, qui

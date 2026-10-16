@@ -8,7 +8,7 @@ commune: Mozac
 departement: '63'
 source_url: https://www.veloderoute.com/evenements
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Brevet cyclotouriste de 200 km sur route au départ de Mozac, dans le cadre du Dodécaudax : un

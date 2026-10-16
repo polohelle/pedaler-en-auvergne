@@ -8,7 +8,7 @@ commune: Moulins
 departement: '03'
 source_url: https://auvergnerhonealpescyclisme.com/cyclo-cross/calendrier
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Cyclo-cross régional organisé par le club ROMYA (Moulins, Yzeure, Avermes), ouvert à toutes les

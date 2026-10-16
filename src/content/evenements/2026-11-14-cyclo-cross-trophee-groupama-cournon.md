@@ -8,7 +8,7 @@ commune: Cournon-d'Auvergne
 departement: '63'
 source_url: https://vcca.fr/wp/competitions/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Vélo Club de Cournon-d'Auvergne organise son cyclo-cross au bord du plan d'eau, avec des courses

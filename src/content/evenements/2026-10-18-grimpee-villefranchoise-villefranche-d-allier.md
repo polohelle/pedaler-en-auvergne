@@ -10,7 +10,7 @@ departement: '03'
 tarif: 8 € (VTT 35 km)
 source_url: https://fr.milesrepublic.com/event/la-grimpee-villefranchoise-23eme-14839
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Vingt-troisième édition de cette randonnée organisée par les Cyclos Villefranchois. Deux boucles

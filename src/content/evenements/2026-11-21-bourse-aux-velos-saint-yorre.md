@@ -10,7 +10,7 @@ departement: '03'
 tarif: Entrée libre ; dépôt 2 € par vélo ou lot de pièces (tarif 2025)
 source_url: https://veloenfrance.fr/randonnee/bourse-velos-novembre-2026
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Les Cyclos Randonneurs Saint-Yorrais organisent leur bourse annuelle aux vélos et pièces
