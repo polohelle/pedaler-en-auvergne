@@ -208,7 +208,7 @@ describe('issueEvenement', () => {
   it('ne contient jamais l’adresse de l’auteur', () => {
     const { corps } = issueEvenement(proposition, recueLe);
     expect(corps).not.toContain('organisatrice@exemple.fr');
-    expect(corps).toContain('transmise à l’administrateur par e-mail');
+    expect(corps).toContain('envoyée à part à l’administrateur');
     const sansCourriel: PropositionEvenement = { ...proposition };
     delete sansCourriel.courriel;
     const sansAdresse = issueEvenement(sansCourriel, recueLe);

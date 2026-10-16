@@ -261,7 +261,7 @@ export function issueEvenement(p: PropositionEvenement, recueLe: Date): IssueGit
     '',
     p.courriel === undefined
       ? 'L’auteur n’a pas laissé d’adresse pour être recontacté.'
-      : 'L’auteur a laissé une adresse pour être recontacté : elle a été transmise à l’administrateur par e-mail et n’apparaît pas ici (ADR 0018).',
+      : 'L’auteur a laissé une adresse pour être recontacté : elle est envoyée à part à l’administrateur et n’apparaît pas ici (ADR 0018).',
   ].join('\n');
   return {
     titre: `[Événement] ${p.titre}`,
