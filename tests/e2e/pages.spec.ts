@@ -35,4 +35,5 @@ test('le pied de page mentionne les licences et OpenStreetMap', async ({ page })
   const pied = page.getByRole('contentinfo');
   await expect(pied.getByRole('link', { name: 'contributeurs OpenStreetMap' })).toBeVisible();
   await expect(pied.getByRole('link', { name: 'ODbL 1.0' })).toBeVisible();
+  await expect(pied).toContainText('textes sous licence CC BY-SA 4.0, données');
 });

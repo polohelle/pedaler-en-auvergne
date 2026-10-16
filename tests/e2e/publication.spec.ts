@@ -46,3 +46,13 @@ test('une fiche sans adresse publique n’affiche ni adresse ni position', async
   await expect(page.getByText('Clermont-Ferrand et sa métropole')).toBeVisible();
   await expect(page.getByRole('term').filter({ hasText: /^Adresse$/ })).toHaveCount(0);
 });
+
+test('la page commune rassemble les acteurs et l’agenda de la commune', async ({ page }) => {
+  await page.goto('/annuaire/');
+  await page.getByRole('link', { name: 'Riom', exact: true }).click();
+  await expect(page).toHaveURL(/\/communes\/riom\/$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Pédaler à Riom');
+  await expect(page.getByRole('link', { name: 'Vélo Test Riom' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Bourse aux vélos de test' })).toBeVisible();
+  await expect(page.getByText('Sortie de test annulée')).toHaveCount(0);
+});
