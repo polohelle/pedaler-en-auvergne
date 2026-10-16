@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pédaler en Auvergne">
-  <rect width="64" height="64" rx="14" fill="#1f5f3f"/>
-  <g fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="18" cy="40" r="10"/>
-    <circle cx="46" cy="40" r="10"/>
-    <path d="M18 40 27 24h14l5 16M27 24l6 16h-15M24 18h7M41 24l-3-6h6"/>
+  <rect width="64" height="64" rx="14" fill="#22303a"/>
+  <g transform="translate(4 14) scale(0.875)">
+    <path d="M2 33 12 29c4-10 7-17 11-18l3 3 3-3c4 2 7 9 10 15 3-4 6-6 9-5 3 1 5 4 7 6l7 6Z" fill="#2d6a3e"/>
+    <path d="M2 33 12 29c4-10 7-17 11-18l3 3 3-3c4 2 7 9 10 15 3-4 6-6 9-5 3 1 5 4 7 6l7 6" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="17.5" cy="18" r="4.4" fill="#e8b04a" stroke="#ffffff" stroke-width="2"/>
   </g>
 </svg>

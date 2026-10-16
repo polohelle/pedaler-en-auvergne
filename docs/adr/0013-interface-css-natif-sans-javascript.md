@@ -1,6 +1,6 @@
 # 0013 — Interface en CSS natif, sans JavaScript, sous CSP stricte
 
-- Statut : acceptée
+- Statut : acceptée ; le point sur les polices est remplacé par 0024
 - Date : 2026-10-14
 
 ## Contexte

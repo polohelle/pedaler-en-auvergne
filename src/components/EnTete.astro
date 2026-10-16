@@ -1,5 +1,5 @@
 ---
-import { SITE } from '@config/site';
+import Logo from '@components/Logo.astro';
 
 interface Props {
   /** Chemin de la page courante, pour signaler l'entrée active du menu. */
@@ -21,11 +21,7 @@ const estActive = (href: string) => chemin.startsWith(href);
 <header class="en-tete">
   <div class="conteneur en-tete__interieur">
     <a class="marque" href="/">
-      <img src="/favicon.svg" alt="" width="32" height="32" />
-      <span>
-        <span class="marque__nom">{SITE.nom}</span>
-        <span class="marque__slogan">{SITE.slogan}</span>
-      </span>
+      <Logo />
     </a>
     <nav aria-label="Navigation principale">
       <ul class="menu">
@@ -44,7 +40,8 @@ const estActive = (href: string) => chemin.startsWith(href);
 <style>
   .en-tete {
     border-block-end: 1px solid var(--couleur-bordure);
-    background: var(--couleur-fond-doux);
+    background: var(--couleur-surface);
+    color: var(--couleur-texte);
   }
 
   .en-tete__interieur {
@@ -65,18 +62,6 @@ const estActive = (href: string) => chemin.startsWith(href);
     text-decoration: none;
   }
 
-  .marque__nom {
-    display: block;
-    font-weight: 700;
-    font-size: 1.15rem;
-  }
-
-  .marque__slogan {
-    display: block;
-    color: var(--couleur-texte-doux);
-    font-size: var(--taille-petite);
-  }
-
   .menu {
     display: flex;
     flex-wrap: wrap;
@@ -93,10 +78,12 @@ const estActive = (href: string) => chemin.startsWith(href);
     padding-inline: var(--espace-1);
     color: var(--couleur-texte);
     font-weight: 600;
+    text-decoration-color: var(--couleur-bordure);
   }
 
   .menu a[aria-current='page'] {
     color: var(--couleur-primaire);
+    text-decoration-color: currentColor;
     text-decoration-thickness: 3px;
   }
 </style>

@@ -29,6 +29,8 @@
     "icones": "pwa-assets-generator"
   },
   "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "5.3.0",
+    "@fontsource-variable/source-sans-3": "5.3.1",
     "astro": "7.3.8"
   },
   "devDependencies": {

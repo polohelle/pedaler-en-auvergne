@@ -3,6 +3,7 @@ import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { render } from 'astro:content';
 import { LIBELLES_CATEGORIE_ACTEUR, LIBELLES_COLLEGE, LIBELLES_SERVICE } from '@config/acteurs';
 import { SITE } from '@config/site';
+import Tampon from '@components/Tampon.astro';
 import Base from '@layouts/Base.astro';
 import { formaterPlage } from '@lib/dates';
 import { acteursPublies, evenementsAVenir } from '@services/contenus';
@@ -23,15 +24,19 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
 
 <Base titre={data.nom} description={`${data.nom}, ${data.commune} : coordonnées et services.`}>
   <article>
-    <h1>{data.nom}</h1>
-    <p>
-      {data.categories.map((c) => LIBELLES_CATEGORIE_ACTEUR[c]).join(', ')}
+    <div class="fiche-tete">
+      <div>
+        <h1>{data.nom}</h1>
+        <p>{data.categories.map((c) => LIBELLES_CATEGORIE_ACTEUR[c]).join(', ')}</p>
+      </div>
       {data.membre && data.college && (
-        <span class="etiquette etiquette-membre">
-          Membre de l'association, collège {LIBELLES_COLLEGE[data.college]}
-        </span>
+        <Tampon
+          id="tampon-membre"
+          texte={`Membre ★ ${LIBELLES_COLLEGE[data.college]}`}
+          libelle={`Membre de l'association, collège ${LIBELLES_COLLEGE[data.college]}`}
+        />
       )}
-    </p>
+    </div>
 
     <div class="texte">
       <Content />
@@ -138,3 +143,30 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
     </p>
   </article>
 </Base>
+
+<style>
+  /* Tête de fiche en prairie pâle, comme le bandeau d'accueil. */
+  .fiche-tete {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--espace-3);
+    margin-block: var(--espace-3) var(--espace-4);
+    padding: var(--espace-3);
+    border-radius: var(--rayon-grand);
+    background: var(--couleur-prairie-pale);
+  }
+
+  .fiche-tete h1 {
+    margin-block-start: 0;
+  }
+
+  .fiche-tete p {
+    margin-block-end: 0;
+    color: var(--couleur-texte-doux);
+  }
+
+  .fiche-tete > div {
+    min-width: 0;
+  }
+</style>
