@@ -1,4 +1,5 @@
 ---
+import Appel from '@components/Appel.astro';
 import { ASSOCIATION } from '@config/association';
 import Association from '@layouts/Association.astro';
 ---
@@ -53,15 +54,15 @@ import Association from '@layouts/Association.astro';
       L'association agit dans le Puy-de-Dôme. Son extension à l'Allier, au Cantal et à la
       Haute-Loire sera décidée par ses membres en assemblée générale.
     </p>
-
-    <h2>Rejoindre l'association</h2>
-    <p>
-      Structures, professionnels et particuliers peuvent adhérer, chacun dans son collège. Lisez la
-      <a href="/association/charte/">charte des membres</a> et découvrez la
-      <a href="/association/gouvernance/">gouvernance par collèges</a>.
-    </p>
-    <a class="bouton" href="/association/adherer/">
-      Adhérer ou faire un don
-    </a>
   </div>
+
+  <Appel
+    titre="Rejoindre l'association"
+    lien="/association/adherer/"
+    libelle="Adhérer ou faire un don"
+  >
+    Structures, professionnels et particuliers peuvent adhérer, chacun dans son collège. Lisez la
+    <a href="/association/charte/">charte des membres</a> et découvrez la
+    <a href="/association/gouvernance/">gouvernance par collèges</a>.
+  </Appel>
 </Association>

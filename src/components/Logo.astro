@@ -1,0 +1,73 @@
+---
+interface Props {
+  /** Lieu de la déclinaison : « en Auvergne » pour le portail, « à Clermont » pour une section locale. */
+  lieu?: string;
+}
+
+const { lieu = 'en Auvergne' } = Astro.props;
+---
+
+<span class="logo">
+  <svg class="logo__profil" viewBox="0 0 64 36" width="48" height="27" aria-hidden="true">
+    <path
+      class="logo__relief"
+      d="M2 33 12 29c4-10 7-17 11-18l3 3 3-3c4 2 7 9 10 15 3-4 6-6 9-5 3 1 5 4 7 6l7 6Z"
+    ></path>
+    <path
+      class="logo__trace"
+      d="M2 33 12 29c4-10 7-17 11-18l3 3 3-3c4 2 7 9 10 15 3-4 6-6 9-5 3 1 5 4 7 6l7 6"
+    ></path>
+    <circle class="logo__cycliste" cx="17.5" cy="18" r="3.6"></circle>
+  </svg>
+  <span class="logo__mots">
+    <span class="logo__verbe">Pédaler</span>
+    <span class="logo__lieu">{lieu}</span>
+  </span>
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espace-2);
+    font-family: var(--police-titres);
+    line-height: 1;
+  }
+
+  /* Le profil d'une sortie sur la chaîne des Puys ; le point est le cycliste. */
+  .logo__profil {
+    flex: none;
+  }
+
+  .logo__relief {
+    fill: #2d6a3e;
+  }
+
+  .logo__trace {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  .logo__cycliste {
+    fill: #e8b04a;
+    stroke: currentColor;
+    stroke-width: 1.6;
+  }
+
+  .logo__mots {
+    display: grid;
+  }
+
+  .logo__verbe {
+    font-weight: 800;
+    font-size: 1.2rem;
+  }
+
+  .logo__lieu {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+</style>

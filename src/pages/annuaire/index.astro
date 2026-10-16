@@ -1,6 +1,8 @@
 ---
 import { LIBELLES_CATEGORIE_ACTEUR } from '@config/acteurs';
 import { SITE } from '@config/site';
+import Appel from '@components/Appel.astro';
+import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
 import { acteursPublies } from '@services/contenus';
 
@@ -11,7 +13,12 @@ const acteurs = await acteursPublies();
   titre="Annuaire des acteurs du vélo"
   description="Magasins, réparateurs, loueurs, ateliers, vélo-écoles, associations et clubs du Puy-de-Dôme."
 >
-  <h1>Annuaire des acteurs du vélo</h1>
+  <TetePage titre="Annuaire des acteurs du vélo">
+    <p class="texte">
+      Magasins et réparateurs, loueurs, ateliers participatifs, vélo-écoles, associations et clubs
+      du Puy-de-Dôme.
+    </p>
+  </TetePage>
   {acteurs.length === 0 ? (
     <p class="texte">
       L'annuaire est en cours de constitution : les premières fiches seront publiées après
@@ -22,26 +29,68 @@ const acteurs = await acteursPublies();
       <p class="discret">{acteurs.length} acteur(s) référencé(s).</p>
       <ul class="grille liste-simple">
         {acteurs.map(({ id, data }) => (
-          <li class="carte">
+          <li class="carte acteur">
             <h2>
               <a href={`/annuaire/${id}/`}>{data.nom}</a>
             </h2>
-            <p>
-              {data.categories.map((c) => LIBELLES_CATEGORIE_ACTEUR[c]).join(', ')} — {data.commune}
+            <p class="acteur__commune">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path>
+                <circle cx="12" cy="9.5" r="2.5"></circle>
+              </svg>
+              {data.commune}
             </p>
+            <ul class="liste-simple puces" aria-label="Catégories">
+              {data.categories.map((c) => (
+                <li class="etiquette">{LIBELLES_CATEGORIE_ACTEUR[c]}</li>
+              ))}
+            </ul>
             {data.membre && <p class="etiquette etiquette-membre">Membre de l'association</p>}
           </li>
         ))}
       </ul>
     </>
   )}
+  <Appel
+    titre="Votre structure n'y est pas ?"
+    lien={`${SITE.depot}/issues/new?template=2-referencer-structure.yml`}
+    libelle="Référencer ma structure"
+  >
+    L'annuaire est gratuit et ouvert à tous les acteurs du vélo du territoire, adhérents ou non.
+  </Appel>
   <p class="discret">
     Une partie des données de l'annuaire provient d'OpenStreetMap, ©{' '}
     <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, licence ODbL.
   </p>
-  <p>
-    <a href={`${SITE.depot}/issues/new?template=2-referencer-structure.yml`}>
-      Référencer ma structure
-    </a>
-  </p>
 </Base>
+
+<style>
+  .acteur {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espace-2);
+    margin: 0;
+  }
+
+  .acteur > * {
+    margin: 0;
+  }
+
+  .acteur__commune {
+    display: flex;
+    align-items: center;
+    gap: var(--espace-1);
+    color: var(--couleur-texte-doux);
+  }
+
+  .acteur__commune svg {
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  .acteur .etiquette-membre {
+    align-self: flex-start;
+  }
+</style>

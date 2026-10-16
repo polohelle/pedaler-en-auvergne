@@ -6,7 +6,7 @@ export const SITE = {
     'Le réseau des acteurs du vélo du Puy-de-Dôme : annuaire, agenda et actualités du vélo local.',
   url: 'https://pedalerenauvergne.fr',
   langue: 'fr',
-  couleurTheme: '#1f5f3f',
+  couleurTheme: '#ffffff',
   couleurFond: '#ffffff',
   depot: 'https://github.com/polohelle/pedaler-en-auvergne',
 } as const;

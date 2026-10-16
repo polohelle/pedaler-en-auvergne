@@ -1,7 +1,7 @@
-# 0024 — Pages de l'association : textes provisoires, collège Cyclistes et liens HelloAsso
+# 0027 — Pages de l'association : textes provisoires, collège Cyclistes et liens HelloAsso
 
 - Statut : proposée
-- Date : 2026-10-15
+- Date : 2026-10-16
 
 ## Contexte
 

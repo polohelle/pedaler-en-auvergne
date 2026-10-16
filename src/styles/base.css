@@ -21,7 +21,10 @@ body {
 h1,
 h2,
 h3 {
-  line-height: 1.25;
+  font-family: var(--police-titres);
+  font-weight: 800;
+  line-height: 1.15;
+  text-wrap: balance;
   margin-block: var(--espace-4) var(--espace-3);
 }
 
@@ -105,7 +108,7 @@ a:hover {
   border-radius: var(--rayon);
   padding: var(--espace-3);
   margin-block-end: var(--espace-3);
-  background: var(--couleur-fond);
+  background: var(--couleur-surface);
 }
 
 .carte h2,
@@ -116,11 +119,18 @@ a:hover {
 
 .etiquette {
   display: inline-block;
-  padding: 0 var(--espace-2);
-  border-radius: var(--rayon);
+  padding: 0.0625rem var(--espace-2);
+  border-radius: 999px;
   background: var(--couleur-fond-doux);
   color: var(--couleur-texte);
   font-size: var(--taille-petite);
+}
+
+.puces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-1);
+  margin: 0;
 }
 
 .etiquette-membre {
@@ -144,9 +154,9 @@ a:hover {
   min-height: var(--cible-tactile);
   padding: var(--espace-2) var(--espace-4);
   border-radius: var(--rayon);
-  background: var(--couleur-primaire);
-  color: var(--couleur-primaire-contraste);
-  font-weight: 600;
+  background: var(--couleur-action);
+  color: var(--couleur-action-contraste);
+  font-weight: 700;
   text-decoration: none;
 }
 

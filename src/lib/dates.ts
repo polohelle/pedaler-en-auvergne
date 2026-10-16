@@ -30,6 +30,13 @@ const formatJourCivil = new Intl.DateTimeFormat('fr-FR', {
   day: '2-digit',
 });
 
+const formatPastille = new Intl.DateTimeFormat('fr-FR', {
+  timeZone: FUSEAU,
+  weekday: 'short',
+  day: 'numeric',
+  month: 'short',
+});
+
 function partie(parts: Intl.DateTimeFormatPart[], type: Intl.DateTimeFormatPartTypes): string {
   const trouvee = parts.find((p) => p.type === type);
   if (trouvee === undefined) {
@@ -58,6 +65,22 @@ export function formaterHeure(date: Date): string {
 export function jourCivil(date: Date): string {
   const parts = formatJourCivil.formatToParts(date);
   return `${partie(parts, 'year')}-${partie(parts, 'month')}-${partie(parts, 'day')}`;
+}
+
+/** Éléments de la pastille de date de l'agenda : « dim. », « 8 », « nov. ». */
+export interface PastilleDate {
+  jourSemaine: string;
+  jour: string;
+  mois: string;
+}
+
+export function pastilleDate(date: Date): PastilleDate {
+  const parts = formatPastille.formatToParts(date);
+  return {
+    jourSemaine: partie(parts, 'weekday'),
+    jour: partie(parts, 'day'),
+    mois: partie(parts, 'month'),
+  };
 }
 
 /**

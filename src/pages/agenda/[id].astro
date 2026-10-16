@@ -2,6 +2,8 @@
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { render } from 'astro:content';
 import { LIBELLES_TYPE_EVENEMENT } from '@config/evenements';
+import PastilleDate from '@components/PastilleDate.astro';
+import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
 import { formaterPlage } from '@lib/dates';
 import { acteursPublies, evenementsVisibles } from '@services/contenus';
@@ -25,8 +27,15 @@ const annule = data.statut === 'annule';
   description={`${data.titre}, ${formaterPlage(data.debut, data.fin)}, ${data.commune}.`}
 >
   <article>
-    <h1 class:list={{ annule }}>{data.titre}</h1>
-    {annule && <p class="etiquette etiquette-annule">Événement annulé</p>}
+    <div class="tete-evenement">
+      <PastilleDate date={data.debut} />
+      <TetePage titre={data.titre} barre={annule}>
+        <p>
+          {LIBELLES_TYPE_EVENEMENT[data.type]} à {data.commune}
+        </p>
+        {annule && <p class="etiquette etiquette-annule">Événement annulé</p>}
+      </TetePage>
+    </div>
     <dl class="details">
       <dt>Type</dt>
       <dd>{LIBELLES_TYPE_EVENEMENT[data.type]}</dd>
@@ -67,3 +76,23 @@ const annule = data.statut === 'annule';
     </p>
   </article>
 </Base>
+
+<style>
+  .tete-evenement {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--espace-3);
+    margin-block: var(--espace-3) var(--espace-4);
+  }
+
+  .tete-evenement > :global(.tete-page) {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .tete-evenement > :global(.pastille-date) {
+    border: 2px solid var(--couleur-prairie-pale);
+    background: var(--couleur-surface);
+  }
+</style>

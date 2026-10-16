@@ -7,5 +7,5 @@ commune: Aulnat
 departement: '63'
 source: osm
 osm_id: node/13140578103
-statut: brouillon
+statut: archive
 ---

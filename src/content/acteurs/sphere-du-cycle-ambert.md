@@ -7,5 +7,5 @@ commune: Ambert
 departement: '63'
 source: osm
 osm_id: way/612587052
-statut: brouillon
+statut: archive
 ---

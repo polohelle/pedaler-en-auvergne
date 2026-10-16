@@ -1,6 +1,7 @@
 ---
 import AvisProvisoire from '@components/AvisProvisoire.astro';
 import NavAssociation from '@components/NavAssociation.astro';
+import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
 
 interface Props {
@@ -13,7 +14,7 @@ const { titre, description } = Astro.props;
 ---
 
 <Base titre={titre} description={description}>
-  <h1>{titre}</h1>
+  <TetePage titre={titre} />
   <NavAssociation chemin={Astro.url.pathname} />
   <AvisProvisoire />
   <slot />
