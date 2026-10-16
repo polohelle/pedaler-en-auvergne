@@ -76,8 +76,10 @@ build Astro (schéma), couche d'accès (description manquante).
 ## Sorties du build
 
 HTML statique (`dist/`), `sw.js` et manifeste de l'application (ADR 0015), icônes, `_headers`
-(CSP stricte et en-têtes de sécurité). Flux RSS, iCal, GeoJSON, plan du site et pages par commune
-arrivent avec les phases suivantes.
+(CSP stricte et en-têtes de sécurité), pages par commune (ADR 0027). Agenda en iCal
+(`/agenda.ics`, et `/agenda/<id>.ics` par événement) et flux RSS (`/agenda/rss.xml`,
+`/actus/rss.xml`), générés par `src/lib/ical.ts`, `src/lib/rss.ts` et `src/lib/flux.ts`. GeoJSON et
+plan du site arrivent avec les phases suivantes.
 
 ## Qualité et CI
 
@@ -140,4 +142,5 @@ changement de code ni d'URL n'est nécessaire.
 | [0024](adr/0024-identite-visuelle.md)                   | Identité visuelle                      |
 | [0025](adr/0025-fiches-sans-adresse-publique.md)        | Fiches sans adresse publique           |
 | [0026](adr/0026-montee-ubuntu-26-04.md)                 | Montée des runners vers Ubuntu 26.04   |
-| [0027](adr/0027-pages-association-provisoires.md)       | Pages de l'association                 |
+| [0027](adr/0027-pages-par-commune.md)                   | Pages par commune « Pédaler à… »       |
+| [0028](adr/0028-pages-association-provisoires.md)       | Pages de l'association                 |

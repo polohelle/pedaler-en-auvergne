@@ -20,11 +20,11 @@ export const ASSOCIATION = {
   email: null as string | null,
   /**
    * Date (AAAA-MM-JJ) de l'assemblée constitutive qui adopte statuts et charte. Tant qu'elle
-   * vaut `null`, les pages de l'association présentent ces textes comme un projet (ADR 0027).
+   * vaut `null`, les pages de l'association présentent ces textes comme un projet (ADR 0028).
    */
   statutsAdoptesLe: null as string | null,
   /**
-   * Pages HelloAsso de l'association (ADR 0027) : `https://www.helloasso.com/associations/…`.
+   * Pages HelloAsso de l'association (ADR 0028) : `https://www.helloasso.com/associations/…`.
    * `null` tant que la campagne n'existe pas ; la page Adhérer affiche alors une mention neutre.
    */
   helloasso: {
@@ -42,7 +42,7 @@ export const HEBERGEUR = {
 /**
  * Collèges de l'association, dans l'ordre des statuts. Les structures de l'annuaire
  * appartiennent aux collèges de `COLLEGES` (src/config/acteurs.ts) ; le collège Cyclistes
- * réunit des particuliers, qui n'ont pas de fiche dans l'annuaire (ADR 0027).
+ * réunit des particuliers, qui n'ont pas de fiche dans l'annuaire (ADR 0028).
  */
 export const COLLEGES_ASSOCIATION = [
   'commerce-reparation',
