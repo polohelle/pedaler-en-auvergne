@@ -144,3 +144,4 @@ changement de code ni d'URL n'est nécessaire.
 | [0026](adr/0026-montee-ubuntu-26-04.md)                 | Montée des runners vers Ubuntu 26.04   |
 | [0027](adr/0027-pages-par-commune.md)                   | Pages par commune « Pédaler à… »       |
 | [0028](adr/0028-pages-association-provisoires.md)       | Pages de l'association                 |
+| [0029](adr/0029-carte-de-l-annuaire.md)                 | Carte de l'annuaire                    |
