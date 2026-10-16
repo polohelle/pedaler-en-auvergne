@@ -138,3 +138,4 @@ changement de code ni d'URL n'est nécessaire.
 | [0022](adr/0022-version-de-node.md)                     | Version de Node                      |
 | [0023](adr/0023-runners-figes.md)                       | Runners figés sur Ubuntu 24.04       |
 | [0025](adr/0025-fiches-sans-adresse-publique.md)        | Fiches sans adresse publique         |
+| [0026](adr/0026-montee-ubuntu-26-04.md)                 | Montée des runners vers Ubuntu 26.04 |
