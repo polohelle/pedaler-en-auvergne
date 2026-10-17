@@ -56,11 +56,12 @@ export function sansDoublon(valeurs: readonly unknown[]): boolean {
 }
 
 /**
- * Image d'une actualité ou d'un événement, servie par le site (CSP `img-src 'self'`) : libre de
- * droits ou fournie avec autorisation, texte alternatif et crédit obligatoires.
+ * Image d'une actualité ou d'un événement, servie par le site (CSP `img-src 'self'`), texte
+ * alternatif et crédit obligatoires ; `source_url` : la page où elle a été reprise (ADR 0034).
  */
 export const schemaImage = z.strictObject({
   src: schemaTexte,
   alt: schemaTexte,
   credit: schemaTexte,
+  source_url: schemaUrl.optional(),
 });
