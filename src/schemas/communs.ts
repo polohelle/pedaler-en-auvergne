@@ -54,3 +54,13 @@ export const schemaDateHeure = z.iso
 export function sansDoublon(valeurs: readonly unknown[]): boolean {
   return new Set(valeurs).size === valeurs.length;
 }
+
+/**
+ * Image d'une actualité ou d'un événement, servie par le site (CSP `img-src 'self'`) : libre de
+ * droits ou fournie avec autorisation, texte alternatif et crédit obligatoires.
+ */
+export const schemaImage = z.strictObject({
+  src: schemaTexte,
+  alt: schemaTexte,
+  credit: schemaTexte,
+});

@@ -55,6 +55,14 @@ describe('schéma événement', () => {
     expect(chemins({ ...evenement(), pratiques: ['vtt', 'vtt'] })).toContain('pratiques');
   });
 
+  it('accepte une image avec texte alternatif et crédit', () => {
+    const image = { src: '/evenements/bourse.jpg', alt: 'Vélos alignés', credit: 'Club test' };
+    expect(valider({ ...evenement(), image }).success).toBe(true);
+    expect(chemins({ ...evenement(), image: { src: '/a.jpg', alt: '' } })).toEqual(
+      expect.arrayContaining(['image.alt', 'image.credit']),
+    );
+  });
+
   it('accepte les quatre statuts du cahier des charges', () => {
     for (const statut of ['a_valider', 'publie', 'annule', 'archive']) {
       expect(valider({ ...evenement(), statut }).success).toBe(true);

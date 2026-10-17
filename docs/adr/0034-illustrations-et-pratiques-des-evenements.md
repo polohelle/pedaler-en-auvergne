@@ -25,9 +25,10 @@ servies par le site.
   d'hiver. Affichée en étiquettes de couleur, toujours avec leur nom (la couleur n'est jamais
   le seul repère), contrastes AA.
 
-Alternative écartée pour l'instant : des photos par événement. Elles demandent l'accord de
-l'organisateur ou une licence libre ; un champ image, sur le modèle de celui des actualités,
-pourra s'ajouter quand de telles photos existeront.
+- **Champ facultatif `image`** (`src`, `alt`, `credit`), même schéma que les actualités
+  (`schemaImage` dans `src/schemas/communs.ts`) : une photo ou une affiche avec droits (licence
+  libre ou accord de l'organisateur), copiée dans `public/` puisque la CSP n'autorise que les
+  images du site. Elle remplace l'illustration sur la carte et sur la fiche, avec son crédit.
 
 ## Conséquences
 
@@ -35,3 +36,4 @@ pourra s'ajouter quand de telles photos existeront.
 - Le formulaire public ne demande pas encore la pratique : l'administrateur la complète à la
   validation.
 - Un nouveau type d'événement doit recevoir son pictogramme.
+- Sans photo à droits vérifiés, l'illustration dessinée reste l'image de l'événement.

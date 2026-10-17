@@ -40,7 +40,14 @@ const annule = data.statut === 'annule';
         {annule && <p class="etiquette etiquette-annule">Événement annulé</p>}
       </TetePage>
     </div>
-    <IllustrationEvenement type={data.type} taille="grande" annule={annule} />
+    {data.image ? (
+      <figure class="photo">
+        <img src={data.image.src} alt={data.image.alt} loading="lazy" decoding="async" />
+        <figcaption class="discret">Photo : {data.image.credit}</figcaption>
+      </figure>
+    ) : (
+      <IllustrationEvenement type={data.type} taille="grande" annule={annule} />
+    )}
     <dl class="details">
       <dt>Type</dt>
       <dd>{LIBELLES_TYPE_EVENEMENT[data.type]}</dd>
@@ -97,8 +104,21 @@ const annule = data.statut === 'annule';
     gap: var(--espace-2);
   }
 
-  article > :global(.illustration) {
-    margin-block-end: var(--espace-4);
+  article > :global(.illustration),
+  .photo {
+    margin-block: 0 var(--espace-4);
+  }
+
+  .photo {
+    margin-inline: 0;
+    max-inline-size: var(--largeur-texte);
+  }
+
+  .photo img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--rayon);
   }
 
   .tete-evenement {

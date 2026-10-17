@@ -5,6 +5,7 @@ import { estEnAuvergne } from '@lib/geo';
 import {
   schemaDateHeure,
   schemaDepartement,
+  schemaImage,
   schemaLatitude,
   schemaLongitude,
   schemaSlug,
@@ -28,6 +29,8 @@ export const schemaEvenement = z
     /** Slug d'un acteur de l'annuaire. */
     organisateur: schemaSlug.optional(),
     tarif: schemaTexte.optional(),
+    /** Photo ou affiche avec droits ; à défaut, l'illustration du type est affichée (ADR 0034). */
+    image: schemaImage.optional(),
     inscription_url: schemaUrl.optional(),
     source_url: schemaUrl,
     source: z.enum(ORIGINES_EVENEMENT),
