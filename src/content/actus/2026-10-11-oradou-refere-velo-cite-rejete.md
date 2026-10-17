@@ -11,6 +11,10 @@ resume: >-
 departement: '63'
 source_url: https://www.velocite63.fr/refere-suspension-rue-de-l-oradou
 source_nom: Vélo-Cité 63
+image:
+  src: /actus/2026-10-11-oradou-refere-velo-cite-rejete.jpg
+  alt: Piste cyclable sur trottoir et arceaux vélo, rue Anatole-France à Clermont-Ferrand
+  credit: TCY, CC BY-SA 4.0, via Wikimedia Commons
 portee: local
 statut: publie
 ---

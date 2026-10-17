@@ -31,8 +31,8 @@ const { Content } = await render(actu);
     </p>
     {data.image && (
       <figure>
-        <img src={data.image.src} alt={data.image.alt} loading="lazy" />
-        <figcaption class="discret">{data.image.credit}</figcaption>
+        <img class="photo" src={data.image.src} alt={data.image.alt} decoding="async" />
+        <figcaption class="discret">Photo : {data.image.credit}</figcaption>
       </figure>
     )}
     <div class="texte">
@@ -45,3 +45,21 @@ const { Content } = await render(actu);
     )}
   </article>
 </Base>
+
+<style>
+  figure {
+    margin: 0 0 var(--espace-4);
+  }
+
+  .photo {
+    display: block;
+    width: 100%;
+    max-width: 48rem;
+    height: auto;
+    border-radius: var(--rayon);
+  }
+
+  figcaption {
+    margin-block-start: var(--espace-1);
+  }
+</style>
