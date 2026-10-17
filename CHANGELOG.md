@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.2.0...pedaler-en-auvergne-v0.3.0) (2026-10-17)
+
+
+### Nouveautés
+
+* **actus:** cartes d'actualité avec photo dans les listes et sur l'accueil ([fe4feeb](https://github.com/polohelle/pedaler-en-auvergne/commit/fe4feebeabf9627445a5a341e77c1f1fb71fd7fd))
+* champ image facultatif des événements, schéma partagé avec les actualités ([08608b4](https://github.com/polohelle/pedaler-en-auvergne/commit/08608b474808e68a4850cfd57cd262d4304eb559))
+* illustrations et pratiques (route, gravel, VTT, cyclo-cross) des événements ([08c0cc8](https://github.com/polohelle/pedaler-en-auvergne/commit/08c0cc82f56c2680f99e381a3a65ab490649aef9))
+* illustre les événements et affiche leur pratique (route, gravel, VTT, cyclo-cross) ([82e44f0](https://github.com/polohelle/pedaler-en-auvergne/commit/82e44f0b19dddec24fc441fbdfd865767f6282eb))
+
+
+### Corrections
+
+* **pwa:** sert les pages par le réseau d'abord après une publication ([0fdc6eb](https://github.com/polohelle/pedaler-en-auvergne/commit/0fdc6eb4903427b8e91e912012db605cb516d70d))
+
 ## [0.2.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.1.0...pedaler-en-auvergne-v0.2.0) (2026-10-17)
 
 
