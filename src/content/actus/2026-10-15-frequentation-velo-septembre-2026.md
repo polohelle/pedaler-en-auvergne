@@ -11,5 +11,5 @@ resume: >-
 source_url: https://reseau-velo-marche.org/actualites/frequentation-velo-une-rentree-en-fanfare-apres-un-ete-impacte-par-les-canicules/
 source_nom: Réseau vélo et marche
 portee: national
-statut: brouillon
+statut: publie
 ---

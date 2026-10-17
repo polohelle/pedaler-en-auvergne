@@ -11,5 +11,5 @@ resume: >-
 source_url: https://maiavelo.fr/blog/webinaires-et-replays-mai-a-velo-2027/
 source_nom: Mai à vélo
 portee: national
-statut: brouillon
+statut: publie
 ---

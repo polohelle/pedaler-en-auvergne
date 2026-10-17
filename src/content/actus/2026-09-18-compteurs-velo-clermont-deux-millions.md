@@ -12,5 +12,5 @@ departement: '63'
 source_url: https://www.velocite63.fr/compteurs-velos-a-clermont
 source_nom: Vélo-Cité 63
 portee: local
-statut: brouillon
+statut: publie
 ---

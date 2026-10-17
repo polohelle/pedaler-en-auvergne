@@ -13,5 +13,5 @@ departement: '63'
 source_url: https://www.puy-de-dome.fr/territoires/via-allier-la-voie-douce-de-notre-territoire-puydomois.html
 source_nom: Département du Puy-de-Dôme
 portee: local
-statut: brouillon
+statut: publie
 ---

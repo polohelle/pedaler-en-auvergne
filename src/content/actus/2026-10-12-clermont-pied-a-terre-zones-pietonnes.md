@@ -13,5 +13,5 @@ departement: '63'
 source_url: https://www.radioscoop.com/infos/clermont-ferrand-la-circulation-a-velo-interdite-dans-les-zones-pietonnes-du-centre-ville_365442
 source_nom: Radio Scoop
 portee: local
-statut: brouillon
+statut: publie
 ---
