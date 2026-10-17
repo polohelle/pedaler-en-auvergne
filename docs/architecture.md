@@ -151,3 +151,4 @@ changement de code ni d'URL n'est nécessaire.
 | [0029](adr/0029-carte-de-l-annuaire.md)                 | Carte de l'annuaire                    |
 | [0030](adr/0030-formulaire-proposer-un-evenement.md)    | Formulaire « Proposer un événement »   |
 | [0032](adr/0032-worker-d-envoi-des-courriels.md)        | Worker d'envoi des e-mails             |
+| [0033](adr/0033-pages-fraiches-apres-publication.md)    | Pages fraîches après une publication   |
