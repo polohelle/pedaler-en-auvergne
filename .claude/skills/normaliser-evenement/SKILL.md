@@ -41,6 +41,9 @@ Description rédigée de 2 à 5 phrases : ce qui se passe, pour qui, ce qu'il fa
 - **Type** (`src/config/evenements.ts`) : `sortie`, `randonnee`, `course`, `bourse`,
   `atelier-reparation`, `formation`, `conference`, `fete-du-velo`, `reunion-publique`. En cas
   d'hésitation, prendre le plus précis et le signaler.
+- **Pratiques** (facultatif, ADR 0034) : `route`, `gravel`, `vtt`, `cyclo-cross`, en liste
+  (`[route, gravel]` si plusieurs parcours). À renseigner pour toute sortie, randonnée ou course ;
+  omettre pour une bourse, un atelier ou une conférence sans pratique précise.
 - **Lieu** : le nom du lieu ou l'adresse ; **commune** officielle ; **departement** déduit de la
   commune (département actif uniquement).
 - **Coordonnées** : skill `geocoder-adresse` ; sous le seuil de confiance, omettre `lat`/`lon`.

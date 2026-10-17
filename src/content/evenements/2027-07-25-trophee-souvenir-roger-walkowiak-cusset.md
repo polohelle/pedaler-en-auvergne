@@ -1,6 +1,7 @@
 ---
 titre: Trophée Souvenir Roger Walkowiak, Coupe de France N1
 type: course
+pratiques: [route]
 # Horaires non publiés : heure provisoire.
 debut: '2027-07-25T13:00:00+02:00'
 lieu: Cusset

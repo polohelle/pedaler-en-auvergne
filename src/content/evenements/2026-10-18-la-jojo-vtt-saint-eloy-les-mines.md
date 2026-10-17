@@ -1,6 +1,7 @@
 ---
 titre: La Jojo, randonnée VTT
 type: randonnee
+pratiques: [vtt]
 debut: '2026-10-18T08:00:00+02:00'
 lieu: Halle en bois du plan d'eau
 commune: Saint-Éloy-les-Mines

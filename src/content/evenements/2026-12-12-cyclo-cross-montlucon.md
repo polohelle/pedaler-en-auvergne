@@ -1,6 +1,7 @@
 ---
 titre: Cyclo-cross de Montluçon
 type: course
+pratiques: [cyclo-cross]
 # Lieu précis et horaires non publiés (probablement Bien-Assis) : à compléter avant publication.
 debut: '2026-12-12T09:00:00+01:00'
 lieu: Montluçon

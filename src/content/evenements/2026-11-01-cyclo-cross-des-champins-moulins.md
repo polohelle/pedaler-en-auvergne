@@ -1,6 +1,7 @@
 ---
 titre: Cyclo-cross des Champins
 type: course
+pratiques: [cyclo-cross]
 # Horaires des courses non publiés : heure à compléter avant publication.
 debut: '2026-11-01T09:00:00+01:00'
 lieu: Les Champins

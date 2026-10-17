@@ -1,6 +1,7 @@
 ---
 titre: La Marci-Moustache, randonnées VTT et pédestres
 type: randonnee
+pratiques: [vtt]
 # Un calendrier donne le 1er novembre ; l'office de tourisme et deux autres retiennent le 8.
 debut: '2026-11-08T08:00:00+01:00'
 lieu: Circuit de karting GTR Performance, lieu-dit Lavaud

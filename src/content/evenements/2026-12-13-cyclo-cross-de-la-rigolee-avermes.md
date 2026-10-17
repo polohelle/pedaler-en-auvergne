@@ -1,6 +1,7 @@
 ---
 titre: Cyclo-cross de la Rigolée
 type: course
+pratiques: [cyclo-cross]
 # Horaires des courses non publiés : heure provisoire.
 debut: '2026-12-13T09:00:00+01:00'
 lieu: La Rigolée

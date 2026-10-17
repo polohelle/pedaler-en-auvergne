@@ -1,6 +1,7 @@
 ---
 titre: Randonnée VTT « La Pierre Saintemarie »
 type: randonnee
+pratiques: [vtt]
 debut: '2026-10-18T07:30:00+02:00'
 lieu: Gymnase E. Vacant
 commune: Mozac

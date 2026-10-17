@@ -1,5 +1,5 @@
 import { z } from 'astro/zod';
-import { ORIGINES_EVENEMENT, TYPES_EVENEMENT } from '@config/evenements';
+import { ORIGINES_EVENEMENT, PRATIQUES_EVENEMENT, TYPES_EVENEMENT } from '@config/evenements';
 import { STATUTS_EVENEMENT } from '@config/statuts';
 import { estEnAuvergne } from '@lib/geo';
 import {
@@ -16,6 +16,8 @@ export const schemaEvenement = z
   .strictObject({
     titre: schemaTexte,
     type: z.enum(TYPES_EVENEMENT),
+    /** Route, gravel, VTT ou cyclo-cross ; plusieurs quand l'événement propose plusieurs parcours. */
+    pratiques: z.array(z.enum(PRATIQUES_EVENEMENT)).nonempty().optional(),
     debut: schemaDateHeure,
     fin: schemaDateHeure.optional(),
     lieu: schemaTexte,
@@ -32,6 +34,9 @@ export const schemaEvenement = z
     statut: z.enum(STATUTS_EVENEMENT),
   })
   .superRefine((evenement, ctx) => {
+    if (evenement.pratiques && new Set(evenement.pratiques).size !== evenement.pratiques.length) {
+      ctx.addIssue({ code: 'custom', path: ['pratiques'], message: 'Pratique en double.' });
+    }
     if (evenement.fin !== undefined && evenement.fin < evenement.debut) {
       ctx.addIssue({ code: 'custom', path: ['fin'], message: 'La fin précède le début.' });
     }

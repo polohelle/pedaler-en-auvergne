@@ -1,6 +1,7 @@
 ---
 titre: Circuit des Quatre Cantons
 type: course
+pratiques: [route]
 # Commune d'après le point de la carte FFC (Avermes), qui peut être le siège de l'organisateur.
 # Horaires non publiés : heure provisoire.
 debut: '2027-03-06T13:00:00+01:00'

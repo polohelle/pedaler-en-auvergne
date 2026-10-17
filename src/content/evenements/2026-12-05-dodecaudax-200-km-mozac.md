@@ -1,6 +1,7 @@
 ---
 titre: Dodécaudax 200 km de décembre
 type: randonnee
+pratiques: [route]
 # Date et heure relevées sur un agrégateur seulement : à confirmer auprès du Mozac Cyclo Club.
 debut: '2026-12-05T07:00:00+01:00'
 lieu: Mozac

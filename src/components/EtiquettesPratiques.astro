@@ -1,0 +1,20 @@
+---
+import { LIBELLES_PRATIQUE_EVENEMENT, type PratiqueEvenement } from '@config/evenements';
+
+/** Étiquettes de couleur Route, Gravel, VTT ou Cyclo-cross d'un événement (ADR 0034). */
+interface Props {
+  pratiques: readonly PratiqueEvenement[] | undefined;
+}
+
+const { pratiques } = Astro.props;
+---
+
+{pratiques && (
+  <ul class="liste-simple puces" aria-label="Pratiques">
+    {pratiques.map((pratique) => (
+      <li class:list={['etiquette', `etiquette-${pratique}`]}>
+        {LIBELLES_PRATIQUE_EVENEMENT[pratique]}
+      </li>
+    ))}
+  </ul>
+)}

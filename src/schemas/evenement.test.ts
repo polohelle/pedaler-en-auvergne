@@ -44,6 +44,17 @@ describe('schéma événement', () => {
     expect(chemins(sansSource)).toContain('source_url');
   });
 
+  it('accepte une ou plusieurs pratiques', () => {
+    expect(valider({ ...evenement(), pratiques: ['vtt'] }).success).toBe(true);
+    expect(valider({ ...evenement(), pratiques: ['route', 'gravel'] }).success).toBe(true);
+  });
+
+  it('refuse une pratique inconnue, une liste vide ou une pratique en double', () => {
+    expect(chemins({ ...evenement(), pratiques: ['bmx'] })).toContain('pratiques.0');
+    expect(chemins({ ...evenement(), pratiques: [] })).toContain('pratiques');
+    expect(chemins({ ...evenement(), pratiques: ['vtt', 'vtt'] })).toContain('pratiques');
+  });
+
   it('accepte les quatre statuts du cahier des charges', () => {
     for (const statut of ['a_valider', 'publie', 'annule', 'archive']) {
       expect(valider({ ...evenement(), statut }).success).toBe(true);

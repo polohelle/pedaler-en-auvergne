@@ -1,6 +1,7 @@
 ---
 titre: La Grimpée Villefranchoise, randonnée VTT, gravel et pédestre
 type: randonnee
+pratiques: [vtt, gravel]
 debut: '2026-10-17T12:00:00+02:00'
 fin: '2026-10-18T14:00:00+02:00'
 lieu: Villefranche-d'Allier
