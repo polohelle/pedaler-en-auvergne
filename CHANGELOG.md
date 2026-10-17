@@ -1,5 +1,40 @@
 # Changelog
 
+## [0.2.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.1.0...pedaler-en-auvergne-v0.2.0) (2026-10-17)
+
+
+### Nouveautés
+
+* **association:** pages présentation, charte, gouvernance, membres, adhésion et contact ([2852c6f](https://github.com/polohelle/pedaler-en-auvergne/commit/2852c6fd12041fd841ec1ff4ae56a052bc239796))
+* carte de l'annuaire, ouverte à la demande (ADR 0029) ([5575acd](https://github.com/polohelle/pedaler-en-auvergne/commit/5575acd05db41d15721b65b4419bdbaf8022f7da))
+* carte de l'annuaire, ouverte à la demande (ADR 0029) ([ee90599](https://github.com/polohelle/pedaler-en-auvergne/commit/ee905997b3b38274c891bb47c761948f8fd1cba1))
+* exporte l'agenda en iCal et les contenus en RSS ([beadbdf](https://github.com/polohelle/pedaler-en-auvergne/commit/beadbdf936500ba13beb35ad258f2dccf96f41f1))
+* exporte l'agenda en iCal et les contenus en RSS ([cb39365](https://github.com/polohelle/pedaler-en-auvergne/commit/cb39365c3d711dca517fd9f245ecde921f62ed86))
+* formulaire public « Proposer un événement » ([b4a3dc0](https://github.com/polohelle/pedaler-en-auvergne/commit/b4a3dc0603d5aa3c38b71b37495d52cf87544d19))
+* formulaire public « Proposer un événement » ([418520b](https://github.com/polohelle/pedaler-en-auvergne/commit/418520b9bb8e3c2ed3da42845b1d31ee73581612))
+* logo ou monogramme sur les cartes de l'annuaire (ADR 0031) ([7c9bdaf](https://github.com/polohelle/pedaler-en-auvergne/commit/7c9bdaf8714bebd4efec5c3a12753b7243173ec8))
+* logo ou monogramme sur les cartes de l'annuaire (ADR 0031) ([427b517](https://github.com/polohelle/pedaler-en-auvergne/commit/427b51740cd10b52ba4b41f4aed46cfd033d5213))
+* logos repris sans demande d'autorisation préalable (ADR 0031) ([4827c6f](https://github.com/polohelle/pedaler-en-auvergne/commit/4827c6fe2201e710b55437625d1bbf3733a1aab9))
+* pages par commune « Pédaler à… » et pied de page « Prairie » ([4c545be](https://github.com/polohelle/pedaler-en-auvergne/commit/4c545be461ebb4456ab1722f87cadb25b00ebd99))
+* Worker d'envoi de l'e-mail de transmission (ADR 0032) ([6a13077](https://github.com/polohelle/pedaler-en-auvergne/commit/6a13077719e35acc36dbcb84e842af1d9b9af64f))
+* Worker d'envoi de l'e-mail de transmission (ADR 0032) ([1d32db1](https://github.com/polohelle/pedaler-en-auvergne/commit/1d32db19b550e1c08ce6de98e3d98c38bfb5222a))
+
+
+### Corrections
+
+* l'issue n'affirme plus que l'adresse a été transmise ([b7f5947](https://github.com/polohelle/pedaler-en-auvergne/commit/b7f5947f87001973bfee466e0b26d2999ef501e8))
+* l'issue n'affirme plus que l'adresse a été transmise ([dc86a7d](https://github.com/polohelle/pedaler-en-auvergne/commit/dc86a7d88b8fee69f66610ed16591f7f6e5e45ca))
+
+
+### Documentation
+
+* décrit les exports iCal et RSS dans l'architecture ([dcca91d](https://github.com/polohelle/pedaler-en-auvergne/commit/dcca91d8f8f573910816dd6d1583accfb7eb9e82))
+* renumérote l'ADR des pages de l'association en 0028 ([5741f96](https://github.com/polohelle/pedaler-en-auvergne/commit/5741f96f419575d5d6bf8ecb7eb25d763b26defc))
+* renumérote l'ADR des pages de l'association en 0028 ([8da6ea4](https://github.com/polohelle/pedaler-en-auvergne/commit/8da6ea45bde39c85dbab5ebf344ae94b2feaa64f))
+* **veille:** laisser Vélocité 63 et Mai à vélo à la PR [#42](https://github.com/polohelle/pedaler-en-auvergne/issues/42) ([72caacb](https://github.com/polohelle/pedaler-en-auvergne/commit/72caacbe777e077f701f5daff343b6f7cdcde591))
+* **veille:** première note de veille, semaine 42 ([e6785d4](https://github.com/polohelle/pedaler-en-auvergne/commit/e6785d40392f0c89d7320c72fbbc628f577d377e))
+* **veille:** première note de veille, semaine 42 ([83edb94](https://github.com/polohelle/pedaler-en-auvergne/commit/83edb948a55e916f71c292720ab5c57704ba9887))
+
 ## 0.1.0 (2026-10-16)
 
 
