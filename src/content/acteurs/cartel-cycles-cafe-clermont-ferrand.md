@@ -15,6 +15,10 @@ services:
   - vente-neuf
   - reparation
 site: https://www.victoire-cycles.com/
+logo:
+  fichier: cartel-cycles-cafe-clermont-ferrand.webp
+  source_url: https://cartelcycles.cafe/
+  origine: site-structure
 source: osm
 osm_id: node/11118808339
 verifie_le: '2026-10-14'
