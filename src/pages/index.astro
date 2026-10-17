@@ -1,7 +1,8 @@
 ---
+import CarteActu from '@components/CarteActu.astro';
 import { SITE } from '@config/site';
 import Base from '@layouts/Base.astro';
-import { formaterDate, formaterPlage } from '@lib/dates';
+import { formaterPlage } from '@lib/dates';
 import { actusPubliees, evenementsAVenir } from '@services/contenus';
 
 const prochains = (await evenementsAVenir()).slice(0, 3);
@@ -77,11 +78,8 @@ const dernieres = (await actusPubliees()).slice(0, 3);
     <section aria-labelledby="titre-actus">
       <h2 id="titre-actus">Dernières actualités</h2>
       <ul class="liste-simple">
-        {dernieres.map(({ id, data }) => (
-          <li>
-            <a href={`/actus/${id}/`}>{data.titre}</a>
-            <span class="discret"> — {formaterDate(new Date(`${data.date}T12:00:00Z`))}</span>
-          </li>
+        {dernieres.map((actu) => (
+          <CarteActu actu={actu} niveau="h3" avecResume={false} />
         ))}
       </ul>
     </section>
