@@ -11,6 +11,10 @@ resume: >-
 departement: '63'
 source_url: https://www.velocite63.fr/compteurs-velos-a-clermont
 source_nom: Vélo-Cité 63
+image:
+  src: /actus/2026-09-18-compteurs-velo-clermont-deux-millions.jpg
+  alt: Totem compteur de vélos éclairé de nuit au bord d'une piste cyclable, à Caen
+  credit: AlbertJDN, CC BY-SA 4.0, via Wikimedia Commons
 portee: local
 statut: publie
 ---

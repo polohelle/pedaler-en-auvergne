@@ -10,6 +10,10 @@ resume: >-
   peuvent s'y inscrire pour préparer leurs animations de mai.
 source_url: https://maiavelo.fr/blog/webinaires-et-replays-mai-a-velo-2027/
 source_nom: Mai à vélo
+image:
+  src: /actus/2026-10-14-mai-a-velo-2027-webinaires.jpg
+  alt: Station de vélos en libre-service C.vélo, place de Jaude à Clermont-Ferrand
+  credit: Thomes20, CC BY-SA 3.0, via Wikimedia Commons
 portee: national
 statut: publie
 ---

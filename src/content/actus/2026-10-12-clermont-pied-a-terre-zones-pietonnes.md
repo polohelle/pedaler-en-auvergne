@@ -12,6 +12,10 @@ resume: >-
 departement: '63'
 source_url: https://www.radioscoop.com/infos/clermont-ferrand-la-circulation-a-velo-interdite-dans-les-zones-pietonnes-du-centre-ville_365442
 source_nom: Radio Scoop
+image:
+  src: /actus/2026-10-12-clermont-pied-a-terre-zones-pietonnes.jpg
+  alt: Panneau « Aire piétonne » limitée à 10 km/h, place de Jaude à Clermont-Ferrand
+  credit: Jean-Louis Zimmermann, CC BY 2.0, via Wikimedia Commons
 portee: local
 statut: publie
 ---

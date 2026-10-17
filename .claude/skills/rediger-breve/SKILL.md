@@ -43,8 +43,12 @@ statut: brouillon
   (plusieurs départements), `national` (sans `departement`).
 - **Source** : `source_url` vers la page d'origine précise (pas la page d'accueil) et
   `source_nom` (le média ou l'organisme).
-- **Image** : aucune par défaut. Seulement libre de droits ou fournie avec autorisation, avec
-  `alt` et `credit`.
+- **Image** : souhaitée (demande de l'administrateur, 17/10/2026). Seulement sous licence libre
+  (Wikimedia Commons : CC BY, CC BY-SA, domaine public) ou fournie avec autorisation ; jamais
+  la photo de la source. Copiée dans `public/actus/<nom-du-fichier>.jpg` (960 px de large,
+  JPEG qualité 75, métadonnées retirées), car la CSP n'autorise que les images du site.
+  `alt` décrit ce que montre la photo (lieu compris, même s'il diffère du sujet) ; `credit`
+  donne auteur, licence et « via Wikimedia Commons ». Sans photo adaptée, pas d'image.
 - **Statut** : toujours `brouillon`. Pas de corps de fichier pour une brève.
 - **Personnes** : pas de nom de particulier ; les élus et responsables seulement quand ils
   s'expriment publiquement à ce titre.

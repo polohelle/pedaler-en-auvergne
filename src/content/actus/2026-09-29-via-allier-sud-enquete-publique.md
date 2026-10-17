@@ -12,6 +12,10 @@ resume: >-
 departement: '63'
 source_url: https://www.puy-de-dome.fr/territoires/via-allier-la-voie-douce-de-notre-territoire-puydomois.html
 source_nom: Département du Puy-de-Dôme
+image:
+  src: /actus/2026-09-29-via-allier-sud-enquete-publique.jpg
+  alt: Chemin de la Via Allier entre prés et arbres, près d'Hauterive (Allier)
+  credit: Tabl-trai, CC BY-SA 4.0, via Wikimedia Commons
 portee: local
 statut: publie
 ---

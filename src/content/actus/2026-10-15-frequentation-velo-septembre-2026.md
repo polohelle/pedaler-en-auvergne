@@ -10,6 +10,10 @@ resume: >-
   janvier. Un repère utile aux collectivités du Puy-de-Dôme pour comparer leurs compteurs.
 source_url: https://reseau-velo-marche.org/actualites/frequentation-velo-une-rentree-en-fanfare-apres-un-ete-impacte-par-les-canicules/
 source_nom: Réseau vélo et marche
+image:
+  src: /actus/2026-10-15-frequentation-velo-septembre-2026.jpg
+  alt: Piste cyclable bidirectionnelle de la rue Lucie-et-Raymond-Aubrac à Clermont-Ferrand
+  credit: Tabl-trai, CC BY-SA 4.0, via Wikimedia Commons
 portee: national
 statut: publie
 ---

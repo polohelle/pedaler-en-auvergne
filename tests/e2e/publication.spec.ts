@@ -28,6 +28,17 @@ test('les actus en brouillon ne sont pas publiées', async ({ page }) => {
   await expect(page.getByText('Actu de test en brouillon')).toHaveCount(0);
 });
 
+test('une actu illustrée montre sa photo dans la liste, puis avec texte et crédit', async ({
+  page,
+}) => {
+  await page.goto('/actus/');
+  const carte = page.locator('li', { has: page.getByRole('link', { name: 'Brève de test' }) });
+  await expect(carte.locator('img')).toHaveAttribute('src', '/pwa-512x512.png');
+  await page.goto('/actus/2026-10-05-breve-test/');
+  await expect(page.getByRole('img', { name: 'Logo fictif de la brève de test' })).toBeVisible();
+  await expect(page.getByText('Photo : Crédit fictif')).toBeVisible();
+});
+
 test('la fiche événement relie l’organisateur et affiche la date en français', async ({ page }) => {
   await page.goto('/agenda/2099-06-14-bourse-test-riom/');
   await expect(page.getByText('dimanche 14 juin 2099 de 9 h à 17 h')).toBeVisible();
