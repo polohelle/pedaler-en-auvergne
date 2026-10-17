@@ -1,6 +1,7 @@
 ---
 titre: Classique des Bourbons, Tour d'Allier U19
 type: course
+pratiques: [route]
 # Commune d'après le point de la carte FFC (Avermes) ; les éditions passées partaient de
 # Bourbon-l'Archambault. Horaires et étapes non publiés : heure provisoire.
 debut: '2027-06-19T13:00:00+02:00'

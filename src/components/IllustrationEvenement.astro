@@ -1,0 +1,196 @@
+---
+import type { TypeEvenement } from '@config/evenements';
+
+/**
+ * Illustration dessinée d'un type d'événement (ADR 0034) : le relief des Puys en fond et un
+ * pictogramme du type au premier plan. Dessin maison, sans droits à gérer ni fichier à charger ;
+ * décoratif, le type est toujours écrit à côté.
+ */
+interface Props {
+  type: TypeEvenement;
+  /** `petite` dans les listes, `grande` en tête de fiche. */
+  taille?: 'petite' | 'grande';
+  /** Événement annulé : illustration grisée. */
+  annule?: boolean;
+}
+
+const { type, taille = 'petite', annule = false } = Astro.props;
+const avecVelo = ['sortie', 'randonnee', 'course', 'bourse', 'fete-du-velo'].includes(type);
+---
+
+<svg
+  class:list={['illustration', `illustration--${taille}`, { 'illustration--annule': annule }]}
+  viewBox="0 0 96 64"
+  width={taille === 'grande' ? 192 : 96}
+  height={taille === 'grande' ? 128 : 64}
+  aria-hidden="true"
+  focusable="false"
+>
+  <rect class="illustration__ciel" width="96" height="64" rx="6"></rect>
+  <circle class="illustration__soleil" cx="88" cy="10" r="5"></circle>
+  <path
+    class="illustration__collines"
+    d="M0 46c8-8 14-16 20-16l4 4 4-4c6 2 10 10 14 14 5-6 10-9 15-8s9 6 13 10c5-4 10-8 16-6 4 1 7 4 10 6v18H0Z"
+  ></path>
+  <path class="illustration__sol" d="M0 52h96v12H0Z"></path>
+
+  {type === 'randonnee' && (
+    <g class="illustration__trait">
+      <path d="M74 52V28" />
+      <path class="illustration__accent" d="M66 30h16l3 4-3 4H66Z" />
+    </g>
+  )}
+  {type === 'course' && (
+    <g class="illustration__trait">
+      <path d="M76 52V20" />
+      <path class="illustration__damier" d="M76 21h14v10H76Z" />
+      <path
+        class="illustration__plein"
+        d="M76 21h3.5v5H76Zm7 0h3.5v5H83Zm-3.5 5H83v5h-3.5Zm7 0H90v5h-3.5Z"
+      />
+    </g>
+  )}
+  {type === 'bourse' && (
+    <g class="illustration__trait">
+      <path class="illustration__accent" d="M64 18h14l8 8-8 8H64Z" />
+      <circle cx="68" cy="26" r="1.6" />
+      <text class="illustration__texte" x="76" y="30">
+        €
+      </text>
+    </g>
+  )}
+  {type === 'fete-du-velo' && (
+    <g class="illustration__trait">
+      <path d="M4 10c15 8 33 8 48 0" />
+      <path class="illustration__accent" d="m10 13 2 7 4-5Z" />
+      <path class="illustration__action" d="m22 16 1 7 5-6Z" />
+      <path class="illustration__accent" d="m34 16 1 7 5-6Z" />
+      <path class="illustration__action" d="m45 13 0 7 5-5Z" />
+    </g>
+  )}
+  {type === 'atelier-reparation' && (
+    <g class="illustration__trait">
+      <circle cx="36" cy="40" r="12" />
+      <circle cx="36" cy="40" r="2" />
+      <path d="M36 28v24M24 40h24M27.5 31.5l17 17m0-17-17 17" class="illustration__fin" />
+      <path
+        class="illustration__accent"
+        d="M58 52 72 38a7 7 0 0 1 9-9l-4 4 1 4 4 1 4-4a7 7 0 0 1-9 9L63 57Z"
+      />
+    </g>
+  )}
+  {type === 'formation' && (
+    <g class="illustration__trait">
+      <path class="illustration__tableau" d="M22 18h52v28H22Z" />
+      <path d="M40 46l-6 8m22-8 6 8" />
+      <circle cx="38" cy="36" r="5" class="illustration__fin" />
+      <circle cx="58" cy="36" r="5" class="illustration__fin" />
+      <path d="M38 36l6-9h8l6 9m-14-9 4 9 6-9" class="illustration__fin" />
+    </g>
+  )}
+  {type === 'conference' && (
+    <g class="illustration__trait">
+      <rect class="illustration__accent" x="42" y="14" width="12" height="20" rx="6" />
+      <path d="M37 28a11 11 0 0 0 22 0M48 39v8m-7 0h14" />
+    </g>
+  )}
+  {type === 'reunion-publique' && (
+    <g class="illustration__trait">
+      <path
+        class="illustration__bulle"
+        d="M18 12h30a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H30l-7 6v-6h-5a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4Z"
+      />
+      <path
+        class="illustration__accent"
+        d="M50 24h28a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4h-4v6l-7-6H50a4 4 0 0 1-4-4V28a4 4 0 0 1 4-4Z"
+      />
+      <path d="M22 20h22m-22 6h14" class="illustration__fin" />
+    </g>
+  )}
+  {avecVelo && (
+    <g class="illustration__trait illustration__velo">
+      <circle cx="24" cy="44" r="8" />
+      <circle cx="50" cy="44" r="8" />
+      <path d="m24 44 8-14h14l4 14M32 30l5 14 9-14M37 44H24m5-17h6m11 3-2-5h5" />
+    </g>
+  )}
+</svg>
+
+<style>
+  .illustration {
+    flex: none;
+    display: block;
+    border-radius: var(--rayon);
+  }
+
+  .illustration--petite {
+    inline-size: 6rem;
+    block-size: 4rem;
+  }
+
+  .illustration--grande {
+    inline-size: 100%;
+    max-inline-size: 18rem;
+    block-size: auto;
+  }
+
+  .illustration--annule {
+    filter: grayscale(1);
+    opacity: 0.6;
+  }
+
+  .illustration__ciel {
+    fill: var(--couleur-prairie-pale);
+  }
+
+  .illustration__soleil {
+    fill: var(--couleur-genet);
+  }
+
+  .illustration__collines {
+    fill: var(--couleur-colline);
+  }
+
+  .illustration__sol {
+    fill: var(--couleur-primaire);
+    opacity: 0.35;
+  }
+
+  .illustration__trait {
+    fill: none;
+    stroke: var(--couleur-texte);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .illustration__fin {
+    stroke-width: 1.6;
+  }
+
+  .illustration__accent {
+    fill: var(--couleur-genet);
+  }
+
+  .illustration__action {
+    fill: var(--couleur-action);
+  }
+
+  .illustration__damier,
+  .illustration__tableau,
+  .illustration__bulle {
+    fill: var(--couleur-surface);
+  }
+
+  .illustration__texte {
+    fill: var(--couleur-texte);
+    stroke: none;
+    font: 700 11px var(--police);
+    text-anchor: middle;
+  }
+
+  .illustration__plein {
+    fill: var(--couleur-texte);
+    stroke: none;
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 titre: Coupe de France de cyclo-cross à Issoire
 type: course
+pratiques: [cyclo-cross]
 # Horaires provisoires (9 h – 17 h) : la source ne les donne pas encore ; publiés tels quels
 # à la demande de l'administrateur, à corriger dès leur parution.
 debut: '2026-11-21T09:00:00+01:00'

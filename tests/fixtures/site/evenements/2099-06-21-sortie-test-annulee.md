@@ -1,6 +1,7 @@
 ---
 titre: Sortie de test annulée
 type: sortie
+pratiques: [route, gravel]
 debut: '2099-06-21T09:30:00+02:00'
 lieu: Gare fictive
 commune: Clermont-Ferrand

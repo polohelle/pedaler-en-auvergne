@@ -1,6 +1,7 @@
 ---
 titre: Tour de la Vallée et Montluçon Communauté
 type: course
+pratiques: [route]
 # Horaires et parcours non publiés : heure provisoire.
 debut: '2027-05-22T13:00:00+02:00'
 fin: '2027-05-23T18:00:00+02:00'

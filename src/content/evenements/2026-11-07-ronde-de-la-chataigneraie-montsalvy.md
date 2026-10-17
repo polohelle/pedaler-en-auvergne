@@ -1,6 +1,7 @@
 ---
 titre: 38e Ronde de la Châtaigneraie
 type: course
+pratiques: [route, vtt]
 debut: '2026-11-07T09:15:00+01:00'
 lieu: Salle polyvalente
 commune: Montsalvy

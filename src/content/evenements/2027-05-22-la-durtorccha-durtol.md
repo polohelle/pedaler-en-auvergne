@@ -1,6 +1,7 @@
 ---
 titre: La Durtorccha
 type: course
+pratiques: [route]
 # Commune d'après le point de la carte FFC. Horaires non publiés : heure provisoire.
 debut: '2027-05-22T13:00:00+02:00'
 lieu: Durtol

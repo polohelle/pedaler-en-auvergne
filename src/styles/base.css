@@ -138,6 +138,27 @@ a:hover {
   color: var(--couleur-primaire-contraste);
 }
 
+/* Pratiques des événements (ADR 0034) : une couleur par pratique, toujours avec son nom. */
+.etiquette-route {
+  background: var(--couleur-texte);
+  color: var(--couleur-fond);
+}
+
+.etiquette-gravel {
+  background: var(--couleur-genet);
+  color: var(--couleur-genet-contraste);
+}
+
+.etiquette-vtt {
+  background: var(--couleur-colline);
+  color: var(--couleur-texte);
+}
+
+.etiquette-cyclo-cross {
+  background: var(--couleur-action);
+  color: var(--couleur-action-contraste);
+}
+
 .annule {
   text-decoration: line-through;
 }

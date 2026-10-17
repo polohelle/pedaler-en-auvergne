@@ -1,6 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { LIBELLES_TYPE_EVENEMENT } from '@config/evenements';
+import EtiquettesPratiques from '@components/EtiquettesPratiques.astro';
+import IllustrationEvenement from '@components/IllustrationEvenement.astro';
 import PastilleDate from '@components/PastilleDate.astro';
 import { formaterPlage } from '@lib/dates';
 
@@ -27,18 +29,68 @@ const annule = data.statut === 'annule';
       {formaterPlage(data.debut, data.fin)} — {data.commune}
     </p>
     <p class="discret">{LIBELLES_TYPE_EVENEMENT[data.type]}</p>
+    <EtiquettesPratiques pratiques={data.pratiques} />
   </div>
+  {data.image ? (
+    <img
+      class:list={['illustration', 'evenement__photo', { 'illustration--annule': annule }]}
+      src={data.image.src}
+      alt=""
+      width="96"
+      height="64"
+      loading="lazy"
+      decoding="async"
+    />
+  ) : (
+    <IllustrationEvenement type={data.type} annule={annule} />
+  )}
 </li>
 
 <style>
   .evenement {
-    display: flex;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
     gap: var(--espace-3);
   }
 
   .evenement__corps {
     min-width: 0;
+  }
+
+  /* Photo de l'événement à la place de l'illustration, décorative : le titre est à côté. */
+  .evenement__photo {
+    inline-size: 6rem;
+    block-size: 4rem;
+    border-radius: var(--rayon);
+    object-fit: cover;
+  }
+
+  .evenement__photo.illustration--annule {
+    filter: grayscale(1);
+    opacity: 0.6;
+  }
+
+  /* Sur un petit écran, l'illustration passe sous la pastille pour laisser la place au titre. */
+  @media (max-width: 30rem) {
+    .evenement {
+      grid-template-columns: auto 1fr;
+      row-gap: var(--espace-2);
+    }
+
+    .evenement > :global(.pastille-date) {
+      justify-self: center;
+    }
+
+    .evenement > :global(.illustration) {
+      grid-area: 2 / 1;
+      inline-size: 3.75rem;
+      block-size: 2.5rem;
+    }
+
+    .evenement__corps {
+      grid-row: 1 / span 2;
+    }
   }
 
   .evenement__corps > * {

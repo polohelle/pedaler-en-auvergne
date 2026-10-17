@@ -1,6 +1,7 @@
 ---
 titre: Cyclo-cross de Cournon-d'Auvergne, Trophée Groupama
 type: course
+pratiques: [cyclo-cross]
 debut: '2026-11-14T10:30:00+01:00'
 fin: '2026-11-14T16:30:00+01:00'
 lieu: Plan d'eau de Cournon

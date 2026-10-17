@@ -1,7 +1,14 @@
 import { z } from 'astro/zod';
 import { CATEGORIES_ACTU, PORTEES, TYPES_ACTU } from '@config/actus';
 import { STATUTS_ACTU } from '@config/statuts';
-import { sansDoublon, schemaDepartement, schemaJour, schemaTexte, schemaUrl } from './communs';
+import {
+  sansDoublon,
+  schemaDepartement,
+  schemaImage,
+  schemaJour,
+  schemaTexte,
+  schemaUrl,
+} from './communs';
 
 export const schemaActu = z
   .strictObject({
@@ -16,8 +23,7 @@ export const schemaActu = z
     departement: schemaDepartement.optional(),
     source_url: schemaUrl.optional(),
     source_nom: schemaTexte.optional(),
-    /** Image libre de droits ou fournie avec autorisation : texte alternatif et crédit obligatoires. */
-    image: z.strictObject({ src: schemaTexte, alt: schemaTexte, credit: schemaTexte }).optional(),
+    image: schemaImage.optional(),
     portee: z.enum(PORTEES),
     statut: z.enum(STATUTS_ACTU),
   })

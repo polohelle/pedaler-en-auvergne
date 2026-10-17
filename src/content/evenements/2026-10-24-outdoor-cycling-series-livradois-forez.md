@@ -1,6 +1,7 @@
 ---
 titre: Outdoor Cycling Series Livradois-Forez
 type: randonnee
+pratiques: [route, gravel]
 debut: '2026-10-24T08:00:00+02:00'
 fin: '2026-10-26T12:00:00+01:00'
 lieu: Ambert

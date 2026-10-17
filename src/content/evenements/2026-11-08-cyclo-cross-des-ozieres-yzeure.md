@@ -1,6 +1,7 @@
 ---
 titre: Cyclo-cross du plan d'eau des Ozières
 type: course
+pratiques: [cyclo-cross]
 # Horaires des courses non publiés : heure à compléter avant publication.
 debut: '2026-11-08T09:00:00+01:00'
 lieu: Plan d'eau des Ozières

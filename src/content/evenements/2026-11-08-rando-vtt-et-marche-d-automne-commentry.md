@@ -1,6 +1,7 @@
 ---
 titre: Randonnée VTT et marche d'automne
 type: randonnee
+pratiques: [vtt]
 # Lieu et heure de départ non publiés : à compléter avant publication.
 debut: '2026-11-08T08:00:00+01:00'
 lieu: Commentry

@@ -25,6 +25,21 @@ export const LIBELLES_TYPE_EVENEMENT = {
   'reunion-publique': 'Réunion publique',
 } as const satisfies Record<TypeEvenement, string>;
 
+/**
+ * Pratique du vélo d'un événement sportif, affichée en étiquette dans les listes pour repérer
+ * d'un coup d'œil route, gravel, VTT ou cyclo-cross (ADR 0034). Facultative : une bourse ou une
+ * conférence n'en a pas.
+ */
+export const PRATIQUES_EVENEMENT = ['route', 'gravel', 'vtt', 'cyclo-cross'] as const;
+export type PratiqueEvenement = (typeof PRATIQUES_EVENEMENT)[number];
+
+export const LIBELLES_PRATIQUE_EVENEMENT = {
+  route: 'Route',
+  gravel: 'Gravel',
+  vtt: 'VTT',
+  'cyclo-cross': 'Cyclo-cross',
+} as const satisfies Record<PratiqueEvenement, string>;
+
 /** Origine d'une fiche événement. */
 export const ORIGINES_EVENEMENT = ['agent', 'formulaire', 'admin'] as const;
 export type OrigineEvenement = (typeof ORIGINES_EVENEMENT)[number];

@@ -2,8 +2,11 @@
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { render } from 'astro:content';
 import { LIBELLES_TYPE_EVENEMENT } from '@config/evenements';
+import EtiquettesPratiques from '@components/EtiquettesPratiques.astro';
+import IllustrationEvenement from '@components/IllustrationEvenement.astro';
 import PastilleDate from '@components/PastilleDate.astro';
 import TetePage from '@components/TetePage.astro';
+import Vignette from '@components/Vignette.astro';
 import Base from '@layouts/Base.astro';
 import { formaterPlage } from '@lib/dates';
 import { acteursPublies, evenementsVisibles } from '@services/contenus';
@@ -33,9 +36,18 @@ const annule = data.statut === 'annule';
         <p>
           {LIBELLES_TYPE_EVENEMENT[data.type]} à {data.commune}
         </p>
+        <EtiquettesPratiques pratiques={data.pratiques} />
         {annule && <p class="etiquette etiquette-annule">Événement annulé</p>}
       </TetePage>
     </div>
+    {data.image ? (
+      <figure class="photo">
+        <img src={data.image.src} alt={data.image.alt} loading="lazy" decoding="async" />
+        <figcaption class="discret">Photo : {data.image.credit}</figcaption>
+      </figure>
+    ) : (
+      <IllustrationEvenement type={data.type} taille="grande" annule={annule} />
+    )}
     <dl class="details">
       <dt>Type</dt>
       <dd>{LIBELLES_TYPE_EVENEMENT[data.type]}</dd>
@@ -48,7 +60,8 @@ const annule = data.statut === 'annule';
       {organisateur && (
         <>
           <dt>Organisateur</dt>
-          <dd>
+          <dd class="organisateur">
+            <Vignette acteur={organisateur} />
             <a href={`/annuaire/${organisateur.id}/`}>{organisateur.data.nom}</a>
           </dd>
         </>
@@ -85,6 +98,29 @@ const annule = data.statut === 'annule';
 </Base>
 
 <style>
+  .organisateur {
+    display: flex;
+    align-items: center;
+    gap: var(--espace-2);
+  }
+
+  article > :global(.illustration),
+  .photo {
+    margin-block: 0 var(--espace-4);
+  }
+
+  .photo {
+    margin-inline: 0;
+    max-inline-size: var(--largeur-texte);
+  }
+
+  .photo img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--rayon);
+  }
+
   .tete-evenement {
     display: flex;
     align-items: flex-start;

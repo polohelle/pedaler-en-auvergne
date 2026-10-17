@@ -20,8 +20,9 @@
   /* Lave : boutons d'action et tampons. */
   --couleur-action: #a8401a;
   --couleur-action-contraste: #ffffff; /* 6,2:1 */
-  /* Genêt : soleil et cycliste, jamais pour du texte. */
+  /* Genêt : soleil et cycliste, jamais pour du texte ; fond de l'étiquette « gravel ». */
   --couleur-genet: #e8b04a;
+  --couleur-genet-contraste: #22303a; /* 8,0:1, dans les deux modes */
   /* Prairie pâle : bandeau d'accueil et tête des fiches (liens 5,5:1, lave 5,2:1). */
   --couleur-prairie-pale: #e3efe6;
   /* Collines : second plan du relief, décoratif. */
