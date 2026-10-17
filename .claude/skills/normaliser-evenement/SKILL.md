@@ -44,9 +44,12 @@ Description rédigée de 2 à 5 phrases : ce qui se passe, pour qui, ce qu'il fa
 - **Pratiques** (facultatif, ADR 0034) : `route`, `gravel`, `vtt`, `cyclo-cross`, en liste
   (`[route, gravel]` si plusieurs parcours). À renseigner pour toute sortie, randonnée ou course ;
   omettre pour une bourse, un atelier ou une conférence sans pratique précise.
-- **Image** (facultatif) : `image: { src, alt, credit }`, seulement pour une photo sous licence
-  libre ou fournie par l'organisateur avec accord, copiée dans `public/evenements/` ; jamais une
-  affiche ou photo reprise sans droits. Sans image, l'illustration du type s'affiche.
+- **Image** (facultatif, ADR 0034) : `image: { src, alt, credit, source_url }`. Autorisé :
+  l'affiche ou le bandeau officiel publié par l'organisateur sur son site, une photo sous
+  licence libre, ou une image fournie par l'organisateur. Jamais une photo de reportage reprise.
+  Fichier copié dans `public/evenements/<nom-de-la-fiche>.webp` (750 px de large au plus) ;
+  `alt` décrit l'affiche (date, lieu, l'essentiel) ; `credit` nomme l'organisateur ;
+  `source_url` est la page où l'image a été prise. Sans image, l'illustration du type s'affiche.
 - **Lieu** : le nom du lieu ou l'adresse ; **commune** officielle ; **departement** déduit de la
   commune (département actif uniquement).
 - **Coordonnées** : skill `geocoder-adresse` ; sous le seuil de confiance, omettre `lat`/`lon`.
