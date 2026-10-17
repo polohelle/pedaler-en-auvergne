@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { LIBELLES_PORTEE, LIBELLES_TYPE_ACTU } from '@config/actus';
+import { formaterDate } from '@lib/dates';
+
+/** Carte d'une actualité dans une liste (page Actus, accueil), avec sa photo si elle en a une. */
+interface Props {
+  actu: CollectionEntry<'actus'>;
+  /** Titre de la carte : `h2` sur la page Actus, `h3` sous une section. */
+  niveau?: 'h2' | 'h3';
+  /** Affiche le résumé sous le titre. */
+  avecResume?: boolean;
+}
+
+const { actu, niveau: Titre = 'h2', avecResume = true } = Astro.props;
+const { id, data } = actu;
+---
+
+<li class="carte actu">
+  {data.image && (
+    // Décorative ici : le titre porte le lien, la page de l'actualité décrit la photo.
+    <img class="actu__photo" src={data.image.src} alt="" loading="lazy" decoding="async" />
+  )}
+  <div class="actu__corps">
+    <Titre>
+      <a href={`/actus/${id}/`}>{data.titre}</a>
+    </Titre>
+    <p class="discret">
+      {LIBELLES_TYPE_ACTU[data.type]} · {LIBELLES_PORTEE[data.portee]} ·{' '}
+      <time datetime={data.date}>{formaterDate(new Date(`${data.date}T12:00:00Z`))}</time>
+    </p>
+    {avecResume && <p>{data.resume}</p>}
+  </div>
+</li>
+
+<style>
+  .actu {
+    display: grid;
+    gap: var(--espace-3);
+  }
+
+  .actu__photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--rayon);
+  }
+
+  .actu__corps > * {
+    margin-block: 0 var(--espace-1);
+  }
+
+  .actu__corps > :last-child {
+    margin-block-end: 0;
+  }
+
+  @media (min-width: 40rem) {
+    .actu:has(.actu__photo) {
+      grid-template-columns: 12rem 1fr;
+      align-items: start;
+    }
+  }
+</style>

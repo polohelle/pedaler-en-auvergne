@@ -7,7 +7,7 @@ import { SITE } from './src/config/site';
 // qu'aucun contenu de test ne puisse se retrouver dans le site publié.
 const avecContenusDeTest = process.env.PEA_CONTENU !== undefined;
 
-/** Pages mises en cache à l'installation : consultables hors connexion (ADR 0015). */
+/** Pages mises en cache à l'installation : consultables hors connexion (ADR 0015, 0033). */
 const PAGES_HORS_CONNEXION = [
   'index.html',
   'annuaire/index.html',
@@ -17,6 +17,30 @@ const PAGES_HORS_CONNEXION = [
   'mentions-legales/index.html',
   'hors-ligne/index.html',
 ];
+
+/**
+ * Suffixe des copies précachées des pages : sans lui, Workbox servirait la copie
+ * d'installation avant le réseau, et un visiteur verrait l'ancienne version après chaque
+ * publication (ADR 0033). Avec lui, ces pages passent par le cache « réseau d'abord » et la
+ * copie précachée ne sert que hors connexion. La page « hors connexion » garde sa clé.
+ */
+const SUFFIXE_HORS_CONNEXION = '?hors-connexion';
+
+/**
+ * Réécrit les clés de précache des pages : `agenda/index.html` devient
+ * `agenda/?hors-connexion` (URL de dossier, comme le fait l'intégration par défaut).
+ */
+function clesDePrecache(entrees: { url: string; revision: string | null; size: number }[]) {
+  return {
+    manifest: entrees.map((entree) => {
+      if (!entree.url.endsWith('index.html')) return entree;
+      const dossier = entree.url.replace(/index\.html$/, '');
+      const url = dossier === '' ? '/' : dossier;
+      return { ...entree, url: url === 'hors-ligne/' ? url : `${url}${SUFFIXE_HORS_CONNEXION}` };
+    }),
+    warnings: [],
+  };
+}
 
 export default defineConfig({
   site: SITE.url,
@@ -63,18 +87,27 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['_astro/*.{css,js}', '*.{svg,png,ico}', ...PAGES_HORS_CONNEXION],
+        manifestTransforms: [clesDePrecache],
         // Pas de repli global façon application monopage : chaque page reste une vraie page.
         navigateFallback: null,
         runtimeCaching: [
           {
-            // Fiches et autres pages : réseau d'abord, copie locale des pages déjà vues,
-            // page « hors connexion » en dernier recours.
+            // Toutes les pages : réseau d'abord, copie locale des pages déjà vues, puis copie
+            // précachée de la page, puis page « hors connexion » en dernier recours.
             urlPattern: ({ request }) => request.mode === 'navigate',
             handler: 'NetworkFirst',
             options: {
               cacheName: 'pages',
               networkTimeoutSeconds: 4,
               expiration: { maxEntries: 200, maxAgeSeconds: 30 * 24 * 3600 },
+              plugins: [
+                {
+                  // Copie précachée de la page (clé suffixée, avec révision Workbox).
+                  // Sérialisé dans sw.js : ne dépend que de l'API Cache du navigateur.
+                  handlerDidError: async ({ request }) =>
+                    caches.match(new URL(request.url).pathname, { ignoreSearch: true }),
+                },
+              ],
               // Clé de précache réécrite par l'intégration en URL de dossier.
               precacheFallback: { fallbackURL: '/hors-ligne/' },
             },

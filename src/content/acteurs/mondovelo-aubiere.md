@@ -14,6 +14,10 @@ services:
   - vente-neuf
 site: https://www.sport2000.fr/magasins/fiche/630399-mondovelo-aubiere
 telephone: 04 73 91 44 74
+logo:
+  fichier: mondovelo-aubiere.webp
+  source_url: https://www.sport2000.fr/magasins/fiche/630399-mondovelo-aubiere
+  origine: site-structure
 source: osm
 osm_id: way/62845854
 verifie_le: '2026-10-14'

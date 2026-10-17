@@ -4,13 +4,15 @@ import { join } from 'node:path';
 import { expect, test } from '@playwright/test';
 
 const dist = join(import.meta.dirname, '../../dist-e2e');
+// Copies suffixées : la page se charge d'abord par le réseau, la copie ne sert que hors
+// connexion (ADR 0033). La page « hors connexion » garde sa clé.
 const PAGES_PRECACHEES = [
-  '/',
-  'annuaire/',
-  'agenda/',
-  'actus/',
-  'association/',
-  'mentions-legales/',
+  '/?hors-connexion',
+  'annuaire/?hors-connexion',
+  'agenda/?hors-connexion',
+  'actus/?hors-connexion',
+  'association/?hors-connexion',
+  'mentions-legales/?hors-connexion',
   'hors-ligne/',
 ];
 
@@ -24,6 +26,11 @@ test.describe('service worker', () => {
 
   test('ne précache pas les fiches, mises en cache à la consultation', () => {
     expect(precache.filter((url) => /^(annuaire|agenda|actus)\/.+\//.test(url ?? ''))).toEqual([]);
+  });
+
+  test('ne précache aucune page sous son adresse publique, qui masquerait le réseau', () => {
+    const pages = ['/', 'annuaire/', 'agenda/', 'actus/', 'association/', 'mentions-legales/'];
+    expect(precache.filter((url) => pages.includes(url ?? ''))).toEqual([]);
   });
 
   test('replie sur la page hors connexion, qui est précachée', () => {
