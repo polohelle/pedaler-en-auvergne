@@ -1,0 +1,3 @@
+# Ancienne rubrique de l'association, remplacée par la page À propos (ADR 0035).
+/association /a-propos/ 301
+/association/* /a-propos/ 301

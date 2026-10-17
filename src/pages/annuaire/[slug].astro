@@ -3,12 +3,10 @@ import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { render } from 'astro:content';
 import {
   LIBELLES_CATEGORIE_ACTEUR,
-  LIBELLES_COLLEGE,
   LIBELLES_ORIGINE_LOGO,
   LIBELLES_SERVICE,
 } from '@config/acteurs';
 import { SITE } from '@config/site';
-import Tampon from '@components/Tampon.astro';
 import Vignette from '@components/Vignette.astro';
 import Base from '@layouts/Base.astro';
 import { formaterPlage } from '@lib/dates';
@@ -36,13 +34,6 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
         <h1>{data.nom}</h1>
         <p>{data.categories.map((c) => LIBELLES_CATEGORIE_ACTEUR[c]).join(', ')}</p>
       </div>
-      {data.membre && data.college && (
-        <Tampon
-          id="tampon-membre"
-          texte={`Membre ★ ${LIBELLES_COLLEGE[data.college]}`}
-          libelle={`Membre de l'association, collège ${LIBELLES_COLLEGE[data.college]}`}
-        />
-      )}
     </div>
 
     <div class="texte">
