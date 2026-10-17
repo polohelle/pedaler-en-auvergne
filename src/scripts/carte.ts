@@ -14,7 +14,7 @@ function contenuInfobulle(point: ProprietesPoint): HTMLElement {
   const titre = document.createElement('strong');
   titre.append(lien);
   const details = document.createElement('p');
-  details.textContent = `${point.categories} · ${point.commune}${point.membre ? ' · membre' : ''}`;
+  details.textContent = `${point.categories} · ${point.commune}`;
   bloc.append(titre, details);
   return bloc;
 }

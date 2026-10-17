@@ -11,7 +11,6 @@ const PAGES_PRECACHEES = [
   'annuaire/?hors-connexion',
   'agenda/?hors-connexion',
   'actus/?hors-connexion',
-  'association/?hors-connexion',
   'mentions-legales/?hors-connexion',
   'hors-ligne/',
 ];
@@ -29,7 +28,7 @@ test.describe('service worker', () => {
   });
 
   test('ne précache aucune page sous son adresse publique, qui masquerait le réseau', () => {
-    const pages = ['/', 'annuaire/', 'agenda/', 'actus/', 'association/', 'mentions-legales/'];
+    const pages = ['/', 'annuaire/', 'agenda/', 'actus/', 'mentions-legales/'];
     expect(precache.filter((url) => pages.includes(url ?? ''))).toEqual([]);
   });
 

@@ -1,0 +1,63 @@
+---
+import { EDITEUR } from '@config/editeur';
+import { SITE } from '@config/site';
+import Base from '@layouts/Base.astro';
+---
+
+<Base
+  titre="À propos"
+  description="Qui porte Pédaler en Auvergne, ses règles éditoriales et comment écrire au site."
+>
+  <div class="texte">
+    <h1>À propos</h1>
+    <p>
+      {SITE.nom} rassemble en un seul endroit l'information vélo du Puy-de-Dôme : les acteurs, les
+      événements et l'actualité, aujourd'hui éparpillés entre sites, réseaux sociaux et presse
+      locale. Le site est porté bénévolement par un particulier, sans but commercial.
+    </p>
+
+    <h2>Nos règles éditoriales</h2>
+    <ul>
+      <li>
+        <strong>Neutralité</strong> : l'annuaire et l'agenda sont gratuits et ouverts à tous les
+        acteurs du vélo du territoire. Aucune mise en avant n'est vendue, aucun classement n'est
+        payant.
+      </li>
+      <li>
+        <strong>Sources citées</strong> : chaque actualité et chaque événement repris d'un autre
+        site est un résumé rédigé, avec un lien vers sa source. Aucun texte ni aucune image n'est
+        copié sans autorisation.
+      </li>
+      <li>
+        <strong>Coordonnées professionnelles uniquement</strong> : l'annuaire ne publie aucune
+        donnée de particulier.
+      </li>
+      <li>
+        <strong>Validation humaine</strong> : des outils automatisés aident à repérer et préparer
+        les contenus, mais rien n'est publié sans relecture.
+      </li>
+      <li>
+        <strong>Corrections rapides</strong> : une fiche est corrigée ou retirée sous 7 jours au
+        plus sur demande de la structure concernée.
+      </li>
+    </ul>
+
+    <h2 id="contact">Contact</h2>
+    {EDITEUR.email === null ? (
+      <p>L'adresse de contact sera publiée prochainement.</p>
+    ) : (
+      <p>
+        <a href={`mailto:${EDITEUR.email}`}>{EDITEUR.email}</a>
+      </p>
+    )}
+    <p>
+      Écrivez notamment pour corriger ou retirer une fiche, signaler un acteur oublié, ou pour une
+      demande de presse ou de collectivité. Pour un événement, utilisez le formulaire
+      <a href="/agenda/proposer/">Proposer un événement</a>.
+    </p>
+    <p>
+      Une erreur technique ou une idée pour le site ? Le code est ouvert : vous pouvez aussi
+      <a href={`${SITE.depot}/issues`}>signaler un problème sur GitHub</a>.
+    </p>
+  </div>
+</Base>

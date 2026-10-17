@@ -1,8 +1,7 @@
 # Pédaler en Auvergne
 
-**Le réseau des acteurs du vélo** — portail de l'association Pédaler en Auvergne : annuaire des
-acteurs du vélo du Puy-de-Dôme (puis de l'Auvergne), agenda des manifestations, actualités et
-présentation de l'association. Site statique Astro, contenus en Markdown dans ce dépôt,
+**Le réseau des acteurs du vélo** — portail bénévole Pédaler en Auvergne : annuaire des
+acteurs du vélo du Puy-de-Dôme (puis de l'Auvergne), agenda des manifestations et actualités. Site statique Astro, contenus en Markdown dans ce dépôt,
 publié sur Cloudflare Pages à chaque fusion sur `main`.
 
 ## Installer en cinq minutes

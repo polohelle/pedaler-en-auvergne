@@ -40,7 +40,6 @@ const { id, data } = acteur;
       <li class="etiquette">{LIBELLES_CATEGORIE_ACTEUR[c]}</li>
     ))}
   </ul>
-  {data.membre && <p class="etiquette etiquette-membre">Membre de l'association</p>}
 </li>
 
 <style>
@@ -82,9 +81,5 @@ const { id, data } = acteur;
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
-  }
-
-  .acteur .etiquette-membre {
-    align-self: flex-start;
   }
 </style>
