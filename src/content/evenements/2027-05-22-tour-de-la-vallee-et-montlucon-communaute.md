@@ -9,7 +9,7 @@ commune: Montluçon
 departement: '03'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/4103006001/tour-de-la-vallee-et-montlucon-communautee/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Course cycliste sur route de niveau national, sur deux jours, autour de Montluçon. Elle est

@@ -9,7 +9,7 @@ commune: Avermes
 departement: '03'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/4103163002/classique-jean-paul-taillon/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Course cycliste sur route de niveau national, organisée par le comité d'organisation des 4 Cantons

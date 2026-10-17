@@ -8,7 +8,7 @@ commune: Cusset
 departement: '03'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/4103059003/trophee-souvenir-roger-walkowiak-ville-de-cusset-coupe-de-france-n1-5/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Cinquième manche de la Coupe de France N1, le plus haut niveau des clubs amateurs, organisée par

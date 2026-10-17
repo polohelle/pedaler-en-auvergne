@@ -8,7 +8,7 @@ commune: Clermont-Ferrand
 departement: '63'
 source_url: https://www.velocite63.fr/non-au-pied-a-terre
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Vélo-Cité 63 et un collectif d'habitants appellent à une vélorution, un défilé festif à vélo, pour

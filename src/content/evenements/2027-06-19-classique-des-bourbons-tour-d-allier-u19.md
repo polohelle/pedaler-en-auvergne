@@ -10,7 +10,7 @@ commune: Avermes
 departement: '03'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/4103008001/classique-des-bourbons-tour-dallier-u19/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Course par étapes sur deux jours réservée aux juniors (U19), de niveau national, organisée par

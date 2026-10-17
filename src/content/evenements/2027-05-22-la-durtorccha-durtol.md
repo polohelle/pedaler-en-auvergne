@@ -8,7 +8,7 @@ commune: Durtol
 departement: '63'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/4163048002/la-durtorccha/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Course cycliste sur route de niveau national organisée par le Vélo Club de Cournon-d'Auvergne sur
