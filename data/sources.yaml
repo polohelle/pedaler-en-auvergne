@@ -96,6 +96,20 @@ sources:
       dans /actualites-et-agendas/toute-lactualite/, avec un filtre « Vélo » ; peu d'actualités
       vélo. Suivre aussi les pages « À vélo » et « Le schéma cyclable métropolitain ».
 
+  - nom: OpenStreetMap, relations vélo et VTT
+    url: https://www.openstreetmap.org/
+    type: traces
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: '2026-10-18'
+    notes: >-
+      Relations route=bicycle et route=mtb du département, sous ODbL : trace reprise avec
+      pnpm trace:osm (skill importer-trace), auteur « contributeurs OpenStreetMap ». Relations
+      souvent incomplètes ; vérifier la continuité et l'étiquette source de chaque relation.
+
   # --- National, utile à l'annuaire et à l'agenda local --------------------
 
   - nom: Mai à vélo — agenda OpenAgenda

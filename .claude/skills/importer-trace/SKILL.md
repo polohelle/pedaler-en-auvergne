@@ -33,11 +33,16 @@ particulier.
 - **GPX publié** : le télécharger tel quel, `trace_url` = son adresse.
 - **GeoJSON ou KML** (open data) : convertir en GPX 1.1 (`<trk><trkseg><trkpt lat lon>`),
   en gardant les altitudes s'il y en a.
-- **Relation OpenStreetMap** : `[out:json]; relation(<id>); way(r); out geom;` sur l'API
-  Overpass, puis assembler les chemins dans l'ordre en segments `<trkseg>` ; `auteur:
-contributeurs OpenStreetMap`, `licence: odbl`, `source_url` = page de la relation
-  (`https://www.openstreetmap.org/relation/<id>`). Les traces OSM n'ont pas d'altitude : le
-  dénivelé affichera « non renseigné ».
+- **Relation OpenStreetMap** (`route=bicycle` ou `route=mtb`) : `pnpm trace:osm <id>
+src/content/itineraires/<slug>.gpx --nom "<titre>" --depart <lat>,<lon>`. Le script lit la
+  relation sur l'API OSM, met les chemins bout à bout (variantes et accès écartés), soude les
+  écarts de moins de 100 m, fait partir une boucle du point le plus proche de `--depart`
+  (le bourg du départ officiel), ajoute les altitudes IGN et affiche distance, dénivelé,
+  forme et nombre de segments. Plus d'un segment signale une relation incomplète : comparer
+  avec la carte, et l'écarter si les trous dépassent quelques centaines de mètres.
+  `auteur: contributeurs OpenStreetMap`, `licence: odbl`, `source_url` = page de la relation
+  (`https://www.openstreetmap.org/relation/<id>`). Vérifier la provenance : une relation
+  dont les étiquettes `source` citent un site sous droits réservés est signalée dans la PR.
 
 ## 3. Nettoyer et enregistrer
 

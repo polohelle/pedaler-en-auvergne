@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { gpx } from '../../tests/fixtures/contenus';
-import { denivelePositifM, distanceM, lireGpx, mesurerTrace, simplifier } from './gpx';
+import { denivelePositifM, distanceM, ecrireGpx, lireGpx, mesurerTrace, simplifier } from './gpx';
 
 describe('lireGpx', () => {
   it('lit les points d’une trace, avec ou sans altitude', () => {
@@ -111,5 +111,26 @@ describe('simplifier', () => {
       { lat: 45, lon: 3 },
     ];
     expect(simplifier(confondus, 15)).toEqual(confondus);
+  });
+});
+
+describe('ecrireGpx', () => {
+  it('écrit une trace relisible, avec nom et auteur échappés', () => {
+    const trace = [
+      [
+        { lat: 45.9, lon: 3.0, ele: 500.04 },
+        { lat: 45.91, lon: 3.01 },
+      ],
+    ];
+    const source = ecrireGpx('Puys & lacs', trace, 'contributeurs <OSM>');
+    expect(source).toContain('<name>Puys &amp; lacs</name>');
+    expect(source).toContain('<author><name>contributeurs &lt;OSM&gt;</name></author>');
+    expect(source).toContain('<trkpt lat="45.900000" lon="3.000000"><ele>500.0</ele></trkpt>');
+    expect(lireGpx(source)).toEqual([
+      [
+        { lat: 45.9, lon: 3.0, ele: 500 },
+        { lat: 45.91, lon: 3.01, ele: undefined },
+      ],
+    ]);
   });
 });
