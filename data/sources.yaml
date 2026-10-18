@@ -33,6 +33,22 @@ sources:
       compteurs, vélorutions, événements). Source militante : présenter ses positions comme
       celles de l'association et recouper les faits officiels.
 
+  - nom: Vélocité 63 — Mastodon
+    url: https://pouet.chapril.org/@velocite63.rss
+    type: rss
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: moyenne
+    frequence: quotidienne
+    dernier_passage: null
+    notes: >-
+      Flux RSS public du compte Mastodon de l'association, évalué le 2026-10-18 : valide,
+      1 à 2 messages par jour, plus réactif que le site. Mêmes messages sur Bluesky
+      (flux https://bsky.app/profile/velocite63.bsky.social/rss, non suivi pour éviter les
+      doublons). Instagram et Facebook interdisent la collecte automatisée : non suivis.
+      Source militante : présenter ses positions comme celles de l'association.
+
   - nom: Miles Republic — épreuves vélo du Puy-de-Dôme
     url: https://fr.milesrepublic.com/velo/puy-de-dome
     type: agenda
@@ -220,20 +236,6 @@ sources:
       2026-10-14 : lisible (recherche du JORF par date), pas de flux visible. Textes officiels
       librement réutilisables. À terme, l'API Légifrance (compte PISTE gratuit) permet une
       recherche automatique.
-
-  - nom: Weelz!
-    url: https://weelz.ouest-france.fr/feed/
-    type: rss
-    niveau: national
-    departement: null
-    acteur: null
-    fiabilite: inconnue
-    frequence: bihebdomadaire
-    dernier_passage: null
-    notes: >-
-      Média vélo hors compétition ; ne retenir que ce qui concerne les acteurs locaux.
-      Inaccessible à l'outil de lecture des agents le 2026-10-14, de nouveau le 2026-10-18 :
-      retrait proposé à l'administrateur.
 
   - nom: Transition Vélo
     url: https://www.transitionvelo.com/feed/
