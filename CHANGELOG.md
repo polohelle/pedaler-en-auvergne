@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.3.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.2.0...pedaler-en-auvergne-v0.3.0) (2026-10-18)
+
+
+### Nouveautés
+
+* **actus:** cartes d'actualité avec photo dans les listes et sur l'accueil ([fe4feeb](https://github.com/polohelle/pedaler-en-auvergne/commit/fe4feebeabf9627445a5a341e77c1f1fb71fd7fd))
+* affiches officielles des événements, avec crédit et lien ([bb505f4](https://github.com/polohelle/pedaler-en-auvergne/commit/bb505f49237532c0b8c3895aaee8c14329895cbf))
+* champ image facultatif des événements, schéma partagé avec les actualités ([08608b4](https://github.com/polohelle/pedaler-en-auvergne/commit/08608b474808e68a4850cfd57cd262d4304eb559))
+* illustrations et pratiques (route, gravel, VTT, cyclo-cross) des événements ([08c0cc8](https://github.com/polohelle/pedaler-en-auvergne/commit/08c0cc82f56c2680f99e381a3a65ab490649aef9))
+* illustre les événements et affiche leur pratique (route, gravel, VTT, cyclo-cross) ([82e44f0](https://github.com/polohelle/pedaler-en-auvergne/commit/82e44f0b19dddec24fc441fbdfd865767f6282eb))
+* **itineraires:** rubrique Itinéraires, carte IGN unique et filtres ([ff2ce8a](https://github.com/polohelle/pedaler-en-auvergne/commit/ff2ce8a7aa1c5797b3e518a03e255cc9d0b15376))
+* **itineraires:** rubrique Itinéraires, carte IGN unique et filtres ([7ac8066](https://github.com/polohelle/pedaler-en-auvergne/commit/7ac8066e6fcabbc407da32891736e61701d83292))
+* reprend les affiches officielles des événements avec crédit et lien ([3bbd70c](https://github.com/polohelle/pedaler-en-auvergne/commit/3bbd70c5badb39521051a8ae7a77b490281fa1fa))
+* site porté par un éditeur particulier, sans partie association ([4973728](https://github.com/polohelle/pedaler-en-auvergne/commit/49737286b98886b522c69c3258e1886d2e997439))
+* site porté par un éditeur particulier, sans partie association ([568de07](https://github.com/polohelle/pedaler-en-auvergne/commit/568de0770f1580f7f4406de9c7ee877cd9028994))
+
+
+### Corrections
+
+* **pwa:** sert les pages par le réseau d'abord après une publication ([0fdc6eb](https://github.com/polohelle/pedaler-en-auvergne/commit/0fdc6eb4903427b8e91e912012db605cb516d70d))
+
+
+### Documentation
+
+* **veille:** passage du 18 octobre ([cb7ce04](https://github.com/polohelle/pedaler-en-auvergne/commit/cb7ce04f950256ed0545cab543af2db298ebee43))
+* **veille:** passage du 18 octobre ([1bdf70e](https://github.com/polohelle/pedaler-en-auvergne/commit/1bdf70ea8131a6d22815355103a86f4de6b5fdc3))
+* **veille:** suivre le Mastodon de Vélocité 63, retirer Weelz! ([dce3c8b](https://github.com/polohelle/pedaler-en-auvergne/commit/dce3c8bf5c16249e71b239dbc47a437378385619))
+* **veille:** suivre le Mastodon de Vélocité 63, retirer Weelz! ([8a4cebd](https://github.com/polohelle/pedaler-en-auvergne/commit/8a4cebd9940d81d7fa8d9d4462472ece8fe1e570))
+
 ## [0.2.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.1.0...pedaler-en-auvergne-v0.2.0) (2026-10-17)
 
 
