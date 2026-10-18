@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Pédaler en Auvergne (trace fictive de test)" xmlns="http://www.topografix.com/GPX/1/1">
+  <trk>
+    <name>Boucle test de Volvic</name>
+    <trkseg>
+    <trkpt lat="45.87200" lon="3.03900"><ele>510</ele></trkpt>
+    <trkpt lat="45.87787" lon="3.03956"><ele>511</ele></trkpt>
+    <trkpt lat="45.88365" lon="3.04121"><ele>513</ele></trkpt>
+    <trkpt lat="45.88922" lon="3.04395"><ele>517</ele></trkpt>
+    <trkpt lat="45.89450" lon="3.04771"><ele>522</ele></trkpt>
+    <trkpt lat="45.89939" lon="3.05243"><ele>529</ele></trkpt>
+    <trkpt lat="45.90382" lon="3.05804"><ele>536</ele></trkpt>
+    <trkpt lat="45.90770" lon="3.06443"><ele>545</ele></trkpt>
+    <trkpt lat="45.91097" lon="3.07150"><ele>555</ele></trkpt>
+    <trkpt lat="45.91357" lon="3.07913"><ele>566</ele></trkpt>
+    <trkpt lat="45.91547" lon="3.08718"><ele>577</ele></trkpt>
+    <trkpt lat="45.91662" lon="3.09552"><ele>588</ele></trkpt>
+    <trkpt lat="45.91700" lon="3.10400"><ele>600</ele></trkpt>
+    <trkpt lat="45.91662" lon="3.11248"><ele>612</ele></trkpt>
+    <trkpt lat="45.91547" lon="3.12082"><ele>623</ele></trkpt>
+    <trkpt lat="45.91357" lon="3.12887"><ele>634</ele></trkpt>
+    <trkpt lat="45.91097" lon="3.13650"><ele>645</ele></trkpt>
+    <trkpt lat="45.90770" lon="3.14357"><ele>655</ele></trkpt>
+    <trkpt lat="45.90382" lon="3.14996"><ele>664</ele></trkpt>
+    <trkpt lat="45.89939" lon="3.15557"><ele>671</ele></trkpt>
+    <trkpt lat="45.89450" lon="3.16029"><ele>678</ele></trkpt>
+    <trkpt lat="45.88922" lon="3.16405"><ele>683</ele></trkpt>
+    <trkpt lat="45.88365" lon="3.16679"><ele>687</ele></trkpt>
+    <trkpt lat="45.87787" lon="3.16844"><ele>689</ele></trkpt>
+    <trkpt lat="45.87200" lon="3.16900"><ele>690</ele></trkpt>
+    <trkpt lat="45.86613" lon="3.16844"><ele>689</ele></trkpt>
+    <trkpt lat="45.86035" lon="3.16679"><ele>687</ele></trkpt>
+    <trkpt lat="45.85478" lon="3.16405"><ele>683</ele></trkpt>
+    <trkpt lat="45.84950" lon="3.16029"><ele>678</ele></trkpt>
+    <trkpt lat="45.84461" lon="3.15557"><ele>671</ele></trkpt>
+    <trkpt lat="45.84018" lon="3.14996"><ele>664</ele></trkpt>
+    <trkpt lat="45.83630" lon="3.14357"><ele>655</ele></trkpt>
+    <trkpt lat="45.83303" lon="3.13650"><ele>645</ele></trkpt>
+    <trkpt lat="45.83043" lon="3.12887"><ele>634</ele></trkpt>
+    <trkpt lat="45.82853" lon="3.12082"><ele>623</ele></trkpt>
+    <trkpt lat="45.82738" lon="3.11248"><ele>612</ele></trkpt>
+    <trkpt lat="45.82700" lon="3.10400"><ele>600</ele></trkpt>
+    <trkpt lat="45.82738" lon="3.09552"><ele>588</ele></trkpt>
+    <trkpt lat="45.82853" lon="3.08718"><ele>577</ele></trkpt>
+    <trkpt lat="45.83043" lon="3.07913"><ele>566</ele></trkpt>
+    <trkpt lat="45.83303" lon="3.07150"><ele>555</ele></trkpt>
+    <trkpt lat="45.83630" lon="3.06443"><ele>545</ele></trkpt>
+    <trkpt lat="45.84018" lon="3.05804"><ele>536</ele></trkpt>
+    <trkpt lat="45.84461" lon="3.05243"><ele>529</ele></trkpt>
+    <trkpt lat="45.84950" lon="3.04771"><ele>522</ele></trkpt>
+    <trkpt lat="45.85478" lon="3.04395"><ele>517</ele></trkpt>
+    <trkpt lat="45.86035" lon="3.04121"><ele>513</ele></trkpt>
+    <trkpt lat="45.86613" lon="3.03956"><ele>511</ele></trkpt>
+    <trkpt lat="45.87200" lon="3.03900"><ele>510</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

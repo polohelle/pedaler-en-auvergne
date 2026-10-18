@@ -7,9 +7,11 @@ import { basename, join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { lireMarkdown } from '@lib/frontmatter';
 import { verifierIntegrite } from '@lib/integrite';
+import { verifierTrace } from '@lib/itineraires';
 import { COLLECTIONS, validerFichier, type NomCollection } from '@lib/validation';
 import { schemaActeur } from '@schemas/acteur';
 import { schemaEvenement } from '@schemas/evenement';
+import { schemaItineraire } from '@schemas/itineraire';
 
 // Contenus réels, et contenus de test des pages (qui doivent eux aussi être valides).
 const racines = ['src/content', 'tests/fixtures/site'].map((r) =>
@@ -36,17 +38,27 @@ for (const [dossier, collection] of racines.flatMap((r) =>
       },
     );
 
-    it('ne contient que des fichiers Markdown', () => {
+    it('ne contient que des fichiers Markdown (et les traces GPX des itinéraires)', () => {
       const autres = readdirSync(join(dossier, collection)).filter(
-        (nom) => !nom.endsWith('.md') && nom !== '.gitkeep',
+        (nom) =>
+          !nom.endsWith('.md') &&
+          nom !== '.gitkeep' &&
+          !(collection === 'itineraires' && nom.endsWith('.gpx')),
       );
       expect(autres).toEqual([]);
     });
   });
 }
 
+function itinerairesDe(dossier: string) {
+  return fichiersDe('itineraires', dossier).flatMap((chemin) => {
+    const resultat = schemaItineraire.safeParse(lireMarkdown(readFileSync(chemin, 'utf8')).donnees);
+    return resultat.success ? [{ id: basename(chemin, '.md'), chemin, ...resultat.data }] : [];
+  });
+}
+
 describe.each(racines)('cohérence entre fichiers de %s', (dossier) => {
-  it('organisateurs existants et publiés, objets OSM importés une seule fois', () => {
+  it('organisateurs et structures existants et publiés, objets OSM importés une seule fois', () => {
     const acteurs = fichiersDe('acteurs', dossier).flatMap((chemin) => {
       const resultat = schemaActeur.safeParse(lireMarkdown(readFileSync(chemin, 'utf8')).donnees);
       return resultat.success ? [resultat.data] : [];
@@ -57,7 +69,25 @@ describe.each(racines)('cohérence entre fichiers de %s', (dossier) => {
       );
       return resultat.success ? [{ id: basename(chemin, '.md'), ...resultat.data }] : [];
     });
-    expect(verifierIntegrite(acteurs, evenements)).toEqual([]);
+    expect(verifierIntegrite(acteurs, evenements, itinerairesDe(dossier))).toEqual([]);
+  });
+
+  it('chaque itinéraire a une trace GPX lisible et cohérente (ADR 0036)', () => {
+    const erreurs = itinerairesDe(dossier).flatMap(({ id, chemin, forme }) => {
+      const trace = chemin.replace(/\.md$/, '.gpx');
+      if (!existsSync(trace)) return [`${id} : trace ${id}.gpx manquante.`];
+      return verifierTrace(readFileSync(trace, 'utf8'), forme).map((e) => `${id} : ${e}`);
+    });
+    expect(erreurs).toEqual([]);
+  });
+
+  it('chaque trace GPX accompagne une fiche itinéraire', () => {
+    const dossierItineraires = join(dossier, 'itineraires');
+    const orphelines = readdirSync(dossierItineraires).filter(
+      (nom) =>
+        nom.endsWith('.gpx') && !existsSync(join(dossierItineraires, nom.replace(/\.gpx$/, '.md'))),
+    );
+    expect(orphelines).toEqual([]);
   });
 });
 

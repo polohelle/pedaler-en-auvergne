@@ -1,12 +1,18 @@
 import { describe, expect, it } from 'vitest';
-import { estActeurVisible, estActuVisible, estEvenementVisible, estPasse } from './publication';
+import {
+  estActeurVisible,
+  estActuVisible,
+  estEvenementVisible,
+  estItineraireVisible,
+  estPasse,
+} from './publication';
 
 const maintenant = new Date('2026-11-10T12:00:00+01:00');
 const veille = { debut: new Date('2026-11-09T20:00:00+01:00') };
 const jourMeme = { debut: new Date('2026-11-10T08:00:00+01:00') };
 const demain = { debut: new Date('2026-11-11T09:00:00+01:00') };
 
-describe('acteurs et actus', () => {
+describe('acteurs, actus et itinéraires', () => {
   it('ne montrent que le statut publie', () => {
     expect(estActeurVisible('publie')).toBe(true);
     expect(estActeurVisible('brouillon')).toBe(false);
@@ -14,6 +20,9 @@ describe('acteurs et actus', () => {
     expect(estActuVisible('publie')).toBe(true);
     expect(estActuVisible('brouillon')).toBe(false);
     expect(estActuVisible('archive')).toBe(false);
+    expect(estItineraireVisible('publie')).toBe(true);
+    expect(estItineraireVisible('brouillon')).toBe(false);
+    expect(estItineraireVisible('archive')).toBe(false);
   });
 });
 

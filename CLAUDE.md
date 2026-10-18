@@ -48,7 +48,8 @@ il refuse un `git commit` mal enchaîné ou sans vérification préalable de l'�
 - `src/services/contenus.ts` — **seul** accès aux collections ; applique les règles de
   publication (ESLint interdit `getCollection` ailleurs).
 - `src/pages/`, `src/components/`, `src/layouts/` — affichage uniquement.
-- `src/content/{acteurs,evenements,actus}/` — un fichier Markdown par contenu.
+- `src/content/{acteurs,evenements,actus,itineraires}/` — un fichier Markdown par contenu ;
+  un itinéraire a en plus sa trace `<slug>.gpx`.
 - `data/sources.yaml` — carnet des sources de veille.
 - `scripts/` — scripts en ligne de commande (entrées-sorties seulement, logique dans `src/lib/`).
 - `tests/` — validation des contenus, bout en bout, accessibilité, contenus de test.
@@ -74,7 +75,10 @@ il refuse un `git commit` mal enchaîné ou sans vérification préalable de l'�
   barré, jusqu'à sa date). Une fiche publiée doit être complète : le test de contenu, le build
   et la couche d'accès la bloquent sinon.
 - Noms de fichiers : `acteurs/<slug>.md` ; `evenements/<aaaa-mm-jj>-<slug>.md` ;
-  `actus/<aaaa-mm-jj>-<slug>.md` (date du début, à Paris).
+  `actus/<aaaa-mm-jj>-<slug>.md` (date du début, à Paris) ; `itineraires/<slug>.md` et
+  `itineraires/<slug>.gpx`.
+- Itinéraires : seule une trace sous licence de réutilisation (Licence Ouverte, ODbL, CC0,
+  CC BY, CC BY-SA, ou accord écrit de l'auteur) est reprise, avec auteur et source (ADR 0036).
 - Structure sans adresse d'accueil publique (atelier mobile, activité à domicile) :
   `sans_adresse_publique: true`, commune seule, jamais d'adresse supposée (ADR 0025).
 - Neutralité : l'annuaire est exhaustif et non commercial ; indépendants, franchises et chaînes

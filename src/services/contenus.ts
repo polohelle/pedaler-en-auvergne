@@ -3,8 +3,16 @@
  * ne reçoivent que des contenus visibles, triés. Une description obligatoire manquante
  * fait échouer le build plutôt que de publier une fiche vide.
  */
+import { readFileSync } from 'node:fs';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { estActeurVisible, estActuVisible, estEvenementVisible, estPasse } from '@lib/publication';
+import { lireGpx, mesurerTrace, type MesuresTrace, type Trace } from '@lib/gpx';
+import {
+  estActeurVisible,
+  estActuVisible,
+  estEvenementVisible,
+  estItineraireVisible,
+  estPasse,
+} from '@lib/publication';
 import { descriptionRequise } from '@lib/validation';
 import type { Acteur } from '@schemas/acteur';
 
@@ -53,4 +61,36 @@ export async function actusPubliees(): Promise<CollectionEntry<'actus'>[]> {
     if (descriptionRequise.actus(actu.data)) exigerDescription(actu);
   }
   return actus.sort((a, b) => b.data.date.localeCompare(a.data.date));
+}
+
+/** Itinéraire publié, avec sa trace GPX lue et mesurée (ADR 0036). */
+export type EntreeItineraire = CollectionEntry<'itineraires'> & {
+  trace: Trace;
+  /** Texte du fichier GPX d'origine, rediffusé tel quel au téléchargement. */
+  gpx: string;
+  mesures: MesuresTrace;
+};
+
+/** Itinéraires publiés, triés par titre ; une trace absente ou illisible fait échouer le build. */
+export async function itinerairesPublies(): Promise<EntreeItineraire[]> {
+  const itineraires = await getCollection('itineraires', ({ data }) =>
+    estItineraireVisible(data.statut),
+  );
+  return itineraires
+    .map((itineraire) => {
+      if (descriptionRequise.itineraires(itineraire.data)) exigerDescription(itineraire);
+      const chemin = (itineraire.filePath ?? '').replace(/\.md$/, '.gpx');
+      let gpx: string;
+      let trace: Trace;
+      try {
+        gpx = readFileSync(chemin, 'utf8');
+        trace = lireGpx(gpx);
+      } catch (erreur) {
+        throw new Error(`itineraires/${itineraire.id} : trace illisible (${String(erreur)}).`, {
+          cause: erreur,
+        });
+      }
+      return { ...itineraire, gpx, trace, mesures: mesurerTrace(trace) };
+    })
+    .sort((a, b) => a.data.titre.localeCompare(b.data.titre, 'fr'));
 }

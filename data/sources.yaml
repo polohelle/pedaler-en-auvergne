@@ -4,7 +4,7 @@
 # src/schemas/source.ts (pnpm test). Enrichir cette liste suffit à étendre la veille ;
 # ouvrir un département, c'est y ajouter ses sources locales.
 #
-# Champs : nom, url, type (rss | page | agenda), niveau (local | regional | national),
+# Champs : nom, url, type (rss | page | agenda | traces), niveau (local | regional | national),
 # departement (null hors local), acteur (slug dans l'annuaire, ou null),
 # fiabilite (inconnue | faible | moyenne | haute, mise à jour par le skill evaluer-source),
 # frequence (quotidienne | bihebdomadaire | hebdomadaire | mensuelle),

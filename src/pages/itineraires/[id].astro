@@ -1,0 +1,101 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+import {
+  LICENCES,
+  LIBELLES_DIFFICULTE,
+  LIBELLES_FORME,
+  LIBELLES_PRATIQUE_ITINERAIRE,
+} from '@config/itineraires';
+import CarteDesItineraires from '@components/CarteDesItineraires.astro';
+import TetePage from '@components/TetePage.astro';
+import Vignette from '@components/Vignette.astro';
+import Base from '@layouts/Base.astro';
+import { formaterDenivele, formaterDistance } from '@lib/itineraires';
+import { acteursPublies, itinerairesPublies } from '@services/contenus';
+
+export const getStaticPaths = (async () => {
+  const itineraires = await itinerairesPublies();
+  return itineraires.map((itineraire) => ({
+    params: { id: itineraire.id },
+    props: { itineraire },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { itineraire } = Astro.props;
+const { id, data, mesures } = itineraire;
+const { Content } = await render(itineraire);
+const acteur = (await acteursPublies()).find((a) => a.id === data.acteur);
+const licence = LICENCES[data.licence];
+const pratique = LIBELLES_PRATIQUE_ITINERAIRE[data.pratique];
+---
+
+<Base
+  titre={data.titre}
+  description={`${data.titre} : ${pratique.toLowerCase()}, ${formaterDistance(mesures.distanceKm)} au départ de ${data.commune}.`}
+>
+  <article>
+    <TetePage titre={data.titre}>
+      <p>
+        <span class:list={['etiquette', `etiquette-${data.pratique}`]}>{pratique}</span>{' '}
+        {LIBELLES_FORME[data.forme]} au départ de {data.commune}
+      </p>
+    </TetePage>
+    <CarteDesItineraires seul={id} titre={`Carte du parcours ${data.titre}`} />
+    <dl class="details">
+      <dt>Pratique</dt>
+      <dd>{pratique}</dd>
+      <dt>Distance</dt>
+      <dd>{formaterDistance(mesures.distanceKm)}</dd>
+      <dt>Dénivelé positif</dt>
+      <dd>{formaterDenivele(mesures.deniveleM)}</dd>
+      <dt>Difficulté</dt>
+      <dd>{LIBELLES_DIFFICULTE[data.difficulte]}</dd>
+      <dt>Forme</dt>
+      <dd>{LIBELLES_FORME[data.forme]}</dd>
+      <dt>Départ</dt>
+      <dd>{data.depart ? `${data.depart}, ${data.commune}` : data.commune}</dd>
+      <dt>Balisage</dt>
+      <dd>{data.balise ? 'Balisé sur le terrain' : 'Non balisé : suivre la trace'}</dd>
+      {acteur && (
+        <>
+          <dt>Proposé par</dt>
+          <dd class="acteur">
+            <Vignette acteur={acteur} />
+            <a href={`/annuaire/${acteur.id}/`}>{acteur.data.nom}</a>
+          </dd>
+        </>
+      )}
+    </dl>
+    <div class="texte">
+      <Content />
+    </div>
+    <p>
+      <a class="bouton" href={`/itineraires/${id}.gpx`} download={`${id}.gpx`}>
+        Télécharger la trace GPX
+      </a>
+    </p>
+    <p class="discret">
+      Trace : {data.auteur}, licence{' '}
+      {licence.url === null ? licence.libelle : <a href={licence.url}>{licence.libelle}</a>}. Source
+      : <a href={data.source_url}>{new URL(data.source_url).hostname}</a>.
+    </p>
+    <p class="discret">
+      Les conditions du terrain changent : vérifiez l'itinéraire avant de partir et respectez le
+      code de la route et les autres usagers.
+    </p>
+    <p>
+      <a href="/itineraires/">Tous les itinéraires</a>
+    </p>
+  </article>
+</Base>
+
+<style>
+  .acteur {
+    display: flex;
+    align-items: center;
+    gap: var(--espace-2);
+  }
+</style>

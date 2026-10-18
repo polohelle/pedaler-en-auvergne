@@ -51,12 +51,17 @@ Les champs, types et valeurs autorisées font foi dans `src/schemas/` et `src/co
   `breve`), catégories, résumé, département, `source_url` et `source_nom` (obligatoires pour une
   brève), image (avec texte alternatif et crédit), portée (`local`, `auvergne`, `national`),
   statut (`brouillon`, `publie`, `archive`).
+- **Itinéraire** (`src/content/itineraires/<slug>.md` et sa trace `<slug>.gpx`) : titre,
+  pratique (`route`, `gravel`, `vtt`), difficulté, forme, balisage, commune et point de départ,
+  département, structure de l'annuaire, auteur et licence de la trace, `source_url`,
+  `trace_url`, source, `verifie_le`, statut (`brouillon`, `publie`, `archive`), description.
+  Distance et dénivelé sont calculés à partir de la trace (ADR 0036).
 - **Source de veille** (`data/sources.yaml`) : nom, URL, type, niveau, département, acteur,
   fiabilité, fréquence, dernier passage, notes.
 
 ## Règles de publication
 
-- Acteurs et actualités : visibles si `publie`.
+- Acteurs, actualités et itinéraires : visibles si `publie`.
 - Événements : visibles si `publie`, ou `annule` jusqu'à leur dernier jour (affichés barrés avec
   la mention « Annulé ») ; les listes ne montrent que les événements à venir ; l'agent de
   maintenance archive les événements passés.
@@ -79,7 +84,8 @@ HTML statique (`dist/`), `sw.js` et manifeste de l'application (ADR 0015), icôn
 (CSP stricte et en-têtes de sécurité), pages par commune (ADR 0027). Agenda en iCal
 (`/agenda.ics`, et `/agenda/<id>.ics` par événement) et flux RSS (`/agenda/rss.xml`,
 `/actus/rss.xml`), générés par `src/lib/ical.ts`, `src/lib/rss.ts` et `src/lib/flux.ts`. Points de
-l'annuaire en GeoJSON (`/annuaire.geojson`, ADR 0029). Une seule partie dynamique : la fonction
+l'annuaire en GeoJSON (`/annuaire.geojson`, ADR 0029) ; traces des itinéraires en GeoJSON
+(`/itineraires.geojson`) et en GPX (`/itineraires/<slug>.gpx`, ADR 0036). Une seule partie dynamique : la fonction
 Cloudflare Pages `functions/api/proposer-evenement.ts` du formulaire « Proposer un événement »
 (ADR 0030), dont la logique est dans `src/lib/formulaire/`, et le Worker `workers/courriel/` qui
 envoie l'e-mail de transmission (ADR 0032). Le plan du site arrive avec les phases
@@ -101,6 +107,7 @@ suivantes.
 | -------------------------------------- | ----------------------------- | -------------------------------------------------- |
 | API Overpass (OpenStreetMap)           | amorçage de l'annuaire        | `scripts/import-osm.ts`, `src/lib/osm/` (ADR 0012) |
 | Base Adresse Nationale (Géoplateforme) | géocodage, commune d'un point | `src/lib/ban.ts`, skill `geocoder-adresse`         |
+| Tuiles IGN (Géoplateforme)             | fonds des cartes              | `src/config/carte.ts` (ADR 0029, 0036)             |
 
 Toute réponse externe est validée par Zod avant usage.
 
@@ -153,3 +160,4 @@ changement de code ni d'URL n'est nécessaire.
 | [0032](adr/0032-worker-d-envoi-des-courriels.md)          | Worker d'envoi des e-mails             |
 | [0033](adr/0033-pages-fraiches-apres-publication.md)      | Pages fraîches après une publication   |
 | [0035](adr/0035-site-porte-par-un-editeur-particulier.md) | Site porté par un éditeur particulier  |
+| [0036](adr/0036-itineraires.md)                           | Itinéraires et carte des parcours      |

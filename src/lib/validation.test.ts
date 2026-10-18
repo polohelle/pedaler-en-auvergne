@@ -4,6 +4,7 @@ import {
   acteurPublie,
   breve,
   evenement,
+  itineraire,
   sans,
 } from '../../tests/fixtures/contenus';
 import { ecrireMarkdown } from './frontmatter';
@@ -113,6 +114,38 @@ describe('validerFichier — actus', () => {
         'actus',
         '2026-10-12-a.md',
         ecrireMarkdown({ ...breve(), portee: 'monde' }, ''),
+      ),
+    ).toHaveLength(1);
+  });
+});
+
+describe('validerFichier — itinéraires', () => {
+  const brouillon = { ...itineraire(), statut: 'brouillon', source: 'agent' };
+
+  it('accepte un brouillon sans description', () => {
+    expect(
+      validerFichier('itineraires', 'boucle-des-puys.md', ecrireMarkdown(brouillon, '')),
+    ).toEqual([]);
+  });
+
+  it('exige la description d’un itinéraire publié', () => {
+    expect(
+      validerFichier('itineraires', 'boucle-des-puys.md', ecrireMarkdown(itineraire(), '')),
+    ).toEqual(['Description manquante : le corps du fichier est vide.']);
+  });
+
+  it('exige un nom de fichier en slug', () => {
+    expect(
+      validerFichier('itineraires', 'Boucle des puys.md', ecrireMarkdown(brouillon, '')),
+    ).toEqual(['Nom de fichier attendu : <slug>.md']);
+  });
+
+  it('remonte les erreurs de schéma', () => {
+    expect(
+      validerFichier(
+        'itineraires',
+        'boucle.md',
+        ecrireMarkdown({ ...brouillon, licence: 'inconnue' }, ''),
       ),
     ).toHaveLength(1);
   });

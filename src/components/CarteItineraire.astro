@@ -1,0 +1,53 @@
+---
+import {
+  LIBELLES_DIFFICULTE,
+  LIBELLES_FORME,
+  LIBELLES_PRATIQUE_ITINERAIRE,
+} from '@config/itineraires';
+import {
+  attributsCaracteristiques,
+  caracteristiques,
+  formaterDenivele,
+  formaterDistance,
+} from '@lib/itineraires';
+import type { EntreeItineraire } from '@services/contenus';
+
+/**
+ * Carte d'un itinéraire dans la liste. Ses caractéristiques sont posées en attributs `data-*`
+ * pour les filtres (ADR 0036) ; sans JavaScript, la liste reste complète.
+ */
+interface Props {
+  itineraire: EntreeItineraire;
+}
+
+const { id, data, mesures } = Astro.props.itineraire;
+const attributs = attributsCaracteristiques(caracteristiques(data, mesures));
+---
+
+<li class="carte itineraire" data-itineraire={id} {...attributs}>
+  <h3>
+    <a href={`/itineraires/${id}/`}>{data.titre}</a>
+  </h3>
+  <p>
+    <span class:list={['etiquette', `etiquette-${data.pratique}`]}>
+      {LIBELLES_PRATIQUE_ITINERAIRE[data.pratique]}
+    </span>{' '}
+    {formaterDistance(mesures.distanceKm)}
+    {mesures.deniveleM !== undefined && <> · {formaterDenivele(mesures.deniveleM)}</>}
+  </p>
+  <p class="discret">
+    {LIBELLES_FORME[data.forme]} au départ de {data.commune} ·{' '}
+    {LIBELLES_DIFFICULTE[data.difficulte]}
+    {data.balise && <> · balisé</>}
+  </p>
+</li>
+
+<style>
+  .itineraire > * {
+    margin-block: 0 var(--espace-1);
+  }
+
+  .itineraire > :last-child {
+    margin-block-end: 0;
+  }
+</style>

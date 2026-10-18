@@ -1,0 +1,161 @@
+---
+import {
+  DIFFICULTES,
+  LIBELLES_DIFFICULTE,
+  LIBELLES_PRATIQUE_ITINERAIRE,
+  PRATIQUES_ITINERAIRE,
+  TRANCHES_DENIVELE,
+  TRANCHES_DISTANCE,
+} from '@config/itineraires';
+
+/**
+ * Filtres de la carte et de la liste des itinéraires (ADR 0036). Masqués sans JavaScript :
+ * le script les affiche, applique la sélection aux deux vues et la reporte dans l'adresse.
+ */
+interface Props {
+  communes: readonly string[];
+}
+
+const { communes } = Astro.props;
+---
+
+<form
+  class="filtres"
+  data-filtres-itineraires="resume-filtres"
+  hidden
+  aria-labelledby="titre-filtres"
+>
+  <h2 id="titre-filtres">Filtrer les parcours</h2>
+  <div class="filtres__grille">
+    <fieldset>
+      <legend>Pratique</legend>
+      {PRATIQUES_ITINERAIRE.map((pratique) => (
+        <label class="filtres__choix">
+          <input type="checkbox" name="pratique" value={pratique} />
+          {LIBELLES_PRATIQUE_ITINERAIRE[pratique]}
+        </label>
+      ))}
+    </fieldset>
+    <fieldset>
+      <legend>Difficulté</legend>
+      {DIFFICULTES.map((difficulte) => (
+        <label class="filtres__choix">
+          <input type="checkbox" name="difficulte" value={difficulte} />
+          {LIBELLES_DIFFICULTE[difficulte]}
+        </label>
+      ))}
+    </fieldset>
+    <div class="filtres__listes">
+      <label for="filtre-distance">Distance</label>
+      <select id="filtre-distance" name="distance">
+        <option value="">Toutes</option>
+        {TRANCHES_DISTANCE.map(({ valeur, libelle }) => (
+          <option value={valeur}>{libelle}</option>
+        ))}
+      </select>
+      <label for="filtre-denivele">Dénivelé positif</label>
+      <select id="filtre-denivele" name="denivele">
+        <option value="">Tous</option>
+        {TRANCHES_DENIVELE.map(({ valeur, libelle }) => (
+          <option value={valeur}>{libelle}</option>
+        ))}
+      </select>
+      <label for="filtre-commune">Départ</label>
+      <select id="filtre-commune" name="commune">
+        <option value="">Toutes les communes</option>
+        {communes.map((commune) => (
+          <option value={commune}>{commune}</option>
+        ))}
+      </select>
+    </div>
+    <fieldset>
+      <legend>Autres critères</legend>
+      <label class="filtres__choix">
+        <input type="checkbox" name="boucle" value="oui" />
+        Boucles seulement
+      </label>
+      <label class="filtres__choix">
+        <input type="checkbox" name="balise" value="oui" />
+        Parcours balisés seulement
+      </label>
+    </fieldset>
+  </div>
+  <button type="reset" class="bouton bouton--secondaire">
+    Tout afficher
+  </button>
+</form>
+
+<style>
+  .filtres {
+    margin-block: var(--espace-4);
+    padding: var(--espace-3);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    background: var(--couleur-surface);
+  }
+
+  .filtres[hidden] {
+    display: none;
+  }
+
+  .filtres h2 {
+    margin-block-start: 0;
+    font-size: 1.15rem;
+  }
+
+  .filtres__grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: var(--espace-3);
+    margin-block-end: var(--espace-3);
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  legend,
+  .filtres__listes label {
+    font-weight: 600;
+  }
+
+  .filtres__choix {
+    display: flex;
+    align-items: center;
+    gap: var(--espace-2);
+    min-height: var(--cible-tactile);
+  }
+
+  .filtres__choix input {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    accent-color: var(--couleur-primaire);
+  }
+
+  .filtres__listes {
+    display: grid;
+    gap: var(--espace-1);
+  }
+
+  select {
+    min-height: var(--cible-tactile);
+    margin-block-end: var(--espace-2);
+    padding-inline: var(--espace-2);
+    border: 1px solid var(--couleur-texte-doux);
+    border-radius: var(--rayon);
+    background: var(--couleur-surface);
+    color: var(--couleur-texte);
+    font: inherit;
+  }
+
+  .bouton--secondaire {
+    border: 2px solid var(--couleur-action);
+    background: transparent;
+    color: var(--couleur-action);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+</style>
