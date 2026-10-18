@@ -25,7 +25,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: hebdomadaire
-    dernier_passage: 2026-10-16
+    dernier_passage: 2026-10-18
     notes: >-
       Association d'usagers, relais de la FUB depuis 1996, membre fondateur pressenti
       du collège Usagers. Site propre trouvé le 2026-10-16, à la place de la page HelloAsso
@@ -232,8 +232,8 @@ sources:
     dernier_passage: null
     notes: >-
       Média vélo hors compétition ; ne retenir que ce qui concerne les acteurs locaux.
-      Inaccessible à l'outil de lecture des agents le 2026-10-14 : à réévaluer, retrait si
-      l'échec se répète.
+      Inaccessible à l'outil de lecture des agents le 2026-10-14, de nouveau le 2026-10-18 :
+      retrait proposé à l'administrateur.
 
   - nom: Transition Vélo
     url: https://www.transitionvelo.com/feed/
