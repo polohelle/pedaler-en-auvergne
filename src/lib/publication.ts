@@ -3,7 +3,7 @@
  * sauf un événement `annule`, qui reste visible (barré) jusqu'à son dernier jour inclus
  * pour prévenir ceux qui l'avaient noté, avant d'être archivé.
  */
-import type { StatutActeur, StatutActu, StatutEvenement } from '@config/statuts';
+import type { StatutActeur, StatutActu, StatutEvenement, StatutItineraire } from '@config/statuts';
 import { jourCivil } from './dates';
 
 export interface Periode {
@@ -16,6 +16,10 @@ export function estActeurVisible(statut: StatutActeur): boolean {
 }
 
 export function estActuVisible(statut: StatutActu): boolean {
+  return statut === 'publie';
+}
+
+export function estItineraireVisible(statut: StatutItineraire): boolean {
   return statut === 'publie';
 }
 

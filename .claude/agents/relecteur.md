@@ -29,7 +29,10 @@ plus qu'à décider.
      aide, appel à projets, campagne, chiffre clé) ;
    - **statut** : jamais `publie` dans une pull request d'agent ;
    - **données personnelles** : aucune donnée de particulier ;
-   - **dates** : cohérentes avec la source, fuseau correct.
+   - **dates** : cohérentes avec la source, fuseau correct ;
+   - **itinéraires** : la licence déclarée est bien énoncée à l'adresse citée et figure dans
+     la liste de l'ADR 0035 ; `auteur` correspond à ce que la licence demande de citer ; la
+     trace GPX ne contient ni horodatage ni donnée personnelle (skill `importer-trace`).
 3. Commenter la pull request (`gh pr comment`) :
    - « OK — relecture automatique sans remarque » si tout est conforme ;
    - sinon, une liste numérotée de points précis (fichier, champ, problème, correction

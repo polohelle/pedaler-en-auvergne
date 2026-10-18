@@ -1,0 +1,139 @@
+---
+import { LIBELLES_PRATIQUE_ITINERAIRE, PRATIQUES_ITINERAIRE } from '@config/itineraires';
+
+/**
+ * Carte des itinéraires sur fond IGN (ADR 0035), chargée dès l'ouverture de la page : c'est
+ * l'objet de la rubrique. Sans JavaScript ou hors connexion, la liste donne les mêmes parcours.
+ * Avec `seul`, la carte ne montre que ce parcours (fiche itinéraire).
+ */
+interface Props {
+  seul?: string;
+  titre?: string;
+}
+
+const { seul, titre = 'Carte des parcours' } = Astro.props;
+---
+
+<section class="carte-itineraires" aria-labelledby="titre-carte-itineraires">
+  <h2 id="titre-carte-itineraires" class:list={{ 'visuellement-masque': seul !== undefined }}>
+    {titre}
+  </h2>
+  {seul === undefined && (
+    <ul class="liste-simple legende" aria-label="Légende des traces">
+      {PRATIQUES_ITINERAIRE.map((pratique) => (
+        <li>
+          <svg class="legende__trait" viewBox="0 0 40 10" aria-hidden="true" focusable="false">
+            <line class="trace__halo" x1="4" y1="5" x2="36" y2="5" />
+            <line class:list={['trace', `trace--${pratique}`]} x1="4" y1="5" x2="36" y2="5" />
+          </svg>
+          {LIBELLES_PRATIQUE_ITINERAIRE[pratique]}
+        </li>
+      ))}
+    </ul>
+  )}
+  <p id="etat-carte-itineraires" class="discret" role="status">
+    La carte demande JavaScript et une connexion ; la liste des parcours reste disponible.
+  </p>
+  <div
+    id="carte-itineraires"
+    class="carte-itineraires__fond"
+    data-carte-itineraires="etat-carte-itineraires"
+    data-seul={seul}
+  ></div>
+</section>
+
+<script>
+  import '../scripts/itineraires';
+</script>
+
+<style>
+  .carte-itineraires {
+    margin-block: var(--espace-4);
+  }
+
+  .carte-itineraires__fond {
+    height: min(70vh, 34rem);
+    border-radius: var(--rayon-grand);
+    overflow: hidden;
+    background: var(--couleur-fond-doux);
+  }
+
+  .legende {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espace-1) var(--espace-4);
+    margin-block-end: var(--espace-2);
+  }
+
+  .legende li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espace-2);
+  }
+
+  .legende__trait {
+    inline-size: 2.5rem;
+    block-size: 0.75rem;
+    border-radius: var(--rayon);
+    background: #f2efe9;
+  }
+
+  /*
+   * Traces : le fond IGN reste clair en mode sombre, d'où des couleurs fixes, contrastées sur
+   * le plan (3:1 au moins) et doublées d'un motif (plein, tirets, pointillés) pour ne pas
+   * reposer sur la seule couleur. Un liseré blanc détache la trace du fond.
+   */
+  .carte-itineraires :global(.trace) {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 4;
+  }
+
+  .carte-itineraires :global(.trace__halo) {
+    fill: none;
+    stroke: #ffffff;
+    stroke-linecap: round;
+    stroke-width: 8;
+    stroke-opacity: 0.9;
+  }
+
+  .carte-itineraires :global(.trace--route) {
+    stroke: #a8401a;
+  }
+
+  .carte-itineraires :global(.trace--gravel) {
+    stroke: #7a5200;
+    stroke-dasharray: 10 7;
+  }
+
+  .carte-itineraires :global(.trace--vtt) {
+    stroke: #5b3a8c;
+    stroke-dasharray: 1 8;
+    stroke-width: 5;
+  }
+
+  /* Départ : pastille dessinée en CSS, focalisable au clavier et nommée. */
+  .carte-itineraires :global(.carte__depart) {
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #22303a;
+  }
+
+  .carte-itineraires :global(.carte__depart--route) {
+    background: #a8401a;
+  }
+
+  .carte-itineraires :global(.carte__depart--gravel) {
+    background: #7a5200;
+  }
+
+  .carte-itineraires :global(.carte__depart--vtt) {
+    background: #5b3a8c;
+  }
+
+  .carte-itineraires :global(.carte__depart:focus-visible) {
+    outline: 3px solid var(--couleur-focus);
+    outline-offset: 2px;
+  }
+</style>

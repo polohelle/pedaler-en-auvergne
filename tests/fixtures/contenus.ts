@@ -2,6 +2,7 @@
 import type { ActeurSaisi } from '@schemas/acteur';
 import type { ActuSaisie } from '@schemas/actu';
 import type { EvenementSaisi } from '@schemas/evenement';
+import type { ItineraireSaisi } from '@schemas/itineraire';
 
 /** Copie des données sans les clés indiquées. */
 export function sans(donnees: Record<string, unknown>, ...cles: string[]): Record<string, unknown> {
@@ -86,4 +87,38 @@ export function breve(): Record<string, unknown> {
     portee: 'local',
     statut: 'publie',
   } satisfies ActuSaisie;
+}
+
+/** Itinéraire publié, trace sous licence ouverte. */
+export function itineraire(): Record<string, unknown> {
+  return {
+    titre: 'Boucle des puys par Volvic',
+    pratique: 'route',
+    difficulte: 'moyen',
+    forme: 'boucle',
+    balise: false,
+    commune: 'Volvic',
+    departement: '63',
+    depart: 'Place de l’Église',
+    acteur: 'velo-riom',
+    auteur: 'Office de tourisme fictif',
+    licence: 'licence-ouverte',
+    source_url: 'https://tourisme.example/boucle-des-puys',
+    trace_url: 'https://tourisme.example/boucle-des-puys.gpx',
+    source: 'admin',
+    verifie_le: '2026-10-18',
+    statut: 'publie',
+  } satisfies ItineraireSaisi;
+}
+
+/** Trace GPX minimale : `points` en [lat, lon, ele?]. */
+export function gpx(...points: [number, number, number?][]): string {
+  const trkpts = points
+    .map(([lat, lon, ele]) =>
+      ele === undefined
+        ? `<trkpt lat="${String(lat)}" lon="${String(lon)}"/>`
+        : `<trkpt lat="${String(lat)}" lon="${String(lon)}"><ele>${String(ele)}</ele></trkpt>`,
+    )
+    .join('\n');
+  return `<?xml version="1.0"?>\n<gpx version="1.1" creator="test"><trk><name>Test</name><trkseg>\n${trkpts}\n</trkseg></trk></gpx>`;
 }

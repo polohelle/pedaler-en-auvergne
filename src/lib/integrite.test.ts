@@ -39,4 +39,23 @@ describe('verifierIntegrite', () => {
       ),
     ).toEqual(['node/1 est importé plusieurs fois : velo-riom, doublon.']);
   });
+
+  it('signale la structure inconnue ou non publiée d’un itinéraire publié', () => {
+    expect(
+      verifierIntegrite(
+        acteurs,
+        [],
+        [
+          { id: 'a', statut: 'publie', acteur: 'velo-riom' },
+          { id: 'b', statut: 'brouillon', acteur: 'cycles-thiers' },
+          { id: 'c', statut: 'publie' },
+          { id: 'd', statut: 'brouillon', acteur: 'inconnu' },
+          { id: 'e', statut: 'publie', acteur: 'cycles-thiers' },
+        ],
+      ),
+    ).toEqual([
+      "d : la structure « inconnu » n'existe pas dans l'annuaire.",
+      "e : la structure « cycles-thiers » n'est pas publiée.",
+    ]);
+  });
 });

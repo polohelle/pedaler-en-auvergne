@@ -1,0 +1,58 @@
+---
+import Appel from '@components/Appel.astro';
+import CarteDesItineraires from '@components/CarteDesItineraires.astro';
+import CarteItineraire from '@components/CarteItineraire.astro';
+import FiltresItineraires from '@components/FiltresItineraires.astro';
+import TetePage from '@components/TetePage.astro';
+import Base from '@layouts/Base.astro';
+import { itinerairesPublies } from '@services/contenus';
+
+const itineraires = await itinerairesPublies();
+const communes = [...new Set(itineraires.map(({ data }) => data.commune))].sort((a, b) =>
+  a.localeCompare(b, 'fr'),
+);
+---
+
+<Base
+  titre="Itinéraires vélo : route, gravel et VTT"
+  description="Les parcours route, gravel et VTT du Puy-de-Dôme sur une seule carte IGN, à trier par pratique, difficulté, distance et dénivelé."
+>
+  <TetePage titre="Itinéraires route, gravel et VTT">
+    <p class="texte">
+      Tous les parcours du secteur sur une seule carte IGN, à trier par pratique, difficulté,
+      distance et dénivelé. Chaque trace se télécharge au format GPX.
+    </p>
+  </TetePage>
+  {itineraires.length === 0 ? (
+    <p class="texte">
+      La rubrique est en cours de constitution : les premiers parcours seront publiés après
+      vérification de leur trace et de leur licence.
+    </p>
+  ) : (
+    <>
+      <FiltresItineraires communes={communes} />
+      <p id="resume-filtres" class="discret" role="status">
+        {itineraires.length} parcours référencé(s).
+      </p>
+      <CarteDesItineraires />
+      <h2>Liste des parcours</h2>
+      <ul class="grille liste-simple">
+        {itineraires.map((itineraire) => (
+          <CarteItineraire itineraire={itineraire} />
+        ))}
+      </ul>
+    </>
+  )}
+  <Appel
+    titre="Vous balisez ou proposez des parcours ?"
+    lien="/association/contact/"
+    libelle="Nous écrire"
+  >
+    Club, office de tourisme ou collectivité : si vos traces sont sous licence libre, nous les
+    ajoutons à la carte en citant leur source.
+  </Appel>
+  <p class="discret">
+    Chaque trace reste la propriété de son auteur et est reprise selon sa licence, indiquée sur sa
+    fiche. Fond de carte © IGN Géoplateforme.
+  </p>
+</Base>

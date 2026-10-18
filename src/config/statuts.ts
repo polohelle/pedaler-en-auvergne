@@ -11,3 +11,6 @@ export type StatutEvenement = (typeof STATUTS_EVENEMENT)[number];
 
 export const STATUTS_ACTU = ['brouillon', 'publie', 'archive'] as const;
 export type StatutActu = (typeof STATUTS_ACTU)[number];
+
+export const STATUTS_ITINERAIRE = ['brouillon', 'publie', 'archive'] as const;
+export type StatutItineraire = (typeof STATUTS_ITINERAIRE)[number];

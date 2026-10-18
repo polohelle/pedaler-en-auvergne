@@ -1,6 +1,7 @@
 /** Listes fermées du carnet de sources de veille (data/sources.yaml). */
 
-export const TYPES_SOURCE = ['rss', 'page', 'agenda'] as const;
+/** `traces` : publie des parcours GPX, lue par l'agent collecte-itineraires (ADR 0035). */
+export const TYPES_SOURCE = ['rss', 'page', 'agenda', 'traces'] as const;
 export type TypeSource = (typeof TYPES_SOURCE)[number];
 
 export const NIVEAUX_SOURCE = ['local', 'regional', 'national'] as const;

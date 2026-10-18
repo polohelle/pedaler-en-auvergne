@@ -1,8 +1,8 @@
 /**
  * Contrôles qui portent sur plusieurs fichiers à la fois et qu'un schéma ne peut pas faire :
- * organisateurs existants et publiés, identifiants OSM uniques.
+ * organisateurs et structures des itinéraires existants et publiés, identifiants OSM uniques.
  */
-import type { StatutActeur, StatutEvenement } from '@config/statuts';
+import type { StatutActeur, StatutEvenement, StatutItineraire } from '@config/statuts';
 
 export interface ActeurIndexe {
   slug: string;
@@ -16,9 +16,16 @@ export interface EvenementIndexe {
   organisateur?: string | undefined;
 }
 
+export interface ItineraireIndexe {
+  id: string;
+  statut: StatutItineraire;
+  acteur?: string | undefined;
+}
+
 export function verifierIntegrite(
   acteurs: readonly ActeurIndexe[],
   evenements: readonly EvenementIndexe[],
+  itineraires: readonly ItineraireIndexe[] = [],
 ): string[] {
   const erreurs: string[] = [];
   const parSlug = new Map(acteurs.map((acteur) => [acteur.slug, acteur]));
@@ -40,6 +47,16 @@ export function verifierIntegrite(
       erreurs.push(`${id} : l'organisateur « ${organisateur} » n'existe pas dans l'annuaire.`);
     } else if ((statut === 'publie' || statut === 'annule') && acteur.statut !== 'publie') {
       erreurs.push(`${id} : l'organisateur « ${organisateur} » n'est pas publié.`);
+    }
+  }
+
+  for (const { id, statut, acteur: slug } of itineraires) {
+    if (slug === undefined) continue;
+    const acteur = parSlug.get(slug);
+    if (acteur === undefined) {
+      erreurs.push(`${id} : la structure « ${slug} » n'existe pas dans l'annuaire.`);
+    } else if (statut === 'publie' && acteur.statut !== 'publie') {
+      erreurs.push(`${id} : la structure « ${slug} » n'est pas publiée.`);
     }
   }
   return erreurs;

@@ -7,18 +7,25 @@ import type { ZodError } from 'astro/zod';
 import { schemaActeur, type Acteur } from '@schemas/acteur';
 import { schemaActu, type Actu } from '@schemas/actu';
 import { schemaEvenement } from '@schemas/evenement';
+import { schemaItineraire, type Itineraire } from '@schemas/itineraire';
 import { jourCivil } from './dates';
 import { lireMarkdown } from './frontmatter';
 
-export const COLLECTIONS = ['acteurs', 'evenements', 'actus'] as const;
+export const COLLECTIONS = ['acteurs', 'evenements', 'actus', 'itineraires'] as const;
 export type NomCollection = (typeof COLLECTIONS)[number];
 
-/** Corps Markdown obligatoire : description d'un acteur publié, de tout événement, d'un article. */
+/**
+ * Corps Markdown obligatoire : description d'un acteur publié, de tout événement, d'un article,
+ * d'un itinéraire publié.
+ */
 export const descriptionRequise = {
   acteurs: (acteur: Pick<Acteur, 'statut'>) => acteur.statut === 'publie',
   evenements: () => true,
   actus: (actu: Pick<Actu, 'type'>) => actu.type === 'article',
+  itineraires: (itineraire: Pick<Itineraire, 'statut'>) => itineraire.statut === 'publie',
 } as const;
+
+const NOM_SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*\.md$/;
 
 const NOM_DATE = /^(\d{4}-\d{2}-\d{2})-[a-z0-9]+(?:-[a-z0-9]+)*\.md$/;
 
@@ -74,6 +81,17 @@ export function validerFichier(
       if (!resultat.success) return erreursZod(resultat.error);
       const erreurs = verifierNomDate(nomFichier, resultat.data.date);
       if (descriptionRequise.actus(resultat.data) && corpsVide) erreurs.push(manqueDescription);
+      return erreurs;
+    }
+    case 'itineraires': {
+      // La trace `<slug>.gpx` voisine est contrôlée par le test de contenu (verifierTrace).
+      const resultat = schemaItineraire.safeParse(fichier.donnees);
+      if (!resultat.success) return erreursZod(resultat.error);
+      const erreurs: string[] = [];
+      if (!NOM_SLUG.test(nomFichier)) erreurs.push('Nom de fichier attendu : <slug>.md');
+      if (descriptionRequise.itineraires(resultat.data) && corpsVide) {
+        erreurs.push(manqueDescription);
+      }
       return erreurs;
     }
   }

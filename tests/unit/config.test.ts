@@ -4,8 +4,20 @@ import { CATEGORIES_ACTU, PORTEES, TYPES_ACTU } from '@config/actus';
 import { ASSOCIATION, COLLEGES_ASSOCIATION, PAGES_ASSOCIATION } from '@config/association';
 import { CODES_DEPARTEMENT, DEPARTEMENT_PAR_DEFAUT, DEPARTEMENTS } from '@config/departements';
 import { ORIGINES_EVENEMENT, TYPES_EVENEMENT } from '@config/evenements';
+import {
+  DIFFICULTES,
+  FORMES,
+  LICENCES_TRACE,
+  ORIGINES_ITINERAIRE,
+  PRATIQUES_ITINERAIRE,
+} from '@config/itineraires';
 import { FIABILITES, FREQUENCES, NIVEAUX_SOURCE, TYPES_SOURCE } from '@config/sources';
-import { STATUTS_ACTEUR, STATUTS_ACTU, STATUTS_EVENEMENT } from '@config/statuts';
+import {
+  STATUTS_ACTEUR,
+  STATUTS_ACTU,
+  STATUTS_EVENEMENT,
+  STATUTS_ITINERAIRE,
+} from '@config/statuts';
 import { lienHelloAsso } from '@lib/association';
 import { pages } from '../pages';
 
@@ -23,6 +35,12 @@ const listes = {
   STATUTS_ACTEUR,
   STATUTS_EVENEMENT,
   STATUTS_ACTU,
+  STATUTS_ITINERAIRE,
+  PRATIQUES_ITINERAIRE,
+  DIFFICULTES,
+  FORMES,
+  LICENCES_TRACE,
+  ORIGINES_ITINERAIRE,
   TYPES_SOURCE,
   NIVEAUX_SOURCE,
   FIABILITES,

@@ -16,6 +16,8 @@ export const pages = [
   { nom: 'proposer un événement', chemin: '/agenda/proposer/' },
   { nom: 'proposition reçue', chemin: '/agenda/proposer/merci/' },
   { nom: 'proposition non envoyée', chemin: '/agenda/proposer/erreur/' },
+  { nom: 'itinéraires', chemin: '/itineraires/' },
+  { nom: 'fiche itinéraire', chemin: '/itineraires/boucle-test-volvic/' },
   { nom: 'actus', chemin: '/actus/' },
   { nom: 'article', chemin: '/actus/2026-10-01-article-test/' },
   { nom: 'brève', chemin: '/actus/2026-10-05-breve-test/' },
