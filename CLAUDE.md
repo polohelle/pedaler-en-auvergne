@@ -1,7 +1,8 @@
 # Pédaler en Auvergne — consignes pour Claude
 
 Portail statique des acteurs du vélo du Puy-de-Dôme, extensible à l'Auvergne : annuaire,
-agenda, actualités et partie association. Le cahier des charges fait foi :
+agenda et actualités, porté par un éditeur particulier (ADR 0035 : la partie association
+est suspendue). Le cahier des charges fait foi :
 [docs/cahier-des-charges.md](docs/cahier-des-charges.md). Les décisions structurantes sont
 dans [docs/adr/](docs/adr/) ; l'architecture est résumée dans
 [docs/architecture.md](docs/architecture.md).

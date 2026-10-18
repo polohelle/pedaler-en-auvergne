@@ -13,7 +13,6 @@ const PAGES_HORS_CONNEXION = [
   'annuaire/index.html',
   'agenda/index.html',
   'actus/index.html',
-  'association/index.html',
   'mentions-legales/index.html',
   'hors-ligne/index.html',
 ];

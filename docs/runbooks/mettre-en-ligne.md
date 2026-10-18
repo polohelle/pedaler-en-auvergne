@@ -2,25 +2,19 @@
 
 Liste à cocher avant d'annoncer le site.
 
-## Association et mentions légales
+## Éditeur et mentions légales
 
-Les pages affichent une mention neutre tant que les champs de `src/config/association.ts`
-valent `null`.
+Le site est porté par un éditeur particulier (ADR 0035) : son identité est communiquée à
+l'hébergeur, pas publiée. Les pages affichent une mention neutre tant que `email` vaut `null`
+dans `src/config/editeur.ts`.
 
-- [ ] **Avant la mise en ligne publique** : renseigner `directeurPublication` (nom de la
-      personne) et `email: 'contact@pedalerenauvergne.fr'`.
+- [ ] Vérifier que le compte Cloudflare (hébergeur) porte bien le nom et l'adresse de l'éditeur.
 - [ ] Créer l'adresse `contact@pedalerenauvergne.fr` : Cloudflare → domaine → **Email → Email
       Routing** → règle de transfert vers la boîte de l'administrateur (adresse de destination à
       vérifier). La même boîte reçoit les e-mails des auteurs de formulaires (ADR 0018).
-- [ ] **Après la déclaration de l'association** : renseigner `rna` et `adresse` (siège).
-- [ ] Nom de l'association dans le titulaire du copyright de `LICENSE`.
-- [ ] **Après l'assemblée constitutive** : renseigner `statutsAdoptesLe` ; le bandeau « projet »
-      disparaît des pages de l'association. Mettre à jour la charte et la gouvernance si l'AG a
-      modifié le projet, et le barème `BAREME_COTISATION` tel que voté.
-- [ ] Campagnes HelloAsso créées : renseigner `helloasso.adhesion` et `helloasso.don`
-      (adresses `https://www.helloasso.com/associations/…`, vérifiées par les tests).
+- [ ] Renseigner `email: 'contact@pedalerenauvergne.fr'` dans `src/config/editeur.ts`.
 - [ ] Relire la page « Mentions légales et confidentialité » (responsable de traitement,
-      contact, conservation des données des formulaires — ADR 0018).
+      contact, conservation des données des formulaires — ADR 0018) et la page « À propos ».
 
 ## Dépôt et hébergement
 

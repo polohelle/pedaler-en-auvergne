@@ -25,7 +25,7 @@ des fiches sont un contenu, publié sous CC BY-SA 4.0.
 
 Le nom « Pédaler en Auvergne », ses déclinaisons « Pédaler à… » et le logo
 ne sont couverts par aucune de ces licences. Leur usage demande l'accord de
-l'association.
+l'éditeur du site.
 
 ## Polices
 

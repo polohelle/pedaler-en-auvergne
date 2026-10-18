@@ -1,6 +1,6 @@
 # 0028 — Pages de l'association : textes provisoires, collège Cyclistes et liens HelloAsso
 
-- Statut : proposée
+- Statut : remplacée par [0035](0035-site-porte-par-un-editeur-particulier.md)
 - Date : 2026-10-16
 
 ## Contexte

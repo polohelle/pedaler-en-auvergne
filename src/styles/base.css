@@ -133,11 +133,6 @@ a:hover {
   margin: 0;
 }
 
-.etiquette-membre {
-  background: var(--couleur-primaire);
-  color: var(--couleur-primaire-contraste);
-}
-
 /* Pratiques des événements (ADR 0034) : une couleur par pratique, toujours avec son nom. */
 .etiquette-route {
   background: var(--couleur-texte);
