@@ -31,7 +31,7 @@ function tuilesGeoplateforme(couche: string, format: 'image/png' | 'image/jpeg')
 }
 
 /**
- * Carte des itinéraires (ADR 0035) : mêmes conditions que la carte de l'annuaire (Géoplateforme,
+ * Carte des itinéraires (ADR 0036) : mêmes conditions que la carte de l'annuaire (Géoplateforme,
  * sans clé, Licence ouverte, même hôte dans la CSP), avec trois couches au choix.
  */
 export const CARTE_ITINERAIRES = {

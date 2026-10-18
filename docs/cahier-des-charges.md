@@ -4,6 +4,8 @@
 
 ## Contexte et objectifs
 
+> **Mise à jour du 17 octobre 2026** : la création de l'association est en pause. Le site est porté seul, à titre bénévole, par son administrateur (ADR 0035). La partie association, l'adhésion HelloAsso et le badge « membre » sont suspendus ; les passages qui en parlent décrivent la cible si l'association est créée.
+
 Pédaler en Auvergne, « le réseau des acteurs du vélo », est la vitrine et l'outil de l'association du même nom qui fédère tous les acteurs du vélo du Puy-de-Dôme, avant une extension à l'Auvergne. Il centralise en un seul endroit l'information vélo locale, aujourd'hui éparpillée entre sites de clubs, pages d'associations, réseaux sociaux et presse locale.
 
 L'association regroupe des acteurs de tous horizons, organisés en collèges :
@@ -112,7 +114,9 @@ Le portail repose sur trois piliers de contenu (annuaire, agenda, actualités) e
 - Catégories : aménagements, sport, événements, politique vélo, filière économique
 - Flux RSS des actualités
 
-### Partie association (P1)
+### Partie association (suspendue, ADR 0035)
+
+Remplacée pour l'instant par une page « À propos » : présentation du site, règles éditoriales et contact. Si l'association est créée :
 
 - Présentation, charte, gouvernance par collèges
 - Liste des membres par collège (alimentée par le badge « membre » de l'annuaire)
@@ -370,7 +374,7 @@ Les deux entrées convergent vers la même file de relecture ; une proposition r
 - Annuaire limité aux coordonnées professionnelles publiques des structures ; aucune donnée de particulier.
 - Toute structure peut demander la correction ou le retrait de sa fiche (formulaire dédié, traitement sous 7 jours).
 - Formulaires : seules les données nécessaires ; l'adresse e-mail de l'auteur sert uniquement à lui répondre et n'est jamais publiée dans le dépôt (stockée hors du dépôt public ou masquée dans l'*issue*).
-- Page « Mentions légales et confidentialité » : responsable de traitement (l'association), finalités, durée de conservation, contact.
+- Page « Mentions légales et confidentialité » : responsable de traitement (l'éditeur du site, puis l'association si elle est créée), finalités, durée de conservation, contact.
 - Mesure d'audience sans cookie, donc pas de bandeau de consentement.
 - Si le dépôt GitHub est public, n'y mettre aucune donnée qui ne serait pas publiée sur le site.
 
@@ -425,7 +429,7 @@ Le site public sort à la fin de la phase 2 ; les agents arrivent ensuite, un pa
 | Phase | Contenu | Critère pour passer à la suivante |
 | --- | --- | --- |
 | 1. Fondations | Dépôt et hébergement, modèle de données, import annuaire OSM, nom de domaine, mentions légales, socle qualité | 20 fiches vérifiées |
-| 2. Lancement | Annuaire et carte, agenda et formulaire, pages association, adhésion HelloAsso | Site public en ligne |
+| 2. Lancement | Annuaire et carte, agenda et formulaire, page À propos (association et adhésion HelloAsso suspendues) | Site public en ligne |
 | 3. Automatisation | Agent propositions, agent événements, veille locale puis nationale, flux iCal et RSS | Relecture tenable |
 | 4. Extension | Revue de presse, pages par commune, newsletter, itinéraires GPX, autres départements | — |
 

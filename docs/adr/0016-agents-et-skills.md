@@ -41,4 +41,4 @@ agents ne sont pas sûres, et rien ne doit être publié sans validation humaine
 - Les consignes des agents évolueront avec les premiers rapports ; chaque changement passe par
   une PR relue.
 - Ajout de l'agent `collecte-itineraires` et des skills `importer-trace` et
-  `rediger-itineraire` (ADR 0035).
+  `rediger-itineraire` (ADR 0036).

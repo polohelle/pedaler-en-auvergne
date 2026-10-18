@@ -1,9 +1,7 @@
 ---
-import { ASSOCIATION, HEBERGEUR } from '@config/association';
+import { EDITEUR, HEBERGEUR } from '@config/editeur';
 import { SITE } from '@config/site';
 import Base from '@layouts/Base.astro';
-
-const aCompleter = 'communiqué à la déclaration de l’association';
 ---
 
 <Base
@@ -15,12 +13,18 @@ const aCompleter = 'communiqué à la déclaration de l’association';
 
     <h2>Éditeur</h2>
     <p>
-      {ASSOCIATION.nom}, {ASSOCIATION.forme}.<br />
-      Numéro RNA : {ASSOCIATION.rna ?? aCompleter}.<br />
-      Siège : {ASSOCIATION.adresse ?? aCompleter}.<br />
-      Directeur ou directrice de la publication : {ASSOCIATION.directeurPublication ?? aCompleter}.
-      <br />
-      Contact : {ASSOCIATION.email ?? aCompleter}.
+      {SITE.nom} est édité à titre non professionnel par un particulier bénévole. Comme le permet la
+      loi pour la confiance dans l'économie numérique (LCEN), l'éditeur a communiqué son identité à
+      l'hébergeur ci-dessous et ne la publie pas.
+    </p>
+    <p>
+      Contact :{' '}
+      {EDITEUR.email === null ? (
+        'adresse publiée prochainement'
+      ) : (
+        <a href={`mailto:${EDITEUR.email}`}>{EDITEUR.email}</a>
+      )}
+      .
     </p>
 
     <h2>Hébergeur</h2>
@@ -30,9 +34,8 @@ const aCompleter = 'communiqué à la déclaration de l’association';
 
     <h2>Données personnelles</h2>
     <p>
-      Le responsable de traitement est l'association {ASSOCIATION.nom}. Le site publie uniquement
-      les coordonnées professionnelles publiques des structures de l'annuaire, jamais de données de
-      particuliers.
+      Le responsable de traitement est l'éditeur du site. Le site publie uniquement les coordonnées
+      professionnelles publiques des structures de l'annuaire, jamais de données de particuliers.
     </p>
     <p>
       Lorsque vous proposez un événement, une fiche ou une correction, seules les informations
@@ -43,7 +46,7 @@ const aCompleter = 'communiqué à la déclaration de l’association';
     <p>
       Toute structure peut demander la correction ou le retrait de sa fiche ; la demande est traitée
       sous 7 jours au plus. Vous disposez d'un droit d'accès, de rectification, d'effacement et
-      d'opposition, à exercer auprès de l'association, et du droit d'introduire une réclamation
+      d'opposition, à exercer à l'adresse de contact, et du droit d'introduire une réclamation
       auprès de la <a href="https://www.cnil.fr">CNIL</a>.
     </p>
 
@@ -59,7 +62,7 @@ const aCompleter = 'communiqué à la déclaration de l’association';
       Code sous licence MIT, textes sous licence CC BY-SA 4.0, données de l'annuaire sous licence
       ODbL 1.0, dont une partie ©{' '}
       <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>. Le nom et
-      le logo {ASSOCIATION.nom} sont exclus de ces licences. Détail :
+      le logo {SITE.nom} sont exclus de ces licences. Détail :
       <a href={`${SITE.depot}/blob/main/LICENSES.md`}>LICENSES.md</a>.
     </p>
     <p>

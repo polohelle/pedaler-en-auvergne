@@ -1,7 +1,8 @@
 # Pédaler en Auvergne — consignes pour Claude
 
 Portail statique des acteurs du vélo du Puy-de-Dôme, extensible à l'Auvergne : annuaire,
-agenda, actualités et partie association. Le cahier des charges fait foi :
+agenda et actualités, porté par un éditeur particulier (ADR 0035 : la partie association
+est suspendue). Le cahier des charges fait foi :
 [docs/cahier-des-charges.md](docs/cahier-des-charges.md). Les décisions structurantes sont
 dans [docs/adr/](docs/adr/) ; l'architecture est résumée dans
 [docs/architecture.md](docs/architecture.md).
@@ -77,7 +78,7 @@ il refuse un `git commit` mal enchaîné ou sans vérification préalable de l'�
   `actus/<aaaa-mm-jj>-<slug>.md` (date du début, à Paris) ; `itineraires/<slug>.md` et
   `itineraires/<slug>.gpx`.
 - Itinéraires : seule une trace sous licence de réutilisation (Licence Ouverte, ODbL, CC0,
-  CC BY, CC BY-SA, ou accord écrit de l'auteur) est reprise, avec auteur et source (ADR 0035).
+  CC BY, CC BY-SA, ou accord écrit de l'auteur) est reprise, avec auteur et source (ADR 0036).
 - Structure sans adresse d'accueil publique (atelier mobile, activité à domicile) :
   `sans_adresse_publique: true`, commune seule, jamais d'adresse supposée (ADR 0025).
 - Neutralité : l'annuaire est exhaustif et non commercial ; indépendants, franchises et chaînes
@@ -92,8 +93,9 @@ il refuse un `git commit` mal enchaîné ou sans vérification préalable de l'�
    Aucun agent ne publie : c'est la fusion par l'administrateur qui publie.
 2. **Toujours renseigner `source_url`.** Sans source vérifiable, l'information n'est pas retenue.
 3. **Rédiger avec ses propres mots** : aucune copie de texte, aucune citation longue, aucune
-   image reprise sans droits (seule exception : le logo d'une structure sur sa fiche, avec sa
-   source, ADR 0031).
+   image reprise sans droits (exceptions : le logo d'une structure sur sa fiche, avec sa
+   source, ADR 0031 ; l'affiche officielle d'un événement publiée par son organisateur, avec
+   crédit et lien, ADR 0034).
 4. **Dédoublonner avant de créer** (skill `dedoublonner`) : compléter un contenu existant
    plutôt que d'en créer un second.
 5. **Rester dans le périmètre** géographique (départements actifs de

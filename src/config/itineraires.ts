@@ -1,5 +1,5 @@
 /**
- * Listes fermées des itinéraires (ADR 0035) : une carte unique de tous les parcours route,
+ * Listes fermées des itinéraires (ADR 0036) : une carte unique de tous les parcours route,
  * gravel et VTT du secteur, filtrable par ces critères.
  */
 import type { PratiqueEvenement } from './evenements';

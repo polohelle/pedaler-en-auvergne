@@ -55,7 +55,7 @@ Les champs, types et valeurs autorisées font foi dans `src/schemas/` et `src/co
   pratique (`route`, `gravel`, `vtt`), difficulté, forme, balisage, commune et point de départ,
   département, structure de l'annuaire, auteur et licence de la trace, `source_url`,
   `trace_url`, source, `verifie_le`, statut (`brouillon`, `publie`, `archive`), description.
-  Distance et dénivelé sont calculés à partir de la trace (ADR 0035).
+  Distance et dénivelé sont calculés à partir de la trace (ADR 0036).
 - **Source de veille** (`data/sources.yaml`) : nom, URL, type, niveau, département, acteur,
   fiabilité, fréquence, dernier passage, notes.
 
@@ -85,7 +85,7 @@ HTML statique (`dist/`), `sw.js` et manifeste de l'application (ADR 0015), icôn
 (`/agenda.ics`, et `/agenda/<id>.ics` par événement) et flux RSS (`/agenda/rss.xml`,
 `/actus/rss.xml`), générés par `src/lib/ical.ts`, `src/lib/rss.ts` et `src/lib/flux.ts`. Points de
 l'annuaire en GeoJSON (`/annuaire.geojson`, ADR 0029) ; traces des itinéraires en GeoJSON
-(`/itineraires.geojson`) et en GPX (`/itineraires/<slug>.gpx`, ADR 0035). Une seule partie dynamique : la fonction
+(`/itineraires.geojson`) et en GPX (`/itineraires/<slug>.gpx`, ADR 0036). Une seule partie dynamique : la fonction
 Cloudflare Pages `functions/api/proposer-evenement.ts` du formulaire « Proposer un événement »
 (ADR 0030), dont la logique est dans `src/lib/formulaire/`, et le Worker `workers/courriel/` qui
 envoie l'e-mail de transmission (ADR 0032). Le plan du site arrive avec les phases
@@ -107,7 +107,7 @@ suivantes.
 | -------------------------------------- | ----------------------------- | -------------------------------------------------- |
 | API Overpass (OpenStreetMap)           | amorçage de l'annuaire        | `scripts/import-osm.ts`, `src/lib/osm/` (ADR 0012) |
 | Base Adresse Nationale (Géoplateforme) | géocodage, commune d'un point | `src/lib/ban.ts`, skill `geocoder-adresse`         |
-| Tuiles IGN (Géoplateforme)             | fonds des cartes              | `src/config/carte.ts` (ADR 0029, 0035)             |
+| Tuiles IGN (Géoplateforme)             | fonds des cartes              | `src/config/carte.ts` (ADR 0029, 0036)             |
 
 Toute réponse externe est validée par Zod avant usage.
 
@@ -125,38 +125,39 @@ changement de code ni d'URL n'est nécessaire.
 
 ## Décisions
 
-| ADR                                                     | Sujet                                  |
-| ------------------------------------------------------- | -------------------------------------- |
-| [0001](adr/0001-consigner-les-decisions.md)             | Consigner les décisions                |
-| [0002](adr/0002-astro-statique.md)                      | Site statique Astro                    |
-| [0003](adr/0003-pnpm-node-typescript.md)                | pnpm, Node 24, TypeScript              |
-| [0004](adr/0004-licences.md)                            | Licences                               |
-| [0005](adr/0005-qualite-du-code.md)                     | Lint, formatage, hooks                 |
-| [0006](adr/0006-dates-et-fuseau.md)                     | Dates et fuseau                        |
-| [0007](adr/0007-tests-unitaires.md)                     | Tests unitaires                        |
-| [0008](adr/0008-tests-bout-en-bout-et-accessibilite.md) | Tests bout en bout et accessibilité    |
-| [0009](adr/0009-chaine-ci.md)                           | Chaîne CI                              |
-| [0010](adr/0010-schemas-partages.md)                    | Schémas partagés                       |
-| [0011](adr/0011-acces-au-contenu-et-publication.md)     | Accès au contenu et publication        |
-| [0012](adr/0012-import-osm.md)                          | Import OpenStreetMap                   |
-| [0013](adr/0013-interface-css-natif-sans-javascript.md) | Interface, CSS, CSP                    |
-| [0014](adr/0014-contenus-de-test.md)                    | Contenus de test                       |
-| [0015](adr/0015-pwa.md)                                 | Application installable                |
-| [0016](adr/0016-agents-et-skills.md)                    | Agents et skills                       |
-| [0017](adr/0017-deploiement-cloudflare-pages.md)        | Déploiement                            |
-| [0018](adr/0018-donnees-des-formulaires.md)             | Données personnelles des formulaires   |
-| [0019](adr/0019-brouillons-osm-minimaux.md)             | Brouillons OpenStreetMap minimaux      |
-| [0020](adr/0020-declencheurs-de-la-ci.md)               | Déclencheurs de la CI                  |
-| [0021](adr/0021-garde-fou-des-commits.md)               | Garde-fou des commits                  |
-| [0022](adr/0022-version-de-node.md)                     | Version de Node                        |
-| [0023](adr/0023-runners-figes.md)                       | Runners figés sur une version d'Ubuntu |
-| [0024](adr/0024-identite-visuelle.md)                   | Identité visuelle                      |
-| [0025](adr/0025-fiches-sans-adresse-publique.md)        | Fiches sans adresse publique           |
-| [0026](adr/0026-montee-ubuntu-26-04.md)                 | Montée des runners vers Ubuntu 26.04   |
-| [0027](adr/0027-pages-par-commune.md)                   | Pages par commune « Pédaler à… »       |
-| [0028](adr/0028-pages-association-provisoires.md)       | Pages de l'association                 |
-| [0029](adr/0029-carte-de-l-annuaire.md)                 | Carte de l'annuaire                    |
-| [0030](adr/0030-formulaire-proposer-un-evenement.md)    | Formulaire « Proposer un événement »   |
-| [0032](adr/0032-worker-d-envoi-des-courriels.md)        | Worker d'envoi des e-mails             |
-| [0033](adr/0033-pages-fraiches-apres-publication.md)    | Pages fraîches après une publication   |
-| [0035](adr/0035-itineraires.md)                         | Itinéraires et carte des parcours      |
+| ADR                                                       | Sujet                                  |
+| --------------------------------------------------------- | -------------------------------------- |
+| [0001](adr/0001-consigner-les-decisions.md)               | Consigner les décisions                |
+| [0002](adr/0002-astro-statique.md)                        | Site statique Astro                    |
+| [0003](adr/0003-pnpm-node-typescript.md)                  | pnpm, Node 24, TypeScript              |
+| [0004](adr/0004-licences.md)                              | Licences                               |
+| [0005](adr/0005-qualite-du-code.md)                       | Lint, formatage, hooks                 |
+| [0006](adr/0006-dates-et-fuseau.md)                       | Dates et fuseau                        |
+| [0007](adr/0007-tests-unitaires.md)                       | Tests unitaires                        |
+| [0008](adr/0008-tests-bout-en-bout-et-accessibilite.md)   | Tests bout en bout et accessibilité    |
+| [0009](adr/0009-chaine-ci.md)                             | Chaîne CI                              |
+| [0010](adr/0010-schemas-partages.md)                      | Schémas partagés                       |
+| [0011](adr/0011-acces-au-contenu-et-publication.md)       | Accès au contenu et publication        |
+| [0012](adr/0012-import-osm.md)                            | Import OpenStreetMap                   |
+| [0013](adr/0013-interface-css-natif-sans-javascript.md)   | Interface, CSS, CSP                    |
+| [0014](adr/0014-contenus-de-test.md)                      | Contenus de test                       |
+| [0015](adr/0015-pwa.md)                                   | Application installable                |
+| [0016](adr/0016-agents-et-skills.md)                      | Agents et skills                       |
+| [0017](adr/0017-deploiement-cloudflare-pages.md)          | Déploiement                            |
+| [0018](adr/0018-donnees-des-formulaires.md)               | Données personnelles des formulaires   |
+| [0019](adr/0019-brouillons-osm-minimaux.md)               | Brouillons OpenStreetMap minimaux      |
+| [0020](adr/0020-declencheurs-de-la-ci.md)                 | Déclencheurs de la CI                  |
+| [0021](adr/0021-garde-fou-des-commits.md)                 | Garde-fou des commits                  |
+| [0022](adr/0022-version-de-node.md)                       | Version de Node                        |
+| [0023](adr/0023-runners-figes.md)                         | Runners figés sur une version d'Ubuntu |
+| [0024](adr/0024-identite-visuelle.md)                     | Identité visuelle                      |
+| [0025](adr/0025-fiches-sans-adresse-publique.md)          | Fiches sans adresse publique           |
+| [0026](adr/0026-montee-ubuntu-26-04.md)                   | Montée des runners vers Ubuntu 26.04   |
+| [0027](adr/0027-pages-par-commune.md)                     | Pages par commune « Pédaler à… »       |
+| [0028](adr/0028-pages-association-provisoires.md)         | Pages de l'association                 |
+| [0029](adr/0029-carte-de-l-annuaire.md)                   | Carte de l'annuaire                    |
+| [0030](adr/0030-formulaire-proposer-un-evenement.md)      | Formulaire « Proposer un événement »   |
+| [0032](adr/0032-worker-d-envoi-des-courriels.md)          | Worker d'envoi des e-mails             |
+| [0033](adr/0033-pages-fraiches-apres-publication.md)      | Pages fraîches après une publication   |
+| [0035](adr/0035-site-porte-par-un-editeur-particulier.md) | Site porté par un éditeur particulier  |
+| [0036](adr/0036-itineraires.md)                           | Itinéraires et carte des parcours      |

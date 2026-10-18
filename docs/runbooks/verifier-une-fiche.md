@@ -7,8 +7,7 @@ par fiche.
 **Neutralité** : l'annuaire est exhaustif et non commercial. Toute structure qui exerce une
 activité vélo dans le périmètre y a sa fiche, qu'il s'agisse d'un indépendant, d'une franchise
 ou d'une chaîne nationale (Decathlon, Giant…), avec les mêmes champs et le même traitement.
-Aucune fiche n'est mise en avant ni écartée pour sa taille ou son enseigne ; seul le badge
-« membre » distingue les adhérents de l'association.
+Aucune fiche n'est mise en avant ni écartée pour sa taille ou son enseigne.
 
 1. Ouvrir l'objet sur OpenStreetMap : `https://www.openstreetmap.org/<osm_id>` (par exemple
    `https://www.openstreetmap.org/node/123456`). Vérifier sur le site de la structure, ses
@@ -34,7 +33,7 @@ Aucune fiche n'est mise en avant ni écartée pour sa taille ou son enseigne ; s
    puis écrire, sous le frontmatter, une description de deux à quatre phrases (activité,
    public, particularités), avec vos mots.
 
-4. Si la structure est membre de l'association : `membre: true` et son `college`.
+4. Laisser `membre: false` : la partie association est suspendue (ADR 0035).
 5. `pnpm verify` : une fiche publiée incomplète est refusée, avec la liste des champs manquants.
 6. Commit `content: publie la fiche <nom>` sur une branche, pull request, vérification de
    l'aperçu, fusion.

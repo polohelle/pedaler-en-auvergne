@@ -1,5 +1,5 @@
 /**
- * Carte et filtres des itinéraires (ADR 0035). La carte, sur fond IGN, est chargée dès
+ * Carte et filtres des itinéraires (ADR 0036). La carte, sur fond IGN, est chargée dès
  * l'ouverture de la page ; les filtres masquent les mêmes parcours dans la liste et sur la carte
  * et reportent la sélection dans l'adresse, pour la partager par un lien. La logique de tri est
  * dans src/lib/itineraires.ts ; ce fichier ne fait que relier la page, Leaflet et cette logique.

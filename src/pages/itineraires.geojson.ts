@@ -1,4 +1,4 @@
-/** Traces des itinéraires publiés pour la carte (ADR 0035), simplifiées. */
+/** Traces des itinéraires publiés pour la carte (ADR 0036), simplifiées. */
 import type { APIRoute } from 'astro';
 import { caracteristiques, ligneItineraire, type CollectionLignes } from '@lib/itineraires';
 import { itinerairesPublies } from '@services/contenus';

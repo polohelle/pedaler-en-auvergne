@@ -63,7 +63,7 @@ export async function actusPubliees(): Promise<CollectionEntry<'actus'>[]> {
   return actus.sort((a, b) => b.data.date.localeCompare(a.data.date));
 }
 
-/** Itinéraire publié, avec sa trace GPX lue et mesurée (ADR 0035). */
+/** Itinéraire publié, avec sa trace GPX lue et mesurée (ADR 0036). */
 export type EntreeItineraire = CollectionEntry<'itineraires'> & {
   trace: Trace;
   /** Texte du fichier GPX d'origine, rediffusé tel quel au téléchargement. */

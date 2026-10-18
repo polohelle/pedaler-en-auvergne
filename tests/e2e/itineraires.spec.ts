@@ -1,4 +1,4 @@
-/** Itinéraires (ADR 0035), sur le site construit avec les contenus de test. */
+/** Itinéraires (ADR 0036), sur le site construit avec les contenus de test. */
 import { expect, test } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {

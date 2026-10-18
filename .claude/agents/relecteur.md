@@ -31,7 +31,7 @@ plus qu'à décider.
    - **données personnelles** : aucune donnée de particulier ;
    - **dates** : cohérentes avec la source, fuseau correct ;
    - **itinéraires** : la licence déclarée est bien énoncée à l'adresse citée et figure dans
-     la liste de l'ADR 0035 ; `auteur` correspond à ce que la licence demande de citer ; la
+     la liste de l'ADR 0036 ; `auteur` correspond à ce que la licence demande de citer ; la
      trace GPX ne contient ni horodatage ni donnée personnelle (skill `importer-trace`).
 3. Commenter la pull request (`gh pr comment`) :
    - « OK — relecture automatique sans remarque » si tout est conforme ;

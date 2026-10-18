@@ -1,4 +1,4 @@
-# 0035 — Itinéraires : une carte IGN de tous les parcours, traces sous licence libre
+# 0036 — Itinéraires : une carte IGN de tous les parcours, traces sous licence libre
 
 - Statut : proposée
 - Date : 2026-10-18

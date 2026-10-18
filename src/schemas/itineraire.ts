@@ -10,7 +10,7 @@ import { STATUTS_ITINERAIRE } from '@config/statuts';
 import { schemaDepartement, schemaJour, schemaSlug, schemaTexte, schemaUrl } from './communs';
 
 /**
- * Fiche d'un itinéraire (ADR 0035) : `itineraires/<slug>.md`, accompagnée de sa trace
+ * Fiche d'un itinéraire (ADR 0036) : `itineraires/<slug>.md`, accompagnée de sa trace
  * `itineraires/<slug>.gpx`. Distance, dénivelé et départ sont lus dans la trace.
  */
 export const schemaItineraire = z

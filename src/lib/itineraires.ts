@@ -1,5 +1,5 @@
 /**
- * Logique des itinéraires (ADR 0035) : contrôle d'une trace, lignes GeoJSON de la carte,
+ * Logique des itinéraires (ADR 0036) : contrôle d'une trace, lignes GeoJSON de la carte,
  * critères des filtres. Les filtres s'exécutent dans le navigateur (src/scripts/itineraires.ts)
  * sur les caractéristiques que la page pose en attributs `data-*` de chaque parcours.
  */

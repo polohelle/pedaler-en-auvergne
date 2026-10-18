@@ -72,7 +72,7 @@ describe.each(racines)('cohérence entre fichiers de %s', (dossier) => {
     expect(verifierIntegrite(acteurs, evenements, itinerairesDe(dossier))).toEqual([]);
   });
 
-  it('chaque itinéraire a une trace GPX lisible et cohérente (ADR 0035)', () => {
+  it('chaque itinéraire a une trace GPX lisible et cohérente (ADR 0036)', () => {
     const erreurs = itinerairesDe(dossier).flatMap(({ id, chemin, forme }) => {
       const trace = chemin.replace(/\.md$/, '.gpx');
       if (!existsSync(trace)) return [`${id} : trace ${id}.gpx manquante.`];
@@ -107,5 +107,35 @@ describe('logos des acteurs (ADR 0031)', () => {
   it('chaque fichier de public/logos/ est déclaré par une fiche, avec sa source', () => {
     const presents = existsSync(dossierLogos) ? readdirSync(dossierLogos) : [];
     expect(presents.filter((fichier) => !references.includes(fichier))).toEqual([]);
+  });
+});
+
+describe('images des événements (ADR 0034)', () => {
+  const dossierImages = join(import.meta.dirname, '../../public/evenements');
+  const references = racines.flatMap((dossier) =>
+    fichiersDe('evenements', dossier).flatMap((chemin) => {
+      const resultat = schemaEvenement.safeParse(
+        lireMarkdown(readFileSync(chemin, 'utf8')).donnees,
+      );
+      return resultat.success && resultat.data.image ? [resultat.data.image] : [];
+    }),
+  );
+
+  it('chaque image est servie par le site depuis public/evenements/ et existe', () => {
+    const absentes = references
+      .map((image) => image.src)
+      .filter(
+        (src) =>
+          !src.startsWith('/evenements/') ||
+          !existsSync(join(dossierImages, src.slice('/evenements/'.length))),
+      );
+    expect(absentes).toEqual([]);
+  });
+
+  it('chaque image reprise cite sa source, et chaque fichier est déclaré par une fiche', () => {
+    expect(references.filter((image) => image.source_url === undefined)).toEqual([]);
+    const declares = references.map((image) => image.src.slice('/evenements/'.length));
+    const presents = existsSync(dossierImages) ? readdirSync(dossierImages) : [];
+    expect(presents.filter((fichier) => !declares.includes(fichier))).toEqual([]);
   });
 });

@@ -1,5 +1,5 @@
 /**
- * Trace GPX d'un itinéraire publié, rediffusée telle quelle : sa licence le permet (ADR 0035),
+ * Trace GPX d'un itinéraire publié, rediffusée telle quelle : sa licence le permet (ADR 0036),
  * et la fiche cite son auteur et sa licence.
  */
 import type { APIRoute, GetStaticPaths, InferGetStaticPropsType } from 'astro';

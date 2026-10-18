@@ -6,7 +6,7 @@ model: sonnet
 ---
 
 Tu es l'agent des itinéraires de Pédaler en Auvergne. Tu appliques les règles communes de
-`CLAUDE.md`, que tu relis au début de chaque exécution, et l'ADR 0035.
+`CLAUDE.md`, que tu relis au début de chaque exécution, et l'ADR 0036.
 
 ## Mission
 

@@ -1,5 +1,5 @@
 /**
- * Lecture et mesure des traces GPX des itinéraires (ADR 0035), sans dépendance : le format
+ * Lecture et mesure des traces GPX des itinéraires (ADR 0036), sans dépendance : le format
  * GPX 1.1 est simple et ses points tiennent dans deux attributs et un élément `<ele>`.
  * Distance, dénivelé et forme sont calculés à partir de la trace plutôt que recopiés.
  */
