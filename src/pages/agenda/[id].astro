@@ -43,7 +43,15 @@ const annule = data.statut === 'annule';
     {data.image ? (
       <figure class="photo">
         <img src={data.image.src} alt={data.image.alt} loading="lazy" decoding="async" />
-        <figcaption class="discret">Photo : {data.image.credit}</figcaption>
+        <figcaption class="discret">
+          Visuel : {data.image.credit}
+          {data.image.source_url && (
+            <>
+              {' '}
+              (<a href={data.image.source_url}>{new URL(data.image.source_url).hostname}</a>)
+            </>
+          )}
+        </figcaption>
       </figure>
     ) : (
       <IllustrationEvenement type={data.type} taille="grande" annule={annule} />
@@ -114,9 +122,12 @@ const annule = data.statut === 'annule';
     max-inline-size: var(--largeur-texte);
   }
 
+  /* Bandeau ou affiche en hauteur : jamais plus large que le texte ni plus haut que l'écran. */
   .photo img {
     display: block;
-    inline-size: 100%;
+    inline-size: auto;
+    max-inline-size: 100%;
+    max-block-size: min(36rem, 80vh);
     block-size: auto;
     border-radius: var(--rayon);
   }

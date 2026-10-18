@@ -8,6 +8,11 @@ commune: Clermont-Ferrand
 departement: '63'
 tarif: Gratuit (prix libre)
 inscription_url: https://www.helloasso.com/associations/osez-le-feminisme-63/evenements/balade-a-velo-reservee-aux-femmes
+image:
+  src: /evenements/2026-10-31-balade-velo-femmes-clermont.webp
+  alt: Affiche de la balade à vélo réservée aux femmes du samedi 31 octobre à 10 h 30 à Clermont-Ferrand, gratuite, avec prêt de vélo et garde d'enfant possibles.
+  credit: Osez le féminisme 63 et Vélo-Cité 63
+  source_url: https://www.velocite63.fr/balade-a-velo-pour-les-femmes
 source_url: https://www.velocite63.fr/balade-a-velo-pour-les-femmes
 source: agent
 statut: publie
