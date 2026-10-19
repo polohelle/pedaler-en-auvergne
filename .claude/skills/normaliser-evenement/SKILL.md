@@ -38,9 +38,12 @@ Description rédigée de 2 à 5 phrases : ce qui se passe, pour qui, ce qu'il fa
   de mars au dernier dimanche d'octobre) : `+02:00` ; heure d'hiver : `+01:00`. Une heure
   inconnue : ne pas l'inventer, demander ou signaler le doute. Une fin inconnue : omettre `fin`.
   Un événement sur plusieurs jours : `debut` le premier jour, `fin` le dernier.
-- **Type** (`src/config/evenements.ts`) : `sortie`, `randonnee`, `course`, `bourse`,
+- **Type** (`src/config/evenements.ts`) : `sortie`, `social-ride`, `randonnee`, `course`, `bourse`,
   `atelier-reparation`, `formation`, `conference`, `fete-du-velo`, `reunion-publique`. En cas
   d'hésitation, prendre le plus précis et le signaler.
+- **Social ride** (`social-ride`) : sortie conviviale ouverte à tous, souvent régulière, au départ
+  d'un magasin, d'un café ou d'un club. Une fiche par date ; pour une sortie hebdomadaire, ne créer
+  que les quatre prochaines dates, et seulement si une page publique annonce le rendez-vous.
 - **Pratiques** (facultatif, ADR 0034) : `route`, `gravel`, `vtt`, `cyclo-cross`, en liste
   (`[route, gravel]` si plusieurs parcours). À renseigner pour toute sortie, randonnée ou course ;
   omettre pour une bourse, un atelier ou une conférence sans pratique précise.
