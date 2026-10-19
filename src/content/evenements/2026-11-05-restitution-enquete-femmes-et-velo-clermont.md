@@ -11,7 +11,7 @@ lon: 3.08914
 inscription_url: https://www.helloasso.com/associations/osez-le-feminisme-63/evenements/restitution-de-l-enquete-femme-et-velo
 source_url: https://pommesdelune.fr/event/2026/11/5/29185-femmes-et-velo-2-restitution-publique-de-lenquete-femmes-et-velo
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Osez le féminisme 63 et Vélo-Cité 63 présentent les résultats d'une enquête de master sur les

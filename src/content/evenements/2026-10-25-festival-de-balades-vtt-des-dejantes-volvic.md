@@ -11,7 +11,7 @@ departement: '63'
 tarif: Gratuit
 source_url: https://pommesdelune.fr/event/2026/10/25/27636-festival-de-balades-la-balade-vtt-des-dejantes
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Une petite randonnée VTT d'environ 25 km et 400 m de dénivelé, ouverte à tous les niveaux, avec

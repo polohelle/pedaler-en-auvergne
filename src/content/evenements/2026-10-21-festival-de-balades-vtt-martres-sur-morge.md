@@ -11,7 +11,7 @@ departement: '63'
 tarif: Gratuit
 source_url: https://pommesdelune.fr/event/2026/10/21/27350-festival-de-balades-balade-familiale-a-velo-vtt
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Une boucle plate de 18 km par les chemins de la plaine, dès 8 ans, avec la visite d'un élevage à

@@ -11,7 +11,7 @@ lat: 45.78253
 lon: 3.0944
 source_url: https://pommesdelune.fr/event/2026/10/30/29447-dur-71
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 La balade nocturne du Dôme Urban Ride prend pour sa 71e édition un thème d'Halloween : un tour à
