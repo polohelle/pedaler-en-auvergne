@@ -1,4 +1,5 @@
 ---
+import Icone from '@components/Icone.astro';
 import Logo from '@components/Logo.astro';
 
 interface Props {
@@ -9,12 +10,12 @@ interface Props {
 const { chemin } = Astro.props;
 
 const entrees = [
-  { href: '/annuaire/', libelle: 'Annuaire' },
-  { href: '/agenda/', libelle: 'Agenda' },
-  { href: '/itineraires/', libelle: 'Itinéraires' },
-  { href: '/actus/', libelle: 'Actus' },
-  { href: '/a-propos/', libelle: 'À propos' },
-];
+  { href: '/annuaire/', libelle: 'Annuaire', icone: 'annuaire' },
+  { href: '/agenda/', libelle: 'Agenda', icone: 'agenda' },
+  { href: '/itineraires/', libelle: 'Itinéraires', icone: 'itineraires' },
+  { href: '/actus/', libelle: 'Actus', icone: 'actus' },
+  { href: '/a-propos/', libelle: 'À propos', icone: 'a-propos' },
+] as const;
 
 const estActive = (href: string) => chemin.startsWith(href);
 ---
@@ -26,9 +27,10 @@ const estActive = (href: string) => chemin.startsWith(href);
     </a>
     <nav aria-label="Navigation principale">
       <ul class="menu">
-        {entrees.map(({ href, libelle }) => (
+        {entrees.map(({ href, libelle, icone }) => (
           <li>
             <a href={href} aria-current={estActive(href) ? 'page' : undefined}>
+              <Icone nom={icone} />
               {libelle}
             </a>
           </li>
@@ -65,26 +67,109 @@ const estActive = (href: string) => chemin.startsWith(href);
 
   .menu {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--espace-1) var(--espace-3);
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
   .menu a {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    min-height: var(--cible-tactile);
-    padding-inline: var(--espace-1);
     color: var(--couleur-texte);
     font-weight: 600;
-    text-decoration-color: var(--couleur-bordure);
+    text-decoration: none;
+  }
+
+  .menu a:hover {
+    color: var(--couleur-primaire);
   }
 
   .menu a[aria-current='page'] {
     color: var(--couleur-primaire);
-    text-decoration-color: currentColor;
-    text-decoration-thickness: 3px;
+  }
+
+  /*
+   * Petit écran : le menu devient une barre d'onglets fixée en bas, à portée de pouce,
+   * pictogramme au-dessus du libellé. Le pied de page garde la place de la barre.
+   */
+  @media (max-width: 47.99rem) {
+    .menu {
+      position: fixed;
+      inset-inline: 0;
+      inset-block-end: 0;
+      z-index: 10;
+      padding-block-end: env(safe-area-inset-bottom);
+      border-block-start: 1px solid var(--couleur-bordure);
+      background: var(--couleur-surface);
+      box-shadow: 0 -2px 10px rgb(0 0 0 / 8%);
+    }
+
+    .menu li {
+      flex: 1;
+    }
+
+    .menu a {
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.125rem;
+      min-height: 3.5rem;
+      padding: var(--espace-1) 0.125rem;
+      font-size: 0.8125rem;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .menu :global(.icone) {
+      inline-size: 1.4rem;
+      block-size: 1.4rem;
+    }
+
+    /* Onglet actif : un trait épais au-dessus, en plus de la couleur. */
+    .menu a[aria-current='page'] {
+      box-shadow: inset 0 3px 0 currentColor;
+    }
+
+    :global(body) {
+      padding-block-end: calc(3.5rem + env(safe-area-inset-bottom));
+    }
+  }
+
+  /* Grand écran : en-tête collé en haut, sur un fond translucide. */
+  @media (min-width: 48rem) {
+    .en-tete {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 10;
+      background: color-mix(in srgb, var(--couleur-surface) 88%, transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    .menu {
+      flex-wrap: wrap;
+      gap: var(--espace-1) var(--espace-3);
+    }
+
+    .menu a {
+      gap: var(--espace-2);
+      min-height: var(--cible-tactile);
+      padding-inline: var(--espace-1);
+    }
+
+    .menu :global(.icone) {
+      color: var(--couleur-texte-doux);
+    }
+
+    .menu a:hover :global(.icone),
+    .menu a[aria-current='page'] :global(.icone) {
+      color: currentColor;
+    }
+
+    .menu a[aria-current='page'] {
+      box-shadow: inset 0 -3px 0 currentColor;
+    }
+
+    :global(html) {
+      scroll-padding-block-start: 5rem;
+    }
   }
 </style>

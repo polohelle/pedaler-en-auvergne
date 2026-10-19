@@ -71,7 +71,7 @@ const nomDepartement = DEPARTEMENTS[departement].nom;
   {evenements.length > 0 && (
     <section aria-labelledby="titre-agenda">
       <h2 id="titre-agenda">Prochains événements</h2>
-      <ul class="liste-simple">
+      <ul class="liste-simple grille-evenements">
         {evenements.map((evenement) => (
           <CarteEvenement evenement={evenement} niveau="h3" />
         ))}

@@ -4,9 +4,11 @@ import Appel from '@components/Appel.astro';
 import CarteEvenement from '@components/CarteEvenement.astro';
 import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
+import { grouperParMois } from '@lib/dates';
 import { evenementsAVenir } from '@services/contenus';
 
 const evenements = await evenementsAVenir();
+const mois = grouperParMois(evenements, ({ data }) => data.debut);
 ---
 
 <Base
@@ -22,11 +24,21 @@ const evenements = await evenementsAVenir();
   {evenements.length === 0 ? (
     <p class="texte">Aucun événement à venir pour le moment.</p>
   ) : (
-    <ul class="liste-simple evenements">
-      {evenements.map((evenement) => (
-        <CarteEvenement evenement={evenement} />
-      ))}
-    </ul>
+    mois.map(({ cle, libelle, elements }) => (
+      <section class="mois" aria-labelledby={`mois-${cle}`}>
+        <h2 id={`mois-${cle}`}>
+          {libelle}
+          <span class="mois__compte discret">
+            {elements.length} {elements.length > 1 ? 'événements' : 'événement'}
+          </span>
+        </h2>
+        <ul class="liste-simple grille-evenements">
+          {elements.map((evenement) => (
+            <CarteEvenement evenement={evenement} niveau="h3" />
+          ))}
+        </ul>
+      </section>
+    ))
   )}
   <section class="abonnement" aria-labelledby="titre-abonnement">
     <h2 id="titre-abonnement">Suivre l'agenda</h2>
@@ -55,6 +67,18 @@ const evenements = await evenementsAVenir();
 </Base>
 
 <style>
+  .mois h2 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 var(--espace-3);
+  }
+
+  .mois__compte {
+    font-family: var(--police);
+    font-weight: 400;
+  }
+
   .abonnement {
     margin-block-start: var(--espace-5);
   }

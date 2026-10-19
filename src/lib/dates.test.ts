@@ -4,7 +4,9 @@ import {
   formaterDate,
   formaterHeure,
   formaterPlage,
+  grouperParMois,
   jourCivil,
+  moisDe,
   pastilleDate,
 } from './dates';
 
@@ -67,6 +69,40 @@ describe('pastilleDate', () => {
 
   it('donne le jour de Paris', () => {
     expect(pastilleDate(new Date('2026-11-07T23:30:00Z')).jour).toBe('8');
+  });
+});
+
+describe('moisDe', () => {
+  it('donne la clé et le libellé capitalisé du mois', () => {
+    expect(moisDe(new Date('2026-11-08T09:30:00+01:00'))).toEqual({
+      cle: '2026-11',
+      libelle: 'Novembre 2026',
+    });
+  });
+
+  it('donne le mois de Paris', () => {
+    expect(moisDe(new Date('2026-10-31T23:30:00Z')).cle).toBe('2026-11');
+  });
+});
+
+describe('grouperParMois', () => {
+  const dates = [
+    '2026-10-25T10:00:00+01:00',
+    '2026-11-08T09:00:00+01:00',
+    '2026-11-22T14:00:00+01:00',
+  ];
+
+  it('regroupe des éléments triés par mois, dans leur ordre', () => {
+    const groupes = grouperParMois(dates, (iso) => new Date(iso));
+    expect(groupes.map(({ libelle, elements }) => [libelle, elements.length])).toEqual([
+      ['Octobre 2026', 1],
+      ['Novembre 2026', 2],
+    ]);
+    expect(groupes[1]?.elements).toEqual(dates.slice(1));
+  });
+
+  it('ne crée aucun groupe sans élément', () => {
+    expect(grouperParMois([], () => new Date())).toEqual([]);
   });
 });
 

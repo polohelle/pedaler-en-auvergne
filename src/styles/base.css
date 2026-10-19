@@ -186,6 +186,31 @@ a:hover {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
 }
 
+/* Cartes d'événements : colonnes de largeur fixe, une carte seule ne s'étire pas. */
+.grille-evenements {
+  display: grid;
+  gap: var(--espace-4) var(--espace-3);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  margin-block-end: var(--espace-4);
+}
+
+/* Tête de section : titre à gauche, lien « tout voir » à droite. */
+.tete-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 var(--espace-3);
+}
+
+.lien-fleche {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espace-1);
+  min-height: var(--cible-tactile);
+  font-weight: 600;
+}
+
 .details {
   display: grid;
   grid-template-columns: max-content 1fr;
