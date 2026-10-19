@@ -15,7 +15,14 @@ interface Props {
 }
 
 const { type, taille = 'carte', annule = false } = Astro.props;
-const avecVelo = ['sortie', 'randonnee', 'course', 'bourse', 'fete-du-velo'].includes(type);
+const avecVelo = [
+  'sortie',
+  'social-ride',
+  'randonnee',
+  'course',
+  'bourse',
+  'fete-du-velo',
+].includes(type);
 ---
 
 <svg
@@ -94,6 +101,15 @@ const avecVelo = ['sortie', 'randonnee', 'course', 'bourse', 'fete-du-velo'].inc
     <g class="illustration__trait">
       <rect class="illustration__accent" x="42" y="14" width="12" height="20" rx="6" />
       <path d="M37 28a11 11 0 0 0 22 0M48 39v8m-7 0h14" />
+    </g>
+  )}
+  {type === 'social-ride' && (
+    <g class="illustration__trait">
+      <path class="illustration__accent" d="M66 32h14v8a7 7 0 0 1-14 0Z" />
+      <path
+        d="M80 34h2a3 3 0 0 1 0 6h-2M70 28c-1-2 1-3 0-5m5 5c-1-2 1-3 0-5"
+        class="illustration__fin"
+      />
     </g>
   )}
   {type === 'reunion-publique' && (
