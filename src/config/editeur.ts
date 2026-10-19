@@ -5,11 +5,11 @@
  */
 export const EDITEUR = {
   /**
-   * Adresse de contact publique, y compris pour l'exercice des droits RGPD :
-   * `contact@pedalerenauvergne.fr`, à renseigner avant la mise en ligne publique.
-   * `null` affiche une mention neutre plutôt qu'une adresse inventée.
+   * Adresse de contact publique, y compris pour l'exercice des droits RGPD. Elle est
+   * redirigée vers la boîte de l'éditeur par Cloudflare Email Routing. `null` affiche une
+   * mention neutre plutôt qu'une adresse inventée.
    */
-  email: null as string | null,
+  email: 'contact@pedalerenauvergne.fr' as string | null,
 } as const;
 
 export const HEBERGEUR = {

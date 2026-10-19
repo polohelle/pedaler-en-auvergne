@@ -44,3 +44,11 @@ test("le pied de page mène discrètement à l'espace organisateurs", async ({ p
   await expect(lien).toHaveAttribute('href', '/organisateur/');
   await expect(page.getByRole('banner').getByRole('link', { name: 'Mon compte' })).toHaveCount(0);
 });
+
+test('la page À propos donne une adresse de contact', async ({ page }) => {
+  await page.goto('/a-propos/');
+  await expect(page.getByRole('link', { name: 'contact@pedalerenauvergne.fr' })).toHaveAttribute(
+    'href',
+    'mailto:contact@pedalerenauvergne.fr',
+  );
+});
