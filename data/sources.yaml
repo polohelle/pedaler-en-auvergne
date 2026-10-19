@@ -15,6 +15,15 @@
 # Ouverte ou ODbL peuvent être importées dans l'annuaire.
 
 sources:
+  # Médias écartés le 2026-10-19 (demandés par l'administrateur, conditions incompatibles) :
+  # - La Montagne (lamontagne.fr) : tout accès automatisé bloqué (HTTP 403 Cloudflare, y
+  #   compris robots.txt et mentions légales) ;
+  # - ici Pays d'Auvergne, ex-France Bleu (ici.fr) et France 3 Auvergne
+  #   (france3-regions.franceinfo.fr) : leurs conditions interdisent la lecture par des
+  #   robots et des agents d'IA sans accord écrit (réserve de fouille de textes).
+  # Leurs articles transmis à la main par l'administrateur servent de piste, à confirmer
+  # chez la source d'origine.
+
   # --- Local : Puy-de-Dôme -------------------------------------------------
 
   - nom: Vélocité 63
@@ -96,6 +105,36 @@ sources:
       page https://pommesdelune.fr/tag/velo/ ; robots.txt ouvert. Agrégateur sans licence
       affichée, qui renvoie à la source d'origine de chaque événement : confirmer chez
       l'organisateur et lier ce dernier ; résumé rédigé et lien seulement.
+
+  - nom: 7 Jours à Clermont
+    url: https://www.7joursaclermont.fr/feed/
+    type: rss
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: moyenne
+    frequence: quotidienne
+    dernier_passage: '2026-10-19'
+    notes: >-
+      Média local d'actualité clermontoise, ajouté à la demande de l'administrateur le
+      2026-10-19 (médias locaux). Flux RSS valide, robots.txt ouvert ; article de référence
+      sur la zone piétonne en semaine 42. Mentions légales : reproduction interdite sans
+      accord écrit, donc résumé rédigé et lien seulement. Ne retenir que le vélo.
+
+  - nom: RVA — infos locales
+    url: https://www.radiorva.com/news/locales
+    type: page
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: moyenne
+    frequence: quotidienne
+    dernier_passage: '2026-10-19'
+    notes: >-
+      Radio locale (Clermont, Vichy, Ambert), ajoutée à la demande de l'administrateur le
+      2026-10-19 (médias locaux). Pas de flux d'actualités (seulement des podcasts) : lire la
+      page des infos locales, articles numérotés et datés ; robots.txt ouvert. Résumé rédigé
+      et lien seulement. Ne retenir que le vélo.
 
   - nom: Clermont Auvergne Métropole
     url: https://www.clermontmetropole.eu
