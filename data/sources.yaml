@@ -20,7 +20,10 @@ sources:
   #   compris robots.txt et mentions légales) ;
   # - ici Pays d'Auvergne, ex-France Bleu (ici.fr) et France 3 Auvergne
   #   (france3-regions.franceinfo.fr) : leurs conditions interdisent la lecture par des
-  #   robots et des agents d'IA sans accord écrit (réserve de fouille de textes).
+  #   robots et des agents d'IA sans accord écrit (réserve de fouille de textes) ;
+  # - Zap (myzap.fr) : tout accès automatisé bloqué (HTTP 403 Cloudflare) ;
+  # - Clermont Infos63 (clermontinfos63.fr) : ses CGU interdisent de reproduire ou de
+  #   résumer les contenus sans autorisation de l'éditeur.
   # Leurs articles transmis à la main par l'administrateur servent de piste, à confirmer
   # chez la source d'origine.
 
@@ -135,6 +138,21 @@ sources:
       2026-10-19 (médias locaux). Pas de flux d'actualités (seulement des podcasts) : lire la
       page des infos locales, articles numérotés et datés ; robots.txt ouvert. Résumé rédigé
       et lien seulement. Ne retenir que le vélo.
+
+  - nom: mClermont
+    url: https://mclermont.fr/xml/news
+    type: rss
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: faible
+    frequence: quotidienne
+    dernier_passage: '2026-10-19'
+    notes: >-
+      Site d'actualité clermontoise en continu, ajouté à la demande de l'administrateur le
+      2026-10-19 (médias locaux). Flux RSS valide (20 articles), robots.txt ouvert, mentions
+      légales sans clause de reprise. Surtout faits divers, rarement le vélo : confirmer chaque
+      information chez la source d'origine ; résumé rédigé et lien seulement.
 
   - nom: Clermont Auvergne Métropole
     url: https://www.clermontmetropole.eu
