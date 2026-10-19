@@ -1,6 +1,7 @@
 ---
 import { SITE } from '@config/site';
 import Logo from '@components/Logo.astro';
+import { ORGANISATEUR } from '@config/organisateur';
 
 const annee = new Date().getFullYear();
 ---
@@ -50,7 +51,7 @@ const annee = new Date().getFullYear();
       <a href={`${SITE.depot}/blob/main/LICENSES.md`}>Détail des licences</a>.
     </p>
     <p class="discret">
-      © {annee} {SITE.nom}
+      © {annee} {SITE.nom} · <a href={ORGANISATEUR.pages.tableauDeBord}>Espace organisateurs</a>
     </p>
   </div>
 </footer>
