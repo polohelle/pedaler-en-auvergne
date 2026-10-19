@@ -37,7 +37,7 @@ const annule = data.statut === 'annule';
         decoding="async"
       />
     ) : (
-      <IllustrationEvenement type={data.type} annule={annule} />
+      <IllustrationEvenement type={data.type} annule={annule} pratiques={data.pratiques} />
     )}
     <PastilleDate date={data.debut} />
     <div class="evenement__pratiques">

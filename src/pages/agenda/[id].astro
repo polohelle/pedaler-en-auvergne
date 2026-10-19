@@ -55,7 +55,12 @@ const annule = data.statut === 'annule';
         </figcaption>
       </figure>
     ) : (
-      <IllustrationEvenement type={data.type} taille="grande" annule={annule} />
+      <IllustrationEvenement
+        type={data.type}
+        taille="grande"
+        annule={annule}
+        pratiques={data.pratiques}
+      />
     )}
     <dl class="details">
       <dt>Type</dt>
