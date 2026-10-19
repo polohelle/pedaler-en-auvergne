@@ -33,6 +33,37 @@
   --couleur-focus: #a8401a;
   --couleur-alerte: #a3201a;
 
+  /*
+   * Couleurs des rubriques (ADR 0039) : texte et pictogrammes du menu, filet et tête des pages.
+   * Couleur de texte AA sur la surface (≥ 6,1:1) et sur son fond pâle (≥ 5,2:1).
+   */
+  --rubrique-annuaire: #1d5e8a; /* lac */
+  --rubrique-annuaire-pale: #e2edf6;
+  --rubrique-agenda: #a8401a; /* lave */
+  --rubrique-agenda-pale: #f8e9e2;
+  --rubrique-itineraires: #2d6a3e; /* prairie */
+  --rubrique-itineraires-pale: #e3efe6;
+  --rubrique-actus: #5b3f9b; /* myrtille */
+  --rubrique-actus-pale: #ece6f6;
+
+  /*
+   * Couleurs des types d'événement (ADR 0039) : fond de l'étiquette du type, teinte de
+   * l'illustration. Texte blanc dessus (≥ 6,2:1), sauf la bourse : genêt et texte basalte.
+   */
+  --type-sortie: #2d6a3e;
+  --type-randonnee: #0f6b70;
+  --type-social-ride: #a3285a;
+  --type-course: #b3261e;
+  --type-velorution: #5b3f9b;
+  --type-bourse: #e8b04a;
+  --type-fete-du-velo: #1d5e8a;
+  --type-atelier-reparation: #7a4a26;
+  --type-rencontre: #475867; /* formation, conférence, réunion publique */
+  --type-contraste: #ffffff;
+  /* Pratique VTT : forêt, texte blanc 7,6:1. */
+  --couleur-foret: #3b5d23;
+  --couleur-foret-contraste: #ffffff;
+
   /* Polices auto-hébergées (woff2, sous-ensemble latin chargé à la demande), pile système en secours. */
   --police:
     'Source Sans 3 Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -76,5 +107,28 @@
     --couleur-bordure: #3a4650;
     --couleur-focus: #ffb37a;
     --couleur-alerte: #ff9b94;
+
+    /* Rubriques : texte ≥ 6,5:1 sur la surface et sur le fond pâle ; texte courant ≥ 12,5:1. */
+    --rubrique-annuaire: #8cc3ee;
+    --rubrique-annuaire-pale: #172633;
+    --rubrique-agenda: #f08a5d;
+    --rubrique-agenda-pale: #2c1e18;
+    --rubrique-itineraires: #7cc48f;
+    --rubrique-itineraires-pale: #1a2a21;
+    --rubrique-actus: #c0a8f0;
+    --rubrique-actus-pale: #231e33;
+
+    /* Types d'événement : teintes claires, texte basalte foncé dessus (≥ 7,9:1). */
+    --type-sortie: #7cc48f;
+    --type-randonnee: #6fd0d4;
+    --type-social-ride: #f29bbd;
+    --type-course: #ff9088;
+    --type-velorution: #c0a8f0;
+    --type-fete-du-velo: #8cc3ee;
+    --type-atelier-reparation: #e0ae86;
+    --type-rencontre: #b3c2cf;
+    --type-contraste: #141b20;
+    --couleur-foret: #a6d38a;
+    --couleur-foret-contraste: #141b20; /* 10,2:1 */
   }
 }

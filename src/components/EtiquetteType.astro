@@ -1,0 +1,19 @@
+---
+import { LIBELLES_TYPE_EVENEMENT, type TypeEvenement } from '@config/evenements';
+import Icone from '@components/Icone.astro';
+
+/**
+ * Étiquette du type d'un événement (ADR 0039) : sa couleur et son pictogramme, toujours avec
+ * son nom. La couleur vient de la classe `type-<type>` posée par la carte ou la fiche.
+ */
+interface Props {
+  type: TypeEvenement;
+}
+
+const { type } = Astro.props;
+---
+
+<span class="etiquette etiquette-type">
+  <Icone nom={type} />
+  {LIBELLES_TYPE_EVENEMENT[type]}
+</span>

@@ -2,6 +2,7 @@
 import Icone from '@components/Icone.astro';
 import Logo from '@components/Logo.astro';
 import { ORGANISATEUR } from '@config/organisateur';
+import { RUBRIQUES } from '@config/rubriques';
 
 interface Props {
   /** Chemin de la page courante, pour signaler l'entrée active du menu. */
@@ -10,12 +11,10 @@ interface Props {
 
 const { chemin } = Astro.props;
 
+/** Chaque rubrique porte sa couleur (ADR 0039) ; « À propos » reste neutre. */
 const entrees = [
-  { href: '/annuaire/', libelle: 'Annuaire', icone: 'annuaire' },
-  { href: '/agenda/', libelle: 'Agenda', icone: 'agenda' },
-  { href: '/itineraires/', libelle: 'Itinéraires', icone: 'itineraires' },
-  { href: '/actus/', libelle: 'Actus', icone: 'actus' },
-  { href: '/a-propos/', libelle: 'À propos', icone: 'a-propos' },
+  ...RUBRIQUES.map(({ cle, href, libelle }) => ({ href, libelle, icone: cle, rubrique: cle })),
+  { href: '/a-propos/', libelle: 'À propos', icone: 'a-propos', rubrique: undefined },
 ] as const;
 
 const estActive = (href: string) => chemin.startsWith(href);
@@ -28,8 +27,8 @@ const estActive = (href: string) => chemin.startsWith(href);
     </a>
     <nav aria-label="Navigation principale">
       <ul class="menu">
-        {entrees.map(({ href, libelle, icone }) => (
-          <li>
+        {entrees.map(({ href, libelle, icone, rubrique }) => (
+          <li class:list={[rubrique && `rubrique-${rubrique}`, { menu__neutre: !rubrique }]}>
             <a href={href} aria-current={estActive(href) ? 'page' : undefined}>
               <Icone nom={icone} />
               {libelle}
@@ -109,12 +108,23 @@ const estActive = (href: string) => chemin.startsWith(href);
     text-decoration: none;
   }
 
-  .menu a:hover {
-    color: var(--couleur-primaire);
+  /* Pictogramme toujours à la couleur de sa rubrique ; l'entrée active en prend le fond pâle. */
+  .menu__neutre {
+    --couleur-rubrique: var(--couleur-primaire);
+    --couleur-rubrique-pale: var(--couleur-prairie-pale);
+  }
+
+  .menu :global(.icone) {
+    color: var(--couleur-rubrique);
+  }
+
+  .menu a:hover,
+  .menu a[aria-current='page'] {
+    color: var(--couleur-rubrique);
   }
 
   .menu a[aria-current='page'] {
-    color: var(--couleur-primaire);
+    background: var(--couleur-rubrique-pale);
   }
 
   /*
@@ -187,22 +197,14 @@ const estActive = (href: string) => chemin.startsWith(href);
 
     .menu {
       flex-wrap: wrap;
-      gap: var(--espace-1) var(--espace-3);
+      gap: var(--espace-1) var(--espace-2);
     }
 
     .menu a {
       gap: var(--espace-2);
       min-height: var(--cible-tactile);
-      padding-inline: var(--espace-1);
-    }
-
-    .menu :global(.icone) {
-      color: var(--couleur-texte-doux);
-    }
-
-    .menu a:hover :global(.icone),
-    .menu a[aria-current='page'] :global(.icone) {
-      color: currentColor;
+      padding-inline: var(--espace-2);
+      border-radius: var(--rayon) var(--rayon) 0 0;
     }
 
     .menu a[aria-current='page'] {

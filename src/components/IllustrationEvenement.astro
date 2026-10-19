@@ -4,7 +4,8 @@ import type { TypeEvenement } from '@config/evenements';
 /**
  * Illustration dessinée d'un type d'événement (ADR 0034) : le relief des Puys en fond et un
  * pictogramme du type au premier plan. Dessin maison, sans droits à gérer ni fichier à charger ;
- * décoratif, le type est toujours écrit à côté.
+ * décoratif, le type est toujours écrit à côté. Ciel, collines et sol prennent la couleur du
+ * type (`--couleur-type`, ADR 0039), la prairie à défaut.
  */
 interface Props {
   type: TypeEvenement;
@@ -20,6 +21,7 @@ const avecVelo = [
   'social-ride',
   'randonnee',
   'course',
+  'velorution',
   'bourse',
   'fete-du-velo',
 ].includes(type);
@@ -57,6 +59,13 @@ const avecVelo = [
         class="illustration__plein"
         d="M76 21h3.5v5H76Zm7 0h3.5v5H83Zm-3.5 5H83v5h-3.5Zm7 0H90v5h-3.5Z"
       />
+    </g>
+  )}
+  {type === 'velorution' && (
+    <g class="illustration__trait">
+      <path d="M74 52V36" />
+      <path class="illustration__accent" d="M62 22h24v14H62Z" />
+      <path d="M66 27h16m-16 4h10" class="illustration__fin" />
     </g>
   )}
   {type === 'bourse' && (
@@ -159,8 +168,12 @@ const avecVelo = [
     opacity: 0.6;
   }
 
+  .illustration {
+    --teinte: var(--couleur-type, var(--couleur-primaire));
+  }
+
   .illustration__ciel {
-    fill: var(--couleur-prairie-pale);
+    fill: color-mix(in srgb, var(--teinte) 14%, var(--couleur-surface));
   }
 
   .illustration__soleil {
@@ -168,12 +181,12 @@ const avecVelo = [
   }
 
   .illustration__collines {
-    fill: var(--couleur-colline);
+    fill: color-mix(in srgb, var(--teinte) 38%, var(--couleur-surface));
   }
 
   .illustration__sol {
-    fill: var(--couleur-primaire);
-    opacity: 0.35;
+    fill: var(--teinte);
+    opacity: 0.6;
   }
 
   .illustration__trait {

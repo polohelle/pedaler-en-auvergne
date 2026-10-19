@@ -2,6 +2,7 @@
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { render } from 'astro:content';
 import { LIBELLES_CATEGORIE_ACTU, LIBELLES_PORTEE, LIBELLES_TYPE_ACTU } from '@config/actus';
+import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
 import { formaterDate } from '@lib/dates';
 import { actusPubliees } from '@services/contenus';
@@ -20,12 +21,13 @@ const { Content } = await render(actu);
 
 <Base titre={data.titre} description={data.resume}>
   <article>
-    <h1>{data.titre}</h1>
-    <p class="discret">
-      {LIBELLES_TYPE_ACTU[data.type]} · {LIBELLES_PORTEE[data.portee]} ·{' '}
-      <time datetime={data.date}>{formaterDate(new Date(`${data.date}T12:00:00Z`))}</time> ·{' '}
-      {data.categories.map((c) => LIBELLES_CATEGORIE_ACTU[c]).join(', ')}
-    </p>
+    <TetePage titre={data.titre}>
+      <p>
+        {LIBELLES_TYPE_ACTU[data.type]} · {LIBELLES_PORTEE[data.portee]} ·{' '}
+        <time datetime={data.date}>{formaterDate(new Date(`${data.date}T12:00:00Z`))}</time> ·{' '}
+        {data.categories.map((c) => LIBELLES_CATEGORIE_ACTU[c]).join(', ')}
+      </p>
+    </TetePage>
     <p class="texte">
       <strong>{data.resume}</strong>
     </p>

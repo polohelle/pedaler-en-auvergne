@@ -3,6 +3,7 @@ import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { render } from 'astro:content';
 import { LIBELLES_TYPE_EVENEMENT } from '@config/evenements';
 import EtiquettesPratiques from '@components/EtiquettesPratiques.astro';
+import EtiquetteType from '@components/EtiquetteType.astro';
 import IllustrationEvenement from '@components/IllustrationEvenement.astro';
 import PastilleDate from '@components/PastilleDate.astro';
 import TetePage from '@components/TetePage.astro';
@@ -29,12 +30,12 @@ const annule = data.statut === 'annule';
   titre={data.titre}
   description={`${data.titre}, ${formaterPlage(data.debut, data.fin)}, ${data.commune}.`}
 >
-  <article>
+  <article class={`type-${data.type}`}>
     <div class="tete-evenement">
       <PastilleDate date={data.debut} />
       <TetePage titre={data.titre} barre={annule}>
-        <p>
-          {LIBELLES_TYPE_EVENEMENT[data.type]} à {data.commune}
+        <p class="tete-evenement__type">
+          <EtiquetteType type={data.type} />à {data.commune}
         </p>
         <EtiquettesPratiques pratiques={data.pratiques} />
         {annule && <p class="etiquette etiquette-annule">Événement annulé</p>}
@@ -106,6 +107,13 @@ const annule = data.statut === 'annule';
 </Base>
 
 <style>
+  .tete-evenement__type {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espace-2);
+  }
+
   .organisateur {
     display: flex;
     align-items: center;
