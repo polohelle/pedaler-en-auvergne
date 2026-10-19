@@ -21,15 +21,16 @@ Pour les tests bout en bout, installer une fois le navigateur : `pnpm exec playw
 
 ## Commandes
 
-| Commande                      | Rôle                                                                                  |
-| ----------------------------- | ------------------------------------------------------------------------------------- |
-| `pnpm dev`                    | serveur de développement                                                              |
-| `pnpm verify`                 | lint, format, typage, tests unitaires et couverture (à lancer avant chaque commit)    |
-| `pnpm test:e2e`               | tests bout en bout et d'accessibilité sur un site construit avec des contenus de test |
-| `pnpm lighthouse`             | Lighthouse CI sur la build de production                                              |
-| `pnpm build` / `pnpm preview` | build de production dans `dist/` et aperçu local                                      |
-| `pnpm import:osm --dry-run`   | plan d'import des acteurs vélo depuis OpenStreetMap                                   |
-| `pnpm icones`                 | régénère les icônes de l'application depuis `public/favicon.svg`                      |
+| Commande                            | Rôle                                                                                  |
+| ----------------------------------- | ------------------------------------------------------------------------------------- |
+| `pnpm dev`                          | serveur de développement                                                              |
+| `pnpm verify`                       | lint, format, typage, tests unitaires et couverture (à lancer avant chaque commit)    |
+| `pnpm test:e2e`                     | tests bout en bout et d'accessibilité sur un site construit avec des contenus de test |
+| `pnpm lighthouse`                   | Lighthouse CI sur la build de production                                              |
+| `pnpm build` / `pnpm preview`       | build de production dans `dist/` et aperçu local                                      |
+| `pnpm import:osm --dry-run`         | plan d'import des acteurs vélo depuis OpenStreetMap                                   |
+| `pnpm trace:osm <id> <fichier.gpx>` | trace GPX d'un itinéraire depuis une relation OpenStreetMap, altitudes IGN comprises  |
+| `pnpm icones`                       | régénère les icônes de l'application depuis `public/favicon.svg`                      |
 
 ## Ajouter ou modifier un contenu
 

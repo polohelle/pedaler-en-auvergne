@@ -20,6 +20,7 @@ comme agents planifiés (`.claude/agents/`).
 | `pnpm lighthouse`           | Lighthouse CI sur la build de production                                             |
 | `pnpm build`                | build de production dans `dist/`                                                     |
 | `pnpm import:osm --dry-run` | plan d'import OpenStreetMap, sans rien écrire                                        |
+| `pnpm trace:osm <id> <gpx>` | trace GPX d'un itinéraire depuis une relation OSM (skill `importer-trace`)           |
 | `pnpm icones`               | régénère les icônes de l'application depuis `public/favicon.svg`                     |
 
 ## Enchaîner les commandes sans masquer un échec

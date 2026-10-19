@@ -26,6 +26,7 @@
     "test:e2e": "playwright test",
     "lighthouse": "astro build && lhci autorun",
     "import:osm": "tsx scripts/import-osm.ts",
+    "trace:osm": "tsx scripts/trace-osm.ts",
     "icones": "pwa-assets-generator"
   },
   "dependencies": {

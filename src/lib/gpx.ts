@@ -166,3 +166,31 @@ export function simplifier(points: readonly PointTrace[], toleranceM: number): P
   }
   return points.filter((_, i) => garder[i]);
 }
+
+function echapperXml(texte: string): string {
+  return texte.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/** Écrit une trace en GPX 1.1 : coordonnées à 6 décimales, altitude au décimètre. */
+export function ecrireGpx(nom: string, trace: Trace, auteur: string): string {
+  const segments = trace.map((segment) => {
+    const points = segment.map(({ lat, lon, ele }) => {
+      const coordonnees = `lat="${lat.toFixed(6)}" lon="${lon.toFixed(6)}"`;
+      return ele === undefined
+        ? `      <trkpt ${coordonnees}/>`
+        : `      <trkpt ${coordonnees}><ele>${ele.toFixed(1)}</ele></trkpt>`;
+    });
+    return ['    <trkseg>', ...points, '    </trkseg>'].join('\n');
+  });
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<gpx version="1.1" creator="Pédaler en Auvergne" xmlns="http://www.topografix.com/GPX/1/1">',
+    `  <metadata><name>${echapperXml(nom)}</name><author><name>${echapperXml(auteur)}</name></author></metadata>`,
+    '  <trk>',
+    `    <name>${echapperXml(nom)}</name>`,
+    ...segments,
+    '  </trk>',
+    '</gpx>',
+    '',
+  ].join('\n');
+}
