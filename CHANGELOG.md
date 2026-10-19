@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.4.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.3.0...pedaler-en-auvergne-v0.4.0) (2026-10-19)
+
+
+### Nouveautés
+
+* **agenda:** cartes d'événements et barre d'onglets inspirées de Social Rides ([7425d39](https://github.com/polohelle/pedaler-en-auvergne/commit/7425d3905ad0f8274797e6d62a68f685950e2ffd))
+* **agenda:** cartes d'événements et barre d'onglets inspirées de Social Rides ([92bb930](https://github.com/polohelle/pedaler-en-auvergne/commit/92bb93049b149dcb51ecfe20967c5f31169b2e16))
+* **itineraires:** importer la trace d'une relation OpenStreetMap ([13b4ec2](https://github.com/polohelle/pedaler-en-auvergne/commit/13b4ec23cc85cb51a100d9d8790be4f3ac370226))
+* social rides dans l'agenda, et sept événements relevés dans Pommes de Lune ([0ed254a](https://github.com/polohelle/pedaler-en-auvergne/commit/0ed254a7f3066929993668b39ad0f98c565e8e89))
+* type d'événement « social ride » et afterwork hebdomadaire de Tempo ([0494ecc](https://github.com/polohelle/pedaler-en-auvergne/commit/0494eccc06d31cc880fcdc3fcd3ddfe5d8950a94))
+
+
+### Documentation
+
+* **veille:** ajouter l'agenda vélo de Pommes de Lune ([8ff17e6](https://github.com/polohelle/pedaler-en-auvergne/commit/8ff17e6e5cc8680e24aa8db576f071705c089e96))
+* **veille:** ajouter l'agenda vélo de Pommes de Lune ([21e1f70](https://github.com/polohelle/pedaler-en-auvergne/commit/21e1f70c10cecf6888d0dbfdd4fa956baf89386e))
+
 ## [0.3.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.2.0...pedaler-en-auvergne-v0.3.0) (2026-10-18)
 
 
