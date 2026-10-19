@@ -93,7 +93,9 @@ export default defineConfig({
           {
             // Toutes les pages : réseau d'abord, copie locale des pages déjà vues, puis copie
             // précachée de la page, puis page « hors connexion » en dernier recours.
-            urlPattern: ({ request }) => request.mode === 'navigate',
+            // L'espace organisateur, personnel, n'est jamais mis en cache (ADR 0038).
+            urlPattern: ({ request, url }) =>
+              request.mode === 'navigate' && !url.pathname.startsWith('/organisateur/'),
             handler: 'NetworkFirst',
             options: {
               cacheName: 'pages',

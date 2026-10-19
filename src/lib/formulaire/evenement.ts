@@ -218,7 +218,7 @@ function ficheProposee(p: PropositionEvenement): Record<string, string> {
 }
 
 /** Empêche un texte de refermer le bloc de code où il est cité. */
-function sansClotureDeCode(texte: string): string {
+export function sansClotureDeCode(texte: string): string {
   return texte.replace(/`{3,}/g, (cloture) => "'".repeat(cloture.length));
 }
 

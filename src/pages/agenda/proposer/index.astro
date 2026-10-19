@@ -2,10 +2,12 @@
 import { CODES_DEPARTEMENT, DEPARTEMENTS } from '@config/departements';
 import { LIBELLES_TYPE_EVENEMENT, TYPES_EVENEMENT } from '@config/evenements';
 import { FORMULAIRES } from '@config/formulaires';
+import { ORGANISATEUR } from '@config/organisateur';
 import { SITE } from '@config/site';
 import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
 import { CHAMP_PIEGE } from '@lib/formulaire/evenement';
+import '../../../styles/formulaire.css';
 
 const cleConfiguree: unknown = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const cleTurnstile =
@@ -245,6 +247,12 @@ const { longueurs } = FORMULAIRES;
   </form>
 
   <p class="texte discret">
+    Vous organisez des événements toute l'année ?{' '}
+    <a href={ORGANISATEUR.pages.connexion}>Ouvrez votre espace organisateur</a> : vous y retrouvez
+    vos événements et choisissez leurs dates dans un calendrier.
+  </p>
+
+  <p class="texte discret">
     Vous avez un compte GitHub ? Vous pouvez aussi{' '}
     <a href={`${SITE.depot}/issues/new?template=1-proposer-evenement.yml`}>
       proposer l'événement directement sur le dépôt
@@ -256,97 +264,3 @@ const { longueurs } = FORMULAIRES;
 <script>
   import '../../../scripts/turnstile';
 </script>
-
-<style>
-  .avertissement {
-    margin-block-end: var(--espace-4);
-    padding: var(--espace-3);
-    border-inline-start: 0.25rem solid var(--couleur-action);
-    border-radius: var(--rayon);
-    background: var(--couleur-surface);
-  }
-
-  .avertissement p {
-    margin: 0;
-  }
-
-  .formulaire {
-    display: grid;
-    gap: var(--espace-4);
-    max-width: var(--largeur-texte);
-    margin-block-end: var(--espace-4);
-  }
-
-  fieldset {
-    display: grid;
-    gap: var(--espace-3);
-    margin: 0;
-    padding: var(--espace-3);
-    border: 1px solid var(--couleur-bordure);
-    border-radius: var(--rayon-grand);
-    background: var(--couleur-surface);
-  }
-
-  legend {
-    padding-inline: var(--espace-2);
-    font-family: var(--police-titres);
-    font-weight: 700;
-  }
-
-  .ligne {
-    display: grid;
-    gap: var(--espace-3);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
-  }
-
-  .champ {
-    display: grid;
-    gap: var(--espace-1);
-  }
-
-  label {
-    font-weight: 600;
-  }
-
-  .aide {
-    margin: 0;
-    color: var(--couleur-texte-doux);
-    font-size: var(--taille-petite);
-  }
-
-  input,
-  select,
-  textarea {
-    width: 100%;
-    min-height: var(--cible-tactile);
-    padding: var(--espace-2);
-    border: 1px solid var(--couleur-texte-doux);
-    border-radius: var(--rayon);
-    background: var(--couleur-fond);
-    color: var(--couleur-texte);
-    font: inherit;
-  }
-
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible {
-    outline: 3px solid var(--couleur-focus);
-    outline-offset: 2px;
-  }
-
-  .piege {
-    position: absolute;
-    left: -100vw;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  }
-
-  .formulaire .bouton {
-    justify-self: start;
-    border: 0;
-    font: inherit;
-    font-weight: 700;
-    cursor: pointer;
-  }
-</style>

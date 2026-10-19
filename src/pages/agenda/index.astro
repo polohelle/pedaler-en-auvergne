@@ -1,5 +1,6 @@
 ---
 import { FORMULAIRES } from '@config/formulaires';
+import { ORGANISATEUR } from '@config/organisateur';
 import Appel from '@components/Appel.astro';
 import CarteEvenement from '@components/CarteEvenement.astro';
 import TetePage from '@components/TetePage.astro';
@@ -63,6 +64,9 @@ const mois = grouperParMois(evenements, ({ data }) => data.debut);
     libelle="Proposer un événement"
   >
     Bourse, balade, atelier ou course : signalez-le, nous l'ajoutons à l'agenda après vérification.
+    Vous en organisez souvent ?{' '}
+    <a href={ORGANISATEUR.pages.connexion}>Ouvrez votre espace organisateur</a> pour gérer vos
+    événements et leurs dates.
   </Appel>
 </Base>
 

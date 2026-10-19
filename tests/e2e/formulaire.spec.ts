@@ -61,3 +61,20 @@ test('la page d’erreur explique chaque cause', async ({ page }) => {
   await expect(page.locator('#verification h2')).toBeVisible();
   await expect(page.locator('#indisponible h2')).toBeVisible();
 });
+
+test('l’agenda mène à l’espace organisateur, qui demande une adresse e-mail', async ({ page }) => {
+  await page.goto('/agenda/');
+  await page.getByRole('link', { name: 'Ouvrez votre espace organisateur' }).click();
+  await expect(page).toHaveURL(/\/organisateur\/connexion\/$/);
+  const formulaire = page.locator('form[data-anti-robot]');
+  await expect(formulaire).toHaveAttribute('action', '/organisateur/connexion/');
+  await expect(page.getByLabel('Adresse e-mail')).toHaveAttribute('required', '');
+  await expect(page.getByRole('button', { name: 'Recevoir le lien' })).toBeVisible();
+});
+
+test('la page de connexion n’affiche un message d’erreur que sous son ancre', async ({ page }) => {
+  await page.goto('/organisateur/connexion/');
+  await expect(page.locator('#adresse')).toBeHidden();
+  await page.goto('/organisateur/connexion/#adresse');
+  await expect(page.locator('#adresse')).toBeVisible();
+});
