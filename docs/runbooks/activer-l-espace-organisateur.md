@@ -41,8 +41,13 @@ pas. Deux solutions ; la fonction prend Brevo si sa clé existe, sinon le Worker
 3. **Expéditeurs** → **Ajouter un expéditeur** : nom « Pédaler en Auvergne », adresse
    `formulaire@pedalerenauvergne.fr`.
 4. **SMTP et API** → **Clés API** → **Générer une nouvelle clé**, nommée
-   « pedaler-en-auvergne ». La copier (elle ne s'affiche qu'une fois).
-5. Projet Pages `pedaler-en-auvergne` → **Paramètres** → **Variables et secrets** →
+   « pedaler-en-auvergne », accès **Restreint** avec **Emails transactionnels : Tous** et
+   **Aucune** partout ailleurs, expiration la plus longue proposée. La copier (elle ne
+   s'affiche qu'une fois). Brevo désactive aussi une clé inutilisée pendant 90 jours : en
+   générer alors une nouvelle et remplacer le secret.
+5. **Sécurité** → **Adresses IP autorisées** : désactiver le blocage des adresses inconnues,
+   les envois partant des adresses changeantes de Cloudflare.
+6. Projet Pages `pedaler-en-auvergne` → **Paramètres** → **Variables et secrets** →
    **Ajouter** : nom `BREVO_API_KEY`, type **Secret**, valeur = la clé, pour **Production**.
    Relancer un déploiement.
 
