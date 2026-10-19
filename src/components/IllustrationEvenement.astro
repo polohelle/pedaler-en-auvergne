@@ -6,9 +6,8 @@ import { decorDePratiques } from '@lib/illustration';
  * Illustration dessinée d'un type d'événement (ADR 0034) : le relief des Puys en fond et un
  * pictogramme du type au premier plan. Dessin maison, sans droits à gérer ni fichier à charger ;
  * décoratif, le type est toujours écrit à côté. Ciel, collines et sol prennent la couleur du
- * type (`--couleur-type`, ADR 0039), la prairie à défaut. Pour une sortie route, gravel ou VTT,
- * le vélo et le décor suivent la pratique : vélo de route et route en lacets, gravel sacoché et
- * chemin blanc, VTT suspendu et puys boisés.
+ * type (`--couleur-type`, ADR 0039), la prairie à défaut. Une sortie route, gravel ou VTT
+ * prend plutôt l'image de sa pratique (`public/illustrations/`), en version claire ou sombre.
  */
 interface Props {
   type: TypeEvenement;
@@ -33,186 +32,142 @@ const avecVelo = [
 const decor = avecVelo ? decorDePratiques(pratiques) : undefined;
 ---
 
-<svg
-  class:list={['illustration', `illustration--${taille}`, { 'illustration--annule': annule }]}
-  viewBox="0 0 96 64"
-  width={taille === 'grande' ? 192 : 96}
-  height={taille === 'grande' ? 128 : 64}
-  preserveAspectRatio={taille === 'carte' ? 'xMidYMid slice' : undefined}
-  aria-hidden="true"
-  focusable="false"
->
-  <rect class="illustration__ciel" width="96" height="64" rx={taille === 'carte' ? 0 : 6}></rect>
-  {/* Sur une carte, la pastille de date occupe le coin du soleil. */}
-  {taille !== 'carte' && <circle class="illustration__soleil" cx="88" cy="10" r="5"></circle>}
-  {(decor === undefined || decor === 'route') && (
+{decor ? (
+  <picture
+    class:list={[
+      'illustration',
+      `illustration--${taille}`,
+      'illustration--image',
+      { 'illustration--annule': annule },
+    ]}
+  >
+    <source srcset={`/illustrations/${decor}-sombre.webp`} media="(prefers-color-scheme: dark)" />
+    <img
+      src={`/illustrations/${decor}-clair.webp`}
+      alt=""
+      width="480"
+      height="478"
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+) : (
+  <svg
+    class:list={['illustration', `illustration--${taille}`, { 'illustration--annule': annule }]}
+    viewBox="0 0 96 64"
+    width={taille === 'grande' ? 192 : 96}
+    height={taille === 'grande' ? 128 : 64}
+    preserveAspectRatio={taille === 'carte' ? 'xMidYMid slice' : undefined}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <rect class="illustration__ciel" width="96" height="64" rx={taille === 'carte' ? 0 : 6}></rect>
+    {/* Sur une carte, la pastille de date occupe le coin du soleil. */}
+    {taille !== 'carte' && <circle class="illustration__soleil" cx="88" cy="10" r="5"></circle>}
     <path
       class="illustration__collines"
       d="M0 46c8-8 14-16 20-16l4 4 4-4c6 2 10 10 14 14 5-6 10-9 15-8s9 6 13 10c5-4 10-8 16-6 4 1 7 4 10 6v18H0Z"
     ></path>
-  )}
-  {decor === 'gravel' && (
-    <path
-      class="illustration__collines"
-      d="M0 44c10-4 20-8 32-7s20 6 30 5 18-6 26-5c3 0 6 1 8 2v25H0Z"
-    ></path>
-  )}
-  {decor === 'vtt' && (
-    <path
-      class="illustration__collines"
-      d="M0 48 14 26l6 5 6-7 14 20 12-16 6 4 8-12 14 18 6-6 10 10v22H0Z"
-    ></path>
-  )}
-  <path class="illustration__sol" d="M0 52h96v12H0Z"></path>
-  {decor === 'route' && (
-    <g>
-      <path class="illustration__route" d="M54 52c6-4 16-4 20-8s-2-7 4-10 12-2 18-4" />
-      <path class="illustration__ligne" d="M54 52c6-4 16-4 20-8s-2-7 4-10 12-2 18-4" />
-    </g>
-  )}
-  {decor === 'gravel' && (
-    <g>
-      <path
-        class="illustration__chemin"
-        d="M50 64c10-6 22-8 26-14s8-8 20-9v4c-9 1-12 4-15 7-5 6-14 9-21 12Z"
-      />
-      <path class="illustration__arbre" d="M86 41v-5" />
-      <circle class="illustration__feuillage" cx="86" cy="33" r="4" />
-      <circle class="illustration__feuillage" cx="66" cy="38" r="3" />
-      <path class="illustration__arbre" d="M66 42v-2" />
-      <path class="illustration__cailloux" d="M60 56h.01M70 53h.01M64 54h.01M76 51h.01" />
-    </g>
-  )}
-  {decor === 'vtt' && (
-    <g class="illustration__sapins">
-      <path d="m60 52 4-11 4 11Zm5 0 5-15 5 15Zm19 0 4-11 4 11Z" />
-      <path class="illustration__rocher" d="M2 52c1-3 4-4 6-3l2 3Z" />
-    </g>
-  )}
+    <path class="illustration__sol" d="M0 52h96v12H0Z"></path>
 
-  {type === 'randonnee' && (
-    <g class="illustration__trait">
-      <path d="M74 52V28" />
-      <path class="illustration__accent" d="M66 30h16l3 4-3 4H66Z" />
-    </g>
-  )}
-  {type === 'course' && (
-    <g class="illustration__trait">
-      <path d="M76 52V20" />
-      <path class="illustration__damier" d="M76 21h14v10H76Z" />
-      <path
-        class="illustration__plein"
-        d="M76 21h3.5v5H76Zm7 0h3.5v5H83Zm-3.5 5H83v5h-3.5Zm7 0H90v5h-3.5Z"
-      />
-    </g>
-  )}
-  {type === 'velorution' && (
-    <g class="illustration__trait">
-      <path d="M74 52V36" />
-      <path class="illustration__accent" d="M62 22h24v14H62Z" />
-      <path d="M66 27h16m-16 4h10" class="illustration__fin" />
-    </g>
-  )}
-  {type === 'bourse' && (
-    <g class="illustration__trait">
-      <path class="illustration__accent" d="M64 18h14l8 8-8 8H64Z" />
-      <circle cx="68" cy="26" r="1.6" />
-      <text class="illustration__texte" x="76" y="30">
-        €
-      </text>
-    </g>
-  )}
-  {type === 'fete-du-velo' && (
-    <g class="illustration__trait">
-      <path d="M4 10c15 8 33 8 48 0" />
-      <path class="illustration__accent" d="m10 13 2 7 4-5Z" />
-      <path class="illustration__action" d="m22 16 1 7 5-6Z" />
-      <path class="illustration__accent" d="m34 16 1 7 5-6Z" />
-      <path class="illustration__action" d="m45 13 0 7 5-5Z" />
-    </g>
-  )}
-  {type === 'atelier-reparation' && (
-    <g class="illustration__trait">
-      <circle cx="36" cy="40" r="12" />
-      <circle cx="36" cy="40" r="2" />
-      <path d="M36 28v24M24 40h24M27.5 31.5l17 17m0-17-17 17" class="illustration__fin" />
-      <path
-        class="illustration__accent"
-        d="M58 52 72 38a7 7 0 0 1 9-9l-4 4 1 4 4 1 4-4a7 7 0 0 1-9 9L63 57Z"
-      />
-    </g>
-  )}
-  {type === 'formation' && (
-    <g class="illustration__trait">
-      <path class="illustration__tableau" d="M22 18h52v28H22Z" />
-      <path d="M40 46l-6 8m22-8 6 8" />
-      <circle cx="38" cy="36" r="5" class="illustration__fin" />
-      <circle cx="58" cy="36" r="5" class="illustration__fin" />
-      <path d="M38 36l6-9h8l6 9m-14-9 4 9 6-9" class="illustration__fin" />
-    </g>
-  )}
-  {type === 'conference' && (
-    <g class="illustration__trait">
-      <rect class="illustration__accent" x="42" y="14" width="12" height="20" rx="6" />
-      <path d="M37 28a11 11 0 0 0 22 0M48 39v8m-7 0h14" />
-    </g>
-  )}
-  {type === 'social-ride' && (
-    <g class="illustration__trait">
-      <path class="illustration__accent" d="M66 32h14v8a7 7 0 0 1-14 0Z" />
-      <path
-        d="M80 34h2a3 3 0 0 1 0 6h-2M70 28c-1-2 1-3 0-5m5 5c-1-2 1-3 0-5"
-        class="illustration__fin"
-      />
-    </g>
-  )}
-  {type === 'reunion-publique' && (
-    <g class="illustration__trait">
-      <path
-        class="illustration__bulle"
-        d="M18 12h30a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H30l-7 6v-6h-5a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4Z"
-      />
-      <path
-        class="illustration__accent"
-        d="M50 24h28a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4h-4v6l-7-6H50a4 4 0 0 1-4-4V28a4 4 0 0 1 4-4Z"
-      />
-      <path d="M22 20h22m-22 6h14" class="illustration__fin" />
-    </g>
-  )}
-  {avecVelo && decor === undefined && (
-    <g class="illustration__trait illustration__velo">
-      <circle cx="24" cy="44" r="8" />
-      <circle cx="50" cy="44" r="8" />
-      <path d="m24 44 8-14h14l4 14M32 30l5 14 9-14M37 44H24m5-17h6m11 3-2-5h5" />
-    </g>
-  )}
-  {/* Vélo de route : pneus fins, cadre horizontal, cintre recourbé. */}
-  {decor === 'route' && (
-    <g class="illustration__trait illustration__velo">
-      <circle class="illustration__pneu-fin" cx="24" cy="44" r="8.5" />
-      <circle class="illustration__pneu-fin" cx="51" cy="44" r="8.5" />
-      <path d="M24 44h13l-5-17m-8 17 8-14h15M37 44l11-12m-1-4 4 16M28.5 26.5h7M47 28l4-1c2 0 3 1.5 3 3.5s-1 3-2.5 3" />
-    </g>
-  )}
-  {/* Gravel : cintre recourbé, pneus larges, sacoche de cadre. */}
-  {decor === 'gravel' && (
-    <g class="illustration__trait illustration__velo">
-      <path class="illustration__sacoche" d="M34 31.5h11l-7.5 8.5Z" />
-      <circle class="illustration__pneu-large" cx="24" cy="44" r="8" />
-      <circle class="illustration__pneu-large" cx="51" cy="44" r="8" />
-      <path d="M24 44h13l-5-17m-8 17 8-14h15M37 44l11-12m-1-4 4 16M28.5 26.5h7M47 28l4-1c2 0 3 1.5 3 3.5s-1 3-2.5 3" />
-    </g>
-  )}
-  {/* VTT : gros pneus, cadre plongeant, fourche suspendue, cintre droit. */}
-  {decor === 'vtt' && (
-    <g class="illustration__trait illustration__velo">
-      <circle class="illustration__pneu-gros" cx="24" cy="44" r="8" />
-      <circle class="illustration__pneu-gros" cx="51" cy="44" r="8" />
-      <path d="M24 44h13l-4-15m-9 15 9-12 13-4M37 44l10-10m-17.5-7h7m9.5 1 4 16M45 24h8m-6 0 1 4" />
-      <path class="illustration__fourche" d="m47 28 2 7" />
-    </g>
-  )}
-</svg>
+    {type === 'randonnee' && (
+      <g class="illustration__trait">
+        <path d="M74 52V28" />
+        <path class="illustration__accent" d="M66 30h16l3 4-3 4H66Z" />
+      </g>
+    )}
+    {type === 'course' && (
+      <g class="illustration__trait">
+        <path d="M76 52V20" />
+        <path class="illustration__damier" d="M76 21h14v10H76Z" />
+        <path
+          class="illustration__plein"
+          d="M76 21h3.5v5H76Zm7 0h3.5v5H83Zm-3.5 5H83v5h-3.5Zm7 0H90v5h-3.5Z"
+        />
+      </g>
+    )}
+    {type === 'velorution' && (
+      <g class="illustration__trait">
+        <path d="M74 52V36" />
+        <path class="illustration__accent" d="M62 22h24v14H62Z" />
+        <path d="M66 27h16m-16 4h10" class="illustration__fin" />
+      </g>
+    )}
+    {type === 'bourse' && (
+      <g class="illustration__trait">
+        <path class="illustration__accent" d="M64 18h14l8 8-8 8H64Z" />
+        <circle cx="68" cy="26" r="1.6" />
+        <text class="illustration__texte" x="76" y="30">
+          €
+        </text>
+      </g>
+    )}
+    {type === 'fete-du-velo' && (
+      <g class="illustration__trait">
+        <path d="M4 10c15 8 33 8 48 0" />
+        <path class="illustration__accent" d="m10 13 2 7 4-5Z" />
+        <path class="illustration__action" d="m22 16 1 7 5-6Z" />
+        <path class="illustration__accent" d="m34 16 1 7 5-6Z" />
+        <path class="illustration__action" d="m45 13 0 7 5-5Z" />
+      </g>
+    )}
+    {type === 'atelier-reparation' && (
+      <g class="illustration__trait">
+        <circle cx="36" cy="40" r="12" />
+        <circle cx="36" cy="40" r="2" />
+        <path d="M36 28v24M24 40h24M27.5 31.5l17 17m0-17-17 17" class="illustration__fin" />
+        <path
+          class="illustration__accent"
+          d="M58 52 72 38a7 7 0 0 1 9-9l-4 4 1 4 4 1 4-4a7 7 0 0 1-9 9L63 57Z"
+        />
+      </g>
+    )}
+    {type === 'formation' && (
+      <g class="illustration__trait">
+        <path class="illustration__tableau" d="M22 18h52v28H22Z" />
+        <path d="M40 46l-6 8m22-8 6 8" />
+        <circle cx="38" cy="36" r="5" class="illustration__fin" />
+        <circle cx="58" cy="36" r="5" class="illustration__fin" />
+        <path d="M38 36l6-9h8l6 9m-14-9 4 9 6-9" class="illustration__fin" />
+      </g>
+    )}
+    {type === 'conference' && (
+      <g class="illustration__trait">
+        <rect class="illustration__accent" x="42" y="14" width="12" height="20" rx="6" />
+        <path d="M37 28a11 11 0 0 0 22 0M48 39v8m-7 0h14" />
+      </g>
+    )}
+    {type === 'social-ride' && (
+      <g class="illustration__trait">
+        <path class="illustration__accent" d="M66 32h14v8a7 7 0 0 1-14 0Z" />
+        <path
+          d="M80 34h2a3 3 0 0 1 0 6h-2M70 28c-1-2 1-3 0-5m5 5c-1-2 1-3 0-5"
+          class="illustration__fin"
+        />
+      </g>
+    )}
+    {type === 'reunion-publique' && (
+      <g class="illustration__trait">
+        <path
+          class="illustration__bulle"
+          d="M18 12h30a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H30l-7 6v-6h-5a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4Z"
+        />
+        <path
+          class="illustration__accent"
+          d="M50 24h28a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4h-4v6l-7-6H50a4 4 0 0 1-4-4V28a4 4 0 0 1 4-4Z"
+        />
+        <path d="M22 20h22m-22 6h14" class="illustration__fin" />
+      </g>
+    )}
+    {avecVelo && (
+      <g class="illustration__trait illustration__velo">
+        <circle cx="24" cy="44" r="8" />
+        <circle cx="50" cy="44" r="8" />
+        <path d="m24 44 8-14h14l4 14M32 30l5 14 9-14M37 44H24m5-17h6m11 3-2-5h5" />
+      </g>
+    )}
+  </svg>
+)}
 
 <style>
   .illustration {
@@ -232,6 +187,20 @@ const decor = avecVelo ? decorDePratiques(pratiques) : undefined;
     inline-size: 100%;
     max-inline-size: 18rem;
     block-size: auto;
+  }
+
+  /* Image d'une pratique : recadrée sur le vélo, dans le bas de l'image. */
+  .illustration--image img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: center 80%;
+  }
+
+  .illustration--image.illustration--grande {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
   }
 
   .illustration--annule {
@@ -260,44 +229,6 @@ const decor = avecVelo ? decorDePratiques(pratiques) : undefined;
     opacity: 0.6;
   }
 
-  .illustration__route {
-    fill: none;
-    stroke: color-mix(in srgb, var(--couleur-texte) 70%, var(--couleur-surface));
-    stroke-width: 4;
-    stroke-linecap: round;
-  }
-
-  .illustration__ligne {
-    fill: none;
-    stroke: var(--couleur-surface);
-    stroke-width: 0.8;
-    stroke-dasharray: 2 2;
-  }
-
-  .illustration__chemin {
-    fill: color-mix(in srgb, var(--couleur-genet) 55%, var(--couleur-surface));
-  }
-
-  .illustration__feuillage,
-  .illustration__sapins {
-    fill: color-mix(in srgb, var(--teinte) 65%, var(--couleur-texte));
-  }
-
-  .illustration__arbre {
-    stroke: var(--couleur-texte);
-    stroke-width: 1.2;
-  }
-
-  .illustration__cailloux {
-    stroke: color-mix(in srgb, var(--couleur-texte) 60%, var(--couleur-surface));
-    stroke-width: 1.6;
-    stroke-linecap: round;
-  }
-
-  .illustration__rocher {
-    fill: color-mix(in srgb, var(--couleur-texte) 45%, var(--couleur-surface));
-  }
-
   .illustration__trait {
     fill: none;
     stroke: var(--couleur-texte);
@@ -307,27 +238,6 @@ const decor = avecVelo ? decorDePratiques(pratiques) : undefined;
   }
 
   .illustration__fin {
-    stroke-width: 1.6;
-  }
-
-  .illustration__pneu-fin {
-    stroke-width: 1.8;
-  }
-
-  .illustration__pneu-large {
-    stroke-width: 3.2;
-  }
-
-  .illustration__pneu-gros {
-    stroke-width: 4;
-  }
-
-  .illustration__fourche {
-    stroke-width: 3.6;
-  }
-
-  .illustration__sacoche {
-    fill: var(--couleur-genet);
     stroke-width: 1.6;
   }
 

@@ -25,11 +25,13 @@ d'œil la rubrique où il se trouve et le type de chaque sortie.
   « rencontres » (formation, conférence, réunion publique) partagent l'ardoise.
 - **Nouveau type `velorution`** : les vélorutions et masses critiques étaient classées
   « sortie » ; elles ont leur couleur (myrtille), leur pancarte et leur pictogramme (porte-voix).
-- **Un vélo et un décor par pratique** (`decorDePratiques`, `src/lib/illustration.ts`) : la
-  première pratique d'une sortie choisit l'illustration. Route : vélo à cintre recourbé et
-  pneus fins, route en lacets. Gravel : pneus larges et sacoche de cadre, chemin blanc et
-  arbres. VTT : gros pneus, fourche suspendue et cintre droit, puys pointus et sapins. Le
-  cyclo-cross prend le décor du gravel ; sans pratique, le vélo et les collines génériques.
+- **Une image par pratique** (`decorDePratiques`, `src/lib/illustration.ts`) : la première
+  pratique d'une sortie remplace le dessin par une image fournie par l'administrateur, en
+  version claire et sombre (`public/illustrations/<pratique>-<clair|sombre>.webp`, choisie
+  par `prefers-color-scheme`) : vélo de route sur une route de corniche, gravel sur un chemin
+  de crête, VTT suspendu en montagne. Le cyclo-cross prend l'image du gravel ; sans pratique,
+  le dessin du type reste. Un filet à la couleur du type borde le bas du bandeau. Images
+  décoratives (`alt=""`), le type et la pratique étant écrits sur la carte.
 - **Pratique VTT en vert forêt**, texte blanc, au lieu de la colline pâle peu visible.
 - La couleur n'est jamais le seul repère : le nom est toujours écrit, avec un pictogramme.
   Contrastes AA vérifiés dans les deux thèmes (texte blanc ≥ 6,2:1 sur les types en clair,
