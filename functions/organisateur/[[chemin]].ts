@@ -6,13 +6,15 @@
  * Liaisons et variables du projet Pages (tableau de bord Cloudflare, jamais dans le dépôt) :
  * - base D1 `ORGANISATEURS` (schéma : `migrations/`) ; sans elle, l'espace est fermé ;
  * - `TURNSTILE_SECRET_KEY` et `GITHUB_TOKEN`, partagés avec le formulaire (ADR 0030) ;
- * - liaison de service `COURRIEL` vers le Worker `pedaler-courriel`, qui envoie les liens.
+ * - envoi des liens de connexion : secret `BREVO_API_KEY` (Brevo, prioritaire) ou, à défaut,
+ *   liaison de service `COURRIEL` vers le Worker `pedaler-courriel` (Cloudflare Email Service).
  */
 import { ORGANISATEUR } from '../../src/config/organisateur';
 import { creerIssue } from '../../src/lib/formulaire/github';
 import { verifierTurnstile } from '../../src/lib/formulaire/turnstile';
 import { repondre, type PageRendue } from '../../src/lib/organisateur/application';
 import { Depot, type BaseD1 } from '../../src/lib/organisateur/depot';
+import { envoyerParBrevo, type DemandeLien } from '../../src/lib/organisateur/lien';
 import { pageIndisponible } from '../../src/lib/organisateur/vues';
 import { SITE } from '../../src/config/site';
 
@@ -20,6 +22,7 @@ interface Env {
   ORGANISATEURS?: BaseD1;
   TURNSTILE_SECRET_KEY?: string;
   GITHUB_TOKEN?: string;
+  BREVO_API_KEY?: string;
   COURRIEL?: { fetch: (url: string, init: RequestInit) => Promise<Response> };
   ASSETS: { fetch: (requete: Request | string) => Promise<Response> };
 }
@@ -59,11 +62,32 @@ async function rendrePage(requete: Request, env: Env, page: PageRendue): Promise
   return new Response(transformee.body, { status: page.statut ?? 200, headers: entetes });
 }
 
+/** Brevo si sa clé est configurée, sinon le Worker d'envoi s'il est relié, sinon rien. */
+function envoyeur(
+  cleBrevo: string | undefined,
+  courriel: Env['COURRIEL'],
+): ((demande: DemandeLien) => Promise<void>) | undefined {
+  if (cleBrevo !== undefined && cleBrevo !== '') {
+    return (demande) => envoyerParBrevo(demande, cleBrevo, fetch);
+  }
+  if (courriel === undefined) return undefined;
+  return async (demande) => {
+    // L'adresse de l'URL est ignorée : la liaison de service mène toujours au Worker.
+    const reponse = await courriel.fetch('https://courriel.interne/lien-connexion', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(demande),
+    });
+    if (!reponse.ok) throw new Error(`Worker d'envoi : ${String(reponse.status)}`);
+  };
+}
+
 export async function onRequest({ request, env, next }: Contexte): Promise<Response> {
   const {
     ORGANISATEURS: base,
     TURNSTILE_SECRET_KEY: cleSecrete,
     GITHUB_TOKEN: jeton,
+    BREVO_API_KEY: cleBrevo,
     COURRIEL: courriel,
   } = env;
   if (base === undefined || cleSecrete === undefined) {
@@ -77,21 +101,12 @@ export async function onRequest({ request, env, next }: Contexte): Promise<Respo
     });
   }
   const ip = request.headers.get('CF-Connecting-IP') ?? undefined;
+  const envoyerLien = envoyeur(cleBrevo, courriel);
   return repondre(request, {
     depot: new Depot(base),
     maintenant: new Date(),
     verifierTurnstile: (valeur) => verifierTurnstile(valeur, cleSecrete, ip, fetch),
-    ...(courriel !== undefined && {
-      envoyerLien: async (demande) => {
-        // L'adresse de l'URL est ignorée : la liaison de service mène toujours au Worker.
-        const reponse = await courriel.fetch('https://courriel.interne/lien-connexion', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(demande),
-        });
-        if (!reponse.ok) throw new Error(`Worker d'envoi : ${String(reponse.status)}`);
-      },
-    }),
+    ...(envoyerLien !== undefined && { envoyerLien }),
     ...(jeton !== undefined && { creerIssue: (issue) => creerIssue(issue, jeton, fetch) }),
     rendrePage: (page) => rendrePage(request, env, page),
     pageStatique: next,

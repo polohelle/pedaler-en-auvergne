@@ -29,9 +29,11 @@ par une relecture humaine.
   adresse, réponse identique que l'adresse ait un compte ou non. Session de 30 jours dans un
   cookie `__Host-`, `HttpOnly`, `Secure`, `SameSite=Lax`, en plus d'un contrôle de l'en-tête
   `Origin` sur chaque envoi de formulaire.
-- **Envoi du lien par le Worker `pedaler-courriel`** (ADR 0032), route `/lien-connexion`. Écrire
-  à n'importe quelle adresse demande l'envoi d'e-mails de Cloudflare (Email Service) sur le
-  domaine ; Email Routing seul n'écrit qu'aux adresses vérifiées.
+- **Envoi du lien par Brevo** (offre gratuite, 300 e-mails par jour), appelé directement par
+  la fonction avec le secret `BREVO_API_KEY`. À défaut, par le Worker `pedaler-courriel`
+  (ADR 0032), route `/lien-connexion`, ce qui demande l'envoi d'e-mails de Cloudflare (Email
+  Service) sur le domaine et peut-être l'offre Workers payante ; Email Routing seul n'écrit
+  qu'aux adresses vérifiées.
 - **Pages rendues côté serveur, sans JavaScript** : la fonction insère le contenu dans la page
   statique `/organisateur/gabarit/` (mise en page, styles et CSP du site) avec `HTMLRewriter`.
   Le calendrier est une grille de cases à cocher, un mois par bloc, douze mois à partir du mois
@@ -56,8 +58,8 @@ disproportionné pour quelques dizaines de comptes.
 
 ## Conséquences
 
-- Une base à créer et à sauvegarder (export D1), un service de plus à surveiller ; l'envoi
-  d'e-mails à des adresses quelconques peut demander l'offre Workers payante.
+- Une base à créer et à sauvegarder (export D1), un service de plus à surveiller (Brevo, ou
+  Email Service qui peut demander l'offre Workers payante).
 - Un cookie de session existe désormais : les mentions légales le signalent (cookie
   indispensable au service, sans consentement à recueillir).
 - L'espace ne sait pas encore quand un événement est publié : l'organisateur voit « Envoyé

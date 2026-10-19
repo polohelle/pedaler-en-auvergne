@@ -71,3 +71,32 @@ export function messageLien(demande: DemandeLien): MessageLien {
     ].join('\n'),
   };
 }
+
+/** Adresse de l'API d'envoi transactionnel de Brevo. */
+export const URL_BREVO = 'https://api.brevo.com/v3/smtp/email';
+
+/**
+ * Envoie le lien par Brevo (offre gratuite, 300 e-mails par jour), sans passer par le Worker :
+ * la fonction appelle l'API avec la clé secrète `BREVO_API_KEY`. L'expéditeur doit être une
+ * adresse du domaine authentifié dans Brevo.
+ */
+export async function envoyerParBrevo(
+  demande: DemandeLien,
+  cle: string,
+  recuperer: typeof fetch,
+): Promise<void> {
+  const message = messageLien(demande);
+  const reponse = await recuperer(URL_BREVO, {
+    method: 'POST',
+    headers: { 'api-key': cle, 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      sender: message.from,
+      to: [{ email: message.to }],
+      subject: message.subject,
+      textContent: message.text,
+    }),
+  });
+  if (!reponse.ok) {
+    throw new Error(`Brevo a répondu ${String(reponse.status)}.`);
+  }
+}
