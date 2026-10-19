@@ -2,6 +2,7 @@
 
 export const TYPES_EVENEMENT = [
   'sortie',
+  'social-ride',
   'randonnee',
   'course',
   'bourse',
@@ -15,6 +16,7 @@ export type TypeEvenement = (typeof TYPES_EVENEMENT)[number];
 
 export const LIBELLES_TYPE_EVENEMENT = {
   sortie: 'Sortie',
+  'social-ride': 'Social ride',
   randonnee: 'Randonnée',
   course: 'Course',
   bourse: 'Bourse aux vélos',
