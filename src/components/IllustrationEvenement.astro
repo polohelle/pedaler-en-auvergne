@@ -8,13 +8,13 @@ import type { TypeEvenement } from '@config/evenements';
  */
 interface Props {
   type: TypeEvenement;
-  /** `petite` dans les listes, `grande` en tête de fiche. */
-  taille?: 'petite' | 'grande';
+  /** `carte` en bandeau des cartes de l'agenda, `grande` en tête de fiche. */
+  taille?: 'carte' | 'grande';
   /** Événement annulé : illustration grisée. */
   annule?: boolean;
 }
 
-const { type, taille = 'petite', annule = false } = Astro.props;
+const { type, taille = 'carte', annule = false } = Astro.props;
 const avecVelo = ['sortie', 'randonnee', 'course', 'bourse', 'fete-du-velo'].includes(type);
 ---
 
@@ -23,11 +23,13 @@ const avecVelo = ['sortie', 'randonnee', 'course', 'bourse', 'fete-du-velo'].inc
   viewBox="0 0 96 64"
   width={taille === 'grande' ? 192 : 96}
   height={taille === 'grande' ? 128 : 64}
+  preserveAspectRatio={taille === 'carte' ? 'xMidYMid slice' : undefined}
   aria-hidden="true"
   focusable="false"
 >
-  <rect class="illustration__ciel" width="96" height="64" rx="6"></rect>
-  <circle class="illustration__soleil" cx="88" cy="10" r="5"></circle>
+  <rect class="illustration__ciel" width="96" height="64" rx={taille === 'carte' ? 0 : 6}></rect>
+  {/* Sur une carte, la pastille de date occupe le coin du soleil. */}
+  {taille !== 'carte' && <circle class="illustration__soleil" cx="88" cy="10" r="5"></circle>}
   <path
     class="illustration__collines"
     d="M0 46c8-8 14-16 20-16l4 4 4-4c6 2 10 10 14 14 5-6 10-9 15-8s9 6 13 10c5-4 10-8 16-6 4 1 7 4 10 6v18H0Z"
@@ -123,9 +125,11 @@ const avecVelo = ['sortie', 'randonnee', 'course', 'bourse', 'fete-du-velo'].inc
     border-radius: var(--rayon);
   }
 
-  .illustration--petite {
-    inline-size: 6rem;
-    block-size: 4rem;
+  /* Bandeau de carte : le dessin couvre toute la largeur, recadré en 2:1 par la carte. */
+  .illustration--carte {
+    inline-size: 100%;
+    block-size: 100%;
+    border-radius: 0;
   }
 
   .illustration--grande {

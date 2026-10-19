@@ -2,14 +2,19 @@
 import type { CollectionEntry } from 'astro:content';
 import { LIBELLES_TYPE_EVENEMENT } from '@config/evenements';
 import EtiquettesPratiques from '@components/EtiquettesPratiques.astro';
+import Icone from '@components/Icone.astro';
 import IllustrationEvenement from '@components/IllustrationEvenement.astro';
 import PastilleDate from '@components/PastilleDate.astro';
 import { formaterPlage } from '@lib/dates';
 
-/** Carte d'un événement dans une liste (agenda, pages par commune). */
+/**
+ * Carte d'un événement dans une grille (agenda, accueil, pages par commune) : un bandeau
+ * illustré portant la date et les pratiques, puis le titre, la date, le lieu et le type.
+ * Toute la carte mène à la fiche.
+ */
 interface Props {
   evenement: CollectionEntry<'evenements'>;
-  /** Titre de la carte : `h2` dans l'agenda, `h3` sous une section. */
+  /** Titre de la carte : `h2` seule dans la page, `h3` sous une section. */
   niveau?: 'h2' | 'h3';
 }
 
@@ -18,51 +23,91 @@ const { id, data } = evenement;
 const annule = data.statut === 'annule';
 ---
 
-<li class="carte evenement">
-  <PastilleDate date={data.debut} />
+<li class:list={['evenement', { 'evenement--annule': annule }]}>
+  <div class="evenement__bandeau">
+    {data.image ? (
+      <img
+        class:list={['illustration', 'evenement__photo', { 'illustration--annule': annule }]}
+        src={data.image.src}
+        alt=""
+        width="384"
+        height="192"
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      <IllustrationEvenement type={data.type} annule={annule} />
+    )}
+    <PastilleDate date={data.debut} />
+    <div class="evenement__pratiques">
+      <EtiquettesPratiques pratiques={data.pratiques} />
+    </div>
+  </div>
   <div class="evenement__corps">
-    <Titre class:list={{ annule }}>
+    <Titre class:list={['evenement__titre', { annule }]}>
       <a href={`/agenda/${id}/`}>{data.titre}</a>
     </Titre>
     {annule && <p class="etiquette etiquette-annule">Annulé</p>}
-    <p class:list={{ annule }}>
-      {formaterPlage(data.debut, data.fin)} — {data.commune}
+    <p class="evenement__info">
+      <Icone nom="calendrier" />
+      <span class:list={{ annule }}>{formaterPlage(data.debut, data.fin)}</span>
     </p>
-    <p class="discret">{LIBELLES_TYPE_EVENEMENT[data.type]}</p>
-    <EtiquettesPratiques pratiques={data.pratiques} />
+    <p class="evenement__info">
+      <Icone nom="lieu" />
+      <span class:list={{ annule }}>{data.commune}</span>
+    </p>
+    <p class="evenement__info evenement__pied discret">
+      <Icone nom="type" />
+      <span>
+        {LIBELLES_TYPE_EVENEMENT[data.type]}
+        {data.tarif && ` · ${data.tarif}`}
+      </span>
+    </p>
   </div>
-  {data.image ? (
-    <img
-      class:list={['illustration', 'evenement__photo', { 'illustration--annule': annule }]}
-      src={data.image.src}
-      alt=""
-      width="96"
-      height="64"
-      loading="lazy"
-      decoding="async"
-    />
-  ) : (
-    <IllustrationEvenement type={data.type} annule={annule} />
-  )}
 </li>
 
 <style>
   .evenement {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: start;
-    gap: var(--espace-3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    background: var(--couleur-surface);
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease,
+      transform 0.15s ease;
   }
 
-  .evenement__corps {
-    min-width: 0;
+  .evenement:hover {
+    border-color: var(--couleur-primaire);
+    box-shadow: 0 0.5rem 1.25rem -0.75rem rgb(0 0 0 / 35%);
+    transform: translateY(-2px);
   }
 
-  /* Photo de l'événement à la place de l'illustration, décorative : le titre est à côté. */
+  .evenement:focus-within {
+    border-color: var(--couleur-primaire);
+  }
+
+  /* Bandeau 2:1 : la photo ou l'illustration du type, avec date et pratiques en surimpression. */
+  .evenement__bandeau {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2 / 1;
+    background: var(--couleur-prairie-pale);
+  }
+
+  .evenement__bandeau > :global(.illustration) {
+    position: absolute;
+    inset: 0;
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
   .evenement__photo {
-    inline-size: 6rem;
-    block-size: 4rem;
-    border-radius: var(--rayon);
     object-fit: cover;
     /* Une affiche se reconnaît à son titre, en haut. */
     object-position: top;
@@ -73,33 +118,93 @@ const annule = data.statut === 'annule';
     opacity: 0.6;
   }
 
-  /* Sur un petit écran, l'illustration passe sous la pastille pour laisser la place au titre. */
-  @media (max-width: 30rem) {
-    .evenement {
-      grid-template-columns: auto 1fr;
-      row-gap: var(--espace-2);
-    }
+  .evenement__bandeau > :global(.pastille-date) {
+    position: absolute;
+    inset-block-start: var(--espace-2);
+    inset-inline-end: var(--espace-2);
+    background: var(--couleur-surface);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+  }
 
-    .evenement > :global(.pastille-date) {
-      justify-self: center;
-    }
+  .evenement__pratiques {
+    position: absolute;
+    inset-block-start: var(--espace-2);
+    inset-inline-start: var(--espace-2);
+    max-inline-size: calc(100% - 5.5rem);
+  }
 
-    .evenement > :global(.illustration) {
-      grid-area: 2 / 1;
-      inline-size: 3.75rem;
-      block-size: 2.5rem;
-    }
+  .evenement__pratiques :global(.etiquette) {
+    box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+    font-weight: 600;
+  }
 
-    .evenement__corps {
-      grid-row: 1 / span 2;
-    }
+  .evenement__corps {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--espace-1);
+    padding: var(--espace-3);
   }
 
   .evenement__corps > * {
-    margin-block: 0 var(--espace-1);
+    margin: 0;
   }
 
-  .evenement__corps > :last-child {
-    margin-block-end: 0;
+  .evenement__titre {
+    margin-block-end: var(--espace-1);
+    font-size: 1.2rem;
+  }
+
+  .evenement__titre a {
+    color: var(--couleur-texte);
+    text-decoration: none;
+  }
+
+  /* Lien étendu : toute la carte mène à la fiche, sans second lien pour les lecteurs d'écran. */
+  .evenement__titre a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .evenement:hover .evenement__titre a,
+  .evenement__titre a:focus-visible {
+    color: var(--couleur-lien);
+    text-decoration: underline;
+  }
+
+  .evenement__titre.annule a {
+    text-decoration: line-through;
+  }
+
+  .etiquette-annule {
+    align-self: start;
+  }
+
+  .evenement__info {
+    display: flex;
+    align-items: baseline;
+    gap: var(--espace-2);
+    line-height: 1.4;
+  }
+
+  .evenement__info > :global(.icone) {
+    align-self: center;
+    color: var(--couleur-primaire);
+  }
+
+  /* Le type ferme la carte, sous un filet, comme une légende. */
+  .evenement__pied {
+    margin-block-start: auto;
+    padding-block-start: var(--espace-2);
+    border-block-start: 1px solid var(--couleur-bordure);
+  }
+
+  .evenement__pied > :global(.icone) {
+    color: inherit;
+  }
+
+  .evenement__info:has(+ .evenement__pied) {
+    margin-block-end: var(--espace-2);
   }
 </style>

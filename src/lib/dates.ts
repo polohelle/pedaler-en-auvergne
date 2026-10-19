@@ -37,6 +37,12 @@ const formatPastille = new Intl.DateTimeFormat('fr-FR', {
   month: 'short',
 });
 
+const formatMois = new Intl.DateTimeFormat('fr-FR', {
+  timeZone: FUSEAU,
+  month: 'long',
+  year: 'numeric',
+});
+
 function partie(parts: Intl.DateTimeFormatPart[], type: Intl.DateTimeFormatPartTypes): string {
   const trouvee = parts.find((p) => p.type === type);
   if (trouvee === undefined) {
@@ -81,6 +87,41 @@ export function pastilleDate(date: Date): PastilleDate {
     jour: partie(parts, 'day'),
     mois: partie(parts, 'month'),
   };
+}
+
+/** Mois d'une date à Paris, pour regrouper l'agenda : clé « 2026-11 », libellé « Novembre 2026 ». */
+export interface Mois {
+  cle: string;
+  libelle: string;
+}
+
+export function moisDe(date: Date): Mois {
+  const libelle = formatMois.format(date);
+  return {
+    cle: jourCivil(date).slice(0, 7),
+    libelle: libelle.charAt(0).toUpperCase() + libelle.slice(1),
+  };
+}
+
+/**
+ * Regroupe par mois de Paris des éléments déjà triés par date, dans leur ordre :
+ * un groupe par mois rencontré, avec son libellé.
+ */
+export function grouperParMois<T>(
+  elements: readonly T[],
+  dateDe: (element: T) => Date,
+): (Mois & { elements: T[] })[] {
+  const groupes: (Mois & { elements: T[] })[] = [];
+  for (const element of elements) {
+    const mois = moisDe(dateDe(element));
+    const dernier = groupes.at(-1);
+    if (dernier?.cle === mois.cle) {
+      dernier.elements.push(element);
+    } else {
+      groupes.push({ ...mois, elements: [element] });
+    }
+  }
+  return groupes;
 }
 
 /**

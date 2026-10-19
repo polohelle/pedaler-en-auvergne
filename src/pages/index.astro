@@ -1,8 +1,9 @@
 ---
 import CarteActu from '@components/CarteActu.astro';
+import CarteEvenement from '@components/CarteEvenement.astro';
+import Icone from '@components/Icone.astro';
 import { SITE } from '@config/site';
 import Base from '@layouts/Base.astro';
-import { formaterPlage } from '@lib/dates';
 import { actusPubliees, evenementsAVenir } from '@services/contenus';
 
 const prochains = (await evenementsAVenir()).slice(0, 3);
@@ -59,16 +60,16 @@ const dernieres = (await actusPubliees()).slice(0, 3);
 
   {prochains.length > 0 && (
     <section aria-labelledby="titre-prochains">
-      <h2 id="titre-prochains">Prochains événements</h2>
-      <ul class="liste-simple">
-        {prochains.map(({ id, data }) => (
-          <li>
-            <a href={`/agenda/${id}/`}>{data.titre}</a>
-            <span class="discret">
-              {' '}
-              — {formaterPlage(data.debut, data.fin)}, {data.commune}
-            </span>
-          </li>
+      <div class="tete-section">
+        <h2 id="titre-prochains">Prochains événements</h2>
+        <a class="lien-fleche" href="/agenda/">
+          Tout l'agenda
+          <Icone nom="fleche" />
+        </a>
+      </div>
+      <ul class="liste-simple grille-evenements">
+        {prochains.map((evenement) => (
+          <CarteEvenement evenement={evenement} niveau="h3" />
         ))}
       </ul>
     </section>
