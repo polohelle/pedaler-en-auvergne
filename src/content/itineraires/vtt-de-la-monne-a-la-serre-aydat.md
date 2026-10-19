@@ -9,8 +9,9 @@ departement: '63'
 auteur: contributeurs OpenStreetMap
 licence: odbl
 source_url: https://www.openstreetmap.org/relation/19440348
-source: agent
-statut: brouillon
+source: admin
+verifie_le: 2026-10-19
+statut: publie
 ---
 
 Circuit VTT n° 11 (noir) de la base VTT des Volcans, au départ d'Aydat. Il relie la vallée de la Monne à la montagne de la Serre sur plus de 30 km, avec un dénivelé réservé aux vététistes confirmés.

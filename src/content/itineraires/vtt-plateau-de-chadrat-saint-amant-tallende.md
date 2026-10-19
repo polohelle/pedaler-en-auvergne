@@ -9,8 +9,9 @@ departement: '63'
 auteur: contributeurs OpenStreetMap
 licence: odbl
 source_url: https://www.openstreetmap.org/relation/19442763
-source: agent
-statut: brouillon
+source: admin
+verifie_le: 2026-10-19
+statut: publie
 ---
 
 Circuit VTT n° 15 (bleu) de la base VTT des Volcans, au départ de Saint-Amant-Tallende. Une boucle d'une quinzaine de kilomètres qui monte sur le plateau de Chadrat.

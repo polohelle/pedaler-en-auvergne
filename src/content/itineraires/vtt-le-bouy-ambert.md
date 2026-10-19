@@ -9,8 +9,9 @@ departement: '63'
 auteur: contributeurs OpenStreetMap
 licence: odbl
 source_url: https://www.openstreetmap.org/relation/1435817
-source: agent
-statut: brouillon
+source: admin
+verifie_le: 2026-10-19
+statut: publie
 ---
 
 Circuit VTT n° 27 de l'espace VTT-FFC du Livradois, au départ d'Ambert. Une vingtaine de kilomètres de chemins entre la ville et les coteaux voisins.

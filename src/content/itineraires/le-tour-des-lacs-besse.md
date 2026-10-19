@@ -9,8 +9,9 @@ departement: '63'
 auteur: contributeurs OpenStreetMap
 licence: odbl
 source_url: https://www.openstreetmap.org/relation/20370087
-source: agent
-statut: brouillon
+source: admin
+verifie_le: 2026-10-19
+statut: publie
 ---
 
 Boucle cyclo n° 6 du réseau Planète Puy-de-Dôme, au départ de Besse. Elle relie plusieurs lacs du Sancy sur une soixantaine de kilomètres, avec un relief plus doux que les grandes boucles du massif.

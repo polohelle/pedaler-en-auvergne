@@ -9,8 +9,9 @@ departement: '63'
 auteur: contributeurs OpenStreetMap
 licence: odbl
 source_url: https://www.openstreetmap.org/relation/9288365
-source: agent
-statut: brouillon
+source: admin
+verifie_le: 2026-10-19
+statut: publie
 ---
 
 Boucle routière n° 7 du réseau Planète Puy-de-Dôme, au départ de Sauxillanges. Elle relie les villages et châteaux du Val d'Allier, entre la rivière et les coteaux du Livradois.
