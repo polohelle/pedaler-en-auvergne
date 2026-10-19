@@ -24,13 +24,6 @@ test('la page courante est signalée dans le menu', async ({ page }) => {
   await expect(menu.getByRole('link', { name: 'Agenda' })).toHaveAttribute('aria-current', 'page');
 });
 
-test("l'en-tête mène à l'espace organisateur", async ({ page }) => {
-  await page.goto('/');
-  const lien = page.getByRole('banner').getByRole('link', { name: 'Mon compte' });
-  await expect(lien).toBeVisible();
-  await expect(lien).toHaveAttribute('href', '/organisateur/');
-});
-
 test('une adresse inconnue renvoie la page 404', async ({ page }) => {
   const reponse = await page.goto('/page-qui-n-existe-pas/');
   expect(reponse?.status()).toBe(404);
@@ -43,4 +36,19 @@ test('le pied de page mentionne les licences et OpenStreetMap', async ({ page })
   await expect(pied.getByRole('link', { name: 'contributeurs OpenStreetMap' })).toBeVisible();
   await expect(pied.getByRole('link', { name: 'ODbL 1.0' })).toBeVisible();
   await expect(pied).toContainText('textes sous licence CC BY-SA 4.0, données');
+});
+
+test("le pied de page mène discrètement à l'espace organisateurs", async ({ page }) => {
+  await page.goto('/');
+  const lien = page.getByRole('contentinfo').getByRole('link', { name: 'Espace organisateurs' });
+  await expect(lien).toHaveAttribute('href', '/organisateur/');
+  await expect(page.getByRole('banner').getByRole('link', { name: 'Mon compte' })).toHaveCount(0);
+});
+
+test('la page À propos donne une adresse de contact', async ({ page }) => {
+  await page.goto('/a-propos/');
+  await expect(page.getByRole('link', { name: 'contact@pedalerenauvergne.fr' })).toHaveAttribute(
+    'href',
+    'mailto:contact@pedalerenauvergne.fr',
+  );
 });

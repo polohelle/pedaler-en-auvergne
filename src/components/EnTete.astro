@@ -1,7 +1,6 @@
 ---
 import Icone from '@components/Icone.astro';
 import Logo from '@components/Logo.astro';
-import { ORGANISATEUR } from '@config/organisateur';
 import { RUBRIQUES } from '@config/rubriques';
 
 interface Props {
@@ -37,14 +36,6 @@ const estActive = (href: string) => chemin.startsWith(href);
         ))}
       </ul>
     </nav>
-    <a
-      class="compte"
-      href={ORGANISATEUR.pages.tableauDeBord}
-      aria-current={estActive(ORGANISATEUR.racine) ? 'page' : undefined}
-    >
-      <Icone nom="compte" />
-      Mon compte
-    </a>
   </div>
 </header>
 
@@ -71,26 +62,6 @@ const estActive = (href: string) => chemin.startsWith(href);
     min-height: var(--cible-tactile);
     color: var(--couleur-texte);
     text-decoration: none;
-  }
-
-  /* Accès à l'espace organisateur, à part du menu : en haut à droite, même sur mobile. */
-  .compte {
-    display: flex;
-    align-items: center;
-    gap: var(--espace-1);
-    min-height: var(--cible-tactile);
-    padding-inline: var(--espace-3);
-    border: 1px solid var(--couleur-bordure);
-    border-radius: 999px;
-    color: var(--couleur-texte);
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .compte:hover,
-  .compte[aria-current='page'] {
-    border-color: currentColor;
-    color: var(--couleur-primaire);
   }
 
   .menu {
@@ -132,18 +103,6 @@ const estActive = (href: string) => chemin.startsWith(href);
    * pictogramme au-dessus du libellé. Le pied de page garde la place de la barre.
    */
   @media (max-width: 47.99rem) {
-    /* Le menu part en bas : le logo et « Mon compte » tiennent sur une ligne. */
-    .en-tete__interieur {
-      flex-wrap: nowrap;
-      column-gap: var(--espace-2);
-    }
-
-    .compte {
-      padding-inline: var(--espace-2);
-      font-size: 0.875rem;
-      white-space: nowrap;
-    }
-
     .menu {
       position: fixed;
       inset-inline: 0;
