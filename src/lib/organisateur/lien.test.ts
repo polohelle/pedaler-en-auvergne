@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { lireDemandeLien, messageLien } from './lien';
+import { envoyerParBrevo, lireDemandeLien, messageLien, URL_BREVO } from './lien';
 
 const jeton = 'a'.repeat(43);
 const lien = `https://pedalerenauvergne.fr/organisateur/confirmer/?jeton=${jeton}`;
@@ -34,5 +34,32 @@ describe('messageLien', () => {
     expect(message.from.email).toBe('formulaire@pedalerenauvergne.fr');
     expect(message.text).toContain(lien);
     expect(message.text).toContain('30 minutes');
+  });
+});
+
+describe('envoyerParBrevo', () => {
+  it('appelle l’API de Brevo avec la clé et le message', async () => {
+    const appels: { url: string; init: RequestInit }[] = [];
+    const recuperer = ((url: string, init: RequestInit) => {
+      appels.push({ url, init });
+      return Promise.resolve(new Response('{}', { status: 201 }));
+    }) as typeof fetch;
+    await envoyerParBrevo({ courriel: 'club@example.fr', lien }, 'cle-secrete', recuperer);
+    expect(appels[0]?.url).toBe(URL_BREVO);
+    expect(new Headers(appels[0]?.init.headers).get('api-key')).toBe('cle-secrete');
+    const brut = appels[0]?.init.body;
+    const corps = JSON.parse(typeof brut === 'string' ? brut : '{}') as Record<string, unknown>;
+    expect(corps).toMatchObject({
+      sender: { email: 'formulaire@pedalerenauvergne.fr' },
+      to: [{ email: 'club@example.fr' }],
+    });
+    expect(corps.textContent).toContain(lien);
+  });
+
+  it('signale un refus de Brevo', async () => {
+    const recuperer = (() => Promise.resolve(new Response('', { status: 401 }))) as typeof fetch;
+    await expect(
+      envoyerParBrevo({ courriel: 'club@example.fr', lien }, 'mauvaise', recuperer),
+    ).rejects.toThrow('Brevo a répondu 401.');
   });
 });

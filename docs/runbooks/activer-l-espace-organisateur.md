@@ -26,18 +26,40 @@ seconde base). Relancer ensuite un déploiement.
 
 ## 3. Envoyer les liens de connexion
 
-Le lien part du Worker `pedaler-courriel` vers l'adresse de l'organisateur, une adresse
-quelconque : Email Routing ne suffit pas, il faut l'envoi d'e-mails de Cloudflare.
+Le lien part vers l'adresse de l'organisateur, une adresse quelconque : Email Routing ne suffit
+pas. Deux solutions ; la fonction prend Brevo si sa clé existe, sinon le Worker.
+
+### Brevo (recommandé, gratuit jusqu'à 300 e-mails par jour)
+
+1. Créer un compte sur [brevo.com](https://www.brevo.com) (offre gratuite).
+2. **Expéditeurs, domaines et IP dédiées** → **Domaines** → **Ajouter un domaine** :
+   `pedalerenauvergne.fr`, puis **Authentifier** : Brevo affiche des enregistrements DNS (code
+   Brevo, DKIM, DMARC). Les ajouter dans Cloudflare → domaine → **DNS** → **Enregistrements**,
+   en laissant le **proxy désactivé** (nuage gris), puis revenir sur Brevo et cliquer sur
+   **Vérifier**. Garder l'enregistrement SPF existant d'Email Routing ; s'il y en a déjà un,
+   y ajouter `include:spf.brevo.com` plutôt que d'en créer un second.
+3. **Expéditeurs** → **Ajouter un expéditeur** : nom « Pédaler en Auvergne », adresse
+   `formulaire@pedalerenauvergne.fr`.
+4. **SMTP et API** → **Clés API** → **Générer une nouvelle clé**, nommée
+   « pedaler-en-auvergne », accès **Restreint** avec **Emails transactionnels : Tous** et
+   **Aucune** partout ailleurs, expiration la plus longue proposée. La copier (elle ne
+   s'affiche qu'une fois). Brevo désactive aussi une clé inutilisée pendant 90 jours : en
+   générer alors une nouvelle et remplacer le secret.
+5. **Sécurité** → **Adresses IP autorisées** : désactiver le blocage des adresses inconnues,
+   les envois partant des adresses changeantes de Cloudflare.
+6. Projet Pages `pedaler-en-auvergne` → **Paramètres** → **Variables et secrets** →
+   **Ajouter** : nom `BREVO_API_KEY`, type **Secret**, valeur = la clé, pour **Production**.
+   Relancer un déploiement.
+
+### Cloudflare Email Service (sans compte de plus, peut demander l'offre Workers payante)
 
 1. Cloudflare → **Compute** → **Email Service** (ou **Email** → **Email Sending**) : intégrer
-   le domaine `pedalerenauvergne.fr` pour l'envoi et ajouter les enregistrements DNS proposés
-   (SPF, DKIM). Selon l'offre du compte, l'envoi vers des adresses non vérifiées peut demander
-   l'offre **Workers Paid**.
-2. Le Worker se redéploie seul à la fusion (intégration Git) ; sa liaison `EMAIL` reste celle
-   de `workers/courriel/wrangler.toml`, sans restriction de destinataire.
+   le domaine `pedalerenauvergne.fr` pour l'envoi et ajouter les enregistrements DNS proposés.
+2. Le Worker `pedaler-courriel` envoie alors les liens par sa route `/lien-connexion`, avec la
+   liaison `COURRIEL` déjà configurée pour le formulaire.
 
-Tant que cette étape n'est pas faite, la demande de lien affiche « Le lien n'a pas pu être
-envoyé » et le journal du Worker indique le refus.
+Tant qu'aucune solution n'est en place, la demande de lien affiche « Le lien n'a pas pu être
+envoyé ».
 
 ## 4. Vérifier
 
