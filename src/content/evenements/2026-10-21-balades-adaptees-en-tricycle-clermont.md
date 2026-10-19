@@ -12,7 +12,7 @@ tarif: Gratuit (adhésion à prix libre)
 inscription_url: https://traitdunion-stalyre.fr/balades-a-velo/
 source_url: https://pommesdelune.fr/event/2026/10/21/27475-balades-adaptees-en-tricycle
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 L'association du quartier Saint-Alyre propose des balades en tricycle à deux places, avec un

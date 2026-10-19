@@ -11,7 +11,7 @@ lat: 45.78187
 lon: 3.08235
 source_url: https://pommesdelune.fr/event/2026/10/20/31157-velorution-pied-sur-les-pedales-mettons-bony-a-terre
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Une vélorution spontanée, en musique, part le mardi soir de la place Saint-Eutrope pour contester

@@ -10,7 +10,7 @@ departement: '63'
 tarif: Gratuit
 source_url: https://pommesdelune.fr/event/2026/10/21/27349-festival-de-balades-balade-a-velo-accompagnee
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Dans le cadre du Festival de balades, une sortie encadrée de 17 km (250 m de dénivelé) relie

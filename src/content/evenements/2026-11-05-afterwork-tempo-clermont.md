@@ -12,7 +12,7 @@ lon: 3.08633
 organisateur: tempo-le-repaire-cycliste-clermont-ferrand
 source_url: https://socialrides.cc/groups/tempo-les-rides-du-repaire-cycliste
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Chaque jeudi soir, la boutique Tempo propose une sortie conviviale sur route ou en gravel au départ
