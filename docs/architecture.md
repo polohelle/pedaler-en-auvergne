@@ -88,8 +88,11 @@ l'annuaire en GeoJSON (`/annuaire.geojson`, ADR 0029) ; traces des itinéraires 
 (`/itineraires.geojson`) et en GPX (`/itineraires/<slug>.gpx`, ADR 0036). Une seule partie dynamique : la fonction
 Cloudflare Pages `functions/api/proposer-evenement.ts` du formulaire « Proposer un événement »
 (ADR 0030), dont la logique est dans `src/lib/formulaire/`, et le Worker `workers/courriel/` qui
-envoie l'e-mail de transmission (ADR 0032). Le plan du site arrive avec les phases
-suivantes.
+envoie l'e-mail de transmission (ADR 0032). L'espace organisateur `/organisateur/` (ADR 0038)
+est servi par la fonction `functions/organisateur/[[chemin]].ts`, logique dans
+`src/lib/organisateur/`, avec une base Cloudflare D1 (`migrations/`) pour les comptes et les
+événements en cours ; ses envois passent eux aussi par une issue relue. Le plan du site
+arrive avec les phases suivantes.
 
 ## Qualité et CI
 
@@ -161,3 +164,4 @@ changement de code ni d'URL n'est nécessaire.
 | [0033](adr/0033-pages-fraiches-apres-publication.md)      | Pages fraîches après une publication   |
 | [0035](adr/0035-site-porte-par-un-editeur-particulier.md) | Site porté par un éditeur particulier  |
 | [0036](adr/0036-itineraires.md)                           | Itinéraires et carte des parcours      |
+| [0038](adr/0038-espace-organisateur.md)                   | Espace organisateur                    |

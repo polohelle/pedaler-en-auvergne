@@ -1,0 +1,23 @@
+---
+import { ORGANISATEUR } from '@config/organisateur';
+import TetePage from '@components/TetePage.astro';
+import Base from '@layouts/Base.astro';
+---
+
+<Base
+  titre="Lien de connexion envoyé"
+  description="Le lien de connexion à l'espace organisateur part par e-mail."
+>
+  <TetePage titre="Consultez votre messagerie" />
+  <div class="texte">
+    <p>
+      Si l'adresse est valide, un e-mail « Votre lien de connexion à l'espace organisateur » vient
+      de partir. Ouvrez le lien qu'il contient, sur cet appareil ou un autre, dans les
+      {ORGANISATEUR.dureeLienMinutes} minutes.
+    </p>
+    <p>
+      Rien reçu ? Regardez dans les indésirables, puis{' '}
+      <a href={ORGANISATEUR.pages.connexion}>demandez un nouveau lien</a>.
+    </p>
+  </div>
+</Base>

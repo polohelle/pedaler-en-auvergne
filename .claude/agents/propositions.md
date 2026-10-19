@@ -25,7 +25,10 @@ sous 48 h, correction ou retrait sous 7 jours.
      l'administrateur, en commentaire de l'issue, de masquer l'information, et passe à la
      suivante.
    - **Événement** (`evenement`) : skill `normaliser-evenement`, puis `geocoder-adresse`, puis
-     `dedoublonner` ; `source: formulaire`, `statut: a_valider`.
+     `dedoublonner` ; `source: formulaire`, `statut: a_valider`. Une issue venue de l'espace
+     organisateur (ADR 0038) propose une fiche par date, avec son nom de fichier : créer chacune.
+     `[Modification]` remplace les fiches de la demande citée ; `[Annulation]` passe les fiches
+     publiées en `statut: annule`.
    - **Structure** (`acteur`) : vérifier qu'il s'agit d'un acteur du vélo d'un département
      actif (indépendant, franchise ou chaîne nationale : même traitement) ; créer la fiche `statut: brouillon`, `source: formulaire`, `membre: false`,
      coordonnées professionnelles seulement ; géocoder l'adresse.

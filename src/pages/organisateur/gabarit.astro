@@ -1,0 +1,43 @@
+---
+/**
+ * Gabarit de l'espace organisateur (ADR 0038) : la fonction Cloudflare
+ * `functions/organisateur/[[chemin]].ts` y remplace le titre et le contenu. Sans la fonction
+ * (aperçu local, tests), la page invite à se connecter.
+ */
+import { ORGANISATEUR } from '@config/organisateur';
+import Base from '@layouts/Base.astro';
+import '../../styles/formulaire.css';
+import '../../styles/organisateur.css';
+---
+
+<Base titre="Espace organisateur" description="Espace des organisateurs d'événements.">
+  <div class="tete-organisateur">
+    <h1 data-titre-organisateur>Espace organisateur</h1>
+    <p class="discret">
+      <a href={ORGANISATEUR.pages.tableauDeBord}>Mes événements</a>
+    </p>
+  </div>
+  <div data-contenu-organisateur>
+    <p class="texte">
+      Cette page s'affiche une fois connecté.{' '}
+      <a href={ORGANISATEUR.pages.connexion}>Se connecter à l'espace organisateur</a>.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .tete-organisateur {
+    margin-block: var(--espace-3) var(--espace-4);
+    padding: var(--espace-3);
+    border-radius: var(--rayon-grand);
+    background: var(--couleur-prairie-pale);
+  }
+
+  .tete-organisateur h1 {
+    margin-block-start: 0;
+  }
+
+  .tete-organisateur p {
+    margin: 0;
+  }
+</style>

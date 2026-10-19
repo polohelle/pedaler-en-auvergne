@@ -1,0 +1,88 @@
+---
+import { FORMULAIRES } from '@config/formulaires';
+import { ORGANISATEUR } from '@config/organisateur';
+import TetePage from '@components/TetePage.astro';
+import Base from '@layouts/Base.astro';
+import { CHAMP_PIEGE } from '@lib/formulaire/evenement';
+import '../../styles/formulaire.css';
+import '../../styles/organisateur.css';
+
+const cleConfiguree: unknown = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const cleTurnstile =
+  typeof cleConfiguree === 'string' && cleConfiguree !== ''
+    ? cleConfiguree
+    : FORMULAIRES.cleTurnstileTest;
+---
+
+<Base
+  titre="Espace organisateur"
+  description="Clubs, associations, magasins : créez et gérez vos événements, choisissez leurs dates dans un calendrier, puis envoyez-les pour publication dans l'agenda."
+>
+  <TetePage titre="Espace organisateur">
+    <p class="texte">
+      Vous organisez des sorties, des bourses ou des ateliers ? Créez vos événements, cochez leurs
+      dates dans un calendrier et retrouvez-les à tout moment pour les modifier ou les annuler.
+      Chaque événement est vérifié avant d'apparaître dans l'agenda.
+    </p>
+  </TetePage>
+
+  <div class="texte">
+    <p id="adresse" class="alerte-cible erreur-champ" tabindex="-1">
+      Cette adresse e-mail n'est pas valide : vérifiez-la puis recommencez.
+    </p>
+    <p id="verification" class="alerte-cible erreur-champ" tabindex="-1">
+      La vérification anti-robot n'a pas abouti : attendez le message « Vérification anti-robot
+      réussie », puis envoyez de nouveau.
+    </p>
+    <p id="indisponible" class="alerte-cible erreur-champ" tabindex="-1">
+      Le lien n'a pas pu être envoyé pour l'instant. Réessayez un peu plus tard.
+    </p>
+  </div>
+
+  <form class="formulaire" method="post" action={ORGANISATEUR.pages.connexion} data-anti-robot>
+    <fieldset>
+      <legend>Recevoir un lien de connexion</legend>
+      <p id="aide-courriel" class="aide">
+        Pas de mot de passe : nous vous envoyons un lien, valable {ORGANISATEUR.dureeLienMinutes}
+        minutes. La première connexion crée votre espace. Votre adresse n'est jamais publiée (
+        <a href="/mentions-legales/">données personnelles</a>).
+      </p>
+      <div class="champ">
+        <label for="courriel">Adresse e-mail</label>
+        <input
+          id="courriel"
+          name="courriel"
+          type="email"
+          required
+          maxlength="254"
+          autocomplete="email"
+          aria-describedby="aide-courriel"
+        />
+      </div>
+    </fieldset>
+
+    <div class="piege" aria-hidden="true">
+      <label for={CHAMP_PIEGE}>Ne pas remplir ce champ</label>
+      <input id={CHAMP_PIEGE} name={CHAMP_PIEGE} type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div data-turnstile={cleTurnstile}></div>
+    <p class="aide" role="status" data-etat-turnstile>
+      Une vérification anti-robot, sans cookie, démarre quand vous commencez à remplir le
+      formulaire.
+    </p>
+
+    <button class="bouton" type="submit">
+      Recevoir le lien
+    </button>
+  </form>
+
+  <p class="texte discret">
+    Un événement ponctuel ? Le formulaire{' '}
+    <a href={FORMULAIRES.pageEvenement}>« Proposer un événement »</a> suffit, sans compte.
+  </p>
+</Base>
+
+<script>
+  import '../../scripts/turnstile';
+</script>

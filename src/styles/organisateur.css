@@ -1,0 +1,195 @@
+/*
+ * Espace organisateur (ADR 0038) : messages, cases à cocher et calendrier. Feuille globale,
+ * comme formulaire.css : le contenu est inséré par la fonction Cloudflare dans le gabarit.
+ */
+
+.message-espace,
+.resume-erreurs {
+  max-width: var(--largeur-texte);
+  margin-block-end: var(--espace-4);
+  padding: var(--espace-3);
+  border-inline-start: 0.25rem solid var(--couleur-action);
+  border-radius: var(--rayon);
+  background: var(--couleur-surface);
+}
+
+.resume-erreurs {
+  border-color: var(--couleur-alerte);
+}
+
+.resume-erreurs h2 {
+  margin-block-start: 0;
+  font-size: var(--taille-base);
+}
+
+.erreur-champ {
+  margin: 0;
+  color: var(--couleur-alerte);
+  font-weight: 600;
+}
+
+.formulaire [aria-invalid='true'] {
+  border-color: var(--couleur-alerte);
+  border-width: 2px;
+}
+
+/* Double classe : l'emporte sur `.bouton` de base.css, quel que soit l'ordre des feuilles. */
+.bouton.bouton-secondaire {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--cible-tactile);
+  padding: var(--espace-2) var(--espace-4);
+  border: 2px solid var(--couleur-action);
+  border-radius: var(--rayon);
+  background: var(--couleur-fond);
+  color: var(--couleur-texte);
+}
+
+.boutons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-3);
+}
+
+.champ-case {
+  display: flex;
+  gap: var(--espace-2);
+  align-items: center;
+  min-height: var(--cible-tactile);
+}
+
+.champ-case input {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--couleur-action);
+}
+
+.formulaire .cases {
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+}
+
+.evenement-compte h3 {
+  margin-block: 0 var(--espace-1);
+}
+
+.evenement-compte p {
+  margin: 0;
+}
+
+.zone-suppression form {
+  display: grid;
+  gap: var(--espace-2);
+  justify-items: start;
+}
+
+/* Calendrier : une grille de sept colonnes par mois, chaque jour est une case à cocher. */
+.mois-liste {
+  display: grid;
+  gap: var(--espace-3);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+}
+
+.formulaire .mois {
+  gap: var(--espace-1);
+  padding: var(--espace-2);
+  background: var(--couleur-fond);
+}
+
+.formulaire .mois legend {
+  text-transform: capitalize;
+}
+
+.jours-semaine,
+.jours {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jours-semaine span {
+  color: var(--couleur-texte-doux);
+  font-size: var(--taille-petite);
+  text-align: center;
+}
+
+.jours li {
+  position: relative;
+}
+
+.colonne-2 {
+  grid-column-start: 2;
+}
+.colonne-3 {
+  grid-column-start: 3;
+}
+.colonne-4 {
+  grid-column-start: 4;
+}
+.colonne-5 {
+  grid-column-start: 5;
+}
+.colonne-6 {
+  grid-column-start: 6;
+}
+.colonne-7 {
+  grid-column-start: 7;
+}
+
+/* La case reste dans la page (clavier, lecteurs d'écran) ; le libellé fait office de bouton. */
+.jours input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+}
+
+.formulaire .jours label {
+  display: grid;
+  place-items: center;
+  min-height: 2.5rem;
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon);
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.jours input:checked + label {
+  border-color: var(--couleur-action);
+  background: var(--couleur-action);
+  color: var(--couleur-action-contraste);
+  font-weight: 700;
+}
+
+.jours input:focus-visible + label {
+  outline: 3px solid var(--couleur-focus);
+  outline-offset: 2px;
+}
+
+.jours input:disabled + label {
+  border-style: dashed;
+  color: var(--couleur-texte-doux);
+  cursor: not-allowed;
+}
+
+.mois-suivants summary {
+  min-height: var(--cible-tactile);
+  padding-block: var(--espace-2);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mois-suivants .mois-liste {
+  margin-block-start: var(--espace-2);
+}
+
+/* Messages de la page de connexion, affichés quand l'adresse cible leur ancre (#adresse…). */
+.alerte-cible {
+  display: none;
+}
+
+.alerte-cible:target {
+  display: block;
+}

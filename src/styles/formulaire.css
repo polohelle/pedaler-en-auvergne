@@ -1,0 +1,99 @@
+/*
+ * Formulaires du site : « Proposer un événement » et espace organisateur (ADR 0030, 0038).
+ * Feuille globale, car le contenu de l'espace organisateur est inséré par une fonction
+ * Cloudflare et ne reçoit pas les styles à portée des composants Astro.
+ */
+
+.avertissement {
+  margin-block-end: var(--espace-4);
+  padding: var(--espace-3);
+  border-inline-start: 0.25rem solid var(--couleur-action);
+  border-radius: var(--rayon);
+  background: var(--couleur-surface);
+}
+
+.avertissement p {
+  margin: 0;
+}
+
+.formulaire {
+  display: grid;
+  gap: var(--espace-4);
+  max-width: var(--largeur-texte);
+  margin-block-end: var(--espace-4);
+}
+
+.formulaire fieldset {
+  display: grid;
+  gap: var(--espace-3);
+  min-width: 0;
+  margin: 0;
+  padding: var(--espace-3);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon-grand);
+  background: var(--couleur-surface);
+}
+
+.formulaire legend {
+  padding-inline: var(--espace-2);
+  font-family: var(--police-titres);
+  font-weight: 700;
+}
+
+.formulaire .ligne {
+  display: grid;
+  gap: var(--espace-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+}
+
+.formulaire .champ {
+  display: grid;
+  gap: var(--espace-1);
+}
+
+.formulaire label {
+  font-weight: 600;
+}
+
+.formulaire .aide {
+  margin: 0;
+  color: var(--couleur-texte-doux);
+  font-size: var(--taille-petite);
+}
+
+.formulaire input:not([type='checkbox']),
+.formulaire select,
+.formulaire textarea {
+  width: 100%;
+  min-height: var(--cible-tactile);
+  padding: var(--espace-2);
+  border: 1px solid var(--couleur-texte-doux);
+  border-radius: var(--rayon);
+  background: var(--couleur-fond);
+  color: var(--couleur-texte);
+  font: inherit;
+}
+
+.formulaire input:focus-visible,
+.formulaire select:focus-visible,
+.formulaire textarea:focus-visible {
+  outline: 3px solid var(--couleur-focus);
+  outline-offset: 2px;
+}
+
+.piege {
+  position: absolute;
+  left: -100vw;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.formulaire .bouton,
+.bouton.bouton-secondaire {
+  justify-self: start;
+  border: 0;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
