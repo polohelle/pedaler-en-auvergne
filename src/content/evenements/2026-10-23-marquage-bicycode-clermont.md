@@ -10,7 +10,7 @@ inscription_url: https://www.velocite63.fr/m/bookings/
 organisateur: velo-boulot-dodo-clermont-ferrand
 source_url: https://www.velocite63.fr/Marquage
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Des bénévoles de Vélo-Cité 63 gravent un numéro Bicycode sur le cadre des vélos, enregistré dans le
