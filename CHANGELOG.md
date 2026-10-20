@@ -1,5 +1,40 @@
 # Changelog
 
+## [0.5.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.4.0...pedaler-en-auvergne-v0.5.0) (2026-10-20)
+
+
+### Nouveautés
+
+* adresse de contact publiée sur la page À propos ([f2ea72e](https://github.com/polohelle/pedaler-en-auvergne/commit/f2ea72eaa51c4f2af26b132430261d197acb6faa))
+* adresse de contact publiée sur la page À propos ([b4c15cc](https://github.com/polohelle/pedaler-en-auvergne/commit/b4c15cc8012ad4226f371beed50c79bc4f6df4d9))
+* couleurs par rubrique et par type d'événement ([fba36e5](https://github.com/polohelle/pedaler-en-auvergne/commit/fba36e50888fb298e08f93e7c70b7cdbc70e61cd))
+* couleurs par rubrique et par type d'événement ([37b5458](https://github.com/polohelle/pedaler-en-auvergne/commit/37b54589b2a3dbfcc43cd8c61889d9ff4f74b597))
+* envoi des liens de connexion de l'espace organisateur par Brevo ([43d3b14](https://github.com/polohelle/pedaler-en-auvergne/commit/43d3b14992b14cfb59599256b61eb06f43e237ac))
+* envoi des liens de connexion de l'espace organisateur par Brevo ([f1163c6](https://github.com/polohelle/pedaler-en-auvergne/commit/f1163c600db37d094375b43deb72746162e58e3b))
+* espace organisateur avec comptes et calendrier de dates ([f0b6c7f](https://github.com/polohelle/pedaler-en-auvergne/commit/f0b6c7fdf2aa01e96ab1c610101593f91f4cd214))
+* images de l'administrateur pour la route, le gravel et le VTT ([ab14371](https://github.com/polohelle/pedaler-en-auvergne/commit/ab14371c90f8ad10cce795837df0a33caf4f06e0))
+* lien « Mon compte » vers l'espace organisateur dans l'en-tête ([db5985e](https://github.com/polohelle/pedaler-en-auvergne/commit/db5985e2ca91a8d7ab8657b7648da0013ccc8107))
+* lien « Mon compte » vers l'espace organisateur dans l'en-tête ([4b3aba8](https://github.com/polohelle/pedaler-en-auvergne/commit/4b3aba88f443f83eb071dac3f59006d0643bf495))
+* lien vers l'espace organisateurs déplacé de l'en-tête au pied de page ([92497a7](https://github.com/polohelle/pedaler-en-auvergne/commit/92497a711f135d030735bca87e026490009c13c2))
+* lien vers l'espace organisateurs déplacé de l'en-tête au pied de page ([1782e8f](https://github.com/polohelle/pedaler-en-auvergne/commit/1782e8f06fe41064f1df229517da1bc1cbed7df8))
+* vélo et décor propres à la route, au gravel et au VTT ([f6a7bb7](https://github.com/polohelle/pedaler-en-auvergne/commit/f6a7bb74c2bcd2bc9c72f34e8d908bf6c30c273b))
+
+
+### Corrections
+
+* espaces manquants avant les liens de la page À propos ([8050952](https://github.com/polohelle/pedaler-en-auvergne/commit/80509524180c2f4e73a5ffa6b271a1bed1d137ec))
+
+
+### Documentation
+
+* décors par pratique dans l'ADR 0039 ([767007d](https://github.com/polohelle/pedaler-en-auvergne/commit/767007d54add82184556c703291b532d20786a29))
+* droits de la clé Brevo et adresses IP autorisées ([92673b2](https://github.com/polohelle/pedaler-en-auvergne/commit/92673b28580878a3dd15fe0ae4ee2a15778fd3a2))
+* **veille:** note de la semaine 43 ([c072cfe](https://github.com/polohelle/pedaler-en-auvergne/commit/c072cfe7c08d546e6d0717253be1c6fad1d232e5))
+* **veille:** note de la semaine 43, passage du 20 octobre ([11113de](https://github.com/polohelle/pedaler-en-auvergne/commit/11113de41ee2975cf7e81f98fc7b9230493566c1))
+* **veille:** suivre 7 Jours à Clermont et RVA, écarter La Montagne, ici et France 3 ([3b2c1ab](https://github.com/polohelle/pedaler-en-auvergne/commit/3b2c1ab55371c7e1b94b330249f41d33d4a981db))
+* **veille:** suivre les médias locaux, écarter ceux qui interdisent la lecture automatisée ([e754470](https://github.com/polohelle/pedaler-en-auvergne/commit/e7544709d76d130f20cd667bbc71f560ce5d1088))
+* **veille:** suivre mClermont, écarter Zap et Clermont Infos63 ([68cffc5](https://github.com/polohelle/pedaler-en-auvergne/commit/68cffc5b9ff075eea5295f03151023509b057efb))
+
 ## [0.4.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.3.0...pedaler-en-auvergne-v0.4.0) (2026-10-19)
 
 
