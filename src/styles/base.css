@@ -145,13 +145,93 @@ a:hover {
 }
 
 .etiquette-vtt {
-  background: var(--couleur-colline);
-  color: var(--couleur-texte);
+  background: var(--couleur-foret);
+  color: var(--couleur-foret-contraste);
 }
 
 .etiquette-cyclo-cross {
   background: var(--couleur-action);
   color: var(--couleur-action-contraste);
+}
+
+/*
+ * Rubriques (ADR 0039) : `data-rubrique` sur le corps de page fixe la couleur de la rubrique
+ * courante ; hors rubrique, la prairie de l'identité.
+ */
+body,
+.rubrique-itineraires {
+  --couleur-rubrique: var(--rubrique-itineraires);
+  --couleur-rubrique-pale: var(--rubrique-itineraires-pale);
+}
+
+[data-rubrique='annuaire'],
+.rubrique-annuaire {
+  --couleur-rubrique: var(--rubrique-annuaire);
+  --couleur-rubrique-pale: var(--rubrique-annuaire-pale);
+}
+
+[data-rubrique='agenda'],
+.rubrique-agenda {
+  --couleur-rubrique: var(--rubrique-agenda);
+  --couleur-rubrique-pale: var(--rubrique-agenda-pale);
+}
+
+[data-rubrique='actus'],
+.rubrique-actus {
+  --couleur-rubrique: var(--rubrique-actus);
+  --couleur-rubrique-pale: var(--rubrique-actus-pale);
+}
+
+/*
+ * Types d'événement (ADR 0039) : `type-<type>` sur la carte ou la fiche fixe la couleur du
+ * type, reprise par son étiquette et par l'illustration.
+ */
+.type-sortie {
+  --couleur-type: var(--type-sortie);
+}
+
+.type-randonnee {
+  --couleur-type: var(--type-randonnee);
+}
+
+.type-social-ride {
+  --couleur-type: var(--type-social-ride);
+}
+
+.type-course {
+  --couleur-type: var(--type-course);
+}
+
+.type-velorution {
+  --couleur-type: var(--type-velorution);
+}
+
+.type-bourse {
+  --couleur-type: var(--type-bourse);
+  --couleur-type-contraste: var(--couleur-genet-contraste);
+}
+
+.type-fete-du-velo {
+  --couleur-type: var(--type-fete-du-velo);
+}
+
+.type-atelier-reparation {
+  --couleur-type: var(--type-atelier-reparation);
+}
+
+.type-formation,
+.type-conference,
+.type-reunion-publique {
+  --couleur-type: var(--type-rencontre);
+}
+
+.etiquette-type {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espace-1);
+  background: var(--couleur-type, var(--couleur-texte));
+  color: var(--couleur-type-contraste, var(--type-contraste));
+  font-weight: 600;
 }
 
 .annule {

@@ -8,6 +8,7 @@ import EnTete from '@components/EnTete.astro';
 import LienEvitement from '@components/LienEvitement.astro';
 import PiedDePage from '@components/PiedDePage.astro';
 import { SITE } from '@config/site';
+import { rubriqueDe } from '@lib/rubriques';
 
 interface Props {
   /** Titre propre à la page ; le nom du site est ajouté automatiquement. */
@@ -19,6 +20,7 @@ const { titre, description = SITE.description } = Astro.props;
 const titreComplet =
   Astro.url.pathname === '/' ? `${SITE.nom} — ${SITE.slogan}` : `${titre} — ${SITE.nom}`;
 const canonique = new URL(Astro.url.pathname, Astro.site);
+const rubrique = rubriqueDe(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -56,7 +58,7 @@ const canonique = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonique} />
     <script is:inline src="/registerSW.js" defer></script>
   </head>
-  <body>
+  <body data-rubrique={rubrique}>
     <LienEvitement />
     <EnTete chemin={Astro.url.pathname} />
     <main id="contenu" class="conteneur" tabindex="-1">

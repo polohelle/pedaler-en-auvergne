@@ -1,5 +1,6 @@
 ---
 import CarteActu from '@components/CarteActu.astro';
+import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
 import { actusPubliees } from '@services/contenus';
 
@@ -10,7 +11,12 @@ const actus = await actusPubliees();
   titre="Actualités du vélo"
   description="Actualités du vélo local et national utiles aux acteurs du Puy-de-Dôme."
 >
-  <h1>Actualités du vélo</h1>
+  <TetePage titre="Actualités du vélo">
+    <p class="texte">
+      Aménagements, sport, politique vélo et filière : ce qui bouge près de chez vous et ce qui
+      change au niveau national.
+    </p>
+  </TetePage>
   {actus.length === 0 ? (
     <p class="texte">Aucune actualité publiée pour le moment.</p>
   ) : (

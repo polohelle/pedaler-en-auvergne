@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { LIBELLES_TYPE_EVENEMENT } from '@config/evenements';
 import EtiquettesPratiques from '@components/EtiquettesPratiques.astro';
+import EtiquetteType from '@components/EtiquetteType.astro';
 import Icone from '@components/Icone.astro';
 import IllustrationEvenement from '@components/IllustrationEvenement.astro';
 import PastilleDate from '@components/PastilleDate.astro';
@@ -10,6 +10,7 @@ import { formaterPlage } from '@lib/dates';
 /**
  * Carte d'un événement dans une grille (agenda, accueil, pages par commune) : un bandeau
  * illustré portant la date et les pratiques, puis le titre, la date, le lieu et le type.
+ * La couleur du type teinte l'illustration et son étiquette (ADR 0039).
  * Toute la carte mène à la fiche.
  */
 interface Props {
@@ -23,7 +24,7 @@ const { id, data } = evenement;
 const annule = data.statut === 'annule';
 ---
 
-<li class:list={['evenement', { 'evenement--annule': annule }]}>
+<li class:list={['evenement', `type-${data.type}`, { 'evenement--annule': annule }]}>
   <div class="evenement__bandeau">
     {data.image ? (
       <img
@@ -36,7 +37,7 @@ const annule = data.statut === 'annule';
         decoding="async"
       />
     ) : (
-      <IllustrationEvenement type={data.type} annule={annule} />
+      <IllustrationEvenement type={data.type} annule={annule} pratiques={data.pratiques} />
     )}
     <PastilleDate date={data.debut} />
     <div class="evenement__pratiques">
@@ -56,12 +57,9 @@ const annule = data.statut === 'annule';
       <Icone nom="lieu" />
       <span class:list={{ annule }}>{data.commune}</span>
     </p>
-    <p class="evenement__info evenement__pied discret">
-      <Icone nom="type" />
-      <span>
-        {LIBELLES_TYPE_EVENEMENT[data.type]}
-        {data.tarif && ` · ${data.tarif}`}
-      </span>
+    <p class="evenement__info evenement__pied">
+      <EtiquetteType type={data.type} />
+      {data.tarif && <span class="discret">{data.tarif}</span>}
     </p>
   </div>
 </li>
@@ -82,13 +80,13 @@ const annule = data.statut === 'annule';
   }
 
   .evenement:hover {
-    border-color: var(--couleur-primaire);
+    border-color: var(--couleur-type, var(--couleur-primaire));
     box-shadow: 0 0.5rem 1.25rem -0.75rem rgb(0 0 0 / 35%);
     transform: translateY(-2px);
   }
 
   .evenement:focus-within {
-    border-color: var(--couleur-primaire);
+    border-color: var(--couleur-type, var(--couleur-primaire));
   }
 
   /* Bandeau 2:1 : la photo ou l'illustration du type, avec date et pratiques en surimpression. */
@@ -96,7 +94,8 @@ const annule = data.statut === 'annule';
     position: relative;
     overflow: hidden;
     aspect-ratio: 2 / 1;
-    background: var(--couleur-prairie-pale);
+    border-block-end: 0.25rem solid var(--couleur-type, var(--couleur-primaire));
+    background: color-mix(in srgb, var(--couleur-type) 14%, var(--couleur-surface));
   }
 
   .evenement__bandeau > :global(.illustration) {
@@ -195,13 +194,11 @@ const annule = data.statut === 'annule';
 
   /* Le type ferme la carte, sous un filet, comme une légende. */
   .evenement__pied {
+    flex-wrap: wrap;
+    align-items: center;
     margin-block-start: auto;
     padding-block-start: var(--espace-2);
     border-block-start: 1px solid var(--couleur-bordure);
-  }
-
-  .evenement__pied > :global(.icone) {
-    color: inherit;
   }
 
   .evenement__info:has(+ .evenement__pied) {

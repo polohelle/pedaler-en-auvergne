@@ -6,10 +6,20 @@ test('chaque carte de l’agenda a son illustration, sans être lue', async ({ p
   const cartes = page.locator('li.evenement');
   await expect(cartes).not.toHaveCount(0);
   for (const carte of await cartes.all()) {
-    const illustration = carte.locator('svg.illustration');
-    await expect(illustration).toHaveCount(1);
-    await expect(illustration).toHaveAttribute('aria-hidden', 'true');
+    // Dessin du type masqué aux lecteurs d'écran, ou image de la pratique au texte de
+    // remplacement vide (ADR 0039).
+    await expect(carte.locator('.illustration')).toHaveCount(1);
+    await expect(
+      carte.locator('svg.illustration[aria-hidden="true"], picture.illustration:has(img[alt=""])'),
+    ).toHaveCount(1);
   }
+});
+
+test('une sortie route prend l’image de sa pratique, décorative', async ({ page }) => {
+  await page.goto('/agenda/');
+  const image = page.locator('li.evenement', { hasText: 'annulée' }).locator('picture img');
+  await expect(image).toHaveAttribute('src', '/illustrations/route-clair.webp');
+  await expect(image).toHaveAttribute('alt', '');
 });
 
 test('les pratiques s’affichent en étiquettes nommées', async ({ page }) => {

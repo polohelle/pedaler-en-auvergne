@@ -1,6 +1,6 @@
 ---
 titre: Vélorution « Non au pied à terre »
-type: sortie
+type: velorution
 debut: '2026-10-24T14:00:00+02:00'
 lieu: Place de Jaude
 commune: Clermont-Ferrand

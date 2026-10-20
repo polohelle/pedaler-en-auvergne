@@ -1,6 +1,6 @@
 ---
 titre: Vélorution « Pied sur les pédales »
-type: sortie
+type: velorution
 # Annonce relayée par l'agenda Pommes de Lune et un message de l'organisateur sur piaille.fr ; titre d'origine visant le maire, reformulé.
 debut: '2026-10-20T18:00:00+02:00'
 fin: '2026-10-20T20:00:00+02:00'
