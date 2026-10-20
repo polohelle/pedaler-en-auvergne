@@ -12,5 +12,5 @@ departement: '63'
 source_url: https://pouet.chapril.org/@velocite63/117404125588459076
 source_nom: Vélo-Cité 63
 portee: local
-statut: brouillon
+statut: publie
 ---
