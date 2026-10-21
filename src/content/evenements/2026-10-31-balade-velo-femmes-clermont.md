@@ -13,6 +13,7 @@ image:
   alt: Affiche de la balade à vélo réservée aux femmes du samedi 31 octobre à 10 h 30 à Clermont-Ferrand, gratuite, avec prêt de vélo et garde d'enfant possibles.
   credit: Osez le féminisme 63 et Vélo-Cité 63
   source_url: https://www.velocite63.fr/balade-a-velo-pour-les-femmes
+organisateur: velo-cite-63-clermont-ferrand
 source_url: https://www.velocite63.fr/balade-a-velo-pour-les-femmes
 source: agent
 statut: publie

@@ -34,7 +34,7 @@ sources:
     type: page
     niveau: local
     departement: '63'
-    acteur: null
+    acteur: velo-cite-63-clermont-ferrand
     fiabilite: moyenne
     frequence: hebdomadaire
     dernier_passage: '2026-10-21'

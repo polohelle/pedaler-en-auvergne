@@ -27,6 +27,39 @@ export const LIBELLES_CATEGORIE_ACTEUR = {
   collectivite: 'Collectivité',
 } as const satisfies Record<CategorieActeur, string>;
 
+/**
+ * Catégories de la section « Associations et clubs » de l'annuaire, dans l'ordre de ses
+ * sous-sections ; les autres catégories forment la section « Commerces et services ».
+ */
+export const CATEGORIES_ASSOCIATIVES = [
+  'club-sportif',
+  'association-usagers',
+  'atelier-participatif',
+  'velo-ecole',
+] as const satisfies readonly CategorieActeur[];
+export type CategorieAssociative = (typeof CATEGORIES_ASSOCIATIVES)[number];
+
+/** Intitulés des sous-sections « Associations et clubs », au pluriel. */
+export const LIBELLES_CATEGORIE_ASSOCIATIVE = {
+  'club-sportif': 'Clubs sportifs',
+  'association-usagers': "Associations d'usagers",
+  'atelier-participatif': 'Ateliers participatifs',
+  'velo-ecole': 'Vélo-écoles',
+} as const satisfies Record<CategorieAssociative, string>;
+
+/** Disciplines pratiquées par un club, d'après sa fédération (FFC, FFVélo…). */
+export const DISCIPLINES = ['route', 'gravel', 'vtt', 'cyclo-cross', 'piste', 'bmx'] as const;
+export type Discipline = (typeof DISCIPLINES)[number];
+
+export const LIBELLES_DISCIPLINE = {
+  route: 'Route',
+  gravel: 'Gravel',
+  vtt: 'VTT',
+  'cyclo-cross': 'Cyclo-cross',
+  piste: 'Piste',
+  bmx: 'BMX',
+} as const satisfies Record<Discipline, string>;
+
 /** Collèges de l'association ; renseigné seulement pour les membres. */
 export const COLLEGES = [
   'commerce-reparation',

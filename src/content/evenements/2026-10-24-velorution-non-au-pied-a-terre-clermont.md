@@ -5,6 +5,7 @@ debut: '2026-10-24T14:00:00+02:00'
 lieu: Place de Jaude
 commune: Clermont-Ferrand
 departement: '63'
+organisateur: velo-cite-63-clermont-ferrand
 source_url: https://www.velocite63.fr/non-au-pied-a-terre
 # Report annoncé le 20/10 sur https://www.velocite63.fr/ (« Vélorution du 24 octobre reportée à une date ultérieure »).
 source: agent

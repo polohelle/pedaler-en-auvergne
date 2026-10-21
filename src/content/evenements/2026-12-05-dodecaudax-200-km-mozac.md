@@ -7,6 +7,7 @@ debut: '2026-12-05T07:00:00+01:00'
 lieu: Mozac
 commune: Mozac
 departement: '63'
+organisateur: mozac-cyclo-club
 source_url: https://www.veloderoute.com/evenements
 source: agent
 statut: publie

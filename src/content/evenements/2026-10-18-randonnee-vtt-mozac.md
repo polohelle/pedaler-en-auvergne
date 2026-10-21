@@ -7,6 +7,7 @@ lieu: Gymnase E. Vacant
 commune: Mozac
 departement: '63'
 tarif: 10 € sur place, 8 € pour les licenciés
+organisateur: mozac-cyclo-club
 source_url: https://www.nafix.fr/sortie/fiche-randonnee-vtt-de-mozac-la-pierre-saintemarie-90477-1.html
 source: agent
 statut: publie
