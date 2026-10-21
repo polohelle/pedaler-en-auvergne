@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.1](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.5.0...pedaler-en-auvergne-v0.5.1) (2026-10-21)
+
+
+### Documentation
+
+* **veille:** passage du 21 octobre, recours et vélorution reportée ([804b679](https://github.com/polohelle/pedaler-en-auvergne/commit/804b679c76caca5606b292b121afd7d82ac3886d))
+* **veille:** semaine 43, passage du 21 octobre ([f38205d](https://github.com/polohelle/pedaler-en-auvergne/commit/f38205d56b074701c6e1e770ec1a3b8c575f3aa4))
+
 ## [0.5.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.4.0...pedaler-en-auvergne-v0.5.0) (2026-10-20)
 
 
