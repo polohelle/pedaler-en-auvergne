@@ -193,3 +193,37 @@ describe('schéma acteur — logo', () => {
     expect(chemins({ ...acteurBrouillon(), logo })).toContain('logo');
   });
 });
+
+describe('schéma acteur — club et source', () => {
+  const club = () => ({
+    ...acteurSansAdressePublique(),
+    categories: ['club-sportif'],
+    disciplines: ['route', 'vtt'],
+    source: 'agent',
+    source_url: 'https://federation.example/clubs/cycles-du-centre',
+  });
+
+  it('accepte un club avec ses disciplines et sa source', () => {
+    expect(valider(club()).success).toBe(true);
+  });
+
+  it.each([
+    ['disciplines', []],
+    ['disciplines', ['route', 'route']],
+    ['disciplines', ['velo-couche']],
+    ['source_url', 'pas-une-url'],
+  ])('refuse %s = %j', (champ, valeur) => {
+    const enErreur = chemins({ ...club(), [champ]: valeur });
+    expect(enErreur.some((chemin) => chemin === champ || chemin.startsWith(`${champ}.`))).toBe(
+      true,
+    );
+  });
+
+  it('exige la source d’une fiche établie par un agent', () => {
+    expect(chemins(sans(club(), 'source_url'))).toContain('source_url');
+  });
+
+  it('reste interdit dans un brouillon importé d’OpenStreetMap', () => {
+    expect(chemins({ ...acteurBrouillon(), disciplines: ['bmx'] })).toContain('disciplines');
+  });
+});

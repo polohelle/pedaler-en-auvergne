@@ -8,6 +8,21 @@ test('l’annuaire ne montre que les fiches publiées', async ({ page }) => {
   expect((await page.request.get('/annuaire/brouillon-test/')).status()).toBe(404);
 });
 
+test('l’annuaire range les clubs dans la section « Associations et clubs »', async ({ page }) => {
+  await page.goto('/annuaire/');
+  const section = page.getByRole('region', { name: 'Clubs sportifs' });
+  await expect(section.getByRole('link', { name: 'Club cycliste de test' })).toBeVisible();
+  await expect(section.getByText('BMX', { exact: true })).toBeVisible();
+  await page.getByRole('link', { name: 'Associations et clubs' }).click();
+  await expect(page).toHaveURL(/#associations-et-clubs$/);
+  await page.goto('/annuaire/club-test-issoire/');
+  await expect(page.getByRole('heading', { name: 'Disciplines' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'sa source' })).toHaveAttribute(
+    'href',
+    'https://federation.example.org/clubs/club-test',
+  );
+});
+
 test('l’agenda montre l’annulé barré et masque l’à-valider et le passé', async ({ page }) => {
   await page.goto('/agenda/');
   await expect(page.getByRole('link', { name: 'Bourse aux vélos de test' })).toBeVisible();

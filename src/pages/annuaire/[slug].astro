@@ -3,6 +3,7 @@ import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { render } from 'astro:content';
 import {
   LIBELLES_CATEGORIE_ACTEUR,
+  LIBELLES_DISCIPLINE,
   LIBELLES_ORIGINE_LOGO,
   LIBELLES_SERVICE,
 } from '@config/acteurs';
@@ -111,6 +112,17 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
       )}
     </dl>
 
+    {data.disciplines && (
+      <>
+        <h2>Disciplines</h2>
+        <ul class="liste-simple puces">
+          {data.disciplines.map((d) => (
+            <li class={`etiquette etiquette-${d}`}>{LIBELLES_DISCIPLINE[d]}</li>
+          ))}
+        </ul>
+      </>
+    )}
+
     {data.services && data.services.length > 0 && (
       <>
         <h2>Services</h2>
@@ -137,6 +149,11 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
 
     <p class="discret">
       {data.source === 'osm' && <>Fiche issue d'OpenStreetMap, © contributeurs OpenStreetMap. </>}
+      {data.source_url && (
+        <>
+          Fiche établie d'après <a href={data.source_url}>sa source</a>.{' '}
+        </>
+      )}
       {data.logo && (
         <>
           {LIBELLES_ORIGINE_LOGO[data.logo.origine]} (<a href={data.logo.source_url}>source</a>

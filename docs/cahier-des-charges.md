@@ -149,10 +149,12 @@ Tout le contenu est stocké sous forme de fichiers dans le dépôt Git : un fich
 | departement | code | oui | `63` au lancement ; prévu pour `03`, `15`, `43` |
 | lat, lon | nombre | oui | géocodage via la Base Adresse Nationale |
 | services | liste | non | réparation, VAE, cargo, location, occasion… |
+| disciplines | liste | non | clubs : route, gravel, VTT, cyclo-cross, piste, BMX (ADR 0040) |
 | horaires | texte | non | format OSM `opening_hours` si possible |
 | site, email, telephone | texte | non | coordonnées professionnelles uniquement |
 | reseaux | liste d'URL | non | |
 | source | texte | oui | `osm`, `formulaire`, `agent`, `admin` |
+| source_url | URL | si `agent` | page où l'information a été vérifiée (ADR 0040) |
 | osm_id | texte | non | pour resynchroniser avec OpenStreetMap |
 | verifie_le | date | oui | dernière vérification humaine |
 | statut | énumération | oui | `brouillon`, `publie`, `archive` |

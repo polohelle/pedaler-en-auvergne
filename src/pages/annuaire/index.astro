@@ -1,13 +1,19 @@
 ---
+import { LIBELLES_CATEGORIE_ASSOCIATIVE } from '@config/acteurs';
 import { SITE } from '@config/site';
 import Appel from '@components/Appel.astro';
 import CarteActeur from '@components/CarteActeur.astro';
 import CarteAnnuaire from '@components/CarteAnnuaire.astro';
 import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
+import { sectionsAnnuaire } from '@lib/annuaire';
 import { acteursPublies } from '@services/contenus';
 
 const acteurs = await acteursPublies();
+const { commerces, associations, nombreAssociations } = sectionsAnnuaire(
+  acteurs,
+  (a) => a.data.categories,
+);
 ---
 
 <Base
@@ -27,14 +33,47 @@ const acteurs = await acteursPublies();
     </p>
   ) : (
     <>
+      <nav class="sections" aria-label="Sections de l'annuaire">
+        <ul class="liste-simple">
+          <li>
+            <a href="#commerces-et-services">Commerces et services</a> ({commerces.length})
+          </li>
+          <li>
+            <a href="#associations-et-clubs">Associations et clubs</a> ({nombreAssociations})
+            <ul class="liste-simple">
+              {associations.map(({ categorie, acteurs: groupe }) => (
+                <li>
+                  <a href={`#${categorie}`}>{LIBELLES_CATEGORIE_ASSOCIATIVE[categorie]}</a> (
+                  {groupe.length})
+                </li>
+              ))}
+            </ul>
+          </li>
+        </ul>
+      </nav>
       <CarteAnnuaire />
-      <h2>Liste des acteurs</h2>
       <p class="discret">{acteurs.length} acteur(s) référencé(s).</p>
+      <h2 id="commerces-et-services">Commerces et services</h2>
       <ul class="grille liste-simple">
-        {acteurs.map((acteur) => (
+        {commerces.map((acteur) => (
           <CarteActeur acteur={acteur} niveau="h3" />
         ))}
       </ul>
+      <h2 id="associations-et-clubs">Associations et clubs</h2>
+      <p class="texte">
+        Clubs sportifs (FFC, FFVélo…), associations d'usagers, ateliers participatifs et
+        vélo-écoles. Les clubs n'ont pas d'adresse d'accueil publique : contactez-les par leur site.
+      </p>
+      {associations.map(({ categorie, acteurs: groupe }) => (
+        <section aria-labelledby={categorie}>
+          <h3 id={categorie}>{LIBELLES_CATEGORIE_ASSOCIATIVE[categorie]}</h3>
+          <ul class="grille liste-simple">
+            {groupe.map((acteur) => (
+              <CarteActeur acteur={acteur} niveau="h4" />
+            ))}
+          </ul>
+        </section>
+      ))}
     </>
   )}
   <Appel
@@ -52,3 +91,14 @@ const acteurs = await acteursPublies();
     <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, licence ODbL.
   </p>
 </Base>
+
+<style>
+  .sections ul ul {
+    margin-block-start: var(--espace-1);
+    padding-inline-start: var(--espace-3);
+  }
+
+  .sections li + li {
+    margin-block-start: var(--espace-1);
+  }
+</style>

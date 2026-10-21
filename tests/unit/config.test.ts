@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { CATEGORIES_ACTEUR, COLLEGES, ORIGINES_ACTEUR, SERVICES } from '@config/acteurs';
+import {
+  CATEGORIES_ACTEUR,
+  COLLEGES,
+  DISCIPLINES,
+  ORIGINES_ACTEUR,
+  SERVICES,
+} from '@config/acteurs';
 import { CATEGORIES_ACTU, PORTEES, TYPES_ACTU } from '@config/actus';
 import { CODES_DEPARTEMENT, DEPARTEMENT_PAR_DEFAUT, DEPARTEMENTS } from '@config/departements';
 import { ORIGINES_EVENEMENT, TYPES_EVENEMENT } from '@config/evenements';
@@ -22,6 +28,7 @@ const listes = {
   CATEGORIES_ACTEUR,
   COLLEGES,
   SERVICES,
+  DISCIPLINES,
   ORIGINES_ACTEUR,
   TYPES_EVENEMENT,
   ORIGINES_EVENEMENT,

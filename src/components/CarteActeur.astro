@@ -1,5 +1,5 @@
 ---
-import { LIBELLES_CATEGORIE_ACTEUR } from '@config/acteurs';
+import { LIBELLES_CATEGORIE_ACTEUR, LIBELLES_DISCIPLINE } from '@config/acteurs';
 import { slugifier } from '@lib/slug';
 import Vignette from './Vignette.astro';
 import type { EntreeActeurPublie } from '@services/contenus';
@@ -7,8 +7,8 @@ import type { EntreeActeurPublie } from '@services/contenus';
 /** Carte d'un acteur dans une liste (annuaire, pages par commune). */
 interface Props {
   acteur: EntreeActeurPublie;
-  /** Titre de la carte : `h2` dans l'annuaire, `h3` sous une section. */
-  niveau?: 'h2' | 'h3';
+  /** Titre de la carte : `h2` seule, `h3` sous une section, `h4` sous une sous-section. */
+  niveau?: 'h2' | 'h3' | 'h4';
   /** Lie la commune à sa page « Pédaler à… » (inutile sur cette page même). */
   lienCommune?: boolean;
 }
@@ -40,6 +40,13 @@ const { id, data } = acteur;
       <li class="etiquette">{LIBELLES_CATEGORIE_ACTEUR[c]}</li>
     ))}
   </ul>
+  {data.disciplines && (
+    <ul class="liste-simple puces" aria-label="Disciplines">
+      {data.disciplines.map((d) => (
+        <li class={`etiquette etiquette-${d}`}>{LIBELLES_DISCIPLINE[d]}</li>
+      ))}
+    </ul>
+  )}
 </li>
 
 <style>
@@ -60,7 +67,7 @@ const { id, data } = acteur;
     gap: var(--espace-3);
   }
 
-  .acteur__tete > :is(h2, h3) {
+  .acteur__tete > :is(h2, h3, h4) {
     min-width: 0;
     margin: 0;
   }

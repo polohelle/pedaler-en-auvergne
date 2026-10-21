@@ -2,6 +2,7 @@ import { z } from 'astro/zod';
 import {
   CATEGORIES_ACTEUR,
   COLLEGES,
+  DISCIPLINES,
   ORIGINES_ACTEUR,
   ORIGINES_LOGO,
   SERVICES,
@@ -51,6 +52,12 @@ const champs = {
   lat: schemaLatitude.optional(),
   lon: schemaLongitude.optional(),
   services: z.array(z.enum(SERVICES)).refine(sansDoublon, 'Service en double.').optional(),
+  /** Disciplines d'un club sportif (route, VTT, BMX…). */
+  disciplines: z
+    .array(z.enum(DISCIPLINES))
+    .min(1, 'Au moins une discipline, ou retirer le champ.')
+    .refine(sansDoublon, 'Discipline en double.')
+    .optional(),
   horaires: schemaTexte.optional(),
   site: schemaUrl.optional(),
   email: z.email('Adresse e-mail invalide.').optional(),
@@ -58,6 +65,8 @@ const champs = {
   reseaux: z.array(schemaUrl).optional(),
   logo: schemaLogo.optional(),
   source: z.enum(ORIGINES_ACTEUR),
+  /** Page où l'information a été vérifiée (annuaire de fédération, site de la structure). */
+  source_url: schemaUrl.optional(),
   osm_id: z
     .string()
     .regex(/^(?:node|way|relation)\/\d+$/, 'Identifiant OSM attendu : node/123, way/123…')
@@ -162,6 +171,13 @@ export const schemaActeur = z
         code: 'custom',
         path: ['osm_id'],
         message: 'Une fiche issue d’OpenStreetMap garde son identifiant OSM.',
+      });
+    }
+    if (acteur.source === 'agent' && acteur.source_url === undefined) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['source_url'],
+        message: 'Une fiche établie par un agent cite sa source vérifiable.',
       });
     }
     if (acteur.source === 'osm' && acteur.statut === 'brouillon') {
