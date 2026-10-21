@@ -19,5 +19,6 @@ verifie_le: '2026-10-21'
 statut: publie
 ---
 
-Club de cyclotourisme de Cournon-d'Auvergne affilié à la FFVélo : sorties sur route, en VTT et en
-gravel, vélos à assistance électrique bienvenus.
+Club de cyclotourisme de Cournon-d'Auvergne affilié à la FFVélo et à l'UFOLEP : sorties sur route,
+en VTT et en gravel, vélos à assistance électrique bienvenus. Il organise notamment La Cournonnaise
+et La Volcane, au départ de Volvic.

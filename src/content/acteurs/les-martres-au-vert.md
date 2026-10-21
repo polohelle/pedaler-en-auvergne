@@ -11,7 +11,6 @@ departement: '63'
 sans_adresse_publique: true
 services:
   - auto-reparation
-site: https://lesmartresauvert.ynh.fr/yeswiki/
 reseaux:
   - https://www.facebook.com/MartresAuVert
 source: agent

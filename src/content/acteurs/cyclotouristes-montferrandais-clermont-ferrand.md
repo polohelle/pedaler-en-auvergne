@@ -17,5 +17,5 @@ verifie_le: '2026-10-21'
 statut: publie
 ---
 
-Club de cyclotourisme de Montferrand (CTM) affilié à la FFVélo : sorties sur route, ouvertes aux
-vélos à assistance électrique.
+Club de cyclotourisme de Montferrand (CTM) affilié à la FFVélo et à l'UFOLEP : sorties sur route,
+ouvertes aux vélos à assistance électrique.

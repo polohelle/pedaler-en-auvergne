@@ -18,5 +18,5 @@ verifie_le: '2026-10-21'
 statut: publie
 ---
 
-Club de cyclotourisme de Mozac affilié à la FFVélo : route et VTT, avec un accueil des personnes en
-situation de handicap.
+Club de cyclotourisme de Mozac affilié à la FFVélo et à l'UFOLEP : route et VTT, avec un accueil des
+personnes en situation de handicap.

@@ -19,5 +19,5 @@ verifie_le: '2026-10-21'
 statut: publie
 ---
 
-Club de cyclotourisme (CMV) affilié à la FFVélo : route, VTT et gravel, vélos à assistance
-électrique bienvenus.
+Club de cyclotourisme (CMV) affilié à la FFVélo et à l'UFOLEP : route, VTT et gravel, vélos à
+assistance électrique bienvenus.
