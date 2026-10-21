@@ -8,7 +8,7 @@ resume: >-
   mettre pied à terre dans les aires piétonnes du centre de Clermont-Ferrand, à toute heure,
   sous peine de 35 à 150 euros d'amende. Le maire y voit une protection des piétons ;
   Vélo-Cité 63 dénonce une mesure prise sans concertation et demande son annulation par
-  pétition.
+  pétition et devant le tribunal administratif.
 departement: '63'
 source_url: https://www.radioscoop.com/infos/clermont-ferrand-la-circulation-a-velo-interdite-dans-les-zones-pietonnes-du-centre-ville_365442
 source_nom: Radio Scoop
@@ -36,3 +36,12 @@ concertation. Elle avance aussi les données de l'ONISR sur dix ans à Clermont-
 piétons tués par des véhicules motorisés, aucun piéton tué ou hospitalisé après une collision
 avec un vélo, et aucune victime piétonne impliquant un vélo dans les secteurs visés
 ([message du 19 octobre](https://pouet.chapril.org/@velocite63/117468505064158665)).
+
+**Un recours en justice.** Vélo-Cité 63 annonce un recours, assorti d'un référé-suspension, devant
+le tribunal administratif de Clermont-Ferrand. Pour l'appuyer, elle recueille les témoignages
+écrits des cyclistes dont les trajets quotidiens ont changé, et invite les commerçants du centre
+à faire part de leurs difficultés aux élus
+([site de l'association](https://www.velocite63.fr/)). La vélorution prévue le 24 octobre place
+de Jaude est reportée à une date non fixée, un autre rassemblement étant annoncé au même endroit
+et à la même heure
+([message du 20 octobre](https://pouet.chapril.org/@velocite63/117473966885499409)).
