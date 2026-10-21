@@ -7,8 +7,8 @@ disciplines:
   - route
   - vtt
 membre: false
-code_postal: '63410'
-commune: Charbonnières-les-Varennes
+code_postal: '63140'
+commune: Châtel-Guyon
 departement: '63'
 sans_adresse_publique: true
 services:

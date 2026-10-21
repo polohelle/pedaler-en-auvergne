@@ -10,7 +10,7 @@ disciplines:
   - piste
 membre: false
 code_postal: '63360'
-commune: Saint-Beauzire
+commune: Gerzat
 departement: '63'
 sans_adresse_publique: true
 source: agent

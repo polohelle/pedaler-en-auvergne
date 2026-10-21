@@ -8,8 +8,8 @@ disciplines:
   - vtt
   - gravel
 membre: false
-code_postal: '63960'
-commune: Veyre-Monton
+code_postal: '63730'
+commune: Les Martres-de-Veyre
 departement: '63'
 sans_adresse_publique: true
 site: https://velocmv.fr/

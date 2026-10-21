@@ -9,7 +9,7 @@ disciplines:
   - cyclo-cross
 membre: false
 code_postal: '63200'
-commune: Saint-Bonnet-près-Riom
+commune: Riom
 departement: '63'
 sans_adresse_publique: true
 services:

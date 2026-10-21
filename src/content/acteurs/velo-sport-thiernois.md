@@ -8,8 +8,8 @@ disciplines:
   - vtt
   - gravel
 membre: false
-code_postal: '63920'
-commune: Peschadoires
+code_postal: '63300'
+commune: Thiers
 departement: '63'
 sans_adresse_publique: true
 site: https://vst-63.jimdofree.com/

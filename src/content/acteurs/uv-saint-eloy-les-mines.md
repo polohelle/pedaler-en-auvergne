@@ -8,8 +8,8 @@ disciplines:
   - vtt
   - cyclo-cross
 membre: false
-code_postal: '63390'
-commune: Saint-Gervais-d'Auvergne
+code_postal: '63700'
+commune: Saint-Éloy-les-Mines
 departement: '63'
 sans_adresse_publique: true
 source: agent

@@ -24,8 +24,9 @@ déclaré à leur fédération est souvent le domicile d'un dirigeant.
   affiché en étiquettes sur la carte et la fiche, aux couleurs des pratiques de l'agenda (ADR 0034) quand elles existent.
 - Champ facultatif **`source_url`**, **obligatoire pour une fiche `source: agent`** : la page où
   l'information a été vérifiée (annuaire de fédération, réseau FUB). La fiche l'affiche.
-- Les clubs sont publiés **sans adresse publique** (ADR 0025), avec la commune de leur siège
-  fédéral et leur site ; ni nom, ni téléphone, ni adresse électronique personnelle de dirigeant,
+- Les clubs sont publiés **sans adresse publique** (ADR 0025), avec leur commune et leur site.
+  Quand le nom du club cite une ville et que le siège déclaré à la fédération est ailleurs
+  (souvent chez un dirigeant), la fiche retient la ville du nom ; ni nom, ni téléphone, ni adresse électronique personnelle de dirigeant,
   même quand la fédération les publie.
 - Sources de la collecte initiale (Puy-de-Dôme) : liste des clubs de la FFC (velo.ffc.fr),
   carte des clubs de la FFVélo (veloenfrance.fr), réseau des associations de la FUB (fub.fr).
@@ -33,7 +34,7 @@ déclaré à leur fédération est souvent le domicile d'un dirigeant.
 ## Conséquences
 
 - Les clubs n'ont pas de point sur la carte ; la liste reste la référence complète.
-- La commune déclarée par une fédération est parfois celle d'un dirigeant plutôt que celle qui
-  donne son nom au club : elle est reprise telle quelle et corrigée sur signalement.
+- La commune d'un club est donc celle où il est connu, pas forcément celle de son siège légal ;
+  elle se corrige sur signalement du club.
 - Les fiches des clubs sont à revérifier chaque saison (affiliations annuelles) par l'agent de
   maintenance de l'annuaire. Les autres départements suivront à leur ouverture.

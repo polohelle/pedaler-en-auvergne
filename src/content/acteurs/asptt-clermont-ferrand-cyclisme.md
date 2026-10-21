@@ -1,6 +1,6 @@
 ---
 nom: ASPTT Clermont-Ferrand — cyclisme
-slug: asptt-clermont-ferrand-cyclisme-lempdes
+slug: asptt-clermont-ferrand-cyclisme
 categories:
   - club-sportif
 disciplines:
@@ -8,8 +8,8 @@ disciplines:
   - vtt
   - cyclo-cross
 membre: false
-code_postal: '63370'
-commune: Lempdes
+code_postal: '63000'
+commune: Clermont-Ferrand
 departement: '63'
 sans_adresse_publique: true
 site: https://clermont.asptt.com/
