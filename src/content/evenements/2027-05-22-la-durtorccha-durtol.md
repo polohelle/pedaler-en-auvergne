@@ -7,6 +7,7 @@ debut: '2027-05-22T13:00:00+02:00'
 lieu: Durtol
 commune: Durtol
 departement: '63'
+organisateur: velo-club-cournon-d-auvergne
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/4163048002/la-durtorccha/
 source: agent
 statut: publie

@@ -12,6 +12,7 @@ image:
   alt: Bandeau du cyclo-cross de Cournon, Trophée Groupama, le samedi 14 novembre 2026 au plan d'eau de Cournon.
   credit: Vélo Club de Cournon-d'Auvergne
   source_url: https://vcca.fr/wp/%C3%A9v%C3%A8nement/cyclo-cross-groupama/?instance_id=145
+organisateur: velo-club-cournon-d-auvergne
 source_url: https://vcca.fr/wp/%C3%A9v%C3%A8nement/cyclo-cross-groupama/?instance_id=145
 source: agent
 statut: publie
