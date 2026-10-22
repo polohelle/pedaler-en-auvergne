@@ -11,7 +11,8 @@ auteur: XC63
 licence: autorisation
 source_url: http://xc63.fr/
 source: admin
-statut: brouillon
+verifie_le: 2026-10-22
+statut: publie
 ---
 
 Grand parcours VTT de l'édition 2024 des Rondes des Gaulois, organisées par le club XC63, rallongé pour partir de la mairie de Beaumont. Il gagne Saint-Genès-Champanelle puis explore les sentiers d'Orcines, au pied du puy de Dôme. Plus de 80 km et près de 2 000 m de dénivelé : réservé aux vététistes entraînés.

@@ -11,7 +11,8 @@ auteur: XC63
 licence: autorisation
 source_url: http://xc63.fr/
 source: admin
-statut: brouillon
+verifie_le: 2026-10-22
+statut: publie
 ---
 
 Grand parcours de l'édition 2023 des Rondes des Gaulois, organisées par le club XC63 à Saint-Genès-Champanelle. Il descend par Ceyrat, Romagnat et Chanonat, puis remonte vers Aydat et les puys avant de revenir sur le plateau. Environ 76 km mesurés sur la trace pour près de 1 500 m de dénivelé.
