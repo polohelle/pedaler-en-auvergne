@@ -12,7 +12,7 @@ lon: 3.08556
 tarif: Gratuit
 source_url: https://pouet.chapril.org/@velocite63/117478742083022514
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Stéphanie Durdilly présente son essai, né d'un voyage à vélo en solitaire vers l'Albanie : elle y
