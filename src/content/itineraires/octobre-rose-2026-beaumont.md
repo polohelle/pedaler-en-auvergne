@@ -1,5 +1,5 @@
 ---
-titre: Octobre rose, de Beaumont à Cournon
+titre: Octobre rose 2026
 pratique: gravel
 difficulte: facile
 forme: boucle
@@ -8,7 +8,7 @@ commune: Beaumont
 departement: '63'
 auteur: Pédaler en Auvergne
 licence: autorisation
-source_url: https://pedalerenauvergne.fr/itineraires/gravel-octobre-rose-beaumont/
+source_url: https://pedalerenauvergne.fr/itineraires/octobre-rose-2026-beaumont/
 source: admin
 statut: brouillon
 ---
