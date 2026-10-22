@@ -13,6 +13,10 @@ services:
   - auto-reparation
 reseaux:
   - https://www.facebook.com/MartresAuVert
+logo:
+  fichier: les-martres-au-vert.webp
+  source_url: https://www.helloasso.com/associations/les-martres-au-vert
+  origine: site-structure
 source: agent
 source_url: https://www.fub.fr/reseau-fub/martres-vert
 verifie_le: '2026-10-21'
