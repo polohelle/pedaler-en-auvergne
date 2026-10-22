@@ -12,10 +12,6 @@ services:
   - auto-reparation
   - occasion
 site: https://www.velocite63.fr
-logo:
-  fichier: velo-boulot-dodo-clermont-ferrand.webp
-  source_url: https://www.velocite63.fr
-  origine: site-structure
 source: osm
 osm_id: node/4743048621
 verifie_le: '2026-10-15'
