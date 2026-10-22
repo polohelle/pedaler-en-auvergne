@@ -33,22 +33,26 @@ const { commerces, associations, nombreAssociations } = sectionsAnnuaire(
     </p>
   ) : (
     <>
-      <nav class="sections" aria-label="Sections de l'annuaire">
-        <ul class="liste-simple">
+      <nav class="sections rubrique-annuaire" aria-label="Sections de l'annuaire">
+        <ul class="sections__liste">
           <li>
-            <a href="#commerces-et-services">Commerces et services</a> ({commerces.length})
+            <a href="#commerces-et-services">
+              Commerces et services <span class="sections__nombre">{commerces.length}</span>
+            </a>
           </li>
           <li>
-            <a href="#associations-et-clubs">Associations et clubs</a> ({nombreAssociations})
-            <ul class="liste-simple">
-              {associations.map(({ categorie, acteurs: groupe }) => (
-                <li>
-                  <a href={`#${categorie}`}>{LIBELLES_CATEGORIE_ASSOCIATIVE[categorie]}</a> (
-                  {groupe.length})
-                </li>
-              ))}
-            </ul>
+            <a href="#associations-et-clubs">
+              Associations et clubs <span class="sections__nombre">{nombreAssociations}</span>
+            </a>
           </li>
+          {associations.map(({ categorie, acteurs: groupe }) => (
+            <li class="sections__sous">
+              <a href={`#${categorie}`}>
+                {LIBELLES_CATEGORIE_ASSOCIATIVE[categorie]}{' '}
+                <span class="sections__nombre">{groupe.length}</span>
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
       <CarteAnnuaire />
@@ -93,12 +97,61 @@ const { commerces, associations, nombreAssociations } = sectionsAnnuaire(
 </Base>
 
 <style>
-  .sections ul ul {
-    margin-block-start: var(--espace-1);
-    padding-inline-start: var(--espace-3);
+  /* Sections en boutons sur une ligne, à la manière des onglets du menu principal. */
+  .sections__liste {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espace-2);
+    margin: 0 0 var(--espace-4);
+    padding: 0;
+    list-style: none;
   }
 
-  .sections li + li {
-    margin-block-start: var(--espace-1);
+  .sections a {
+    display: flex;
+    align-items: center;
+    gap: var(--espace-2);
+    min-height: var(--cible-tactile);
+    padding-inline: var(--espace-3);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon);
+    background: var(--couleur-surface);
+    color: var(--couleur-texte);
+    font-size: var(--taille-petite);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* Sous-catégories des associations : même bouton, trait plus léger. */
+  .sections__sous a {
+    font-weight: 400;
+  }
+
+  .sections a:hover {
+    border-color: var(--couleur-rubrique);
+    background: var(--couleur-rubrique-pale);
+    color: var(--couleur-rubrique);
+    box-shadow: inset 0 -3px 0 currentColor;
+  }
+
+  .sections__nombre {
+    min-width: 1.75rem;
+    padding: 0 var(--espace-2);
+    border-radius: 999px;
+    background: var(--couleur-rubrique-pale);
+    color: var(--couleur-texte);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .sections a:hover .sections__nombre {
+    background: var(--couleur-surface);
+  }
+
+  @media (max-width: 47.99rem) {
+    .sections a {
+      padding-inline: var(--espace-2);
+    }
   }
 </style>
