@@ -19,6 +19,10 @@ reseaux:
   - https://www.facebook.com/velocite63/
   - https://pouet.chapril.org/@velocite63
   - https://bsky.app/profile/velocite63.bsky.social
+logo:
+  fichier: velo-cite-63-clermont-ferrand.webp
+  source_url: https://www.velocite63.fr/
+  origine: site-structure
 source: agent
 source_url: https://www.fub.fr/reseau-fub/velo-cite-63
 verifie_le: '2026-10-21'

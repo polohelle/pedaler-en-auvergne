@@ -13,6 +13,10 @@ sans_adresse_publique: true
 services:
   - apprentissage
 site: https://crlvtt.fr/
+logo:
+  fichier: castels-randonneurs-de-la-limagne-pont-du-chateau.webp
+  source_url: https://crlvtt.fr/
+  origine: site-structure
 source: agent
 source_url: https://veloenfrance.fr/club/castels-randonneurs-limagne
 verifie_le: '2026-10-21'

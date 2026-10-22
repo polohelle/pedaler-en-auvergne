@@ -12,6 +12,10 @@ commune: Chamalières
 departement: '63'
 sans_adresse_publique: true
 site: https://coc63.fr/
+logo:
+  fichier: cycle-olympique-chamalierois.webp
+  source_url: https://coc63.fr/
+  origine: site-structure
 source: agent
 source_url: https://veloenfrance.fr/club/c-olympique-chamalierois
 verifie_le: '2026-10-21'

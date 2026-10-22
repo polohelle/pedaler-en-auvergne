@@ -13,6 +13,10 @@ sans_adresse_publique: true
 services:
   - apprentissage
 site: https://team-dore-evasion.assoconnect.com/
+logo:
+  fichier: team-dore-evasion-courpiere.webp
+  source_url: https://team-dore-evasion.assoconnect.com/
+  origine: site-structure
 source: agent
 source_url: https://velo.ffc.fr/liste-clubs/?region=auvergne-rhone-alpes&search=Puy-de-D%C3%B4me
 verifie_le: '2026-10-21'

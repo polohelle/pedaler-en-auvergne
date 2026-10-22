@@ -12,6 +12,10 @@ commune: La Roche-Blanche
 departement: '63'
 sans_adresse_publique: true
 site: https://www.ccrb63.fr/
+logo:
+  fichier: cyclo-club-de-la-roche-blanche.webp
+  source_url: https://www.ccrb63.fr/
+  origine: site-structure
 source: agent
 source_url: https://cd.ufolep.org/puydedome/puydedome_a/cms/index_public.php?us_action=show_note&ui_id_site=1&ui_id_doc=1010900003
 verifie_le: '2026-10-21'

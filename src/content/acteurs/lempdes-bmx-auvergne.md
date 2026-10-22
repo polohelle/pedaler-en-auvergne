@@ -15,6 +15,10 @@ sans_adresse_publique: true
 services:
   - apprentissage
 site: https://www.lempdes-bmx.com/
+logo:
+  fichier: lempdes-bmx-auvergne.webp
+  source_url: https://www.lempdes-bmx.com/
+  origine: site-structure
 source: agent
 source_url: https://velo.ffc.fr/liste-clubs/?region=auvergne-rhone-alpes&search=Puy-de-D%C3%B4me
 verifie_le: '2026-10-21'
