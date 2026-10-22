@@ -11,6 +11,10 @@ sans_adresse_publique: true
 site: https://www.helloasso.com/associations/rouetguidon
 reseaux:
   - https://www.facebook.com/Rouetguidon-106220025625276
+logo:
+  fichier: rouetguidon-thiers.webp
+  source_url: https://www.helloasso.com/associations/rouetguidon
+  origine: site-structure
 source: agent
 source_url: https://www.fub.fr/reseau-fub/rouetguidon
 verifie_le: '2026-10-21'

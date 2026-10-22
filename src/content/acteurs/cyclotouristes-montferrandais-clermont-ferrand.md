@@ -11,6 +11,10 @@ commune: Clermont-Ferrand
 departement: '63'
 sans_adresse_publique: true
 site: https://ctm63.fr/
+logo:
+  fichier: cyclotouristes-montferrandais-clermont-ferrand.webp
+  source_url: https://ctm63.fr/
+  origine: site-structure
 source: agent
 source_url: https://veloenfrance.fr/club/cyclotouristes-montferrandais
 verifie_le: '2026-10-21'

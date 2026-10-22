@@ -15,6 +15,10 @@ sans_adresse_publique: true
 site: http://www.energycyclemozacvtt.fr/
 reseaux:
   - https://www.facebook.com/EcMozac
+logo:
+  fichier: energy-cycle-mozac.webp
+  source_url: https://www.helloasso.com/associations/energy-cycle-mozac
+  origine: site-structure
 source: agent
 source_url: https://velo.ffc.fr/liste-clubs/?region=auvergne-rhone-alpes&search=Puy-de-D%C3%B4me
 verifie_le: '2026-10-21'

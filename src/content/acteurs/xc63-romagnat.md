@@ -13,6 +13,10 @@ sans_adresse_publique: true
 services:
   - apprentissage
 site: http://xc63.fr/
+logo:
+  fichier: xc63-romagnat.webp
+  source_url: https://www.helloasso.com/associations/xc63
+  origine: site-structure
 source: agent
 source_url: https://velo.ffc.fr/liste-clubs/?region=auvergne-rhone-alpes&search=Puy-de-D%C3%B4me
 verifie_le: '2026-10-21'

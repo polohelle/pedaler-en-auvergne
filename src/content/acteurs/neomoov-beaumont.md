@@ -19,6 +19,10 @@ services:
 site: https://www.helloasso.com/associations/neomoov
 reseaux:
   - https://www.facebook.com/NEOMOOV
+logo:
+  fichier: neomoov-beaumont.webp
+  source_url: https://www.helloasso.com/associations/neomoov
+  origine: site-structure
 source: agent
 source_url: https://www.fub.fr/reseau-fub/neomoov
 verifie_le: '2026-10-21'

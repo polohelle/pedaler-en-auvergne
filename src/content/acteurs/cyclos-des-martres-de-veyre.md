@@ -13,6 +13,10 @@ commune: Les Martres-de-Veyre
 departement: '63'
 sans_adresse_publique: true
 site: https://velocmv.fr/
+logo:
+  fichier: cyclos-des-martres-de-veyre.webp
+  source_url: https://velocmv.fr/
+  origine: site-structure
 source: agent
 source_url: https://veloenfrance.fr/club/cyclos-martres-veyre
 verifie_le: '2026-10-21'
