@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.6.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.5.1...pedaler-en-auvergne-v0.6.0) (2026-10-23)
+
+
+### Nouveautés
+
+* sections de l'annuaire en boutons sur une ligne ([a803e13](https://github.com/polohelle/pedaler-en-auvergne/commit/a803e13d2ae5693d72196e914302e808169eb915))
+* sections de l'annuaire en boutons sur une ligne ([e004cc6](https://github.com/polohelle/pedaler-en-auvergne/commit/e004cc6dbcc6befdb7833e02e01d396b9a050e4f))
+
+
+### Documentation
+
+* **veille:** passage du 22 octobre, cycle Femmes et vélo ([450beb5](https://github.com/polohelle/pedaler-en-auvergne/commit/450beb5af5cd9e79f0719ae33b0e89784465429b))
+* **veille:** semaine 43, passage du 22 octobre ([c172af7](https://github.com/polohelle/pedaler-en-auvergne/commit/c172af7b97e4ca0242b8741378f191bbadc449c9))
+
 ## [0.5.1](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.5.0...pedaler-en-auvergne-v0.5.1) (2026-10-21)
 
 
