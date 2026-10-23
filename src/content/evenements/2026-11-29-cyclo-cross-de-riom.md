@@ -10,7 +10,7 @@ departement: '63'
 organisateur: velo-club-riomois
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4163044039/cyclo-cross-de-riom-elite/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Vélo Club Riomois organise son cyclo-cross, avec un prologue disputé à l'américaine (par équipes

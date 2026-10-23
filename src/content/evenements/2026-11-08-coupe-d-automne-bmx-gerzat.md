@@ -9,7 +9,7 @@ departement: '63'
 organisateur: gerzat-arverne-bmx
 source_url: https://competitions.ffc.fr/calendrier/competition/2026/C4163121006/gerzat-coupe-dautomne-bmx/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Manche de la coupe d'automne de BMX accueillie par Gerzat Arverne BMX, avec des courses en

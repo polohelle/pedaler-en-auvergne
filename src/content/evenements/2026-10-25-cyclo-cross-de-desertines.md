@@ -9,7 +9,7 @@ commune: Désertines
 departement: '03'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4103187005/desertines-cyclo-cross-elite-et-u23/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Cyclo-cross régional au programme de la Fédération française de cyclisme, avec des courses pour

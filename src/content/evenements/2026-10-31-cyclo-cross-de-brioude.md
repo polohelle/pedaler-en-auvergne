@@ -9,7 +9,7 @@ commune: Brioude
 departement: '43'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4143032010/cyclo-cross-de-brioude-elite-et-u23/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Vélo Sport Brivadois organise un cyclo-cross ouvert à toutes les catégories : école de

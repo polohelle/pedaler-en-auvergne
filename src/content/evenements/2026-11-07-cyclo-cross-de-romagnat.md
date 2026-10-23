@@ -10,7 +10,7 @@ departement: '63'
 organisateur: xc63-romagnat
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4163150004/cyclo-cross-de-romagnat-elite-et-u23/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le club XC63 accueille un cyclo-cross régional avec des courses pour les écoles de cyclisme, les

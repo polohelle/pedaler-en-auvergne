@@ -9,7 +9,7 @@ commune: Clermont-Ferrand
 departement: '63'
 source_url: https://www.letourfemmes.fr/en/overall-route
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Huitième et avant-dernière étape du Tour de France Femmes 2027 : 151 km entre La Bourboule et

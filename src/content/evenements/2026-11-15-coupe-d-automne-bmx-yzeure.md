@@ -8,7 +8,7 @@ commune: Yzeure
 departement: '03'
 source_url: https://competitions.ffc.fr/calendrier/competition/2026/C4103108008/yzeure-manche-coupe-d-automne-20-pouces/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le club BMX Yzeure reçoit une manche de la coupe d'automne de BMX, avec des courses en 20 pouces,
