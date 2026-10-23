@@ -12,7 +12,7 @@ departement: '63'
 source_url: https://www.letourfemmes.fr/en/overall-route
 source_nom: Tour de France Femmes
 portee: local
-statut: brouillon
+statut: publie
 ---
 
 L'édition 2027 compte neuf étapes et 1 156 km, une distance encore à homologuer. Les deux
