@@ -1,15 +1,15 @@
 ---
 titre: Dôme Urban Ride n° 71, spécial Halloween
 type: social-ride
-# Annonce relayée par l'agenda Pommes de Lune (renvoi vers un événement Facebook, non lisible) ; à confirmer auprès du collectif.
-debut: '2026-10-30T19:30:00+01:00'
-fin: '2026-10-30T21:30:00+01:00'
+# Annonce relayée par l'agenda Pommes de Lune (renvoi vers un événement Facebook, non lisible) ; date corrigée le 25/10 du vendredi 30 au samedi 31 octobre d'après la même source. À confirmer auprès du collectif.
+debut: '2026-10-31T19:30:00+01:00'
+fin: '2026-10-31T21:30:00+01:00'
 lieu: Place des Carmes-Déchaux
 commune: Clermont-Ferrand
 departement: '63'
 lat: 45.78253
 lon: 3.0944
-source_url: https://pommesdelune.fr/event/2026/10/30/29447-dur-71
+source_url: https://pommesdelune.fr/event/2026/10/31/29447-dur-71
 source: agent
 statut: publie
 ---
