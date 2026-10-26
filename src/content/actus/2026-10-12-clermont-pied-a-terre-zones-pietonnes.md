@@ -32,7 +32,7 @@ environ. Il écarte toute exception horaire et annonce le renfort de la police m
 **La réponse de Vélo-Cité 63.** L'association a ouvert une
 [pétition](https://framapetitions.org/petition/user/velocite63/non-au-pied-a-terre-dans-les-aires-pietonnes-du-centre-ville-de-clermont)
 adressée au maire et au conseil municipal, qui demande le retrait de l'arrêté et une
-concertation. Elle avance aussi les données de l'ONISR sur dix ans à Clermont-Ferrand : 18
+concertation ; elle comptait 5 913 signatures le 23 octobre. Elle avance aussi les données de l'ONISR sur dix ans à Clermont-Ferrand : 18
 piétons tués par des véhicules motorisés, aucun piéton tué ou hospitalisé après une collision
 avec un vélo, et aucune victime piétonne impliquant un vélo dans les secteurs visés
 ([message du 19 octobre](https://pouet.chapril.org/@velocite63/117468505064158665)).
