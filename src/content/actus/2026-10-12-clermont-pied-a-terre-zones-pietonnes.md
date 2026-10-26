@@ -42,6 +42,7 @@ le tribunal administratif de Clermont-Ferrand. Pour l'appuyer, elle recueille le
 écrits des cyclistes dont les trajets quotidiens ont changé, et invite les commerçants du centre
 à faire part de leurs difficultés aux élus
 ([site de l'association](https://www.velocite63.fr/)). La vélorution prévue le 24 octobre place
-de Jaude est reportée à une date non fixée, un autre rassemblement étant annoncé au même endroit
-et à la même heure
-([message du 20 octobre](https://pouet.chapril.org/@velocite63/117473966885499409)).
+de Jaude a été reportée, un autre rassemblement étant annoncé au même endroit et à la même heure
+([message du 20 octobre](https://pouet.chapril.org/@velocite63/117473966885499409)). Elle est
+reprogrammée le vendredi 30 octobre à partir de 18 h, toujours place de Jaude
+([page de l'association](https://www.velocite63.fr/non-au-pied-a-terre)).
