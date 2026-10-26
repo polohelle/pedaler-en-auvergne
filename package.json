@@ -32,7 +32,7 @@
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "5.3.0",
     "@fontsource-variable/source-sans-3": "5.3.1",
-    "astro": "7.4.0",
+    "astro": "7.4.2",
     "leaflet": "1.9.4",
     "leaflet.markercluster": "1.5.3"
   },
