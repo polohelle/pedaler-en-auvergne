@@ -5,6 +5,9 @@ import { LIBELLES_CATEGORIE_ACTU, LIBELLES_PORTEE, LIBELLES_TYPE_ACTU } from '@c
 import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
 import { formaterDate } from '@lib/dates';
+import { donneesActu } from '@lib/donnees-structurees';
+import { urlAbsolue } from '@lib/referencement';
+import { SITE } from '@config/site';
 import { actusPubliees } from '@services/contenus';
 
 export const getStaticPaths = (async () => {
@@ -17,9 +20,16 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { actu } = Astro.props;
 const { data } = actu;
 const { Content } = await render(actu);
+const url = urlAbsolue(Astro.url.pathname, Astro.site ?? Astro.url);
+const image = data.image && urlAbsolue(data.image.src, url);
+const donnees = donneesActu(
+  data,
+  { url, image },
+  { nom: SITE.nom, url: urlAbsolue('/', url), logo: urlAbsolue(SITE.imagePartage, url) },
+);
 ---
 
-<Base titre={data.titre} description={data.resume}>
+<Base titre={data.titre} description={data.resume} {image} typeOg="article" {donnees}>
   <article>
     <TetePage titre={data.titre}>
       <p>

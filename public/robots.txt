@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 # Espace organisateur : pages personnelles, sans intérêt pour les moteurs.
 Disallow: /organisateur/
+
+Sitemap: https://pedalerenauvergne.fr/sitemap.xml

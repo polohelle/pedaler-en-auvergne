@@ -1,6 +1,9 @@
 import AstroPWA from '@vite-pwa/astro';
+import { writeFile } from 'node:fs/promises';
+import type { AstroIntegration } from 'astro';
 import { defineConfig } from 'astro/config';
 import { SITE } from './src/config/site';
+import { genererPlanDuSite } from './src/lib/referencement';
 
 // Les tests bout en bout construisent le site avec un jeu de contenus de test
 // (variable PEA_CONTENU, voir src/content.config.ts) dans un dossier séparé, pour
@@ -41,6 +44,20 @@ function clesDePrecache(entrees: { url: string; revision: string | null; size: n
   };
 }
 
+/** Plan du site (`sitemap.xml`) des pages construites et indexables, écrit en fin de build. */
+const planDuSite: AstroIntegration = {
+  name: 'plan-du-site',
+  hooks: {
+    'astro:build:done': async ({ dir, pages }) => {
+      const xml = genererPlanDuSite(
+        pages.map((page) => page.pathname),
+        SITE.url,
+      );
+      await writeFile(new URL('sitemap.xml', dir), xml);
+    },
+  },
+};
+
 export default defineConfig({
   site: SITE.url,
   output: 'static',
@@ -56,6 +73,7 @@ export default defineConfig({
     build: { assetsInlineLimit: 0 },
   },
   integrations: [
+    planDuSite,
     AstroPWA({
       registerType: 'autoUpdate',
       // Script d'enregistrement en fichier séparé (registerSW.js), compatible avec la CSP.

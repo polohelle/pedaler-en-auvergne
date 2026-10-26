@@ -8,18 +8,28 @@ import EnTete from '@components/EnTete.astro';
 import LienEvitement from '@components/LienEvitement.astro';
 import PiedDePage from '@components/PiedDePage.astro';
 import { SITE } from '@config/site';
+import { serialiserJsonLd, type DonneesStructurees } from '@lib/donnees-structurees';
+import { estIndexable, urlAbsolue } from '@lib/referencement';
 import { rubriqueDe } from '@lib/rubriques';
 
 interface Props {
   /** Titre propre à la page ; le nom du site est ajouté automatiquement. */
   titre: string;
   description?: string;
+  /** Image de partage (affiche, photo, logo) ; à défaut, l'icône du site. */
+  image?: string | undefined;
+  /** `article` pour une actualité, `website` sinon (Open Graph). */
+  typeOg?: 'website' | 'article';
+  /** Données structurées schema.org de la page (src/lib/donnees-structurees.ts). */
+  donnees?: DonneesStructurees | undefined;
 }
 
-const { titre, description = SITE.description } = Astro.props;
+const { titre, description = SITE.description, image, typeOg = 'website', donnees } = Astro.props;
 const titreComplet =
   Astro.url.pathname === '/' ? `${SITE.nom} — ${SITE.slogan}` : `${titre} — ${SITE.nom}`;
 const canonique = new URL(Astro.url.pathname, Astro.site);
+const indexable = estIndexable(Astro.url.pathname);
+const imagePartage = urlAbsolue(image ?? SITE.imagePartage, canonique);
 const rubrique = rubriqueDe(Astro.url.pathname);
 ---
 
@@ -31,6 +41,7 @@ const rubrique = rubriqueDe(Astro.url.pathname);
     <title>{titreComplet}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonique} />
+    {!indexable && <meta name="robots" content="noindex" />}
     <link rel="preload" href={policeTitres} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={policeTexte} as="font" type="font/woff2" crossorigin />
     <meta name="theme-color" content={SITE.couleurTheme} />
@@ -50,12 +61,17 @@ const rubrique = rubriqueDe(Astro.url.pathname);
       title={`Agenda — ${SITE.nom}`}
       href="/agenda/rss.xml"
     />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={typeOg} />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content={SITE.nom} />
-    <meta property="og:title" content={titre} />
+    <meta property="og:title" content={titreComplet} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonique} />
+    <meta property="og:image" content={imagePartage} />
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    {donnees && (
+      <script is:inline type="application/ld+json" set:html={serialiserJsonLd(donnees)} />
+    )}
     <script is:inline src="/registerSW.js" defer></script>
   </head>
   <body data-rubrique={rubrique}>
