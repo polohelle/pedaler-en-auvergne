@@ -37,7 +37,7 @@ sources:
     acteur: velo-cite-63-clermont-ferrand
     fiabilite: moyenne
     frequence: hebdomadaire
-    dernier_passage: '2026-10-21'
+    dernier_passage: '2026-10-28'
     notes: >-
       Association d'usagers, relais de la FUB depuis 1996, membre fondateur pressenti
       du collège Usagers. Site propre trouvé le 2026-10-16, à la place de la page HelloAsso
@@ -53,7 +53,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: quotidienne
-    dernier_passage: '2026-10-26'
+    dernier_passage: '2026-10-28'
     notes: >-
       Flux RSS public du compte Mastodon de l'association, évalué le 2026-10-18 : valide,
       1 à 2 messages par jour, plus réactif que le site. Mêmes messages sur Bluesky
@@ -117,7 +117,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: quotidienne
-    dernier_passage: '2026-10-26'
+    dernier_passage: '2026-10-28'
     notes: >-
       Média local d'actualité clermontoise, ajouté à la demande de l'administrateur le
       2026-10-19 (médias locaux). Flux RSS valide, robots.txt ouvert ; article de référence
@@ -132,7 +132,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: quotidienne
-    dernier_passage: '2026-10-26'
+    dernier_passage: '2026-10-28'
     notes: >-
       Radio locale (Clermont, Vichy, Ambert), ajoutée à la demande de l'administrateur le
       2026-10-19 (médias locaux). Pas de flux d'actualités (seulement des podcasts) : lire la
@@ -147,7 +147,7 @@ sources:
     acteur: null
     fiabilite: faible
     frequence: quotidienne
-    dernier_passage: '2026-10-26'
+    dernier_passage: '2026-10-28'
     notes: >-
       Site d'actualité clermontoise en continu, ajouté à la demande de l'administrateur le
       2026-10-19 (médias locaux). Flux RSS valide (20 articles), robots.txt ouvert, mentions
