@@ -13,5 +13,5 @@ departement: '63'
 source_url: https://www.radiorva.com/news/locales/24052/c-boxvelo-bientot-une-nouvelle-consigne-securisee-aux-salins-a-clermont-ferrand
 source_nom: RVA
 portee: local
-statut: brouillon
+statut: publie
 ---
