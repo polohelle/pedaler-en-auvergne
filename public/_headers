@@ -11,3 +11,11 @@
 
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Copies du site sur pages.dev (production et aperçus) : jamais indexées, pour que les moteurs
+# ne retiennent que pedalerenauvergne.fr.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

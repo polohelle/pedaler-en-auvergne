@@ -10,6 +10,8 @@ import TetePage from '@components/TetePage.astro';
 import Vignette from '@components/Vignette.astro';
 import Base from '@layouts/Base.astro';
 import { formaterPlage } from '@lib/dates';
+import { donneesEvenement } from '@lib/donnees-structurees';
+import { urlAbsolue } from '@lib/referencement';
 import { acteursPublies, evenementsVisibles } from '@services/contenus';
 
 export const getStaticPaths = (async () => {
@@ -24,12 +26,21 @@ const { data } = evenement;
 const { Content } = await render(evenement);
 const organisateur = (await acteursPublies()).find((a) => a.id === data.organisateur);
 const annule = data.statut === 'annule';
+const url = urlAbsolue(Astro.url.pathname, Astro.site ?? Astro.url);
+const description = `${data.titre} : ${LIBELLES_TYPE_EVENEMENT[data.type].toLowerCase()} à ${data.commune} (${data.lieu}), ${formaterPlage(data.debut, data.fin)}.`;
+const image = data.image && urlAbsolue(data.image.src, url);
+const donnees = donneesEvenement(data, {
+  url,
+  description,
+  image,
+  organisateur: organisateur && {
+    nom: organisateur.data.nom,
+    url: urlAbsolue(`/annuaire/${organisateur.id}/`, url),
+  },
+});
 ---
 
-<Base
-  titre={data.titre}
-  description={`${data.titre}, ${formaterPlage(data.debut, data.fin)}, ${data.commune}.`}
->
+<Base titre={data.titre} {description} {image} {donnees}>
   <article class={`type-${data.type}`}>
     <div class="tete-evenement">
       <PastilleDate date={data.debut} />

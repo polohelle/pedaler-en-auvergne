@@ -11,6 +11,8 @@ import { SITE } from '@config/site';
 import Vignette from '@components/Vignette.astro';
 import Base from '@layouts/Base.astro';
 import { formaterPlage } from '@lib/dates';
+import { donneesActeur } from '@lib/donnees-structurees';
+import { urlAbsolue } from '@lib/referencement';
 import { acteursPublies, evenementsAVenir } from '@services/contenus';
 
 export const getStaticPaths = (async () => {
@@ -24,10 +26,15 @@ const { acteur } = Astro.props;
 const { data } = acteur;
 const { Content } = await render(acteur);
 const evenements = (await evenementsAVenir()).filter((e) => e.data.organisateur === acteur.id);
+const url = urlAbsolue(Astro.url.pathname, Astro.site ?? Astro.url);
+const activites = data.categories.map((c) => LIBELLES_CATEGORIE_ACTEUR[c].toLowerCase()).join(', ');
+const description = `${data.nom}, ${activites} à ${data.commune} : ${data.sans_adresse_publique ? 'contact' : 'adresse, contact'}${data.horaires ? ', horaires' : ''} et services.`;
+const logo = data.logo && urlAbsolue(`/logos/${data.logo.fichier}`, url);
+const donnees = donneesActeur(data, { url, description, logo });
 const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&title=${encodeURIComponent(`[Correction] ${data.nom}`)}`;
 ---
 
-<Base titre={data.nom} description={`${data.nom}, ${data.commune} : coordonnées et services.`}>
+<Base titre={data.nom} {description} {donnees}>
   <article>
     <div class="fiche-tete">
       <Vignette acteur={acteur} taille="grande" />

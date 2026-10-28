@@ -4,6 +4,8 @@ import CarteEvenement from '@components/CarteEvenement.astro';
 import Icone from '@components/Icone.astro';
 import { SITE } from '@config/site';
 import Base from '@layouts/Base.astro';
+import { donneesSite } from '@lib/donnees-structurees';
+import { urlAbsolue } from '@lib/referencement';
 import { actusPubliees, evenementsAVenir } from '@services/contenus';
 
 const prochains = (await evenementsAVenir()).slice(0, 3);
@@ -32,9 +34,11 @@ const tuiles = [
     texte: 'Les nouvelles du vélo local et ce qui change au niveau national.',
   },
 ] as const;
+
+const donnees = donneesSite({ ...SITE, url: urlAbsolue('/', Astro.site ?? Astro.url) });
 ---
 
-<Base titre="Accueil">
+<Base titre="Accueil" {donnees}>
   <section class="bandeau" aria-labelledby="titre-accueil">
     <h1 id="titre-accueil">{SITE.nom}</h1>
     <p class="texte">
