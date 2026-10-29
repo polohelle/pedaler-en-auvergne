@@ -53,7 +53,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: quotidienne
-    dernier_passage: '2026-10-28'
+    dernier_passage: '2026-10-29'
     notes: >-
       Flux RSS public du compte Mastodon de l'association, évalué le 2026-10-18 : valide,
       1 à 2 messages par jour, plus réactif que le site. Mêmes messages sur Bluesky
@@ -101,7 +101,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: bihebdomadaire
-    dernier_passage: '2026-10-26'
+    dernier_passage: '2026-10-29'
     notes: >-
       Agenda participatif des sorties à Clermont-Ferrand et alentours, ajouté à la demande de
       l'administrateur le 2026-10-19. Export iCal valide de l'étiquette vélo (12 événements),
@@ -117,7 +117,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: quotidienne
-    dernier_passage: '2026-10-28'
+    dernier_passage: '2026-10-29'
     notes: >-
       Média local d'actualité clermontoise, ajouté à la demande de l'administrateur le
       2026-10-19 (médias locaux). Flux RSS valide, robots.txt ouvert ; article de référence
@@ -132,7 +132,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: quotidienne
-    dernier_passage: '2026-10-28'
+    dernier_passage: '2026-10-29'
     notes: >-
       Radio locale (Clermont, Vichy, Ambert), ajoutée à la demande de l'administrateur le
       2026-10-19 (médias locaux). Pas de flux d'actualités (seulement des podcasts) : lire la
@@ -147,7 +147,7 @@ sources:
     acteur: null
     fiabilite: faible
     frequence: quotidienne
-    dernier_passage: '2026-10-28'
+    dernier_passage: '2026-10-29'
     notes: >-
       Site d'actualité clermontoise en continu, ajouté à la demande de l'administrateur le
       2026-10-19 (médias locaux). Flux RSS valide (20 articles), robots.txt ouvert, mentions
@@ -209,7 +209,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: hebdomadaire
-    dernier_passage: '2026-10-22'
+    dernier_passage: '2026-10-29'
     notes: >-
       Évaluée le 2026-10-14 : flux valide, 2 à 4 articles par mois. Éditeur : APIC, pour le
       collectif Mai à vélo ; reproduction interdite sans accord écrit, résumé et lien seulement.
