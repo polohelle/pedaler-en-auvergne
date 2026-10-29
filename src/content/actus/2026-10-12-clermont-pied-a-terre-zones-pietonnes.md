@@ -32,7 +32,7 @@ environ. Il écarte toute exception horaire et annonce le renfort de la police m
 **La réponse de Vélo-Cité 63.** L'association a ouvert une
 [pétition](https://framapetitions.org/petition/user/velocite63/non-au-pied-a-terre-dans-les-aires-pietonnes-du-centre-ville-de-clermont)
 adressée au maire et au conseil municipal, qui demande le retrait de l'arrêté et une
-concertation ; elle comptait 5 913 signatures le 23 octobre. Elle avance aussi les données de l'ONISR sur dix ans à Clermont-Ferrand : 18
+concertation ; elle approchait les 7 000 signatures le 28 octobre selon [RVA](https://www.radiorva.com/news/locales/24057/clermont-ferrand-une-velorution-a-pied-organisee-ce-vendredi-contre-l-obligation-de-mettre-pied-a-terre). Elle avance aussi les données de l'ONISR sur dix ans à Clermont-Ferrand : 18
 piétons tués par des véhicules motorisés, aucun piéton tué ou hospitalisé après une collision
 avec un vélo, et aucune victime piétonne impliquant un vélo dans les secteurs visés
 ([message du 19 octobre](https://pouet.chapril.org/@velocite63/117468505064158665)).
@@ -44,5 +44,6 @@ le tribunal administratif de Clermont-Ferrand. Pour l'appuyer, elle recueille le
 ([site de l'association](https://www.velocite63.fr/)). La vélorution prévue le 24 octobre place
 de Jaude a été reportée, un autre rassemblement étant annoncé au même endroit et à la même heure
 ([message du 20 octobre](https://pouet.chapril.org/@velocite63/117473966885499409)). Elle est
-reprogrammée le vendredi 30 octobre à partir de 18 h, toujours place de Jaude
+reprogrammée le vendredi 30 octobre, toujours place de Jaude : rendez-vous à 18 h et départ à
+18 h 30 d'une marche où les participants pousseront leur vélo
 ([page de l'association](https://www.velocite63.fr/non-au-pied-a-terre)).
