@@ -41,7 +41,9 @@ avec un vélo, et aucune victime piétonne impliquant un vélo dans les secteurs
 le tribunal administratif de Clermont-Ferrand. Pour l'appuyer, elle recueille les témoignages
 écrits des cyclistes dont les trajets quotidiens ont changé, et invite les commerçants du centre
 à faire part de leurs difficultés aux élus
-([site de l'association](https://www.velocite63.fr/)). La vélorution prévue le 24 octobre place
+([site de l'association](https://www.velocite63.fr/)). Le 28 octobre, le juge des référés a refusé
+de suspendre l'arrêté ; le recours sur le fond continue
+([voir notre brève](/actus/2026-10-28-clermont-pied-a-terre-refere-rejete/)). La vélorution prévue le 24 octobre place
 de Jaude a été reportée, un autre rassemblement étant annoncé au même endroit et à la même heure
 ([message du 20 octobre](https://pouet.chapril.org/@velocite63/117473966885499409)). Elle est
 reprogrammée le vendredi 30 octobre, toujours place de Jaude : rendez-vous à 18 h et départ à
