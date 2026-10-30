@@ -10,7 +10,7 @@ departement: '63'
 tarif: Gratuit, sur réservation
 source_url: https://www.terravolcana.com/agenda/velo-et-patrimoine-la-croix-des-trois-mains-riom-fr-6767256/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Balade guidée à vélo sur la pause de midi, menée par un guide-conférencier du Pays d'art et
