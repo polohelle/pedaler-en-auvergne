@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.6.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.5.1...pedaler-en-auvergne-v0.6.0) (2026-10-30)
+
+
+### Nouveautés
+
+* référencement, plan du site et données structurées schema.org ([b1ffeb8](https://github.com/polohelle/pedaler-en-auvergne/commit/b1ffeb8f0be5db6508207e4a7b4ee79fe48cd77b))
+* référencement, plan du site et données structurées schema.org ([ac749cd](https://github.com/polohelle/pedaler-en-auvergne/commit/ac749cd6be0d97b8586adf2e57a4b0e29893230d))
+* sections de l'annuaire en boutons sur une ligne ([a803e13](https://github.com/polohelle/pedaler-en-auvergne/commit/a803e13d2ae5693d72196e914302e808169eb915))
+* sections de l'annuaire en boutons sur une ligne ([e004cc6](https://github.com/polohelle/pedaler-en-auvergne/commit/e004cc6dbcc6befdb7833e02e01d396b9a050e4f))
+
+
+### Documentation
+
+* **veille:** passage du 22 octobre, cycle Femmes et vélo ([450beb5](https://github.com/polohelle/pedaler-en-auvergne/commit/450beb5af5cd9e79f0719ae33b0e89784465429b))
+* **veille:** passage du 23 octobre, Tour de France Femmes 2027 ([bce7ef6](https://github.com/polohelle/pedaler-en-auvergne/commit/bce7ef66131be896fdaf0286153f3323e3f85717))
+* **veille:** semaine 43, passage du 22 octobre ([c172af7](https://github.com/polohelle/pedaler-en-auvergne/commit/c172af7b97e4ca0242b8741378f191bbadc449c9))
+* **veille:** semaine 44, passage du 26 octobre ([d58eafb](https://github.com/polohelle/pedaler-en-auvergne/commit/d58eafbb608a28b072b31e0ad18359984695e017))
+* **veille:** semaine 44, passage du 28 octobre ([d507320](https://github.com/polohelle/pedaler-en-auvergne/commit/d507320f46cffda05652c2a65d8c8b2a951fd91d))
+* **veille:** semaines 43 et 44, passages du 23 au 28 octobre ([169acd5](https://github.com/polohelle/pedaler-en-auvergne/commit/169acd5f0bc0e1428b4d0ec6066cb5537a3ef88f))
+
 ## [0.5.1](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.5.0...pedaler-en-auvergne-v0.5.1) (2026-10-21)
 
 
