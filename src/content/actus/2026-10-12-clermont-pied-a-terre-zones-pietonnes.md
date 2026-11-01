@@ -49,3 +49,11 @@ de Jaude a été reportée, un autre rassemblement étant annoncé au même endr
 reprogrammée le vendredi 30 octobre, toujours place de Jaude : rendez-vous à 18 h et départ à
 18 h 30 d'une marche où les participants pousseront leur vélo
 ([page de l'association](https://www.velocite63.fr/non-au-pied-a-terre)).
+
+**La vélorution du 30 octobre.** Environ 1 200 personnes sont parties de la place de Jaude vélo à
+la main, selon [7 Jours à Clermont](https://www.7joursaclermont.fr/velorution-3/) ; Vélo-Cité 63
+cite aussi un comptage à 1 500 plus loin sur le parcours
+([message du 31 octobre](https://pouet.chapril.org/@velocite63/117536644634326855)).
+L'association demande au maire d'ouvrir le dialogue. L'Union de la gauche municipale lui demande
+de retirer l'arrêté ou de le limiter aux lieux et horaires où un besoin est démontré, et de rendre
+publiques les études qui le fondent.
