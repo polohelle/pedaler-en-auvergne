@@ -12,7 +12,7 @@ inscription_url: https://www.helloasso.com/associations/osez-le-feminisme-63/eve
 source_url: https://pommesdelune.fr/event/2026/12/1/29185-femmes-et-velo-2-restitution-publique-de-lenquete-femmes-et-velo
 # Reportée du 5 novembre au mardi 1er décembre, d'après l'agenda Pommes de Lune (agrégateur) ; la page HelloAsso de l'organisatrice ne se lit pas sans navigateur, date à recouper.
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Osez le féminisme 63 et Vélo-Cité 63 présentent les résultats d'une enquête de master sur les

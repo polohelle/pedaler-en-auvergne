@@ -12,7 +12,7 @@ organisateur: foyer-rural-blanzat-cyclo
 inscription_url: https://www.velauvergne.com/inscription/
 source_url: https://www.velauvergne.com/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le club cyclo du Foyer rural de Blanzat organise sa randonnée route sur deux jours, sans

@@ -10,7 +10,7 @@ organisateur: velo-cite-63-clermont-ferrand
 tarif: Gratuit
 source_url: https://pouet.chapril.org/@velocite63/117546512644582117
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Dans le cadre de la campagne nationale #CyclistesBrillez de la FUB, les bénévoles de Vélo-Cité 63 et
