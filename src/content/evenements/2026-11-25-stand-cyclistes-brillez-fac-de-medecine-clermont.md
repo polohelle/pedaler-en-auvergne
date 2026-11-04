@@ -10,7 +10,7 @@ organisateur: velo-cite-63-clermont-ferrand
 tarif: Gratuit
 source_url: https://www.velocite63.fr/cyclistes-brillez-special-etudiantes
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Dans le cadre de la campagne #CyclistesBrillez de la FUB, Vélo-Cité 63 et l'Université Clermont
