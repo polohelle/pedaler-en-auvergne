@@ -22,6 +22,7 @@ comme agents planifiés (`.claude/agents/`).
 | `pnpm import:osm --dry-run` | plan d'import OpenStreetMap, sans rien écrire                                        |
 | `pnpm trace:osm <id> <gpx>` | trace GPX d'un itinéraire depuis une relation OSM (skill `importer-trace`)           |
 | `pnpm icones`               | régénère les icônes de l'application depuis `public/favicon.svg`                     |
+| `pnpm instagram`            | carrousel Instagram de la semaine dans `instagram/<lundi>/`, sans rien publier       |
 
 ## Enchaîner les commandes sans masquer un échec
 
