@@ -2,22 +2,54 @@
 interface Props {
   /** Lieu de la déclinaison : « en Auvergne » pour le portail, « à Clermont » pour une section locale. */
   lieu?: string;
+  /** Distingue les instances d'une même page (en-tête, pied) : l'identifiant du découpage est unique. */
+  variante?: string;
 }
 
-const { lieu = 'en Auvergne' } = Astro.props;
+const { lieu = 'en Auvergne', variante = 'entete' } = Astro.props;
+const decoupe = `logo-roue-${variante}`;
 ---
 
 <span class="logo">
-  <svg class="logo__profil" viewBox="0 0 64 36" width="48" height="27" aria-hidden="true">
-    <path
-      class="logo__relief"
-      d="M2 33 12 29c4-10 7-17 11-18l3 3 3-3c4 2 7 9 10 15 3-4 6-6 9-5 3 1 5 4 7 6l7 6Z"
-    ></path>
-    <path
-      class="logo__trace"
-      d="M2 33 12 29c4-10 7-17 11-18l3 3 3-3c4 2 7 9 10 15 3-4 6-6 9-5 3 1 5 4 7 6l7 6"
-    ></path>
-    <circle class="logo__cycliste" cx="17.5" cy="18" r="3.6"></circle>
+  <svg class="logo__roue" viewBox="0 0 100 100" width="48" height="48" aria-hidden="true">
+    <defs>
+      <clipPath id={decoupe}>
+        <circle cx="50" cy="50" r="38"></circle>
+      </clipPath>
+    </defs>
+    <g clip-path={`url(#${decoupe})`}>
+      <g class="logo__rayons">
+        <line x1="62.00" y1="50.00" x2="84.00" y2="50.00"></line>
+        <line x1="60.39" y1="56.00" x2="79.44" y2="67.00"></line>
+        <line x1="56.00" y1="60.39" x2="67.00" y2="79.44"></line>
+        <line x1="50.00" y1="62.00" x2="50.00" y2="84.00"></line>
+        <line x1="44.00" y1="60.39" x2="33.00" y2="79.44"></line>
+        <line x1="39.61" y1="56.00" x2="20.56" y2="67.00"></line>
+        <line x1="38.00" y1="50.00" x2="16.00" y2="50.00"></line>
+        <line x1="39.61" y1="44.00" x2="20.56" y2="33.00"></line>
+        <line x1="44.00" y1="39.61" x2="33.00" y2="20.56"></line>
+        <line x1="50.00" y1="38.00" x2="50.00" y2="16.00"></line>
+        <line x1="56.00" y1="39.61" x2="67.00" y2="20.56"></line>
+        <line x1="60.39" y1="44.00" x2="79.44" y2="33.00"></line>
+      </g>
+      <circle class="logo__soleil" cx="50" cy="50" r="9.5"></circle>
+      <path
+        class="logo__collines"
+        d="M0 100V66c8-2 14-5 19-4 4 1 5 4 8 4s4-3 7-3c4 0 6 3 9 6L100 70v30Z"
+      ></path>
+      <path class="logo__antenne" d="M51.3 42.5h1.4l.5 14h-2.4Z"></path>
+      <rect class="logo__antenne" x="50.6" y="47" width="2.8" height="4.2" rx="1.3"></rect>
+      <path
+        class="logo__puy"
+        d="M0 100V82c6-1 10-3 14-6 3-3 6-5 9-5 3 0 4 1 6 1 2 0 3-3 5-6 3-5 6-8 9-9.5 3-1 6-1.5 9-1.5s6 .5 9 1.5c3 1.5 6 4.5 9 10 3 6 7 10 13 12 5 1.5 10 2 17 2v18Z"
+      ></path>
+      <path
+        class="logo__route"
+        d="M44 94c8-2 16-4 20-7 3-3-6-4-12-6-5-2-2-5 4-7 4-1.5 4-4 0-5.5-3-1-6-2-4-4"
+      ></path>
+    </g>
+    <circle class="logo__jante" cx="50" cy="50" r="35.5"></circle>
+    <circle class="logo__pneu" cx="50" cy="50" r="40"></circle>
   </svg>
   <span class="logo__mots">
     <span class="logo__verbe">Pédaler</span>
@@ -34,27 +66,57 @@ const { lieu = 'en Auvergne' } = Astro.props;
     line-height: 1;
   }
 
-  /* Le profil d'une sortie sur la chaîne des Puys ; le point est le cycliste. */
-  .logo__profil {
+  /*
+   * La roue-soleil (ADR 0042) : une roue de vélo dont le moyeu est le soleil qui se lève
+   * derrière le puy de Dôme, son antenne au sommet et sa route en lacets.
+   * La roue suit la couleur du texte, pour le mode sombre ; les couleurs de marque sont fixes.
+   */
+  .logo__roue {
     flex: none;
   }
 
-  .logo__relief {
-    fill: #2d6a3e;
-  }
-
-  .logo__trace {
-    fill: none;
+  .logo__rayons {
     stroke: currentColor;
-    stroke-width: 2.4;
-    stroke-linejoin: round;
+    stroke-width: 2.2;
     stroke-linecap: round;
   }
 
-  .logo__cycliste {
+  .logo__soleil {
     fill: #e8b04a;
+  }
+
+  .logo__collines {
+    fill: #a9cdb2;
+  }
+
+  .logo__antenne {
+    fill: currentColor;
+  }
+
+  .logo__puy {
+    fill: #2d6a3e;
+  }
+
+  .logo__route {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .logo__jante,
+  .logo__pneu {
+    fill: none;
     stroke: currentColor;
+  }
+
+  .logo__jante {
     stroke-width: 1.6;
+  }
+
+  .logo__pneu {
+    stroke-width: 6;
   }
 
   .logo__mots {
