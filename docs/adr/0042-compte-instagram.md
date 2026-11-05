@@ -15,7 +15,7 @@ publiés sont relayés, et les images reprises le sont avec crédit (ADR 0034).
 
 - `pnpm instagram` prépare en local le carrousel « Cette semaine à vélo » : une couverture
   puis une diapositive par événement visible de la semaine (9 au plus), en PNG de
-  1080 × 1350 px, et la légende dans `legende.txt`. Le dossier `instagram/` n'est pas versionné.
+  1080 × 1080 px (format carré, identique sur Instagram et Facebook), et la légende dans `legende.txt`. Le dossier `instagram/` n'est pas versionné.
 - La logique (choix des événements, légende, gabarits HTML) est dans `src/lib/instagram.ts` ;
   le script ne fait que lire les contenus et capturer les diapositives avec Playwright, déjà
   présent pour les tests. Les gabarits reprennent polices, logo et couleurs des types

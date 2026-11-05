@@ -5,7 +5,7 @@
  *   pnpm instagram --semaine 2026-11-09   semaine qui contient ce jour
  *   pnpm instagram --sortie <dossier>     autre dossier que instagram/<lundi>/
  *
- * Écrit une image PNG de 1080 × 1350 px par diapositive et la légende (`legende.txt`), à
+ * Écrit une image PNG carrée de 1080 × 1080 px par diapositive et la légende (`legende.txt`), à
  * relire puis à programmer dans Meta Business Suite. La logique est dans src/lib/instagram.ts ;
  * ce script ne fait que lire les contenus, capturer les diapositives et écrire les fichiers.
  */
