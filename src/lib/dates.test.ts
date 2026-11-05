@@ -4,6 +4,7 @@ import {
   formaterDate,
   formaterHeure,
   formaterPlage,
+  formaterSemaine,
   grouperParMois,
   jourCivil,
   moisDe,
@@ -157,5 +158,31 @@ describe('dateHeureParis', () => {
     expect(() => dateHeureParis('2026-13-01', '10:00')).toThrow(RangeError);
     expect(() => dateHeureParis('8/11/2026', '10:00')).toThrow(RangeError);
     expect(() => dateHeureParis('2026-11-08', '9h30')).toThrow(RangeError);
+  });
+});
+
+describe('formaterSemaine', () => {
+  it('ne répète pas le mois commun', () => {
+    expect(
+      formaterSemaine(new Date('2026-11-09T12:00:00+01:00'), new Date('2026-11-15T12:00:00+01:00')),
+    ).toBe('du lundi 9 au dimanche 15 novembre 2026');
+  });
+
+  it('écrit les deux mois quand la semaine change de mois', () => {
+    expect(
+      formaterSemaine(new Date('2026-11-30T12:00:00+01:00'), new Date('2026-12-06T12:00:00+01:00')),
+    ).toBe('du lundi 30 novembre au dimanche 6 décembre 2026');
+  });
+
+  it("écrit les deux années quand la semaine change d'année", () => {
+    expect(
+      formaterSemaine(new Date('2026-12-28T12:00:00+01:00'), new Date('2027-01-03T12:00:00+01:00')),
+    ).toBe('du lundi 28 décembre 2026 au dimanche 3 janvier 2027');
+  });
+
+  it('écrit « 1er » pour le premier du mois', () => {
+    expect(
+      formaterSemaine(new Date('2027-02-01T12:00:00+01:00'), new Date('2027-02-07T12:00:00+01:00')),
+    ).toBe('du lundi 1er au dimanche 7 février 2027');
   });
 });
