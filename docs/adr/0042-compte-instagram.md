@@ -25,7 +25,8 @@ publiés sont relayés, et les images reprises le sont avec crédit (ADR 0034).
   Business Suite. Écarté pour l'instant : la publication par l'API Instagram Graph, qui
   demande une application Meta et un jeton en secret ; à reconsidérer si le volume le justifie.
 - Le lien du compte est dans `SITE.instagram` (`src/config/site.ts`), affiché en pied de page
-  et sur la page « À propos ».
+  et sur la page « À propos », comme celui de la Page Facebook jumelle (`SITE.facebook`), qui
+  reçoit les mêmes publications depuis Meta Business Suite.
 
 ## Conséquences
 

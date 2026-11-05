@@ -13,4 +13,6 @@ export const SITE = {
   depot: 'https://github.com/polohelle/pedaler-en-auvergne',
   /** Compte Instagram du site, qui relaie agenda, itinéraires, acteurs et actus. */
   instagram: 'https://www.instagram.com/pedalerenauvergne/',
+  /** Page Facebook du site, jumelle du compte Instagram. */
+  facebook: 'https://www.facebook.com/profile.php?id=61595927295569',
 } as const;
