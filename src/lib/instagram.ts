@@ -1,6 +1,6 @@
 /**
  * Publications Instagram du site (ADR 0042) : choix des contenus de la semaine, légendes et
- * diapositives HTML de 1080 × 1350 px, capturées en images par `scripts/instagram.ts`.
+ * diapositives HTML carrées de 1080 × 1080 px, capturées en images par `scripts/instagram.ts`.
  * Rien n'est publié automatiquement : l'administrateur relit le lot et le programme lui-même.
  */
 import { DEPARTEMENTS, type CodeDepartement } from '@config/departements';
@@ -22,9 +22,9 @@ import {
 } from './dates';
 import { estEvenementVisible } from './publication';
 
-/** Format portrait du fil Instagram. */
+/** Format carré, le même sur Instagram et Facebook. */
 export const LARGEUR_DIAPOSITIVE = 1080;
-export const HAUTEUR_DIAPOSITIVE = 1350;
+export const HAUTEUR_DIAPOSITIVE = 1080;
 
 /** Un carrousel compte au plus 10 images sur les applications : la couverture et 9 événements. */
 export const EVENEMENTS_PAR_CARROUSEL = 9;
@@ -258,32 +258,32 @@ function page(ressources: Ressources, classe: string, corps: string): string {
 * { box-sizing: border-box; margin: 0; }
 html, body { width: ${String(LARGEUR_DIAPOSITIVE)}px; height: ${String(HAUTEUR_DIAPOSITIVE)}px; }
 body { position: relative; overflow: hidden; font-family: 'Texte', sans-serif; font-size: 40px; line-height: 1.3; color: #22303a; background: #f4f6f5; }
-.diapo { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 80px; }
+.diapo { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 64px 80px; }
 .marque { display: flex; align-items: center; gap: 24px; font-family: 'Titres', sans-serif; font-weight: 700; font-size: 40px; }
-.marque svg { width: 88px; height: 88px; flex: none; }
+.marque svg { width: 76px; height: 76px; flex: none; }
 .titre { font-family: 'Titres', sans-serif; font-weight: 800; line-height: 1.05; letter-spacing: -0.01em; }
 .pied { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; font-weight: 600; font-size: 34px; }
-.relief { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 150px; fill: #a9cdb2; }
+.relief { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 120px; fill: #a9cdb2; }
 .couverture { background: #22303a; color: #ffffff; }
 .couverture .relief { fill: #2d6a3e; }
-.couverture .surtitre { margin-top: 120px; font-size: 44px; font-weight: 600; color: #e8b04a; text-transform: uppercase; letter-spacing: 0.08em; }
-.couverture .titre { margin-top: 24px; font-size: 128px; }
-.couverture .periode { margin-top: 48px; font-size: 48px; font-weight: 600; }
-.couverture .compte { margin-top: 24px; font-size: 44px; color: #d6dee3; }
-.couverture .pied { position: relative; z-index: 1; padding-top: 32px; padding-bottom: 130px; }
-.evenement .bandeau { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 56px; }
+.couverture .surtitre { margin-top: 70px; font-size: 40px; font-weight: 600; color: #e8b04a; text-transform: uppercase; letter-spacing: 0.08em; }
+.couverture .titre { margin-top: 16px; font-size: 112px; }
+.couverture .periode { margin-top: 32px; font-size: 44px; font-weight: 600; }
+.couverture .compte { margin-top: 16px; font-size: 40px; color: #d6dee3; }
+.couverture .pied { position: relative; z-index: 1; padding-top: 24px; padding-bottom: 96px; }
+.evenement .bandeau { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 40px; }
 .etiquette { display: inline-block; padding: 10px 26px; border-radius: 12px; font-weight: 700; font-size: 34px; background: #22303a; color: #ffffff; }
 .etiquette.annule { background: #a3201a; }
-.evenement .date { margin-top: 48px; font-family: 'Titres', sans-serif; font-weight: 800; font-size: 64px; line-height: 1.1; color: #a8401a; }
-.evenement .titre { margin-top: 24px; font-size: 68px; }
-.evenement .titre.long { font-size: 54px; }
+.evenement .date { margin-top: 32px; font-family: 'Titres', sans-serif; font-weight: 800; font-size: 56px; line-height: 1.1; color: #a8401a; }
+.evenement .titre { margin-top: 16px; font-size: 60px; }
+.evenement .titre.long { font-size: 48px; }
 .evenement .titre.barre { text-decoration: line-through; }
-.evenement .infos { margin-top: 36px; display: grid; gap: 10px; font-size: 42px; }
+.evenement .infos { margin-top: 24px; display: grid; gap: 6px; font-size: 38px; }
 .evenement .infos .doux { color: #56626c; }
-.evenement .image { margin-top: 40px; flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
+.evenement .image { margin-top: 24px; flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
 .evenement .image img { flex: 1 1 0; min-height: 0; width: 100%; object-fit: contain; object-position: left center; border-radius: 16px; }
 .evenement .image p { font-size: 26px; color: #56626c; }
-.evenement .pied { position: relative; z-index: 1; padding-top: 32px; padding-bottom: 90px; }
+.evenement .pied { position: relative; z-index: 1; padding-top: 24px; padding-bottom: 72px; }
 </style>
 </head>
 <body><div class="diapo ${classe}">${corps}</div>${RELIEF}</body>
