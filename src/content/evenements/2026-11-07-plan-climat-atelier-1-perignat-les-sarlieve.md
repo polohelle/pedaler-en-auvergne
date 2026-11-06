@@ -10,7 +10,7 @@ tarif: Gratuit, sur inscription
 inscription_url: https://demarches.ici.clermontmetropole.eu/democratie-participative/je-souhaite-m-inscrire-aux-ateliers-du-plan-climat-air-energie-territorial/
 source_url: https://www.clermontmetropole.eu/no-cache/actualites-et-agendas/toute-lactualite/detail/actualites/participez-au-plan-climat-du-territoire-metropolitain/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Clermont Auvergne Métropole consulte les habitants pour son plan climat-air-énergie territorial.
