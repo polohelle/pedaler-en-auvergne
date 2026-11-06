@@ -9,7 +9,7 @@ commune: Saint-Victor
 departement: '03'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4103001022/st-victor-cyclo-cross-de-la-loue-elite/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Team Cycliste Montluçon organise un cyclo-cross régional à Saint-Victor, avec des courses pour
