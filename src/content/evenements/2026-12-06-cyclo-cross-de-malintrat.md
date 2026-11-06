@@ -10,7 +10,7 @@ departement: '63'
 organisateur: velo-sport-gerzatois
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4163051006/cyclo-cross-de-malintrat-elite-et-u23/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Vélo Sport Gerzatois organise un cyclo-cross régional à Malintrat, avec des courses pour l'école
