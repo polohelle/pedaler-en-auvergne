@@ -184,3 +184,34 @@ export function dateHeureParis(jour: string, heure: string): string {
   }
   throw new RangeError('Jour ou heure impossible à Paris.');
 }
+
+const formatJourMois = new Intl.DateTimeFormat('fr-FR', {
+  timeZone: FUSEAU,
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+});
+
+/** « lundi 9 novembre », avec « 1er » pour le premier jour du mois. */
+export function formaterJourMois(date: Date): string {
+  return formatJourMois
+    .formatToParts(date)
+    .map((p) => (p.type === 'day' && p.value === '1' ? '1er' : p.value))
+    .join('');
+}
+
+/**
+ * Semaine du lundi au dimanche, sans répéter le mois ni l'année quand ils sont communs :
+ * « du lundi 9 au dimanche 15 novembre 2026 », « du lundi 30 novembre au dimanche
+ * 6 décembre 2026 », « du lundi 28 décembre 2026 au dimanche 3 janvier 2027 ».
+ */
+export function formaterSemaine(lundi: Date, dimanche: Date): string {
+  const [anneeDebut, moisDebut] = jourCivil(lundi).split('-');
+  const [anneeFin, moisFin] = jourCivil(dimanche).split('-');
+  if (anneeDebut !== anneeFin) {
+    return `du ${formaterDate(lundi)} au ${formaterDate(dimanche)}`;
+  }
+  const debut =
+    moisDebut === moisFin ? formaterJourMois(lundi).replace(/ \S+$/, '') : formaterJourMois(lundi);
+  return `du ${debut} au ${formaterDate(dimanche)}`;
+}

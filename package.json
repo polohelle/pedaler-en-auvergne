@@ -27,6 +27,7 @@
     "lighthouse": "astro build && lhci autorun",
     "import:osm": "tsx scripts/import-osm.ts",
     "trace:osm": "tsx scripts/trace-osm.ts",
+    "instagram": "tsx scripts/instagram.ts",
     "icones": "pwa-assets-generator"
   },
   "dependencies": {

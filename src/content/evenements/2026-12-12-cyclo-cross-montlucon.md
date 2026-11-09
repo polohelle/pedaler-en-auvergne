@@ -1,13 +1,13 @@
 ---
-titre: Cyclo-cross de Montluçon
+titre: Cyclo-cross de Bien-Assis
 type: course
 pratiques: [cyclo-cross]
-# Lieu précis et horaires non publiés (probablement Bien-Assis) : à compléter avant publication.
+# Horaires non publiés par la FFC ; course dans le quartier de Bien-Assis (intitulé FFC).
 debut: '2026-12-12T09:00:00+01:00'
-lieu: Montluçon
+lieu: Quartier de Bien-Assis
 commune: Montluçon
 departement: '03'
-source_url: https://auvergnerhonealpescyclisme.com/cyclo-cross/calendrier
+source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4103143019/cyclo-cross-de-bien-assis-elite/
 source: agent
 statut: publie
 ---
