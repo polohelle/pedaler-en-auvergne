@@ -1,4 +1,4 @@
-# 0042 — Logo « roue-soleil »
+# 0043 — Logo « roue-soleil »
 
 - Statut : acceptée
 - Date : 2026-11-05
