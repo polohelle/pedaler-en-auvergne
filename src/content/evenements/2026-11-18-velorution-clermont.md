@@ -10,7 +10,7 @@ commune: Clermont-Ferrand
 departement: '63'
 source_url: https://piaille.fr/@cab63/117593573299058383
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le collectif Clermont À Bicyclette appelle à une nouvelle vélorution contre l'interdiction de
