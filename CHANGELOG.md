@@ -1,5 +1,57 @@
 # Changelog
 
+## [0.6.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.5.1...pedaler-en-auvergne-v0.6.0) (2026-11-13)
+
+
+### Nouveautés
+
+* carrousel Instagram au format carré 1080 × 1080 ([481772d](https://github.com/polohelle/pedaler-en-auvergne/commit/481772d400abed392a2920bb475c5b6b83c2110d))
+* carrousel Instagram au format carré 1080 × 1080 ([327007f](https://github.com/polohelle/pedaler-en-auvergne/commit/327007f381154a4ce4fdab1ccd9974de016afbaa))
+* carrousel Instagram de la semaine et lien du compte ([c7b01a2](https://github.com/polohelle/pedaler-en-auvergne/commit/c7b01a23262c72436f586cc1f15c5a2695442f09))
+* carrousel Instagram de la semaine et lien du compte ([ee9f63c](https://github.com/polohelle/pedaler-en-auvergne/commit/ee9f63c0a0389e1037a35d16e63699adf467553e))
+* enrichir le carnet de sources de 42 sources vérifiées ([b6f2926](https://github.com/polohelle/pedaler-en-auvergne/commit/b6f29266bfab163d07ee75e59bdf9fa73e934e4a))
+* enrichir le carnet de sources de 42 sources vérifiées ([d3faf64](https://github.com/polohelle/pedaler-en-auvergne/commit/d3faf64e9ec7074c1eeb134709219aabc8899c02))
+* lien de la Page Facebook en pied de page et sur À propos ([36fd1cf](https://github.com/polohelle/pedaler-en-auvergne/commit/36fd1cfe076623f333e72ffd96b66c5be358357a))
+* nouveau logo « roue-soleil » avec le puy de Dôme ([1f8971a](https://github.com/polohelle/pedaler-en-auvergne/commit/1f8971a93335fd425d0de6c5a24816f5a64cc45c))
+* nouveau logo « roue-soleil » avec le puy de Dôme ([d388b53](https://github.com/polohelle/pedaler-en-auvergne/commit/d388b53d646705481f41e0ffa97aa0c045d139a2))
+* ouvrir l'Allier, le Cantal et la Haute-Loire, et ajouts du tour d'horizon ([763b92c](https://github.com/polohelle/pedaler-en-auvergne/commit/763b92cd241a2698c87db4f59bba2e2179feb606))
+* ouvrir l'Allier, le Cantal et la Haute-Loire, et ajouts du tour d'horizon ([83899b8](https://github.com/polohelle/pedaler-en-auvergne/commit/83899b8b48a225aff3d56219b9cf6e9352ae5ca3))
+* référencement, plan du site et données structurées schema.org ([b1ffeb8](https://github.com/polohelle/pedaler-en-auvergne/commit/b1ffeb8f0be5db6508207e4a7b4ee79fe48cd77b))
+* référencement, plan du site et données structurées schema.org ([ac749cd](https://github.com/polohelle/pedaler-en-auvergne/commit/ac749cd6be0d97b8586adf2e57a4b0e29893230d))
+* sections de l'annuaire en boutons sur une ligne ([a803e13](https://github.com/polohelle/pedaler-en-auvergne/commit/a803e13d2ae5693d72196e914302e808169eb915))
+* sections de l'annuaire en boutons sur une ligne ([e004cc6](https://github.com/polohelle/pedaler-en-auvergne/commit/e004cc6dbcc6befdb7833e02e01d396b9a050e4f))
+
+
+### Corrections
+
+* adresse définitive de la Page Facebook ([8797551](https://github.com/polohelle/pedaler-en-auvergne/commit/879755185ef9f6028a7c4bba7cad8c64e29708d3))
+
+
+### Documentation
+
+* garder Miles Republic avec une note sur son robots.txt ([d8de17f](https://github.com/polohelle/pedaler-en-auvergne/commit/d8de17fa5e1d053d37b6224281009e37681525ae))
+* renuméroter l'ADR du logo en 0043 ([fb239dd](https://github.com/polohelle/pedaler-en-auvergne/commit/fb239dd9cbb7358d4715c08ba0fb2739563a4deb))
+* **veille:** passage du 22 octobre, cycle Femmes et vélo ([450beb5](https://github.com/polohelle/pedaler-en-auvergne/commit/450beb5af5cd9e79f0719ae33b0e89784465429b))
+* **veille:** passage du 23 octobre, Tour de France Femmes 2027 ([bce7ef6](https://github.com/polohelle/pedaler-en-auvergne/commit/bce7ef66131be896fdaf0286153f3323e3f85717))
+* **veille:** semaine 43, passage du 22 octobre ([c172af7](https://github.com/polohelle/pedaler-en-auvergne/commit/c172af7b97e4ca0242b8741378f191bbadc449c9))
+* **veille:** semaine 44, passage du 1er novembre ([fefc273](https://github.com/polohelle/pedaler-en-auvergne/commit/fefc2737679ee8bf5b21387ff9a3a19b3e12a2e0))
+* **veille:** semaine 44, passage du 26 octobre ([d58eafb](https://github.com/polohelle/pedaler-en-auvergne/commit/d58eafbb608a28b072b31e0ad18359984695e017))
+* **veille:** semaine 44, passage du 28 octobre ([d507320](https://github.com/polohelle/pedaler-en-auvergne/commit/d507320f46cffda05652c2a65d8c8b2a951fd91d))
+* **veille:** semaine 44, passage du 29 octobre ([437cae2](https://github.com/polohelle/pedaler-en-auvergne/commit/437cae222b5e142a413e05378b1e33c0e77acf33))
+* **veille:** semaine 44, passage du 30 octobre ([29c02b1](https://github.com/polohelle/pedaler-en-auvergne/commit/29c02b1335ea09cd9c37a307ce9a9c20ecbbb344))
+* **veille:** semaine 44, passage du 31 octobre ([80a2573](https://github.com/polohelle/pedaler-en-auvergne/commit/80a2573320dd13fc9403efd9a2f52017fa2525b8))
+* **veille:** semaine 44, passages du 29 octobre au 1er novembre ([a8ef07d](https://github.com/polohelle/pedaler-en-auvergne/commit/a8ef07da5b7bb65d9e0081667cde4a4712f186d4))
+* **veille:** semaine 45, passage du 3 novembre ([8fc474c](https://github.com/polohelle/pedaler-en-auvergne/commit/8fc474c3dfacacc9d0e89eec227bafb135e256a0))
+* **veille:** semaine 45, passage du 4 novembre ([053f40a](https://github.com/polohelle/pedaler-en-auvergne/commit/053f40ae5d2aa0991ad2f1ea339c51c6681405b5))
+* **veille:** semaine 45, passage du 6 novembre ([892761d](https://github.com/polohelle/pedaler-en-auvergne/commit/892761dc66b0bc9e5a16836b934cce911c3e1a28))
+* **veille:** semaine 45, passage du 6 novembre ([d295043](https://github.com/polohelle/pedaler-en-auvergne/commit/d295043a4d00c095a9b951535cc09ad0e33dfd51))
+* **veille:** semaine 45, passage du 8 novembre ([6b30a21](https://github.com/polohelle/pedaler-en-auvergne/commit/6b30a21f5ca16a9c416ad4cd0dae05ef33fafbda))
+* **veille:** semaine 45, passages du 3 et du 4 novembre ([1883e2c](https://github.com/polohelle/pedaler-en-auvergne/commit/1883e2cfbb267b17d1c7489c8188cc9cc8adf327))
+* **veille:** semaine 46, passage du 12 novembre ([59faf75](https://github.com/polohelle/pedaler-en-auvergne/commit/59faf75dbf2d061dbcb528633cff7bbcca5b141a))
+* **veille:** semaine 46, passage du 12 novembre ([49872b2](https://github.com/polohelle/pedaler-en-auvergne/commit/49872b2fbf95238170b245a4a438739505eb1e28))
+* **veille:** semaine 46, passage du 13 novembre ([bf9e6d8](https://github.com/polohelle/pedaler-en-auvergne/commit/bf9e6d826a12b70b25ff0391bd4976f357eed54f))
+* **veille:** semaines 43 et 44, passages du 23 au 28 octobre ([169acd5](https://github.com/polohelle/pedaler-en-auvergne/commit/169acd5f0bc0e1428b4d0ec6066cb5537a3ef88f))
+
 ## [0.5.1](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.5.0...pedaler-en-auvergne-v0.5.1) (2026-10-21)
 
 
