@@ -75,9 +75,10 @@ sources:
       Évaluée le 2026-10-14 : 47 épreuves, datées au mois, la plupart « date à confirmer » ;
       aucun flux ni export. Agrégateur : confirmer chaque date chez l'organisateur et lier
       ce dernier. Limite le débit des requêtes (HTTP 429) : espacer les passages.
-      Le 2026-11-13, le robots.txt de milesrepublic.com interdit tout le site à ClaudeBot
-      (Disallow: /), sans viser Claude-User : à trancher par l'administrateur (retrait selon le
-      skill evaluer-source, ou maintien si seule la collecte d'entraînement est visée).
+      Depuis le 2026-11-13 au moins, le robots.txt de milesrepublic.com interdit tout le site à
+      ClaudeBot (Disallow: /), sans viser Claude-User. Source maintenue par décision de
+      l'administrateur le 2026-11-13 : la lire à la main, ou ne la consulter qu'en lecture
+      ponctuelle, et confirmer chaque date chez l'organisateur.
 
   - nom: Ville de Clermont-Ferrand — agenda (open data)
     url: https://www.data.gouv.fr/datasets/agenda-ville-de-clermont-ferrand
