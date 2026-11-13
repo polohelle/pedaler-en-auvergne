@@ -11,7 +11,7 @@ export const GET: APIRoute = async () => {
     titre: `Agenda vélo — ${SITE.nom}`,
     lien: new URL('/agenda/', SITE.url).href,
     adresseFlux: new URL('/agenda/rss.xml', SITE.url).href,
-    description: 'Les prochaines manifestations vélo du Puy-de-Dôme.',
+    description: "Les prochaines manifestations vélo d'Auvergne.",
     langue: SITE.langue,
     elements: evenements.map((e) => elementRssEvenement(e, SITE.url)),
   });

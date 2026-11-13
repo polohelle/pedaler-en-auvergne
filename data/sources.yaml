@@ -183,6 +183,135 @@ sources:
       pnpm trace:osm (skill importer-trace), auteur « contributeurs OpenStreetMap ». Relations
       souvent incomplètes ; vérifier la continuité et l'étiquette source de chaque relation.
 
+  - nom: Comité départemental FFVélo du Puy-de-Dôme — informations
+    url: https://puy-de-dome.ffvelo.fr/le_codep_vous_informe/
+    type: page
+    niveau: local
+    departement: '63'
+    acteur: comite-departemental-cyclotourisme-puy-de-dome
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: '2026-11-13'
+    notes: >-
+      Ajoutée le 2026-11-13 (tour d'horizon) : liste datée des rendez-vous du cyclotourisme
+      départemental (AG, concentration, journée féminine, critérium VTT, montée du puy de Dôme).
+      Pas de flux repéré. Résumé rédigé et lien seulement.
+
+  - nom: Comité départemental de cyclisme du Puy-de-Dôme — calendriers
+    url: https://www.cdcyclisme63.com/index.php/calendriers
+    type: agenda
+    niveau: local
+    departement: '63'
+    acteur: comite-departemental-cyclisme-puy-de-dome
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: '2026-11-13'
+    notes: >-
+      Ajoutée le 2026-11-13 : calendriers FFC du département (route, VTT, cyclo-cross, BMX).
+      Quelques dates mal saisies observées : recouper chez le club organisateur.
+
+  # --- Local : Allier ------------------------------------------------------
+
+  - nom: Conseil départemental de l'Allier
+    url: https://www.allier.fr/
+    type: page
+    niveau: local
+    departement: '03'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: '2026-11-13'
+    notes: >-
+      Ajoutée à l'ouverture du département (2026-11-13, ADR 0044). Actualités en vedette sans
+      date affichée ni flux ; a annoncé l'arrivée à La Loge des Gardes du Tour de France
+      Femmes 2027. Mentions légales à lire avant le premier passage (skill evaluer-source).
+
+  - nom: Ville de Vichy — à vélo
+    url: https://www.ville-vichy.fr/mon-quotidien/transports-mobilites/a-velo/
+    type: page
+    niveau: local
+    departement: '03'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: '2026-11-13'
+    notes: >-
+      Ajoutée le 2026-11-13 : page de services (location Vivélo, kiosque, pistes cyclables),
+      sans actualité datée. Le flux https://www.ville-vichy.fr/feed/ est valide mais vide au
+      2026-11-13 : le revérifier. Le site de Vichy Communauté était injoignable ce jour-là.
+
+  # --- Local : Cantal ------------------------------------------------------
+
+  - nom: Comité départemental FFVélo du Cantal
+    url: https://cantal.ffvelo.fr/feed/
+    type: rss
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: '2026-11-13'
+    notes: >-
+      Ajoutée le 2026-11-13 : flux RSS valide, quelques articles par an (randonnées, journée
+      féminine, formations). Résumé rédigé et lien seulement.
+
+  - nom: Cyclos du Vélo-Montagnard (Aurillac)
+    url: https://www.velomontagnard.fr/feed/
+    type: rss
+    niveau: local
+    departement: '15'
+    acteur: cyclos-du-velo-montagnard-aurillac
+    fiabilite: moyenne
+    frequence: hebdomadaire
+    dernier_passage: '2026-11-13'
+    notes: >-
+      Ajoutée le 2026-11-13 : flux valide, plusieurs billets par mois ; calendrier des
+      randonnées du Cantal (brevets, BRM). Certains billets sont protégés par mot de passe :
+      les ignorer.
+
+  - nom: Vélo-Cité 15 (Aurillac)
+    url: https://velo-cite15.over-blog.com/
+    type: page
+    niveau: local
+    departement: '15'
+    acteur: velo-cite-15-aurillac
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: '2026-11-13'
+    notes: >-
+      Ajoutée le 2026-11-13 : blog de l'association d'usagers d'Aurillac (atelier, plaidoyer),
+      billets datés, le dernier du 21 octobre 2026. Over-blog limite le débit (HTTP 429
+      observé) : un seul passage, sans insister. Source militante.
+
+  # --- Local : Haute-Loire -------------------------------------------------
+
+  - nom: La Puycyclette (Le Puy-en-Velay)
+    url: https://www.lapuycyclette.fr/feed/
+    type: rss
+    niveau: local
+    departement: '43'
+    acteur: la-puycyclette-le-puy-en-velay
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: '2026-11-13'
+    notes: >-
+      Ajoutée le 2026-11-13 : flux valide, dernier article du 22 juin 2026 (rythme irrégulier).
+      Association d'usagers membre de la FUB : présenter ses positions comme les siennes.
+
+  - nom: Via Fluvia — infos travaux
+    url: https://www.viafluvia.fr/accueil/infos-travaux/
+    type: page
+    niveau: local
+    departement: '43'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: '2026-11-13'
+    notes: >-
+      Ajoutée le 2026-11-13 : fermetures et travaux de la véloroute Via Fluvia (Haute-Loire,
+      Loire, Ardèche), sans date de publication ; ne retenir que la partie Haute-Loire ou ce qui
+      concerne les usagers venus d'Auvergne.
+
   # --- National, utile à l'annuaire et à l'agenda local --------------------
 
   - nom: Mai à vélo — agenda OpenAgenda

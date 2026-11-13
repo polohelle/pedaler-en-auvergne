@@ -22,7 +22,7 @@ logo:
   origine: site-structure
 source: osm
 osm_id: node/2885525713
-verifie_le: '2026-10-14'
+verifie_le: '2026-11-13'
 statut: publie
 ---
 
@@ -30,3 +30,10 @@ Agence du service de location de vélos de l'agglomération clermontoise, instal
 d'échanges de la gare SNCF de Clermont-Ferrand. On s'y abonne aux vélos en libre-service C.Vélo,
 on y obtient conseils et assistance. Le service est porté par le syndicat des transports de
 l'agglomération (SMTC-AC) et exploité par Citybike France. Fermé les dimanches et jours fériés.
+
+L'agence loue aussi des vélos en longue durée, entretien, cadenas et panier compris : vélos de
+ville d'un jour à un an, vélos à assistance électrique d'un jour à trois mois, en nombre limité.
+Pour un contrat d'au moins un mois, le vélo électrique peut être retiré dans certains bureaux de
+poste, lors des permanences que l'équipe tient dans les communes toutes les six semaines, ou
+livré à domicile avec un supplément. Les tarifs en vigueur depuis le 1er octobre 2026 sont sur
+le [site de C.vélo](https://www.c-velo.fr/vld_longue_duree/).
