@@ -75,6 +75,9 @@ sources:
       Évaluée le 2026-10-14 : 47 épreuves, datées au mois, la plupart « date à confirmer » ;
       aucun flux ni export. Agrégateur : confirmer chaque date chez l'organisateur et lier
       ce dernier. Limite le débit des requêtes (HTTP 429) : espacer les passages.
+      Le 2026-11-13, le robots.txt de milesrepublic.com interdit tout le site à ClaudeBot
+      (Disallow: /), sans viser Claude-User : à trancher par l'administrateur (retrait selon le
+      skill evaluer-source, ou maintien si seule la collecte d'entraînement est visée).
 
   - nom: Ville de Clermont-Ferrand — agenda (open data)
     url: https://www.data.gouv.fr/datasets/agenda-ville-de-clermont-ferrand
@@ -210,6 +213,185 @@ sources:
       Ajoutée le 2026-11-13 : calendriers FFC du département (route, VTT, cyclo-cross, BMX).
       Quelques dates mal saisies observées : recouper chez le club organisateur.
 
+  - nom: SMTC Clermont Auvergne Métropole — actualités
+    url: https://smtc-clermontmetropole.fr/feed/
+    type: rss
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux RSS de l'autorité organisatrice des
+      mobilités de l'agglomération clermontoise (ancien domaine smtc-clermont-agglo.fr, redirigé).
+      Vérifié : HTTP 200, flux RSS valide, robots.txt ouvert ; dernier article du 6 novembre 2026,
+      douze articles entre fin juillet et début novembre 2026 (C.BOXvélo le 26 octobre 2026,
+      accès à vélo aux festivals, enquête déplacements). Reprise : mentions légales réservant la
+      reproduction, donc résumé rédigé et lien seulement. Limites : beaucoup d'articles tram et bus,
+      à filtrer sur le vélo.
+
+  - nom: C.vélo — actualités du vélo en libre-service clermontois
+    url: https://www.c-velo.fr/feed/
+    type: rss
+    niveau: local
+    departement: '63'
+    acteur: agence-c-velo-clermont-ferrand
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux RSS du service C.vélo (vélos en
+      libre-service, C.BOXvélo) du SMTC. Vérifié : HTTP 200, flux valide, robots.txt ouvert ;
+      dernier article du 4 juin 2026 (nouvelle C.BOXvélo à Saint-Genès-Champanelle), trois articles
+      en 2026, rythme faible. Reprise : résumé rédigé et lien seulement (page de mentions légales
+      introuvable, en 404). Limites : peu actif, contient des jeux concours sans intérêt ; doublon
+      partiel avec le flux du SMTC.
+
+  - nom: Département du Puy-de-Dôme — actualités
+    url: https://www.puy-de-dome.fr/actualites.html
+    type: page
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : actualités du Conseil départemental, avec
+      filtres par thème (Routes, Travaux, Territoires, Culture et sport, Tour de France). Vérifié :
+      HTTP 200, robots.txt ouvert ; dernière actualité du 3 novembre 2026, environ deux à quatre
+      par mois ; sujets vélo ponctuels (chaussidoux le 8 septembre 2026, travaux au puy de Dôme).
+      Le flux RSS annoncé (conseil-departemental-du-puy-de-dome/rss.xml) est mort depuis 2019 :
+      ne pas l'utiliser. Les rubriques Vélo, Véloroute 70 et Via Allier sont des pages statiques
+      sans date. Reprise : mentions légales réservant la reproduction, donc résumé rédigé et lien.
+
+  - nom: Agglo Pays d'Issoire — publications sur le vélo
+    url: https://www.capissoire.fr/?s=v%C3%A9lo&orderby=date&order=DESC&feed=rss2
+    type: rss
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux RSS de recherche « vélo » trié par date
+      sur le site de l'agglomération (le flux général /feed/ mêle tout l'agenda local). Vérifié :
+      HTTP 200, flux valide, robots.txt ouvert ; dernier article du 10 novembre 2026 (« Les
+      tournées du Lembron à vélo »), puis « Au boulot à vélo » (mars 2026) et le vélo en
+      libre-service APIlib' (2025) ; quatre à six articles par an. Reprise : mentions légales
+      interdisant la copie, donc résumé rédigé et lien seulement. Limites : la recherche ramène
+      aussi des pages permanentes hors sujet.
+
+  - nom: RLV Mobilités — actualités (Riom Limagne et Volcans)
+    url: https://rlv-mobilites.fr/feed/
+    type: rss
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux RSS du réseau de mobilités de Riom
+      Limagne et Volcans (bus, RLV'LIB vélos électriques en libre-service, RLV'lo location).
+      Vérifié : HTTP 200, flux valide, robots.txt ouvert ; dernier article du 15 août 2026,
+      quatre articles depuis juin 2025 dont le lancement de RLV'LIB (16 juillet 2025). Reprise :
+      résumé rédigé et lien (mentions légales non trouvées à l'adresse habituelle). Limites :
+      rythme faible et majorité d'articles bus.
+
+  - nom: Super-Besse — événements de la station
+    url: https://superbesse.com/nos-evenements/
+    type: agenda
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : page des grands événements de la station,
+      dont le Super Besse Bike Festival (VTT, VAE, gravel), annoncé du 18 au 20 juin 2027 ; la
+      fiche de l'événement renvoie vers superbessebikefestival.com (édition 2026 les 19, 20 et 21
+      juin). Vérifié : HTTP 200, robots.txt ouvert, dates 2027 déjà publiées. Le flux /feed/ est
+      vide. Reprise : résumé rédigé et lien seulement. Limites : page sans date de mise à jour,
+      peu d'événements vélo (un par an), le bike park lui-même n'a pas de page d'actualités.
+
+  - nom: Massif du Sancy — grands rendez-vous sportifs
+    url: https://www.sancy.com/agenda/grands-rendez-vous-sportifs-massif-du-sancy/
+    type: agenda
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : sélection éditoriale de l'office de tourisme
+      du Sancy, qui cite le Trophée des Grimpeurs, le Super-Besse Bike Festival, La Sancy
+      Arc-en-Ciel (route, gravel), La Transvolcanique (VTT, Foyer rural de Blanzat, 19 et 20
+      septembre 2026) et les triathlons. Vérifié : HTTP 200, robots.txt ouvert. Reprise : les
+      mentions légales limitent la reproduction et exigent la citation de la source, donc résumé
+      rédigé et lien. Limites : dates affichées sans année, à recouper chez l'organisateur ;
+      l'agenda complet n'a pas de filtre vélo.
+
+  - nom: Cyclo Les Copains (Union cycliste Ambert Auvergne) — épreuves
+    url: https://www.cyclolescopains.fr/
+    type: page
+    niveau: local
+    departement: '63'
+    acteur: union-cycliste-ambert-auvergne
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : site de l'organisateur des Copains (Ambert,
+      du 1er au 4 juillet 2026 selon le titre de la page) et d'Objectif puy de Dôme, épreuve
+      itinérante ; le même club organise l'Ultr'Arverne (ultrarverne.fr, site refait en novembre
+      2026). Vérifié : HTTP 200, robots.txt ouvert ; site refait en octobre 2026, flux RSS encore
+      vide (un seul billet par défaut). Reprise : mentions légales interdisant la reproduction
+      sans accord écrit, donc résumé rédigé et lien seulement. Limites : la bannière garde des
+      dates contradictoires (2025, 2027) : vérifier la date de la prochaine édition à chaque
+      passage.
+
+  - nom: Kar ya sport 63 — agenda vélo-école et sorties
+    url: https://www.karyasport63.fr/agenda-des-evenements
+    type: agenda
+    niveau: local
+    departement: '63'
+    acteur: kar-ya-sport-63-clermont-ferrand
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : agenda d'une structure d'éducation sportive de
+      Clermont-Ferrand (vélo-école « Savoir rouler à vélo », sorties vélo encadrées avec le
+      Département et Riom Limagne et Volcans). Vérifié : HTTP 200, robots.txt ouvert ; sorties
+      datées du 18 et du 21 octobre 2026, séances à partir de septembre 2026. Reprise : mentions
+      légales interdisant la reproduction, donc résumé rédigé et lien. Limites : structure
+      commerciale individuelle (ne citer que l'activité, pas la personne), agenda mêlant pilates et
+      marche, années 2024 et 2025 non datées.
+
+  - nom: Clermont Auvergne Métropole — comptages vélo journaliers (open data)
+    url: https://opendata.clermontmetropole.eu/explore/assets/comptage-velo-jour/
+    type: page
+    niveau: local
+    departement: '63'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : jeu de données des compteurs vélo
+      permanents de la métropole, sous Licence Ouverte 2.0, mis à jour le 13 novembre 2026 ;
+      jeux voisins sur le même portail : stationnement-velo-securise (octobre 2026) et
+      inventaire des capteurs ZELT (aussi publié sur data.gouv.fr). Vérifié : page HTTP 200
+      (ancienne adresse /explore/dataset/ redirigée), catalogue interrogé une fois. Attention :
+      le robots.txt du portail interdit /api/ et les exports pour tous les robots ; ne relever
+      que la page, ou passer par les ressources data.gouv.fr si leur accès est permis. Usage :
+      chiffres clés pour des brèves, avec la licence citée. Connexions parfois coupées.
+
   # --- Local : Allier ------------------------------------------------------
 
   - nom: Conseil départemental de l'Allier
@@ -239,6 +421,142 @@ sources:
       Ajoutée le 2026-11-13 : page de services (location Vivélo, kiosque, pistes cyclables),
       sans actualité datée. Le flux https://www.ville-vichy.fr/feed/ est valide mais vide au
       2026-11-13 : le revérifier. Le site de Vichy Communauté était injoignable ce jour-là.
+
+  - nom: Vichy Communauté — actualités
+    url: https://www.vichy-communaute.fr/feed/
+    type: rss
+    niveau: local
+    departement: '03'
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux RSS des actualités de
+      l'agglomération de Vichy (WordPress). Vérifié : HTTP 200, flux valide, robots.txt
+      ouvert (Disallow vide), dernier article du 6 novembre 2026, environ un article par
+      semaine. Généraliste : y repérer le vélo (Tour de France Femmes 2027 avec arrivée à La
+      Loge des Gardes annoncé le 22 octobre 2026, Via Allier, VTT de la Montagne bourbonnaise,
+      Ironman). La recherche dans le flux fonctionne (https://www.vichy-communaute.fr/feed/?s=vélo).
+      Le site était injoignable lors d'un passage précédent, il répond désormais. Mentions
+      légales : textes et visuels réservés, toute utilisation autre que privée interdite sans
+      autorisation ; s'en tenir à un résumé rédigé avec lien, sans reprise de visuel.
+
+  - nom: Mobivie — Vivélo, vélos en libre-service de Vichy
+    url: https://www.mobivie.fr/velos-en-libre-service/
+    type: page
+    niveau: local
+    departement: '03'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : page officielle du réseau de transport de
+      Vichy Communauté pour Vivélo, vélos électriques en libre-service (8 stations à Vichy,
+      Cusset, Bellerive-sur-Allier et Abrest, tarifs, carte OùRA!). Vérifié : HTTP 200,
+      robots.txt ouvert. Page de service sans date : la surveiller pour les changements
+      d'offre ou de tarifs, et lire aussi https://www.mobivie.fr/les-actus-du-reseau/ (actualités
+      datées, dernière du 23 septembre 2026, rares et surtout consacrées au bus ; le flux
+      /rss.xml annoncé est vide). Pages voisines : location de vélo, village vélo, parc vélo
+      SNCF. La fiche Vivélo de Vichy Communauté
+      (https://www.vichy-communaute.fr/services/se-deplacer/vivelo/, modifiée le 29 septembre
+      2026) et le jeu GBFS temps réel sous Licence Ouverte 2.0
+      (https://transport.data.gouv.fr/datasets/velos-en-libre-service-vivelo) complètent. Mentions
+      légales : reproduction interdite ; résumé rédigé et lien seulement.
+
+  - nom: Moulins Communauté — actualités et mobilités
+    url: https://www.agglo-moulins.fr/actualites.html
+    type: page
+    niveau: local
+    departement: '03'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : actualités de l'agglomération de Moulins
+      (CMS TYPO3, pas de flux RSS). Vérifié : HTTP 200 avec un agent de navigateur ; robots.txt
+      absent (404 sans agent, 403 avec agent de navigateur), aucune interdiction publiée.
+      Actualités sans date de publication affichée mais d'actualité (événements des 9, 10 et 21
+      novembre 2026), sept à l'affiche ; une actualité vélo (abris V.Box). Rubrique mobilités
+      à suivre : projet V75 (brochure, pas de calendrier), location V.Léo, Via Allier, abris
+      V.Box (https://www.agglo-moulins.fr/services-equipements/mobilites-et-transports.html).
+      Agenda à https://www.agglo-moulins.fr/agenda.html. Mentions légales : toute
+      reproduction interdite sans autorisation ; résumé rédigé et lien seulement.
+
+  - nom: Comité départemental FFVélo de l'Allier
+    url: https://allier.ffvelo.fr/feed/
+    type: rss
+    niveau: local
+    departement: '03'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux du CoDep 03 de la Fédération
+      française de cyclotourisme (allier.ffvelo.fr existe bien). Vérifié : HTTP 200, flux
+      valide, robots.txt ouvert. Dernier article du 19 septembre 2026 (sécurité, action envers
+      les femmes), précédent du 13 septembre et du 30 mars 2026 : rythme faible, quelques
+      articles par an, d'où un passage mensuel. Pas de calendrier des randonnées sur le site
+      (rubriques circuits, VTT, jeunes, handicap) : pour les dates, recouper avec les clubs.
+      Mentions légales : reproduction électronique interdite sans autorisation ; résumé rédigé
+      et lien seulement.
+
+  - nom: Région Auvergne-Rhône-Alpes — véloroute V75 Ouest
+    url: https://expression.auvergnerhonealpes.fr/dialog/v75-ouest
+    type: page
+    niveau: local
+    departement: '03'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : page de participation de la Région pour la
+      voie verte V75 Ouest entre Moulins et Montluçon par Néris-les-Bains. Vérifié : HTTP 200,
+      robots.txt ouvert. Concertation préalable du 10 novembre au 12 décembre 2025, bilan publié
+      en avril 2026, études détaillées en cours, travaux à partir de fin 2027, mise en service
+      vers 2030. Page sans actualité datée : vérifier mensuellement l'apparition de nouvelles
+      étapes (réunions publiques, enquête). Le tronçon est de Moulins à Diou est encore à l'étude
+      (voir Moulins Communauté). Résumé rédigé et lien seulement.
+
+  - nom: JDS — cyclosportives dans l'Allier
+    url: https://www.jds.fr/allier/agenda/cyclosportives-480_B
+    type: agenda
+    niveau: local
+    departement: '03'
+    acteur: null
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : agenda de sorties JDS (Info Région
+      Éditions), rubrique cyclosportives de l'Allier ; les balades vélo apparaissent dans la
+      rubrique sports par ville (ex. Les Allumés du vélo à Montluçon, balade nocturne de
+      l'association Cyclopède le 6 novembre 2026). Vérifié : HTTP 200, robots.txt ouvert
+      (Allow: /). Rubrique cyclosportives vide au 13 novembre 2026 (hors saison). Agrégateur :
+      toujours confirmer chez l'organisateur avant de créer une fiche. Mentions légales :
+      reproduction et réutilisation interdites sans autorisation ; s'en servir comme signal,
+      résumé rédigé et lien vers l'organisateur seulement.
+
+  - nom: Bessay Cyclo Loisirs — actualités
+    url: https://bessaycycloloisirs.sportsregions.fr/rss/news
+    type: rss
+    niveau: local
+    departement: '03'
+    acteur: null
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : club de cyclotourisme de Bessay-sur-Allier
+      (site Sportsregions), seul club de l'Allier trouvé avec un site vivant et un flux. Vérifié :
+      HTTP 200, flux valide, robots.txt ouvert pour les robots génériques. Derniers articles du 29
+      septembre 2026 (concentration de cyclotouristes à Bessay, randonnée féminine à
+      Saint-Pourçain), rythme de quelques articles par an. Le flux des événements
+      (/rss/evenement) est vide. Résumé rédigé et lien seulement.
 
   # --- Local : Cantal ------------------------------------------------------
 
@@ -283,6 +601,222 @@ sources:
       billets datés, le dernier du 21 octobre 2026. Over-blog limite le débit (HTTP 429
       observé) : un seul passage, sans insister. Source militante.
 
+  - nom: Département du Cantal — actualités
+    url: https://www.cantal.fr/feed/?post_type=actualite
+    type: rss
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux des actualités du conseil
+      départemental. Le flux général https://www.cantal.fr/feed/ est vide ; les actualités sont
+      un type de contenu à part, d'où le paramètre post_type=actualite. Vérifié : HTTP 200,
+      robots.txt ouvert, 10 articles, le dernier du 12 novembre 2026, quatre à six par mois.
+      Le vélo y est rare (Tour de France 2026 dans le Cantal, Le Lioran, aides aux communes) :
+      source de veille institutionnelle, pas d'agenda vélo. Le plan vélo et les dépliants V74
+      sont publiés par Cantal Destination. Reprise : résumé rédigé et lien.
+
+  - nom: Cantal Destination — agenda sportif
+    url: https://www.cantal-destination.com/temps-forts-et-animations/agenda-sportif/
+    type: agenda
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : agenda sportif de l'agence d'attractivité
+      départementale, alimenté par Apidae, qui agrège les offices de tourisme du Cantal.
+      Vérifié : HTTP 200, robots.txt ouvert, 30 événements à venir de novembre 2026 à septembre
+      2027, dont le festival vélo et théâtre « De selle en scène » à Boisset (22 et 23 mai) et le
+      triathlon Volcan'X. Peu d'épreuves vélo hors saison ; passage hebdomadaire de mars à
+      octobre. Aucun flux ni export iCal (le flux /feed/ du site est vide). Le site publie aussi
+      les dépliants V74 (Grande Traversée du Volcan à Vélo, véloroute de la Châtaigneraie) et
+      la carte cyclo-rando. Reprise : résumé rédigé et lien vers l'organisateur ; mentions
+      légales non trouvées à l'adresse usuelle.
+
+  - nom: Hautes Terres Tourisme — événements sportifs
+    url: https://www.hautesterrestourisme.fr/agenda/evenements-sportifs/
+    type: agenda
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : agenda sportif de l'office de tourisme
+      Hautes Terres (Murat, Le Lioran, Allanche, Massiac), source Tourinsoft. Vérifié : HTTP 200,
+      robots.txt ouvert hors dossiers techniques, 18 événements à venir, pagination par
+      ?id1[currentPage]=2. En été, il porte les épreuves du bike park du Lioran (championnat
+      Auvergne-Rhône-Alpes de VTT descente des 29 et 30 août 2026, Lioran Festi'Bike). Les
+      mentions légales interdisent la reproduction des textes et images : résumé rédigé et
+      lien seulement. Recoupe en partie Cantal Destination et l'agenda du Lioran.
+
+  - nom: Station du Lioran — agenda
+    url: https://explore.lelioran.com/fr/agenda
+    type: agenda
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : agenda officiel de la station du Lioran
+      (bike park, Vélo Académie, épreuves de VTT descente en été). Vérifié : HTTP 200, robots.txt
+      qui autorise nommément ClaudeBot et Claude-User, 99 résultats annoncés, uniquement des
+      animations d'hiver à cette date. Passage hebdomadaire de juin à septembre, mensuel sinon.
+      Le flux https://www.lelioran.com/feed/ n'est pas retenu : il ne contient que des offres
+      commerciales. Reprise : résumé rédigé et lien.
+
+  - nom: L'Union du Cantal — rubrique sport
+    url: https://www.reussir.fr/produits/lunion-du-cantal/rubrique/sport
+    type: page
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : hebdomadaire départemental (groupe Réussir),
+      dont la rubrique sport suit les clubs cantaliens. Vérifié : HTTP 200, robots.txt ouvert
+      (Crawl-delay: 10, à respecter), une vingtaine d'articles datés, le dernier du 8 novembre
+      2026 ; articles vélo récents : pumptrack du nord-Cantal (22 octobre 2026), espace VTT de
+      Prat-de-Bouc, finale du Tour de France femmes 2027 (28 octobre 2026). Aucun flux propre au
+      titre (seul https://www.reussir.fr/rss.xml, national et agricole). La plupart des articles
+      sont réservés aux abonnés : ne retenir que le titre et le chapeau, puis confirmer à une
+      source ouverte. Les CGU interdisent la reproduction et l'extraction systématique de la
+      base : un passage hebdomadaire, résumé rédigé et lien seulement.
+
+  - nom: Stabus — actualités (Aurillac Agglomération)
+    url: https://www.stabus.fr/fr/actualites/
+    type: page
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : actualités du réseau de transport d'Aurillac
+      Agglomération, qui gère aussi la location Vélo'cab (40 vélos électriques, 40 vélos de ville,
+      3 pliants) et l'aide à l'achat d'un vélo électrique (25 %, plafond 300 euros), décrites sur
+      https://www.stabus.fr/fr/velocab. Vérifié : HTTP 200, pas de robots.txt (404, donc aucune
+      restriction), cinq actualités datées, la dernière du 28 septembre 2026 (semaine européenne
+      de la mobilité, navette du Tour de France). Aucun flux. Le schéma directeur cyclable de
+      l'agglomération (80 km prévus, étude 2025) passe par les délibérations, pas par ce site.
+      Les mentions légales interdisent la reproduction : résumé rédigé et lien seulement.
+
+  - nom: Saint-Flour Communauté — actualités
+    url: https://saint-flour-communaute.fr/actualites/
+    type: page
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : actualités de la communauté de communes
+      (location de vélos électriques, espace VTT et cyclosport FFC n° 132, fête du vélo de
+      Coltines le 6 septembre 2026). Vérifié : HTTP 200, robots.txt ouvert hors dossiers
+      techniques, plusieurs articles par mois, le dernier du 12 novembre 2026. Le flux
+      https://saint-flour-communaute.fr/feed/ renvoie un corps RSS valide (10 articles) mais avec
+      un code HTTP 302 inhabituel : le tester avant de le préférer à la page. Les mentions
+      légales réservent toute utilisation autre que la consultation privée : résumé rédigé et
+      lien seulement.
+
+  - nom: Ville d'Aurillac — actualités
+    url: https://www.aurillac.fr/feed/
+    type: rss
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux des actualités de la ville. Vérifié :
+      HTTP 200, robots.txt ouvert, flux valide de 10 articles, le dernier du 13 novembre 2026,
+      deux à trois par semaine. Le vélo y est rare (Tour de France 2026, semaine écocitoyenne) :
+      ne retenir que les articles sur le vélo, les aménagements ou la mobilité. Reprise : résumé
+      rédigé et lien.
+
+  - nom: Carladès (communauté de communes et office de tourisme) — actualités
+    url: https://www.carlades.fr/feed/
+    type: rss
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux du site commun à la communauté de
+      communes du Carladès et à son office de tourisme (Vic-sur-Cère, versant du Lioran). Vérifié :
+      HTTP 200, robots.txt ouvert, flux valide, dernier article du 5 septembre 2026 (fermeture de
+      la RN122), deux à trois par mois l'été ; articles vélo : arrivée du Tour de France (23 juin
+      2026). Le site a aussi un agenda (https://www.carlades.fr/agenda/) et des pages VTT et
+      cyclotourisme. Les mentions légales interdisent la reproduction : résumé rédigé et lien
+      seulement. Rythme faible en hiver.
+
+  - nom: Châtaigneraie cantalienne (office de tourisme) — actualités
+    url: https://chataigneraie-cantal.com/feed/
+    type: rss
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : blog de l'office de tourisme de la
+      Châtaigneraie cantalienne, territoire de la véloroute de la Châtaigneraie (V74) et des
+      boucles Romain Bardet Expérience. Vérifié : HTTP 200, robots.txt ouvert, flux valide, 10
+      articles, le dernier du 6 novembre 2026, trois à quatre par mois. Contenu surtout
+      touristique et culturel ; le vélo y apparaît dans les sélections de balades : filtrer.
+      Reprise : résumé rédigé et lien.
+
+  - nom: Pays d'Aurillac Tourisme — agenda
+    url: https://www.paysaurillactourisme.com/evenements/agenda/
+    type: agenda
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : agenda de l'office de tourisme du Pays
+      d'Aurillac (ancien iaurillac.com), alimenté par Apidae. Vérifié : HTTP 200, robots.txt
+      ouvert sur ce chemin (seuls ?query=, /*/feed et listpage=1 sont exclus), 269 événements sur
+      23 pages, filtres par thème (compétition sportive). Aucun événement vélo visible à cette
+      date ; utile au printemps et en été (Challenge Pierre Felgines, randonnées des clubs).
+      Recoupe Cantal Destination : à passer seulement si celui-ci manque un événement local.
+      Mentions légales non lues. Reprise : résumé rédigé et lien.
+
+  - nom: Jordanne FM (Aurillac) — actualités
+    url: https://jordannefm.fr/rss-feed-1
+    type: rss
+    niveau: local
+    departement: '15'
+    acteur: null
+    fiabilite: moyenne
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : radio locale d'Aurillac, seul média
+      généraliste du Cantal retenu avec un flux. Vérifié : HTTP 200, robots.txt ouvert (seuls
+      /admin/ et index.php exclus), flux valide de 15 articles, le dernier du 10 novembre 2026,
+      environ un par semaine. Le vélo y est rare (surtout le rugby du Stade aurillacois) : source
+      d'appoint, à filtrer par mot-clé. Reprise : résumé rédigé et lien.
+
   # --- Local : Haute-Loire -------------------------------------------------
 
   - nom: La Puycyclette (Le Puy-en-Velay)
@@ -311,6 +845,222 @@ sources:
       Ajoutée le 2026-11-13 : fermetures et travaux de la véloroute Via Fluvia (Haute-Loire,
       Loire, Ardèche), sans date de publication ; ne retenir que la partie Haute-Loire ou ce qui
       concerne les usagers venus d'Auvergne.
+
+  - nom: CoDep FFVélo Haute-Loire
+    url: https://haute-loire.ffvelo.fr/feed/
+    type: rss
+    niveau: local
+    departement: '43'
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : comité départemental de cyclotourisme,
+      annonce les randonnées route et VTT des clubs du département (Ronde Monistrolienne,
+      Golénoise, Rando Capitolienne, journée des féminines). Vérifié : HTTP 200, robots.txt
+      ouvert, flux valide de 10 articles, le dernier du 7 octobre 2026, 4 à 6 annonces par mois
+      en saison, plus calme l'hiver. Mentions légales : reproduction réservée, donc résumé
+      rédigé et lien seulement. Les annonces arrivent souvent tard, à peine une à deux
+      semaines avant la date.
+
+  - nom: Département de la Haute-Loire — actualités
+    url: https://www.hauteloire.fr/spip.php?page=backend
+    type: rss
+    niveau: local
+    departement: '43'
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux SPIP du Conseil départemental,
+      porteur du schéma vélo départemental et des véloroutes (Via Fluvia, Via Velay). Vérifié :
+      HTTP 200, pas de robots.txt (l'adresse renvoie une page HTML), flux valide, dernier
+      article du 10 novembre 2026. Le flux est généraliste et le vélo y est rare : filtrer sur
+      vélo, véloroute, voie verte, appel à projets. Résumé rédigé et lien seulement.
+
+  - nom: Zoomdici — actualités de la Haute-Loire
+    url: https://www.zoomdici.fr/feed
+    type: rss
+    niveau: local
+    departement: '43'
+    acteur: null
+    fiabilite: moyenne
+    frequence: quotidienne
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : média en ligne de la Haute-Loire, couvre
+      les résultats des clubs (cyclo-cross du Vélo Club du Velay), les randonnées VTT et les
+      aménagements. Vérifié : HTTP 200 (/feed/ redirige vers /feed), robots.txt ouvert sauf
+      les dossiers techniques, flux valide de 193 articles du 13 septembre au 13 novembre 2026,
+      soit plusieurs par jour. Les mentions légales n'interdisent ni la lecture automatisée ni
+      le résumé. Flux généraliste sans rubrique vélo propre : filtrer sur vélo, VTT,
+      cyclisme, voie verte. Média : recouper avec la source primaire.
+
+  - nom: Agglomération du Puy-en-Velay — actualités
+    url: https://www.agglo-lepuyenvelay.fr/feed/
+    type: rss
+    niveau: local
+    departement: '43'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : actualités de la communauté
+      d'agglomération (mobilité, aménagements, travaux). Vérifié : HTTP 200, robots.txt
+      ouvert (seul l'export d'agenda est interdit), flux valide, dernier article du
+      5 novembre 2026, 10 articles depuis le 17 juillet 2026. Contenu vélo rare : filtrer.
+      Résumé rédigé et lien seulement.
+
+  - nom: Mobilité en Velay — TUDIP et Vélo en Velay
+    url: https://mobilite.lepuyenvelay.fr/feed/
+    type: rss
+    niveau: local
+    departement: '43'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : site mobilité de l'agglomération du Puy
+      (réseau TUDIP, location de vélos à assistance électrique Vélo en Velay). Vérifié :
+      HTTP 200, robots.txt ouvert, flux valide mais court (3 articles, le dernier du
+      12 novembre 2026), surtout des perturbations de bus. La page du service de location
+      https://mobilite.lepuyenvelay.fr/velo-en-velay/ (modifiée le 8 octobre 2026) sert plutôt
+      à une fiche acteur. Résumé rédigé et lien seulement.
+
+  - nom: Brioude Sud Auvergne Tourisme — agenda
+    url: https://www.tourisme-brioudesudauvergne.fr/ou-sortir/tous-les-evenements/
+    type: agenda
+    niveau: local
+    departement: '43'
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : agenda de l'office de tourisme de Brioude
+      (Brivadois), avec dates et communes, 11 pages d'événements à venir au 13 novembre 2026.
+      Vérifié : HTTP 200, robots.txt ouvert sauf les chemins /irisit/, qui portent les filtres
+      par catégorie : lire la liste générale seulement. Aucune catégorie sport, et peu
+      d'événements vélo (aucun parmi les 12 premiers) : passage mensuel pour repérer les
+      randonnées et le gravel du Brivadois. Le flux /feed/ du site existe mais publie très peu
+      (dernier article du 13 novembre 2026, le précédent du 18 septembre). Résumé et lien.
+
+  # --- Régional : Auvergne et Auvergne-Rhône-Alpes ------------------------
+
+  - nom: Parc naturel régional des Volcans d'Auvergne — actualités
+    url: https://www.parcdesvolcans.fr/blog-feed.xml
+    type: rss
+    niveau: regional
+    departement: null
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : flux RSS du blog des actualités du Parc
+      (Puy-de-Dôme et Cantal, d'où le niveau régional). Vérifié : HTTP 200, flux valide (20
+      articles), robots.txt ouvert ; dernier article du 23 octobre 2026, trois à cinq articles par
+      mois. Reprise : résumé rédigé et lien seulement. Limites : le vélo y est rare (mobilité,
+      défi mobilité, circuits vélo et VTT ; « Agora des mobilités » des 17 et 18 septembre
+      2026) ; l'agenda decouvrir.parcdesvolcans.fr n'a montré aucun événement lisible et n'est
+      pas retenu.
+
+  - nom: Comité Auvergne-Rhône-Alpes de cyclisme (FFC) — calendrier des épreuves
+    url: https://www.auvergnerhonealpescyclisme.com/wp-json/wp/v2/evenement?per_page=100
+    type: agenda
+    niveau: regional
+    departement: null
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : calendrier officiel des compétitions FFC
+      de la région (route, VTT, cyclo-cross, BMX, piste, gravel). La page publique
+      /calendrier-et-resultats/ charge ses données par JavaScript depuis cette interface JSON
+      (WordPress), qui donne pour chaque épreuve la date de début et de fin, le département
+      (03, 15, 43, 63...), le lieu, la discipline, le club organisateur, l'annulation et les
+      PDF d'affiche ou de résultats. Vérifié : HTTP 200, robots.txt ouvert (seul /wp-admin/
+      est interdit), 564 épreuves sur 6 pages, dernière modification le 13 novembre 2026.
+      Filtrer sur le champ departement (parfois vide, ou portant aussi le nom du département :
+      tester le préfixe). Sur 300 épreuves lues : 32 dans le 63, 21 dans le 03 (Classique des
+      Bourbons, cyclo-cross de la ROMYA, championnat d'Allier de cyclo-cross le 5 décembre
+      2026), 18 dans le 15 et 11 dans le 43 ; 59 épreuves du Cantal sur toute la saison 2026.
+      Sert de calendrier aux comités FFC de l'Allier et du Cantal, sans site propre. Champ lieu
+      parfois vide ou mal orthographié : recouper avec le PDF d'organisation. Calendrier 2027
+      pas encore saisi au 2026-11-13. Données factuelles : fiche rédigée et lien vers la page
+      publique.
+
+  - nom: Comité Auvergne-Rhône-Alpes de cyclisme (FFC) — actualités
+    url: https://www.auvergnerhonealpescyclisme.com/feed/
+    type: rss
+    niveau: regional
+    departement: null
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : actualités du comité régional
+      (attribution des championnats 2027, appel à projets des écoles de vélo, stages BMX à
+      Lempdes, formations). Vérifié : HTTP 200, robots.txt ouvert, flux valide, dernier
+      article du 13 novembre 2026, 7 articles entre le 14 octobre et le 13 novembre 2026. Ne
+      retenir que ce qui touche l'Auvergne. Résumé rédigé et lien seulement.
+
+  - nom: CoReg FFVélo Auvergne-Rhône-Alpes
+    url: https://auvergnerhonealpes.ffvelo.fr/feed/
+    type: rss
+    niveau: regional
+    departement: null
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : comité régional de cyclotourisme, annonce
+      les randonnées des clubs de la région avec la date et le département dans le titre
+      (exemple : journée féminine dans le Cantal du 4 octobre 2026). Vérifié : HTTP 200,
+      robots.txt ouvert, flux valide, dernier article du 13 octobre 2026, environ 6 annonces
+      par mois en saison. Une majorité concerne Rhône, Isère, Ain : filtrer sur 03, 15, 43, 63.
+      Résumé rédigé et lien seulement.
+
+  - nom: Auvergne-Rhône-Alpes Tourisme — espace pro, vélo
+    url: https://pro.auvergnerhonealpes-tourisme.com/outdoor/velo/feed/
+    type: rss
+    niveau: regional
+    departement: null
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : rubrique vélo du site professionnel de
+      l'agence régionale du tourisme (dispositif vélo 2026, salons, itinérances comme la Via
+      Allier). Vérifié : HTTP 200, robots.txt ouvert, flux valide, dernier article du
+      26 octobre 2026, quelques articles par an seulement. Le flux général du site pro
+      (/feed/) publie chaque semaine mais surtout hors vélo. Résumé rédigé et lien seulement.
+
+  - nom: La Région du vélo — itinéraires Auvergne-Rhône-Alpes
+    url: https://www.laregionduvelo.fr/
+    type: traces
+    niveau: regional
+    departement: null
+    acteur: null
+    fiabilite: haute
+    frequence: mensuelle
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : portail Geotrek d'Auvergne-Rhône-Alpes
+      Tourisme et des départements (dont Allier, Cantal, Haute-Loire et Puy-de-Dôme) pour les
+      itinéraires vélo, VTT et gravel. L'interface https://geotrek.auvergnerhonealpes-tourisme.com/api/v2
+      répond (4 096 itinéraires, date de mise à jour par fiche, la dernière vue du 28 septembre
+      2026). Vérifié : HTTP 200, robots.txt ouvert. Aucune licence de réutilisation des traces
+      n'apparaît dans les mentions légales : repérage seulement, aucune trace GPX reprise sans
+      licence ouverte ou accord écrit (ADR 0036).
 
   # --- National, utile à l'annuaire et à l'agenda local --------------------
 
@@ -389,6 +1139,23 @@ sources:
       aucun export ; pour importer, passer par DATAtourisme, où les prestataires Accueil Vélo
       sont publiés sous Licence Ouverte 2.0.
 
+  - nom: Vélo en France (FFVélo) — agenda des randonnées
+    url: https://veloenfrance.fr/plan-site/randonnees
+    type: agenda
+    niveau: national
+    departement: null
+    acteur: null
+    fiabilite: haute
+    frequence: hebdomadaire
+    dernier_passage: null
+    notes: >-
+      Ajoutée le 2026-11-13 (recherche de sources) : agenda national des randonnées des clubs
+      FFVélo. La carte /agenda-randonnees se charge par JavaScript ; le plan du site liste les
+      randonnées en HTML (50 par page, 20 pages, jusqu'en 2027), chaque fiche donnant
+      l'adresse et le code postal de l'organisateur. Vérifié : HTTP 200, robots.txt ouvert sauf
+      /recherche. Pas de filtre par département : repérer les codes postaux 03, 15, 43, 63.
+      Données factuelles : fiche rédigée et lien seulement.
+
   # --- National : veille réglementaire, aides, campagnes, chiffres ---------
 
   - nom: FUB — Parlons vélo
@@ -421,7 +1188,8 @@ sources:
       Ex-Vélo & Territoires : collectivités, schémas cyclables, chiffres de fréquentation.
       Relaie les communiqués de l'Alliance pour le vélo, qui n'a pas de site propre identifié.
       Évaluée le 2026-10-14 : le flux /feed/ est valide mais vide ; l'accueil liste des
-      actualités datées, 1 à 2 par mois.
+      actualités datées, 1 à 2 par mois. Le 2026-11-13, l'accueil répond HTTP 403 aux agents :
+      revérifier au prochain passage (skill evaluer-source, signalement après trois échecs).
 
   - nom: ADEME — aides financières
     url: https://agirpourlatransition.ademe.fr/entreprises/aides-financieres
