@@ -9,3 +9,10 @@ peerDependencyRules:
 # vérification à l'installation n'est pas nécessaire.
 ignoredBuiltDependencies:
   - esbuild
+
+# Rolldown (via Astro 7.4.7) tire @emnapi/runtime 2.0.0-beta, que pnpm partage avec
+# @astrojs/check : son module WebAssembly plante alors et `astro check` échoue. On garde
+# la version stable ; la liaison wasm de Rolldown n'est pas utilisée hors navigateur.
+overrides:
+  '@emnapi/runtime': 1.11.3
+  '@emnapi/core': 1.11.3
