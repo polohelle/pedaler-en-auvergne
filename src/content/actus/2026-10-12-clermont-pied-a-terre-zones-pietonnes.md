@@ -57,3 +57,8 @@ cite aussi un comptage à 1 500 plus loin sur le parcours
 L'association demande au maire d'ouvrir le dialogue. L'Union de la gauche municipale lui demande
 de retirer l'arrêté ou de le limiter aux lieux et horaires où un besoin est démontré, et de rendre
 publiques les études qui le fondent.
+
+**Les vélos en libre-service aussi.** Le 12 novembre, l'opérateur C.vélo a prévenu ses usagers
+que la station de la place de Jaude se trouve au cœur de la zone concernée : il faut pousser
+le vélo pour l'atteindre ou pour en repartir, selon le message de l'opérateur relayé par
+[Vélo-Cité 63](https://pouet.chapril.org/@velocite63/117604802175969410).
