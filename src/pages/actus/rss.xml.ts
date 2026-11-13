@@ -11,7 +11,7 @@ export const GET: APIRoute = async () => {
     titre: `Actualités — ${SITE.nom}`,
     lien: new URL('/actus/', SITE.url).href,
     adresseFlux: new URL('/actus/rss.xml', SITE.url).href,
-    description: 'Actualités du vélo local et national utiles aux acteurs du Puy-de-Dôme.',
+    description: "Actualités du vélo local et national utiles aux acteurs d'Auvergne.",
     langue: SITE.langue,
     elements: actus.map((a) => elementRssActu(a, SITE.url)),
   });

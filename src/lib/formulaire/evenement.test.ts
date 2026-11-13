@@ -121,8 +121,14 @@ describe('lirePropositionEvenement', () => {
     ).toEqual(expect.arrayContaining(['type', 'source_url', 'description']));
   });
 
-  it('refuse un département qui n’est pas encore ouvert', () => {
-    expect(champsEnErreur({ ...champsValides, departement: '15' })).toEqual(['departement']);
+  it('refuse un département hors d’Auvergne', () => {
+    expect(champsEnErreur({ ...champsValides, departement: '75' })).toEqual(['departement']);
+  });
+
+  it('accepte les départements ouverts le 13 novembre 2026', () => {
+    for (const departement of ['03', '15', '43']) {
+      expect(champsEnErreur({ ...champsValides, departement })).toEqual([]);
+    }
   });
 
   it('refuse une adresse de réponse invalide', () => {

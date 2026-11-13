@@ -140,7 +140,7 @@ describe('validerSaisie et occurrences', () => {
   });
 
   it('refuse une fiche que le schéma de l’agenda rejetterait', () => {
-    expect(validerSaisie(saisie({ departement: '15' }), maintenant)).toMatchObject({
+    expect(validerSaisie(saisie({ departement: '75' }), maintenant)).toMatchObject({
       ok: false,
       erreurs: [{ champ: 'departement' }],
     });

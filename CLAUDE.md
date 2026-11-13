@@ -1,6 +1,6 @@
 # Pédaler en Auvergne — consignes pour Claude
 
-Portail statique des acteurs du vélo du Puy-de-Dôme, extensible à l'Auvergne : annuaire,
+Portail statique des acteurs du vélo d'Auvergne (Puy-de-Dôme, Allier, Cantal, Haute-Loire, ADR 0044) : annuaire,
 agenda et actualités, porté par un éditeur particulier (ADR 0035 : la partie association
 est suspendue). Le cahier des charges fait foi :
 [docs/cahier-des-charges.md](docs/cahier-des-charges.md). Les décisions structurantes sont
