@@ -30,6 +30,8 @@ h3 {
 
 h1 {
   font-size: var(--taille-h1);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
 }
 
 h2 {
@@ -104,11 +106,53 @@ a:hover {
 }
 
 .carte {
-  border: 1px solid var(--couleur-bordure);
-  border-radius: var(--rayon);
+  border: 1px solid color-mix(in srgb, var(--couleur-bordure) 70%, transparent);
+  border-radius: var(--rayon-grand);
   padding: var(--espace-3);
   margin-block-end: var(--espace-3);
   background: var(--couleur-surface);
+  box-shadow: var(--ombre-1);
+  transition:
+    box-shadow 0.2s ease,
+    translate 0.2s ease;
+}
+
+/* Une carte qui mène quelque part se soulève un peu au survol (ADR 0045). */
+.carte:has(a:hover) {
+  box-shadow: var(--ombre-2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .carte:has(a:hover) {
+    translate: 0 -2px;
+  }
+}
+
+/*
+ * Titre lien d'une carte : couleur du texte, souligné au survol et au focus seulement ;
+ * le reste de la carte (lieu, date, étiquettes) dit déjà que c'est un lien vers une fiche.
+ */
+.carte :is(h2, h3) > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.carte :is(h2, h3) > a:is(:hover, :focus-visible) {
+  text-decoration: underline;
+  text-decoration-color: var(--couleur-rubrique);
+  text-decoration-thickness: 2px;
+}
+
+/* Surtitre : petit mot en capitales, à la couleur de la rubrique, au-dessus d'un titre. */
+.surtitre {
+  display: block;
+  margin-block-end: var(--espace-1);
+  color: var(--couleur-rubrique);
+  font-family: var(--police);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .carte h2,
@@ -247,17 +291,34 @@ body,
 .bouton {
   display: inline-flex;
   align-items: center;
+  gap: var(--espace-2);
   min-height: var(--cible-tactile);
   padding: var(--espace-2) var(--espace-4);
-  border-radius: var(--rayon);
+  border: 2px solid var(--couleur-action);
+  font: inherit;
+  border-radius: 999px;
   background: var(--couleur-action);
   color: var(--couleur-action-contraste);
   font-weight: 700;
   text-decoration: none;
+  box-shadow: var(--ombre-bouton);
 }
 
 .bouton:hover {
   text-decoration: underline;
+}
+
+.bouton:active {
+  translate: 0 1px;
+  box-shadow: none;
+}
+
+/* Bouton secondaire : contour, même cible tactile. */
+.bouton-contour {
+  background: transparent;
+  color: var(--couleur-texte);
+  border-color: currentcolor;
+  box-shadow: none;
 }
 
 .grille {
@@ -289,6 +350,16 @@ body,
   gap: var(--espace-1);
   min-height: var(--cible-tactile);
   font-weight: 600;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lien-fleche > .icone {
+    transition: translate 0.2s ease;
+  }
+
+  .lien-fleche:hover > .icone {
+    translate: 3px 0;
+  }
 }
 
 .details {

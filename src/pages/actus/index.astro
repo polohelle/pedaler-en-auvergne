@@ -13,12 +13,15 @@ const actus = await actusPubliees();
 >
   <TetePage titre="Actualités du vélo">
     <p class="texte">
-      Aménagements, sport, politique vélo et filière : ce qui bouge près de chez vous et ce qui
-      change au niveau national.
+      Une nouvelle piste, une aide à l'achat, une voie verte qui avance, un club qui fête ses 30 ans
+      : l'essentiel de ce qui bouge près de chez vous, et ce qui change au niveau national.
     </p>
   </TetePage>
   {actus.length === 0 ? (
-    <p class="texte">Aucune actualité publiée pour le moment.</p>
+    <p class="texte">
+      Pas encore de nouvelles ici. Une info vélo à partager ?{' '}
+      <a href="/a-propos/#contact">Écrivez-moi</a>.
+    </p>
   ) : (
     <ul class="liste-simple">
       {actus.map((actu) => (

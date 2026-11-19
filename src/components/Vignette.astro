@@ -73,6 +73,7 @@ const cote = taille === 'grande' ? 80 : 48;
 
   .vignette--monogramme {
     display: grid;
+    border-radius: 30%;
     place-items: center;
     font-family: var(--police-titres);
     font-weight: 700;
@@ -88,21 +89,23 @@ const cote = taille === 'grande' ? 80 : 48;
     font-size: 1.8rem;
   }
 
-  /* Quatre teintes de la palette, chacune avec son texte contrasté, en clair comme en sombre. */
+  /*
+   * Quatre teintes chaudes de la palette (ADR 0045), chacune avec son texte contrasté, en
+   * clair comme en sombre : lac, lave, genêt, prairie.
+   */
   .teinte-1 {
-    background: var(--couleur-prairie-pale);
-    box-shadow: inset 0 0 0 1px var(--couleur-colline);
-    color: var(--couleur-lien);
+    background: var(--rubrique-annuaire-pale);
+    color: var(--rubrique-annuaire);
   }
 
   .teinte-2 {
-    background: var(--couleur-colline);
-    color: var(--couleur-texte);
+    background: var(--rubrique-agenda-pale);
+    color: var(--rubrique-agenda);
   }
 
   .teinte-3 {
-    background: var(--couleur-fond-doux);
-    color: var(--couleur-action);
+    background: var(--couleur-genet);
+    color: var(--couleur-genet-contraste);
   }
 
   .teinte-4 {

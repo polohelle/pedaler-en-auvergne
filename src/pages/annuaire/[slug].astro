@@ -179,11 +179,31 @@ const correction = `${SITE.depot}/issues/new?template=3-correction-fiche.yml&tit
     align-items: flex-start;
     justify-content: space-between;
     gap: var(--espace-3);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     margin-block: var(--espace-3) var(--espace-4);
-    padding: var(--espace-3);
+    padding: var(--espace-4) var(--espace-3);
     border-inline-start: 0.375rem solid var(--couleur-rubrique);
     border-radius: var(--rayon-grand);
     background: var(--couleur-rubrique-pale);
+  }
+
+  /* Courbes de niveau en filigrane, comme la tête des pages (ADR 0045). */
+  .fiche-tete::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--couleur-rubrique);
+    opacity: 0.09;
+    mask: url('/motifs/courbes.svg') right -6rem center / 28rem repeat-y;
+    pointer-events: none;
+  }
+
+  /* Pied de fiche (source, correction) détaché du dernier bloc. */
+  article > .discret:last-child {
+    margin-block-start: var(--espace-4);
   }
 
   .fiche-tete h1 {

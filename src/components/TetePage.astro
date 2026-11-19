@@ -20,11 +20,26 @@ const { titre, barre = false } = Astro.props;
 
 <style>
   .tete-page {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     margin-block: var(--espace-3) var(--espace-4);
-    padding: var(--espace-3);
+    padding: var(--espace-4) var(--espace-3);
     border-inline-start: 0.375rem solid var(--couleur-rubrique);
     border-radius: var(--rayon-grand);
     background: var(--couleur-rubrique-pale);
+  }
+
+  /* Courbes de niveau en filigrane, à la couleur de la rubrique (ADR 0045). */
+  .tete-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--couleur-rubrique);
+    opacity: 0.09;
+    mask: url('/motifs/courbes.svg') right -6rem center / 28rem repeat-y;
+    pointer-events: none;
   }
 
   .tete-page h1 {

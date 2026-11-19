@@ -27,7 +27,7 @@ test('la page courante est signalée dans le menu', async ({ page }) => {
 test('une adresse inconnue renvoie la page 404', async ({ page }) => {
   const reponse = await page.goto('/page-qui-n-existe-pas/');
   expect(reponse?.status()).toBe(404);
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Page introuvable');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Petit détour imprévu');
 });
 
 test('le pied de page mentionne les licences et OpenStreetMap', async ({ page }) => {

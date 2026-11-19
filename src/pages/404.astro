@@ -3,12 +3,52 @@ import Base from '@layouts/Base.astro';
 ---
 
 <Base titre="Page introuvable">
-  <h1>Page introuvable</h1>
-  <p class="texte">
-    Cette page n'existe pas ou plus. Un événement passé a peut-être été archivé, ou une fiche
-    retirée de l'annuaire.
-  </p>
-  <p>
-    <a href="/">Revenir à l'accueil</a>
-  </p>
+  <div class="perdu">
+    <p class="surtitre">Page introuvable</p>
+    <h1>Petit détour imprévu</h1>
+    <p class="texte">
+      Cette page n'existe pas, ou plus : un événement passé a peut-être été rangé, ou une fiche
+      retirée de l'annuaire. Pas de panique, on remonte en selle :
+    </p>
+    <ul class="liste-simple perdu__liens">
+      <li>
+        <a class="bouton" href="/">
+          Revenir à l'accueil
+        </a>
+      </li>
+      <li>
+        <a href="/agenda/">Les prochains rendez-vous</a>
+      </li>
+      <li>
+        <a href="/annuaire/">Les acteurs du vélo</a>
+      </li>
+      <li>
+        <a href="/itineraires/">Les itinéraires</a>
+      </li>
+    </ul>
+  </div>
 </Base>
+
+<style>
+  .perdu {
+    margin-block: var(--espace-5);
+  }
+
+  .perdu h1 {
+    margin-block-start: 0;
+  }
+
+  .perdu__liens {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espace-2) var(--espace-4);
+  }
+
+  .perdu__liens a:not(.bouton) {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--cible-tactile);
+    font-weight: 600;
+  }
+</style>

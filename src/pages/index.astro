@@ -2,36 +2,66 @@
 import CarteActu from '@components/CarteActu.astro';
 import CarteEvenement from '@components/CarteEvenement.astro';
 import Icone from '@components/Icone.astro';
+import { EDITEUR } from '@config/editeur';
 import { SITE } from '@config/site';
 import Base from '@layouts/Base.astro';
+import { chiffresCles, motDeSaison } from '@lib/accueil';
+import { listerCommunes } from '@lib/communes';
 import { donneesSite } from '@lib/donnees-structurees';
 import { urlAbsolue } from '@lib/referencement';
-import { actusPubliees, evenementsAVenir } from '@services/contenus';
+import {
+  acteursPublies,
+  actusPubliees,
+  evenementsAVenir,
+  itinerairesPublies,
+} from '@services/contenus';
 
-const prochains = (await evenementsAVenir()).slice(0, 3);
+const aVenir = await evenementsAVenir();
+const acteurs = await acteursPublies();
+const itineraires = await itinerairesPublies();
+const prochains = aVenir.slice(0, 3);
 const dernieres = (await actusPubliees()).slice(0, 3);
 
-/** Une tuile par rubrique, à sa couleur (ADR 0039). */
+/** Chiffres réels, recomptés à chaque construction (ADR 0045). */
+const chiffres = chiffresCles({
+  acteurs: acteurs.length,
+  communes: listerCommunes([
+    ...acteurs.map((a) => a.data.commune),
+    ...aVenir.map((e) => e.data.commune),
+  ]).length,
+  rendezVous: aVenir.length,
+  parcours: itineraires.length,
+});
+const saison = motDeSaison(new Date());
+
+/** Une tuile par rubrique, à sa couleur (ADR 0039), titrée par ce qu'on y vient chercher. */
 const tuiles = [
   {
     rubrique: 'annuaire',
-    titre: 'Trouver un acteur du vélo',
-    texte: 'Réparateur, loueur, atelier, club ou vélo-école près de chez vous.',
+    nom: 'Annuaire',
+    titre: "Trouver de l'aide près de chez vous",
+    texte:
+      'Une crevaison, un vélo à réviser, un club à rejoindre, un enfant à mettre en selle : réparateurs, ateliers, clubs et vélo-écoles.',
   },
   {
     rubrique: 'agenda',
-    titre: 'Agenda',
-    texte: 'Sorties, social rides, vélorutions, bourses aux vélos, ateliers et courses.',
+    nom: 'Agenda',
+    titre: 'Rouler ensemble',
+    texte:
+      'Balades, social rides, bourses aux vélos, cyclo-cross et vélorutions : les prochains rendez-vous.',
   },
   {
     rubrique: 'itineraires',
-    titre: 'Itinéraires',
-    texte: 'Parcours route, gravel et VTT du secteur, avec leur trace GPX.',
+    nom: 'Itinéraires',
+    titre: 'Choisir son parcours',
+    texte: 'Route, gravel ou VTT, facile ou costaud : des traces GPX libres, à emporter.',
   },
   {
     rubrique: 'actus',
-    titre: 'Actualités',
-    texte: 'Les nouvelles du vélo local et ce qui change au niveau national.',
+    nom: 'Actualités',
+    titre: 'Ce qui bouge',
+    texte:
+      "Pistes cyclables, aides, chantiers et projets : les nouvelles qui comptent pour le vélo d'ici.",
   },
 ] as const;
 
@@ -40,39 +70,72 @@ const donnees = donneesSite({ ...SITE, url: urlAbsolue('/', Astro.site ?? Astro.
 
 <Base titre="Accueil" {donnees}>
   <section class="bandeau" aria-labelledby="titre-accueil">
-    <h1 id="titre-accueil">{SITE.nom}</h1>
-    <p class="texte">
-      {SITE.slogan} en Auvergne, du Puy-de-Dôme à l'Allier, au Cantal et à la Haute-Loire : magasins
-      et réparateurs, ateliers participatifs, vélo-écoles, associations, clubs et entreprises à
-      vélo, réunis en un seul endroit.
-    </p>
+    <div class="bandeau__texte">
+      <p class="surtitre">{SITE.nom}</p>
+      <h1 id="titre-accueil">Le vélo près de chez vous, entre volcans et vallées</h1>
+      <p class="bandeau__accroche">
+        Où faire réparer son vélo, avec qui rouler samedi, quel parcours tenter entre deux puys ?
+        J'ai rassemblé ici ce qui était éparpillé entre sites, réseaux sociaux et presse locale.
+        Gratuit, sans publicité, tenu bénévolement.
+      </p>
+      <p class="bandeau__actions">
+        <a class="bouton" href="/annuaire/">
+          <Icone nom="annuaire" />
+          Trouver un acteur
+        </a>
+        <a class="bouton bouton-contour" href="/agenda/">
+          <Icone nom="agenda" />
+          Les prochains rendez-vous
+        </a>
+      </p>
+      {chiffres.length > 0 && (
+        <ul class="liste-simple chiffres" aria-label="En chiffres">
+          {chiffres.map(({ valeur, libelle }) => (
+            <li>
+              <strong>{valeur}</strong> {libelle}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
     <svg
       class="bandeau__relief"
-      viewBox="0 0 320 60"
-      preserveAspectRatio="none"
+      viewBox="0 0 640 80"
+      preserveAspectRatio="xMidYMax slice"
       aria-hidden="true"
       focusable="false"
     >
       <path
         class="bandeau__collines"
-        d="M0 60V40c30-6 50-14 80-12s50 12 80 8 50-16 80-14 50 10 80 12v26Z"
+        d="M0 80V50c60-10 100-18 160-16s100 14 160 10 100-20 160-18 100 12 160 16v38Z"
       ></path>
+      <circle class="bandeau__soleil" cx="246" cy="17" r="13"></circle>
       <path
         class="bandeau__puys"
-        d="M0 60V46l40-6c18-20 30-26 40-26l8 6 8-6c16 6 26 20 36 30 12-8 22-12 32-10 12 2 20 10 28 14l40-4c14-10 26-14 38-12 14 2 24 10 50 14v14Z"
+        d="M0 80V58l60-6c30-6 50-10 70-12 40-4 70-20 104-22l12 3 12-3c32 6 52 26 72 38 24-12 44-16 64-14 24 2 40 14 56 20l50-4c28-16 52-22 76-20 28 2 48 14 64 22v20Z"
       ></path>
-      <circle class="bandeau__cycliste" cx="70" cy="21" r="4.5"></circle>
+      <path
+        class="bandeau__avant-plan"
+        d="M0 80V70c80-6 160-8 240-6s120 4 180 0 140-8 220-4v20Z"
+      ></path>
+      <g class="bandeau__cycliste" transform="translate(389 52) scale(1.7) translate(-389 -52)">
+        <circle cx="382" cy="60" r="4"></circle>
+        <circle cx="396" cy="60" r="4"></circle>
+        <path d="M382 60h6l6-7h-8Zm6 0-3-9m9 2 2 7m-3-7 1-3m-9-2 6-6m0 0 3 5m-9 1 4 5-1 4"></path>
+        <circle class="bandeau__tete" cx="392.5" cy="42.5" r="2.4"></circle>
+      </g>
     </svg>
   </section>
 
   <ul class="grille liste-simple tuiles">
-    {tuiles.map(({ rubrique, titre, texte }) => (
+    {tuiles.map(({ rubrique, nom, titre, texte }) => (
       <li class:list={['carte', 'tuile', `rubrique-${rubrique}`]}>
+        <span class="tuile__picto">
+          <Icone nom={rubrique} />
+        </span>
         <h2>
           <a href={`/${rubrique}/`}>
-            <span class="tuile__picto">
-              <Icone nom={rubrique} />
-            </span>
+            <span class="surtitre">{nom}</span>
             {titre}
           </a>
         </h2>
@@ -81,12 +144,17 @@ const donnees = donneesSite({ ...SITE, url: urlAbsolue('/', Astro.site ?? Astro.
     ))}
   </ul>
 
+  <aside class:list={['saison', `saison--${saison.saison}`]} aria-labelledby="titre-saison">
+    <h2 id="titre-saison">{saison.titre}</h2>
+    <p>{saison.texte}</p>
+  </aside>
+
   {prochains.length > 0 && (
-    <section class="rubrique-agenda" aria-labelledby="titre-prochains">
+    <section class="rubrique-agenda bande" aria-labelledby="titre-prochains">
       <div class="tete-section">
         <h2 class="titre-rubrique" id="titre-prochains">
           <Icone nom="agenda" />
-          Prochains événements
+          Les prochains rendez-vous
         </h2>
         <a class="lien-fleche" href="/agenda/">
           Tout l'agenda
@@ -105,7 +173,7 @@ const donnees = donneesSite({ ...SITE, url: urlAbsolue('/', Astro.site ?? Astro.
     <section class="rubrique-actus" aria-labelledby="titre-actus">
       <h2 class="titre-rubrique" id="titre-actus">
         <Icone nom="actus" />
-        Dernières actualités
+        Ce qui bouge en ce moment
       </h2>
       <ul class="liste-simple">
         {dernieres.map((actu) => (
@@ -115,44 +183,217 @@ const donnees = donneesSite({ ...SITE, url: urlAbsolue('/', Astro.site ?? Astro.
     </section>
   )}
 
-  <section aria-labelledby="titre-rejoindre">
-    <h2 id="titre-rejoindre">Vous êtes un acteur du vélo ?</h2>
-    <p class="texte">
-      L'annuaire et l'agenda sont gratuits et ouverts à tous. Proposez vos événements, ou
-      <a href="/a-propos/#contact">écrivez</a> pour faire connaître votre structure.
-    </p>
-    <a class="bouton" href="/agenda/proposer/">
-      Proposer un événement
-    </a>
+  <section class="rejoindre" aria-labelledby="titre-rejoindre">
+    <div class="rejoindre__appel">
+      <h2 id="titre-rejoindre">Vous faites vivre le vélo par ici ?</h2>
+      <p>
+        Atelier, club, magasin ou bande de copains qui organise une sortie : votre fiche et vos
+        rendez-vous sont gratuits, et le resteront. Envoyez-moi une date, je l'ajoute à l'agenda
+        après un rapide coup d'œil.
+      </p>
+      <a class="bouton" href="/agenda/proposer/">
+        Proposer un rendez-vous
+      </a>
+    </div>
+    <div class="rejoindre__qui">
+      <h2 id="titre-qui">Qui est derrière ce site ?</h2>
+      <p>
+        Une seule personne, bénévole et passionnée de vélo, qui ne vend rien : aucune structure ne
+        paie pour y figurer ni pour passer devant les autres. Des outils m'aident à repérer les
+        nouveautés, mais je relis tout avant de publier.
+      </p>
+      <p>
+        Une erreur, un oubli ?{' '}
+        {EDITEUR.email === null ? (
+          <a href="/a-propos/#contact">Écrivez-moi</a>
+        ) : (
+          <a href={`mailto:${EDITEUR.email}`}>Écrivez-moi</a>
+        )}
+        , je réponds. <a href="/a-propos/">Mes règles du jeu</a>.
+      </p>
+    </div>
   </section>
 </Base>
 
 <style>
-  /* Tuiles des rubriques : filet, pictogramme et titre à la couleur de la rubrique. */
+  /* Bandeau « Prairie » (ADR 0024), réchauffé (ADR 0045) : voix, actions, chiffres réels et un
+     relief en trois plans où un soleil genêt se lève derrière le puy et un cycliste passe. */
+  .bandeau {
+    position: relative;
+    isolation: isolate;
+    margin-block: var(--espace-3) var(--espace-4);
+    border-radius: var(--rayon-grand);
+    overflow: hidden;
+    background: var(--couleur-prairie-pale);
+  }
+
+  /* Courbes de niveau en filigrane derrière le texte (ADR 0045). */
+  .bandeau::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--couleur-primaire);
+    opacity: 0.08;
+    mask: url('/motifs/courbes.svg') right -4rem top -3rem / 34rem no-repeat;
+    pointer-events: none;
+  }
+
+  .bandeau__texte {
+    padding: var(--espace-4) var(--espace-3) var(--espace-2);
+  }
+
+  .bandeau h1 {
+    max-width: 22ch;
+    margin-block: 0 var(--espace-3);
+  }
+
+  .bandeau__accroche {
+    max-width: var(--largeur-texte);
+    font-size: 1.125rem;
+  }
+
+  .bandeau__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espace-2) var(--espace-3);
+    margin-block: var(--espace-4);
+  }
+
+  .chiffres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espace-1) var(--espace-4);
+    margin: 0;
+    color: var(--couleur-texte-doux);
+  }
+
+  .chiffres strong {
+    color: var(--couleur-texte);
+    font-family: var(--police-titres);
+    font-size: 1.35rem;
+    font-weight: 800;
+  }
+
+  .bandeau__relief {
+    display: block;
+    width: 100%;
+    height: clamp(5rem, 13vw, 9rem);
+  }
+
+  .bandeau__collines {
+    fill: var(--couleur-colline);
+  }
+
+  .bandeau__soleil {
+    fill: var(--couleur-genet);
+  }
+
+  .bandeau__puys {
+    fill: var(--couleur-primaire);
+  }
+
+  .bandeau__avant-plan {
+    fill: color-mix(in srgb, var(--couleur-primaire) 70%, var(--couleur-texte));
+  }
+
+  .bandeau__cycliste {
+    fill: none;
+    stroke: var(--couleur-fond);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .bandeau__tete {
+    fill: var(--couleur-genet);
+    stroke: none;
+  }
+
+  @media (min-width: 48rem) {
+    /* Courbes de niveau en filigrane derrière le texte (ADR 0045). */
+    .bandeau::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--couleur-primaire);
+      opacity: 0.08;
+      mask: url('/motifs/courbes.svg') right -4rem top -3rem / 34rem no-repeat;
+      pointer-events: none;
+    }
+
+    .bandeau__texte {
+      padding: var(--espace-5) var(--espace-5) var(--espace-3);
+    }
+  }
+
+  /* Tuiles des rubriques : filet, pictogramme et surtitre à la couleur de la rubrique. */
   .tuiles {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   }
 
   .tuile {
+    position: relative;
     margin-block-end: 0;
+    padding-block-start: var(--espace-4);
     border-block-start: 0.375rem solid var(--couleur-rubrique);
   }
 
-  .tuile a {
-    display: flex;
-    align-items: center;
-    gap: var(--espace-2);
-    color: var(--couleur-rubrique);
+  .tuile h2 {
+    margin-block: var(--espace-2);
+    font-size: 1.25rem;
+  }
+
+  /* Lien étendu : toute la tuile mène à la rubrique. */
+  .tuile a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .tuile p {
+    margin: 0;
+    color: var(--couleur-texte-doux);
+  }
+
+  /* Sur petit écran, pictogramme à gauche du titre : des tuiles plus compactes. */
+  @media (max-width: 39.99rem) {
+    .tuile {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 var(--espace-3);
+      padding-block-start: var(--espace-3);
+    }
+
+    .tuile__picto {
+      grid-row: span 2;
+    }
+
+    .tuile h2 {
+      margin-block-start: 0;
+    }
   }
 
   .tuile__picto {
     display: grid;
-    flex: none;
     place-items: center;
-    inline-size: 2.5rem;
-    block-size: 2.5rem;
-    border-radius: 50%;
+    inline-size: 3rem;
+    block-size: 3rem;
+    border-radius: 30%;
     background: var(--couleur-rubrique-pale);
+    color: var(--couleur-rubrique);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .tuile__picto {
+      transition: rotate 0.3s ease;
+    }
+
+    .tuile:hover .tuile__picto {
+      rotate: -8deg;
+    }
   }
 
   .titre-rubrique {
@@ -165,37 +406,71 @@ const donnees = donneesSite({ ...SITE, url: urlAbsolue('/', Astro.site ?? Astro.
     color: var(--couleur-rubrique);
   }
 
-  /* Bandeau « Prairie » : vert pâle, posé sur le relief des Puys (ADR 0024). */
-  .bandeau {
-    margin-block: var(--espace-3) var(--espace-4);
-    padding: var(--espace-3) var(--espace-3) 0;
+  /* Mot de saison : un encart genêt, comme un post-it posé sur la page. */
+  .saison {
+    max-width: var(--largeur-texte);
+    margin-block: var(--espace-5) 0;
+    padding: var(--espace-3) var(--espace-4);
+    border-inline-start: 0.375rem solid var(--couleur-genet);
+    border-radius: var(--rayon);
+    background: var(--couleur-surface);
+    box-shadow: var(--ombre-1);
+  }
+
+  .saison h2 {
+    margin-block: 0 var(--espace-1);
+    font-size: 1.15rem;
+  }
+
+  .saison p {
+    margin: 0;
+  }
+
+  /* Bande pleine largeur, à la couleur pâle de la rubrique, sans défilement horizontal. */
+  .bande {
+    margin-block: var(--espace-5);
+    padding-block: var(--espace-2) var(--espace-3);
+    background: var(--couleur-rubrique-pale);
+    box-shadow: 0 0 0 100vmax var(--couleur-rubrique-pale);
+    clip-path: inset(0 -100vmax);
+  }
+
+  .bande .grille-evenements {
+    margin-block-end: 0;
+  }
+
+  /* Appel et présentation de l'éditeur, côte à côte sur grand écran. */
+  .rejoindre {
+    display: grid;
+    gap: var(--espace-3);
+    margin-block-start: var(--espace-5);
+  }
+
+  .rejoindre h2 {
+    margin-block-start: 0;
+  }
+
+  .rejoindre > div {
+    padding: var(--espace-4);
     border-radius: var(--rayon-grand);
-    overflow: hidden;
+  }
+
+  .rejoindre__appel {
     background: var(--couleur-prairie-pale);
   }
 
-  .bandeau p {
-    color: var(--couleur-texte-doux);
+  .rejoindre__qui {
+    border: 1px dashed var(--couleur-bordure);
+    background: var(--couleur-surface);
   }
 
-  .bandeau__relief {
-    display: block;
-    width: calc(100% + 2 * var(--espace-3));
-    height: 3.25rem;
-    margin-inline: calc(-1 * var(--espace-3));
+  .rejoindre__qui p:last-child {
+    margin: 0;
   }
 
-  .bandeau__collines {
-    fill: var(--couleur-colline);
-  }
-
-  .bandeau__puys {
-    fill: var(--couleur-primaire);
-  }
-
-  .bandeau__cycliste {
-    fill: var(--couleur-genet);
-    stroke: var(--couleur-texte);
-    stroke-width: 1.5;
+  @media (min-width: 48rem) {
+    .rejoindre {
+      grid-template-columns: 3fr 2fr;
+    }
   }
 </style>
