@@ -9,8 +9,9 @@ departement: '63'
 organisateur: velo-cite-63-clermont-ferrand
 tarif: Gratuit
 source_url: https://www.velocite63.fr/cyclistes-brillez-special-etudiantes
+# Report sans nouvelle date annoncé le 19/11 par Vélo-Cité 63 (https://pouet.chapril.org/@velocite63/117642310421162266).
 source: agent
-statut: publie
+statut: annule
 ---
 
 Dans le cadre de la campagne #CyclistesBrillez de la FUB, Vélo-Cité 63 et l'Université Clermont
