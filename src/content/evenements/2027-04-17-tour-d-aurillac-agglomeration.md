@@ -10,7 +10,7 @@ commune: Aurillac
 departement: '15'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4115060029/20eme-tour-d-aurillac-agglomeration/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 L'ACV Aurillacois organise la 20e édition du Tour d'Aurillac Agglomération, une course sur route

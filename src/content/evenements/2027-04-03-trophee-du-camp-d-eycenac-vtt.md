@@ -9,7 +9,7 @@ commune: Vals-près-le-Puy
 departement: '43'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4143129033/tdjv-trophee-du-camp-d-eycenac/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Vélo Club du Velay organise une course de VTT cross-country sur le plateau d'Eycenac, au-dessus

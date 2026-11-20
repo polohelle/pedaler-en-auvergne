@@ -10,7 +10,7 @@ departement: '63'
 organisateur: bmx-club-cournon-d-auvergne
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4163097016/coupe-auvergne-rhone-alpes-bmx-cournon/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le BMX Club de Cournon-d'Auvergne accueille une manche de la Coupe Auvergne-Rhône-Alpes de BMX
