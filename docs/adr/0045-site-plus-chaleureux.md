@@ -31,7 +31,7 @@ texte sans voix, au « nous » institutionnel, alors qu'une seule personne porte
 - **Mot de saison** sur l'accueil, choisi par le mois à Paris (`motDeSaison`) : un conseil
   pratique, sans date ni promesse.
 - **Voix** : vouvoiement du lecteur, « je » pour l'éditeur, plus de « nous » ; slogan
-  « Le vélo d'ici, au même endroit ». Aucun nom, aucune photo de l'éditeur, aucun témoignage
+  « Les adresses, les rendez-vous et les routes du vélo ». Aucun nom, aucune photo de l'éditeur, aucun témoignage
   inventé, aucun chiffre écrit en dur.
 
 ## Conséquences

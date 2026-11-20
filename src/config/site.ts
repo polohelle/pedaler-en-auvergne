@@ -1,7 +1,7 @@
 /** Identité et constantes du site. */
 export const SITE = {
   nom: 'Pédaler en Auvergne',
-  slogan: "Le vélo d'ici, au même endroit",
+  slogan: 'Les adresses, les rendez-vous et les routes du vélo',
   description:
     'Réparateurs, clubs, sorties et parcours vélo en Auvergne, réunis bénévolement en un seul endroit : annuaire, agenda, itinéraires et actualités.',
   url: 'https://pedalerenauvergne.fr',
