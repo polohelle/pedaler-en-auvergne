@@ -39,8 +39,8 @@ const EDITEUR = {
 export const PHOTOS = {
   famille: {
     id: 'famille-voie-verte',
-    alt: 'Une file d’enfants à vélo, en gilet jaune, roule sur une voie verte goudronnée le long d’une voie ferrée, sous un ciel de printemps.',
-    legende: 'Sortie en famille sur une voie verte',
+    alt: 'Une file d’enfants à vélo, en gilet jaune, roule sur la Via Allier, une voie verte goudronnée le long d’une voie ferrée, sous un ciel de printemps.',
+    legende: 'Sortie en famille sur la Via Allier',
     ...EDITEUR,
   },
   gravel: {
@@ -97,8 +97,8 @@ export const PHOTOS_SAISON = {
   },
   automne: {
     id: 'saison-automne',
-    alt: 'Un vélo de route posé au bord d’une route forestière, dans le brouillard, entre les sapins.',
-    legende: 'Brouillard d’automne en forêt',
+    alt: 'Un vélo de route posé au bord d’une route forestière des monts du Forez, dans le brouillard, entre les sapins.',
+    legende: 'Brouillard d’automne dans les monts du Forez',
     ...EDITEUR,
   },
 } as const satisfies Record<Saison, Photo>;
