@@ -1,9 +1,9 @@
 /** Identité et constantes du site. */
 export const SITE = {
   nom: 'Pédaler en Auvergne',
-  slogan: 'Le réseau des acteurs du vélo',
+  slogan: 'Les adresses, les rendez-vous et les routes du vélo',
   description:
-    'Le réseau des acteurs du vélo en Auvergne : annuaire, agenda et actualités du vélo local.',
+    'Réparateurs, clubs, sorties et parcours vélo en Auvergne, réunis bénévolement en un seul endroit : annuaire, agenda, itinéraires et actualités.',
   url: 'https://pedalerenauvergne.fr',
   langue: 'fr',
   couleurTheme: '#ffffff',

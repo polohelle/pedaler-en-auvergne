@@ -11,22 +11,23 @@ const itineraires = await itinerairesPublies();
 const communes = [...new Set(itineraires.map(({ data }) => data.commune))].sort((a, b) =>
   a.localeCompare(b, 'fr'),
 );
+import { PHOTOS } from '@config/photos';
 ---
 
 <Base
   titre="Itinéraires vélo : route, gravel et VTT"
   description="Les parcours route, gravel et VTT d'Auvergne sur une seule carte IGN, à trier par pratique, difficulté, distance et dénivelé."
 >
-  <TetePage titre="Itinéraires route, gravel et VTT">
+  <TetePage titre="Itinéraires route, gravel et VTT" photo={PHOTOS.chaineDesPuys}>
     <p class="texte">
-      Tous les parcours du secteur sur une seule carte IGN, à trier par pratique, difficulté,
-      distance et dénivelé. Chaque trace se télécharge au format GPX.
+      Une boucle tranquille au bord de l'eau ou une journée entière dans les puys ? Filtrez selon
+      votre envie du jour, regardez le relief sur la carte IGN et emportez la trace GPX.
     </p>
   </TetePage>
   {itineraires.length === 0 ? (
     <p class="texte">
-      La rubrique est en cours de constitution : les premiers parcours seront publiés après
-      vérification de leur trace et de leur licence.
+      Les premiers parcours arrivent : chacun est publié après vérification de sa trace et de sa
+      licence.
     </p>
   ) : (
     <>
@@ -46,10 +47,10 @@ const communes = [...new Set(itineraires.map(({ data }) => data.commune))].sort(
   <Appel
     titre="Vous balisez ou proposez des parcours ?"
     lien="/a-propos/#contact"
-    libelle="Nous écrire"
+    libelle="M'écrire"
   >
-    Club, office de tourisme ou collectivité : si vos traces sont sous licence libre, nous les
-    ajoutons à la carte en citant leur source.
+    Club, office de tourisme ou collectivité : si vos traces sont sous licence libre, je les ajoute
+    à la carte en citant leur source.
   </Appel>
   <p class="discret">
     Chaque trace reste la propriété de son auteur et est reprise selon sa licence, indiquée sur sa

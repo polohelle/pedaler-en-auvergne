@@ -1,0 +1,70 @@
+---
+import type { Photo } from '@config/photos';
+import { cheminPhoto, srcsetPhoto } from '@lib/photos';
+
+/**
+ * Photo de gens à vélo (ADR 0046), avec sa légende, son auteur, sa licence et sa source,
+ * toujours visibles sous l'image.
+ */
+interface Props {
+  photo: Photo;
+  /** Attribut `sizes` : largeur affichée selon l'écran. */
+  tailles?: string;
+  /** `eager` pour une photo visible dès l'ouverture de la page. */
+  chargement?: 'lazy' | 'eager';
+  class?: string;
+}
+
+const { photo, tailles = '(min-width: 48rem) 40vw, 100vw', chargement = 'lazy' } = Astro.props;
+---
+
+<figure class:list={['photo-creditee', Astro.props.class]}>
+  <img
+    src={cheminPhoto(photo.id, 1200)}
+    srcset={srcsetPhoto(photo.id)}
+    sizes={tailles}
+    width={photo.largeur}
+    height={photo.hauteur}
+    alt={photo.alt}
+    loading={chargement}
+    decoding="async"
+  />
+  <figcaption>
+    {photo.legende}. Photo : {photo.auteur},{' '}
+    {photo.licenceUrl ? <a href={photo.licenceUrl}>{photo.licence}</a> : photo.licence}
+    {photo.source && photo.sourceUrl ? (
+      <>
+        , via <a href={photo.sourceUrl}>{photo.source}</a>.
+      </>
+    ) : (
+      '.'
+    )}
+  </figcaption>
+</figure>
+
+<style>
+  .photo-creditee {
+    margin: 0;
+  }
+
+  .photo-creditee img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--rayon-grand);
+    box-shadow: var(--ombre-2);
+  }
+
+  .photo-creditee figcaption {
+    margin-block-start: var(--espace-2);
+    color: var(--couleur-texte-doux);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .photo-creditee figcaption a {
+    color: inherit;
+  }
+</style>

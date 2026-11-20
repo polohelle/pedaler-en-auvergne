@@ -17,16 +17,22 @@ const annee = new Date().getFullYear();
     <path d="M0 24V16c30-4 50-9 80-8s50 8 80 5 50-10 80-9 50 6 80 8v12Z"></path>
   </svg>
   <div class="conteneur pied__interieur">
-    <a class="pied__marque" href="/">
-      <Logo variante="pied" />
-    </a>
+    <div class="pied__tete">
+      <a class="pied__marque" href="/">
+        <Logo variante="pied" />
+      </a>
+      <p class="pied__mot">
+        Fait à la main, bénévolement, en Auvergne. Gratuit et sans publicité.{' '}
+        <strong>Bonne route !</strong>
+      </p>
+    </div>
     <nav aria-label="Liens de pied de page">
       <ul class="liste-simple pied__liens">
         <li>
           <a href="/communes/">Le vélo par commune</a>
         </li>
         <li>
-          <a href="/a-propos/">À propos et contact</a>
+          <a href="/a-propos/">Qui est derrière ce site</a>
         </li>
         <li>
           <a href="/mentions-legales/">Mentions légales et confidentialité</a>
@@ -38,7 +44,7 @@ const annee = new Date().getFullYear();
           <a href={SITE.facebook}>Facebook</a>
         </li>
         <li>
-          <a href={SITE.depot}>Code source</a>
+          <a href={SITE.depot}>Le code est ouvert</a>
         </li>
       </ul>
     </nav>
@@ -81,10 +87,22 @@ const annee = new Date().getFullYear();
     padding-block: var(--espace-4);
   }
 
+  .pied__tete {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espace-2) var(--espace-4);
+    margin-block-end: var(--espace-3);
+  }
+
+  .pied__mot {
+    max-width: 34rem;
+    margin: 0;
+  }
+
   .pied__marque {
     display: inline-flex;
     min-height: var(--cible-tactile);
-    margin-block-end: var(--espace-3);
     color: var(--couleur-texte);
     text-decoration: none;
   }

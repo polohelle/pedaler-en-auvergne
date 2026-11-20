@@ -10,20 +10,25 @@ import { evenementsAVenir } from '@services/contenus';
 
 const evenements = await evenementsAVenir();
 const mois = grouperParMois(evenements, ({ data }) => data.debut);
+import { PHOTOS } from '@config/photos';
 ---
 
 <Base
   titre="Agenda des manifestations vélo"
   description="Sorties, bourses aux vélos, ateliers de réparation, courses et fêtes du vélo en Auvergne."
 >
-  <TetePage titre="Agenda des manifestations vélo">
+  <TetePage titre="Les prochains rendez-vous vélo" photo={PHOTOS.gravel}>
     <p class="texte">
-      Sorties, bourses aux vélos, ateliers de réparation, courses et fêtes du vélo près de chez
-      vous.
+      Une bourse pour trouver le vélo du petit, un cyclo-cross dans la boue, une balade tranquille
+      le dimanche, un atelier pour apprendre à régler ses freins : voici ce qui se prépare près de
+      chez vous.
     </p>
   </TetePage>
   {evenements.length === 0 ? (
-    <p class="texte">Aucun événement à venir pour le moment.</p>
+    <p class="texte">
+      Calme plat sur l'agenda pour l'instant. Vous préparez quelque chose ?{' '}
+      <a href={FORMULAIRES.pageEvenement}>Proposez-le</a>, je l'ajoute avec plaisir.
+    </p>
   ) : (
     mois.map(({ cle, libelle, elements }) => (
       <section class="mois" aria-labelledby={`mois-${cle}`}>
@@ -63,8 +68,8 @@ const mois = grouperParMois(evenements, ({ data }) => data.debut);
     lien={FORMULAIRES.pageEvenement}
     libelle="Proposer un événement"
   >
-    Bourse, balade, atelier ou course : signalez-le, nous l'ajoutons à l'agenda après vérification.
-    Vous en organisez souvent ?{' '}
+    Bourse, balade, atelier ou course : envoyez-la-moi, je vérifie et je l'ajoute à l'agenda. Vous
+    en organisez souvent ?{' '}
     <a href={ORGANISATEUR.pages.connexion}>Ouvrez votre espace organisateur</a> pour gérer vos
     événements et leurs dates.
   </Appel>

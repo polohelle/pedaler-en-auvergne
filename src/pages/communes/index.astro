@@ -20,11 +20,11 @@ const evenementsParCommune = regrouperParCommune(evenements, (e) => e.data.commu
 >
   <TetePage titre="Le vélo commune par commune">
     <p class="texte">
-      Réparateurs, ateliers, clubs et sorties près de chez vous : choisissez votre commune.
+      Réparateurs, ateliers, clubs et sorties à quelques coups de pédale : choisissez votre commune.
     </p>
   </TetePage>
   {communes.length === 0 ? (
-    <p class="texte">Aucune commune pour le moment : l'annuaire est en cours de constitution.</p>
+    <p class="texte">Aucune commune pour le moment : les premières fiches arrivent.</p>
   ) : (
     <ul class="grille liste-simple communes">
       {communes.map(({ slug, nom }) => {

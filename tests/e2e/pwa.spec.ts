@@ -76,7 +76,7 @@ test('le site se consulte hors connexion', async ({ page, context }) => {
 
   await page.goto('/agenda/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Agenda des manifestations vélo',
+    'Les prochains rendez-vous vélo',
   );
   await page.goto('/annuaire/velo-test-riom/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Vélo Test Riom');

@@ -1,4 +1,7 @@
 ---
+import PhotoCreditee from '@components/PhotoCreditee.astro';
+import type { Photo } from '@config/photos';
+
 /**
  * Tête des pages de liste et des fiches : bandeau pâle avec le titre de niveau 1 (ADR 0024),
  * aux couleurs de la rubrique courante, filet à gauche (ADR 0039). Le contenu glissé
@@ -6,33 +9,72 @@
  */
 interface Props {
   titre: string;
+  /** Photo de gens à vélo, à droite du titre sur grand écran (ADR 0046). */
+  photo?: Photo | undefined;
   /** Barre le titre (événement annulé). */
   barre?: boolean;
 }
 
-const { titre, barre = false } = Astro.props;
+const { titre, barre = false, photo } = Astro.props;
 ---
 
-<div class="tete-page">
-  <h1 class:list={{ annule: barre }}>{titre}</h1>
-  <slot />
+<div class:list={['tete-page', { 'tete-page--photo': photo }]}>
+  <div class="tete-page__texte">
+    <h1 class:list={{ annule: barre }}>{titre}</h1>
+    <slot />
+  </div>
+  {photo && (
+    <PhotoCreditee
+      photo={photo}
+      class="tete-page__photo"
+      tailles="(min-width: 48rem) 22rem, 100vw"
+      chargement="eager"
+    />
+  )}
 </div>
 
 <style>
   .tete-page {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     margin-block: var(--espace-3) var(--espace-4);
-    padding: var(--espace-3);
+    padding: var(--espace-4) var(--espace-3);
     border-inline-start: 0.375rem solid var(--couleur-rubrique);
     border-radius: var(--rayon-grand);
     background: var(--couleur-rubrique-pale);
+  }
+
+  /* Courbes de niveau en filigrane, à la couleur de la rubrique (ADR 0045). */
+  .tete-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--couleur-rubrique);
+    opacity: 0.09;
+    mask: url('/motifs/courbes.svg') right -6rem center / 28rem repeat-y;
+    pointer-events: none;
   }
 
   .tete-page h1 {
     margin-block-start: 0;
   }
 
-  .tete-page > :global(:last-child) {
+  .tete-page__texte > :global(:last-child) {
     margin-block-end: 0;
+  }
+
+  .tete-page--photo {
+    display: grid;
+    gap: var(--espace-4);
+  }
+
+  @media (min-width: 48rem) {
+    .tete-page--photo {
+      grid-template-columns: 1fr 22rem;
+      align-items: center;
+    }
   }
 
   .tete-page :global(p:not(.etiquette)) {

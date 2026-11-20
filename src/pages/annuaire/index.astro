@@ -7,6 +7,7 @@ import CarteAnnuaire from '@components/CarteAnnuaire.astro';
 import TetePage from '@components/TetePage.astro';
 import Base from '@layouts/Base.astro';
 import { sectionsAnnuaire } from '@lib/annuaire';
+import { resumerCommune } from '@lib/communes';
 import { acteursPublies } from '@services/contenus';
 
 const acteurs = await acteursPublies();
@@ -14,23 +15,22 @@ const { commerces, associations, nombreAssociations } = sectionsAnnuaire(
   acteurs,
   (a) => a.data.categories,
 );
+import { PHOTOS } from '@config/photos';
 ---
 
 <Base
   titre="Annuaire des acteurs du vélo"
   description="Magasins, réparateurs, loueurs, ateliers, vélo-écoles, associations et clubs d'Auvergne."
 >
-  <TetePage titre="Annuaire des acteurs du vélo">
+  <TetePage titre="Les acteurs du vélo près de chez vous" photo={PHOTOS.sourire}>
     <p class="texte">
-      Magasins et réparateurs, loueurs, ateliers participatifs, vélo-écoles, associations et clubs
-      d'Auvergne.
+      Réparateurs et magasins, loueurs, ateliers où l'on apprend à réparer soi-même, vélo-écoles,
+      clubs et associations : tout le monde y figure gratuitement, de l'indépendant à l'enseigne
+      nationale.
     </p>
   </TetePage>
   {acteurs.length === 0 ? (
-    <p class="texte">
-      L'annuaire est en cours de constitution : les premières fiches seront publiées après
-      vérification.
-    </p>
+    <p class="texte">Les premières fiches arrivent : chacune est vérifiée avant d'être publiée.</p>
   ) : (
     <>
       <nav class="sections rubrique-annuaire" aria-label="Sections de l'annuaire">
@@ -56,7 +56,7 @@ const { commerces, associations, nombreAssociations } = sectionsAnnuaire(
         </ul>
       </nav>
       <CarteAnnuaire />
-      <p class="discret">{acteurs.length} acteur(s) référencé(s).</p>
+      <p class="discret">{resumerCommune(acteurs.length, 0)} dans l'annuaire.</p>
       <h2 id="commerces-et-services">Commerces et services</h2>
       <ul class="grille liste-simple">
         {commerces.map((acteur) => (
@@ -85,7 +85,8 @@ const { commerces, associations, nombreAssociations } = sectionsAnnuaire(
     lien={`${SITE.depot}/issues/new?template=2-referencer-structure.yml`}
     libelle="Référencer ma structure"
   >
-    L'annuaire est gratuit et ouvert à tous les acteurs du vélo du territoire, adhérents ou non.
+    Dites-le-moi : l'annuaire est gratuit et ouvert à tous les acteurs du vélo du territoire,
+    adhérents ou non. J'ajoute votre fiche après une rapide vérification.
   </Appel>
   <p>
     <a href="/communes/">Voir l'annuaire commune par commune</a>
