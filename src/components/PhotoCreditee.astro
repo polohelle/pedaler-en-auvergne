@@ -31,8 +31,14 @@ const { photo, tailles = '(min-width: 48rem) 40vw, 100vw', chargement = 'lazy' }
   />
   <figcaption>
     {photo.legende}. Photo : {photo.auteur},{' '}
-    {photo.licenceUrl ? <a href={photo.licenceUrl}>{photo.licence}</a> : photo.licence}, via{' '}
-    <a href={photo.sourceUrl}>{photo.source}</a>.
+    {photo.licenceUrl ? <a href={photo.licenceUrl}>{photo.licence}</a> : photo.licence}
+    {photo.source && photo.sourceUrl ? (
+      <>
+        , via <a href={photo.sourceUrl}>{photo.source}</a>.
+      </>
+    ) : (
+      '.'
+    )}
   </figcaption>
 </figure>
 

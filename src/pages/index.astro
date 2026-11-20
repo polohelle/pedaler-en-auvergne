@@ -67,7 +67,7 @@ const tuiles = [
 
 const donnees = donneesSite({ ...SITE, url: urlAbsolue('/', Astro.site ?? Astro.url) });
 import PhotoCreditee from '@components/PhotoCreditee.astro';
-import { PHOTOS } from '@config/photos';
+import { PHOTOS, PHOTOS_SAISON } from '@config/photos';
 ---
 
 <Base titre="Accueil" {donnees}>
@@ -102,7 +102,7 @@ import { PHOTOS } from '@config/photos';
         )}
       </div>
       <PhotoCreditee
-        photo={PHOTOS.tramway}
+        photo={PHOTOS.famille}
         class="bandeau__photo"
         tailles="(min-width: 64rem) 26rem, (min-width: 48rem) 40vw, 100vw"
         chargement="eager"
@@ -155,8 +155,15 @@ import { PHOTOS } from '@config/photos';
   </ul>
 
   <aside class:list={['saison', `saison--${saison.saison}`]} aria-labelledby="titre-saison">
-    <h2 id="titre-saison">{saison.titre}</h2>
-    <p>{saison.texte}</p>
+    <PhotoCreditee
+      photo={PHOTOS_SAISON[saison.saison]}
+      class="saison__photo"
+      tailles="(min-width: 40rem) 14rem, 100vw"
+    />
+    <div class="saison__texte">
+      <h2 id="titre-saison">{saison.titre}</h2>
+      <p>{saison.texte}</p>
+    </div>
   </aside>
 
   {prochains.length > 0 && (
@@ -427,6 +434,9 @@ import { PHOTOS } from '@config/photos';
 
   /* Mot de saison : un encart genêt, comme un post-it posé sur la page. */
   .saison {
+    display: grid;
+    gap: var(--espace-3);
+    align-items: center;
     max-width: var(--largeur-texte);
     margin-block: var(--espace-5) 0;
     padding: var(--espace-3) var(--espace-4);
@@ -443,6 +453,12 @@ import { PHOTOS } from '@config/photos';
 
   .saison p {
     margin: 0;
+  }
+
+  @media (min-width: 40rem) {
+    .saison {
+      grid-template-columns: 14rem 1fr;
+    }
   }
 
   /* Bande pleine largeur, à la couleur pâle de la rubrique, sans défilement horizontal. */

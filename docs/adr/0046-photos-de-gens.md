@@ -24,11 +24,20 @@ siennes et par celles que les structures fourniront.
   dans `public/photos/`, hors précache du service worker.
 - **Crédit toujours visible** sous la photo (`PhotoCreditee.astro`) : légende, auteur,
   licence liée, source liée. Une photo recadrée sous CC BY-SA reste sous CC BY-SA.
+- **Crédit d'une photo de l'administrateur** : « Pédaler en Auvergne, tous droits
+  réservés », sans lien de source ; ses fichiers sont débarrassés des métadonnées EXIF
+  (position GPS comprise) avant d'être déposés. Les légendes ne nomment un lieu que s'il est
+  certain.
 - **Emplacements** : bandeau d'accueil, tête de l'agenda, de l'annuaire et des itinéraires
-  (prop `photo` de `TetePage`), page À propos.
+  (prop `photo` de `TetePage`), encart de saison de l'accueil (une photo par saison,
+  `PHOTOS_SAISON`), page À propos.
 - **Pas de banque d'images** ni de photo de mise en scène : des gens d'ici, en vrai.
 
 ## Conséquences
+
+- Premier remplacement fait le jour même : les photos de l'administrateur prennent la place
+  des photos de Wikimedia Commons ; seule la photo d'archives de 1925 (Gallica) reste, sur la
+  page À propos.
 
 - Remplacer une photo = déposer les deux fichiers et changer son entrée dans
   `src/config/photos.ts`.

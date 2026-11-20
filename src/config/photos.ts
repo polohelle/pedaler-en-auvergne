@@ -1,8 +1,10 @@
+import type { Saison } from '@lib/accueil';
+
 /**
  * Photos de gens à vélo en Auvergne (ADR 0046) : une seule définition, réutilisée par les
  * pages. Seules des photos sous licence libre ou dans le domaine public, ou fournies avec
- * l'accord écrit de leur auteur et des personnes reconnaissables, figurent ici ; chacune
- * garde son auteur, sa licence et sa source, affichés sous l'image.
+ * l'accord écrit de leur auteur et des personnes reconnaissables (dont celles de l'éditeur),
+ * figurent ici ; chacune garde son auteur, sa licence et sa source, affichés sous l'image.
  *
  * Fichiers : `public/photos/<id>-1200.webp` et `<id>-640.webp`, recadrés et réduits.
  */
@@ -15,69 +17,49 @@ export interface Photo {
   legende: string;
   auteur: string;
   licence: string;
-  /** Lien vers le texte de la licence ; absent pour le domaine public. */
+  /** Lien vers le texte de la licence ; absent pour le domaine public ou une photo réservée. */
   licenceUrl?: string;
-  /** Nom du site d'origine, affiché dans le crédit (« Wikimedia Commons », « l'auteur »…). */
-  source: string;
-  /** Page d'origine de la photo. */
-  sourceUrl: string;
+  /** Nom du site d'origine, affiché dans le crédit ; absent pour une photo de l'éditeur. */
+  source?: string;
+  /** Page d'origine de la photo ; absente pour une photo de l'éditeur. */
+  sourceUrl?: string;
   /** Dimensions du fichier de 1200 pixels de large, pour réserver la place. */
   largeur: number;
   hauteur: number;
 }
 
-const CC_BY_SA_4 = 'https://creativecommons.org/licenses/by-sa/4.0/deed.fr';
+/** Crédit des photos prises par l'éditeur du site lors de ses sorties. */
+const EDITEUR = {
+  auteur: 'Pédaler en Auvergne',
+  licence: 'tous droits réservés',
+  largeur: 1200,
+  hauteur: 900,
+} as const;
 
 export const PHOTOS = {
-  tramway: {
-    id: 'c-velo-tramway-clermont',
-    alt: 'Un cycliste casqué sur un vélo C.Vélo longe le tramway rouge, dans le centre de Clermont-Ferrand.',
-    legende: 'À vélo le long du tram, à Clermont-Ferrand',
-    auteur: 'Sebbi Marrec',
-    licence: 'CC BY-SA 4.0',
-    licenceUrl: CC_BY_SA_4,
-    source: 'Wikimedia Commons',
-    sourceUrl: 'https://commons.wikimedia.org/wiki/File:C.V%C3%A9lo_et_tramway_-_Clermont.JPG',
-    largeur: 1200,
-    hauteur: 800,
+  famille: {
+    id: 'famille-voie-verte',
+    alt: 'Une file d’enfants à vélo, en gilet jaune, roule sur une voie verte goudronnée le long d’une voie ferrée, sous un ciel de printemps.',
+    legende: 'Sortie en famille sur une voie verte',
+    ...EDITEUR,
   },
-  clermont: {
-    id: 'cycliste-clermont',
-    alt: 'Un cycliste en chemise traverse une place de Clermont-Ferrand devant une église en pierre de Volvic et un massif de fleurs rouges.',
-    legende: 'Un trajet du quotidien, place Delille à Clermont-Ferrand',
-    auteur: 'Jean-Louis Zimmermann',
-    licence: 'CC BY 2.0',
-    licenceUrl: 'https://creativecommons.org/licenses/by/2.0/deed.fr',
-    source: 'Wikimedia Commons',
-    sourceUrl:
-      'https://commons.wikimedia.org/wiki/File:Cycliste_(CLERMONT-FERRAND,FR63)_(4847204105).jpg',
-    largeur: 1200,
-    hauteur: 900,
+  gravel: {
+    id: 'sortie-gravel-puy-de-dome',
+    alt: 'Des cyclistes en tenue font une pause sur un chemin de terre, le puy de Dôme à l’horizon.',
+    legende: 'Pause pendant une sortie gravel, face au puy de Dôme',
+    ...EDITEUR,
   },
-  velodrome: {
-    id: 'velodrome-lurcy-levis',
-    alt: 'Des coureurs et leurs proches sur la piste et la pelouse du vélodrome de Lurcy-Lévis, un jour de course.',
-    legende: 'Jour de course au vélodrome de Lurcy-Lévis, dans l’Allier',
-    auteur: 'Lurcy',
-    licence: 'CC BY-SA 3.0',
-    licenceUrl: 'https://creativecommons.org/licenses/by-sa/3.0/deed.fr',
-    source: 'Wikimedia Commons',
-    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Lurcy-velo-3.JPG',
-    largeur: 1200,
-    hauteur: 898,
+  sourire: {
+    id: 'cycliste-sourire',
+    alt: 'Un cycliste casqué, sur un vélo chargé de sacoches, sourit en roulant sur une petite route bordée de prés.',
+    legende: 'Sur les petites routes, sacoches chargées',
+    ...EDITEUR,
   },
-  velay: {
-    id: 'saint-pal-de-mons-velo',
-    alt: 'Un vélo chargé de sacoches, posé au bord d’une petite route de campagne vallonnée, près de Saint-Pal-de-Mons.',
-    legende: 'Pause au bord de la route, à Saint-Pal-de-Mons en Haute-Loire',
-    auteur: 'Havang(nl)',
-    licence: 'CC0',
-    licenceUrl: 'https://creativecommons.org/publicdomain/zero/1.0/deed.fr',
-    source: 'Wikimedia Commons',
-    sourceUrl:
-      'https://commons.wikimedia.org/wiki/File:DSC02374_St.Pal-de-Mons_(Haute-Loire,_Fr)_paysage_avec_v%C3%A9lo.JPG',
-    largeur: 1200,
-    hauteur: 900,
+  chaineDesPuys: {
+    id: 'voie-verte-chaine-des-puys',
+    alt: 'Un vélo équipé de sacoches appuyé contre une barrière en bois, au bord d’une voie verte qui file vers la chaîne des Puys.',
+    legende: 'La chaîne des Puys au bout de la voie verte',
+    ...EDITEUR,
   },
   aiglons: {
     id: 'aiglons-1925-clermont-ambert',
@@ -92,3 +74,31 @@ export const PHOTOS = {
     hauteur: 813,
   },
 } as const satisfies Record<string, Photo>;
+
+/** Une photo par saison, pour l'encart de saison de l'accueil. */
+export const PHOTOS_SAISON = {
+  hiver: {
+    id: 'saison-hiver',
+    alt: 'Un vélo de route posé dans la neige, devant une clôture et un puy enneigé.',
+    legende: 'Une sortie d’hiver, au pied d’un puy enneigé',
+    ...EDITEUR,
+  },
+  printemps: {
+    id: 'saison-printemps',
+    alt: 'Un vélo de route appuyé contre une borne, sous un arbre en fleurs blanches, au bord d’un ruisseau.',
+    legende: 'Les premiers arbres en fleurs',
+    ...EDITEUR,
+  },
+  ete: {
+    id: 'saison-ete',
+    alt: 'Un lac bordé de sapins, vu depuis le guidon d’un vélo arrêté sur un sentier.',
+    legende: 'Halte au bord d’un lac',
+    ...EDITEUR,
+  },
+  automne: {
+    id: 'saison-automne',
+    alt: 'Un vélo de route posé au bord d’une route forestière, dans le brouillard, entre les sapins.',
+    legende: 'Brouillard d’automne en forêt',
+    ...EDITEUR,
+  },
+} as const satisfies Record<Saison, Photo>;
