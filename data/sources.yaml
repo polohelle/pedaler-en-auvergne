@@ -37,7 +37,7 @@ sources:
     acteur: velo-cite-63-clermont-ferrand
     fiabilite: moyenne
     frequence: hebdomadaire
-    dernier_passage: '2026-11-10'
+    dernier_passage: '2026-11-20'
     notes: >-
       Association d'usagers, relais de la FUB depuis 1996, membre fondateur pressenti
       du collège Usagers. Site propre trouvé le 2026-10-16, à la place de la page HelloAsso
@@ -53,7 +53,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: quotidienne
-    dernier_passage: '2026-11-18'
+    dernier_passage: '2026-11-20'
     notes: >-
       Flux RSS public du compte Mastodon de l'association, évalué le 2026-10-18 : valide,
       1 à 2 messages par jour, plus réactif que le site. Mêmes messages sur Bluesky
@@ -121,7 +121,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: quotidienne
-    dernier_passage: '2026-11-18'
+    dernier_passage: '2026-11-20'
     notes: >-
       Média local d'actualité clermontoise, ajouté à la demande de l'administrateur le
       2026-10-19 (médias locaux). Flux RSS valide, robots.txt ouvert ; article de référence
@@ -136,7 +136,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: quotidienne
-    dernier_passage: '2026-11-18'
+    dernier_passage: '2026-11-20'
     notes: >-
       Radio locale (Clermont, Vichy, Ambert), ajoutée à la demande de l'administrateur le
       2026-10-19 (médias locaux). Pas de flux d'actualités (seulement des podcasts) : lire la
@@ -151,7 +151,7 @@ sources:
     acteur: null
     fiabilite: faible
     frequence: quotidienne
-    dernier_passage: '2026-11-18'
+    dernier_passage: '2026-11-20'
     notes: >-
       Site d'actualité clermontoise en continu, ajouté à la demande de l'administrateur le
       2026-10-19 (médias locaux). Flux RSS valide (20 articles), robots.txt ouvert, mentions
@@ -222,7 +222,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: hebdomadaire
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : flux RSS de l'autorité organisatrice des
       mobilités de l'agglomération clermontoise (ancien domaine smtc-clermont-agglo.fr, redirigé).
@@ -240,7 +240,7 @@ sources:
     acteur: agence-c-velo-clermont-ferrand
     fiabilite: haute
     frequence: mensuelle
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : flux RSS du service C.vélo (vélos en
       libre-service, C.BOXvélo) du SMTC. Vérifié : HTTP 200, flux valide, robots.txt ouvert ;
@@ -293,7 +293,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: mensuelle
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : flux RSS du réseau de mobilités de Riom
       Limagne et Volcans (bus, RLV'LIB vélos électriques en libre-service, RLV'lo location).
@@ -431,7 +431,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: hebdomadaire
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : flux RSS des actualités de
       l'agglomération de Vichy (WordPress). Vérifié : HTTP 200, flux valide, robots.txt
@@ -582,7 +582,7 @@ sources:
     acteur: cyclos-du-velo-montagnard-aurillac
     fiabilite: moyenne
     frequence: hebdomadaire
-    dernier_passage: '2026-11-13'
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 : flux valide, plusieurs billets par mois ; calendrier des
       randonnées du Cantal (brevets, BRM). Certains billets sont protégés par mot de passe :
@@ -610,7 +610,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: mensuelle
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : flux des actualités du conseil
       départemental. Le flux général https://www.cantal.fr/feed/ est vide ; les actualités sont
@@ -741,7 +741,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: mensuelle
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : flux des actualités de la ville. Vérifié :
       HTTP 200, robots.txt ouvert, flux valide de 10 articles, le dernier du 13 novembre 2026,
@@ -855,7 +855,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: hebdomadaire
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : comité départemental de cyclotourisme,
       annonce les randonnées route et VTT des clubs du département (Ronde Monistrolienne,
@@ -873,7 +873,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: hebdomadaire
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : flux SPIP du Conseil départemental,
       porteur du schéma vélo départemental et des véloroutes (Via Fluvia, Via Velay). Vérifié :
@@ -889,7 +889,7 @@ sources:
     acteur: null
     fiabilite: moyenne
     frequence: quotidienne
-    dernier_passage: '2026-11-18'
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : média en ligne de la Haute-Loire, couvre
       les résultats des clubs (cyclo-cross du Vélo Club du Velay), les randonnées VTT et les
@@ -923,7 +923,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: mensuelle
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : site mobilité de l'agglomération du Puy
       (réseau TUDIP, location de vélos à assistance électrique Vélo en Velay). Vérifié :
@@ -960,7 +960,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: mensuelle
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : flux RSS du blog des actualités du Parc
       (Puy-de-Dôme et Cantal, d'où le niveau régional). Vérifié : HTTP 200, flux valide (20
@@ -1004,7 +1004,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: hebdomadaire
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : actualités du comité régional
       (attribution des championnats 2027, appel à projets des écoles de vélo, stages BMX à
@@ -1020,7 +1020,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: hebdomadaire
-    dernier_passage: null
+    dernier_passage: '2026-11-20'
     notes: >-
       Ajoutée le 2026-11-13 (recherche de sources) : comité régional de cyclotourisme, annonce
       les randonnées des clubs de la région avec la date et le département dans le titre
@@ -1089,7 +1089,7 @@ sources:
     acteur: null
     fiabilite: haute
     frequence: hebdomadaire
-    dernier_passage: '2026-11-11'
+    dernier_passage: '2026-11-20'
     notes: >-
       Évaluée le 2026-10-14 : flux valide, 2 à 4 articles par mois. Éditeur : APIC, pour le
       collectif Mai à vélo ; reproduction interdite sans accord écrit, résumé et lien seulement.
