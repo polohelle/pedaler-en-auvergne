@@ -10,13 +10,14 @@ import { evenementsAVenir } from '@services/contenus';
 
 const evenements = await evenementsAVenir();
 const mois = grouperParMois(evenements, ({ data }) => data.debut);
+import { PHOTOS } from '@config/photos';
 ---
 
 <Base
   titre="Agenda des manifestations vélo"
   description="Sorties, bourses aux vélos, ateliers de réparation, courses et fêtes du vélo en Auvergne."
 >
-  <TetePage titre="Les prochains rendez-vous vélo">
+  <TetePage titre="Les prochains rendez-vous vélo" photo={PHOTOS.velodrome}>
     <p class="texte">
       Une bourse pour trouver le vélo du petit, un cyclo-cross dans la boue, une balade tranquille
       le dimanche, un atelier pour apprendre à régler ses freins : voici ce qui se prépare près de

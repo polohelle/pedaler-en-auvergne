@@ -11,13 +11,14 @@ const itineraires = await itinerairesPublies();
 const communes = [...new Set(itineraires.map(({ data }) => data.commune))].sort((a, b) =>
   a.localeCompare(b, 'fr'),
 );
+import { PHOTOS } from '@config/photos';
 ---
 
 <Base
   titre="Itinéraires vélo : route, gravel et VTT"
   description="Les parcours route, gravel et VTT d'Auvergne sur une seule carte IGN, à trier par pratique, difficulté, distance et dénivelé."
 >
-  <TetePage titre="Itinéraires route, gravel et VTT">
+  <TetePage titre="Itinéraires route, gravel et VTT" photo={PHOTOS.velay}>
     <p class="texte">
       Une boucle tranquille au bord de l'eau ou une journée entière dans les puys ? Filtrez selon
       votre envie du jour, regardez le relief sur la carte IGN et emportez la trace GPX.

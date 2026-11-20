@@ -66,37 +66,47 @@ const tuiles = [
 ] as const;
 
 const donnees = donneesSite({ ...SITE, url: urlAbsolue('/', Astro.site ?? Astro.url) });
+import PhotoCreditee from '@components/PhotoCreditee.astro';
+import { PHOTOS } from '@config/photos';
 ---
 
 <Base titre="Accueil" {donnees}>
   <section class="bandeau" aria-labelledby="titre-accueil">
     <div class="bandeau__texte">
-      <p class="surtitre">{SITE.nom}</p>
-      <h1 id="titre-accueil">Le vélo près de chez vous, entre volcans et vallées</h1>
-      <p class="bandeau__accroche">
-        Où faire réparer son vélo, avec qui rouler samedi, quel parcours tenter entre deux puys ?
-        J'ai rassemblé ici ce qui était éparpillé entre sites, réseaux sociaux et presse locale.
-        Gratuit, sans publicité, tenu bénévolement.
-      </p>
-      <p class="bandeau__actions">
-        <a class="bouton" href="/annuaire/">
-          <Icone nom="annuaire" />
-          Trouver un acteur
-        </a>
-        <a class="bouton bouton-contour" href="/agenda/">
-          <Icone nom="agenda" />
-          Les prochains rendez-vous
-        </a>
-      </p>
-      {chiffres.length > 0 && (
-        <ul class="liste-simple chiffres" aria-label="En chiffres">
-          {chiffres.map(({ valeur, libelle }) => (
-            <li>
-              <strong>{valeur}</strong> {libelle}
-            </li>
-          ))}
-        </ul>
-      )}
+      <div class="bandeau__contenu">
+        <p class="surtitre">{SITE.nom}</p>
+        <h1 id="titre-accueil">Le vélo près de chez vous, entre volcans et vallées</h1>
+        <p class="bandeau__accroche">
+          Où faire réparer son vélo, avec qui rouler samedi, quel parcours tenter entre deux puys ?
+          J'ai rassemblé ici ce qui était éparpillé entre sites, réseaux sociaux et presse locale.
+          Gratuit, sans publicité, tenu bénévolement.
+        </p>
+        <p class="bandeau__actions">
+          <a class="bouton" href="/annuaire/">
+            <Icone nom="annuaire" />
+            Trouver un acteur
+          </a>
+          <a class="bouton bouton-contour" href="/agenda/">
+            <Icone nom="agenda" />
+            Les prochains rendez-vous
+          </a>
+        </p>
+        {chiffres.length > 0 && (
+          <ul class="liste-simple chiffres" aria-label="En chiffres">
+            {chiffres.map(({ valeur, libelle }) => (
+              <li>
+                <strong>{valeur}</strong> {libelle}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <PhotoCreditee
+        photo={PHOTOS.tramway}
+        class="bandeau__photo"
+        tailles="(min-width: 64rem) 26rem, (min-width: 48rem) 40vw, 100vw"
+        chargement="eager"
+      />
     </div>
     <svg
       class="bandeau__relief"
@@ -240,7 +250,16 @@ const donnees = donneesSite({ ...SITE, url: urlAbsolue('/', Astro.site ?? Astro.
   }
 
   .bandeau__texte {
+    display: grid;
+    gap: var(--espace-4);
     padding: var(--espace-4) var(--espace-3) var(--espace-2);
+  }
+
+  @media (min-width: 48rem) {
+    .bandeau__texte {
+      grid-template-columns: 1fr minmax(16rem, 26rem);
+      align-items: center;
+    }
   }
 
   .bandeau h1 {

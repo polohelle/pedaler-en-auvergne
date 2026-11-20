@@ -2,6 +2,8 @@
 import { EDITEUR } from '@config/editeur';
 import { SITE } from '@config/site';
 import Base from '@layouts/Base.astro';
+import PhotoCreditee from '@components/PhotoCreditee.astro';
+import { PHOTOS } from '@config/photos';
 ---
 
 <Base
@@ -22,6 +24,12 @@ import Base from '@layouts/Base.astro';
       l'actualité. Je le tiens sans but commercial ; il ne vend rien et n'affiche aucune publicité.
     </p>
   </div>
+
+  <PhotoCreditee
+    photo={PHOTOS.aiglons}
+    class="a-propos__photo"
+    tailles="(min-width: 48rem) 42rem, 100vw"
+  />
 
   <h2>Mes règles du jeu</h2>
   <ul class="liste-simple grille regles">
@@ -92,6 +100,10 @@ import Base from '@layouts/Base.astro';
 
   .surtitre {
     margin-block-start: var(--espace-4);
+  }
+
+  .a-propos__photo {
+    max-inline-size: var(--largeur-texte);
   }
 
   .regles {
