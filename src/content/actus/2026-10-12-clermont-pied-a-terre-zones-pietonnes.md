@@ -62,3 +62,11 @@ publiques les études qui le fondent.
 que la station de la place de Jaude se trouve au cœur de la zone concernée : il faut pousser
 le vélo pour l'atteindre ou pour en repartir, selon le message de l'opérateur relayé par
 [Vélo-Cité 63](https://pouet.chapril.org/@velocite63/117604802175969410).
+
+**L'appel des commerçants.** Le 20 novembre, 120 commerçants du centre-ville ont signé
+« L'appel pour une ville aux mobilités partagées », qui demande à la municipalité d'annuler
+l'arrêté ou de le rendre moins restrictif. Sans contester l'enjeu de la sécurité des piétons,
+ils font valoir que de nombreux clients viennent faire leurs achats à vélo, parfois en
+famille, et que certains commerçants se déplacent eux-mêmes à vélo ou font appel à des
+livreurs à vélo cargo. La pétition de Vélo-Cité 63 dépasse alors 8 500 signatures. Le maire
+maintient l'arrêté, selon [7 Jours à Clermont](https://www.7joursaclermont.fr/pied-a-terre-2/).
