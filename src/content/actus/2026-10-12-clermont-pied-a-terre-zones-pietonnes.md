@@ -70,3 +70,12 @@ ils font valoir que de nombreux clients viennent faire leurs achats à vélo, pa
 famille, et que certains commerçants se déplacent eux-mêmes à vélo ou font appel à des
 livreurs à vélo cargo. La pétition de Vélo-Cité 63 dépasse alors 8 500 signatures. Le maire
 maintient l'arrêté, selon [7 Jours à Clermont](https://www.7joursaclermont.fr/pied-a-terre-2/).
+
+**La réponse de l'adjoint au commerce.** Le 21 novembre, l'adjoint chargé du commerce a
+annoncé qu'il rencontrerait chacun des signataires de l'appel, désormais en ligne sur
+appel.mobilites-partagees.fr. Il défend la volonté de la Ville de rétablir le partage de
+l'espace public et cite des habitants effrayés par des trottinettes rapides. Vélo-Cité 63 y
+voit un premier signe d'écoute, mais conteste plusieurs de ses propos : selon l'association,
+les voies latérales de la place de Jaude ne sont plus ouvertes aux vélos, et il suffirait de
+verbaliser les comportements dangereux plutôt que d'interdire le vélo dans plus de 50 rues
+([réaction de l'association](https://www.velocite63.fr/appel-de-commercants-contre-l-arrete-reaction)).
