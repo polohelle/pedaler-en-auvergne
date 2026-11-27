@@ -9,7 +9,7 @@ departement: '63'
 organisateur: bmx-club-cournon-d-auvergne
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4163097021/championnat-du-puy-de-dome/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le BMX Club de Cournon-d'Auvergne accueille le championnat départemental du Puy-de-Dôme de BMX.

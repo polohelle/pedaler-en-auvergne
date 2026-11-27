@@ -9,7 +9,7 @@ commune: Avermes
 departement: '03'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4103023003/prix-semi-nocturne-d-avermes-open-23-access/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 La Roue d'Or Moulins Yzeure Avermes organise une course sur route en soirée à Avermes, ouverte aux

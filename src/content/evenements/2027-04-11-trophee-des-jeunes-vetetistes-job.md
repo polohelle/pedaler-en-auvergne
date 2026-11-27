@@ -10,7 +10,7 @@ departement: '63'
 organisateur: union-cycliste-ambert-auvergne
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4163027071/tdjv-job/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 L'Union cycliste Ambert Auvergne organise à Job, dans le Livradois-Forez, une manche du Trophée

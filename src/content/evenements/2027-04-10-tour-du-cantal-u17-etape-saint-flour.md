@@ -9,7 +9,7 @@ commune: Saint-Flour
 departement: '15'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4115014042/3eme-etape-tour-du-cantal-u17-st-flour-montboucher/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Vélo Club du Pays de Saint-Flour accueille la troisième étape du Tour du Cantal des moins de

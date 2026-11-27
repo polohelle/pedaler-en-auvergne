@@ -9,7 +9,7 @@ commune: Ferrières-sur-Sichon
 departement: '03'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4103123003/charmeil-vtt/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le club Charmeil VTT organise une course de VTT régionale dans la Montagne bourbonnaise.

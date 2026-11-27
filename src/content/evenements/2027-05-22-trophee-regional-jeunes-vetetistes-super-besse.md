@@ -11,7 +11,7 @@ departement: '63'
 organisateur: velo-club-de-besse
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4163116012/super-besse-trophee-regional-jeunes-vetetistes/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Vélo Club de Besse accueille à Super-Besse une manche du Trophée régional des jeunes vététistes,

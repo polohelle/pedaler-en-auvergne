@@ -9,7 +9,7 @@ commune: Sansac-de-Marmiesse
 departement: '15'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4115072046/sansac-de-marmiesse-challenge-rene-issiot-open-2-3-access/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Vélo Club Sansac Arpajon organise une journée de courses sur route à Sansac-de-Marmiesse, près

@@ -9,7 +9,7 @@ commune: Montbeugny
 departement: '03'
 source_url: https://competitions.ffc.fr/calendrier/competition/2027/C4103008004/prix-cycliste-de-montbeugny/
 source: agent
-statut: a_valider
+statut: publie
 ---
 
 Le Bourbonnais Cyclisme Sport Organisation organise une journée de courses sur route à
