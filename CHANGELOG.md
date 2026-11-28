@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.7.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.6.0...pedaler-en-auvergne-v0.7.0) (2026-11-28)
+
+
+### Nouveautés
+
+* un site plus humain et chaleureux ([#132](https://github.com/polohelle/pedaler-en-auvergne/issues/132)) ([45cd063](https://github.com/polohelle/pedaler-en-auvergne/commit/45cd063faba59295ef5c3678644b61252ae28928))
+
+
+### Documentation
+
+* note de veille de la semaine 48, Clermont Auvergne reconnu comme SERM ([57180fc](https://github.com/polohelle/pedaler-en-auvergne/commit/57180fcccf2a2f66d079ea369ae943a08002c82e))
+* veille de la semaine 47, stand Gergovia du 24 novembre reporté ([bef6ec8](https://github.com/polohelle/pedaler-en-auvergne/commit/bef6ec8fee815f1f18282cf22b68311a25705659))
+* veille de la semaine 48, Clermont Auvergne reconnu comme SERM ([088bb79](https://github.com/polohelle/pedaler-en-auvergne/commit/088bb799c5d610c0a94c4012710f5b5c5a29cbdc))
+* veille du 20 novembre, stand Gergovia du 24 reporté ([f66e917](https://github.com/polohelle/pedaler-en-auvergne/commit/f66e91769d31982334760c3216dec4a9335a2592))
+* veille du 21 novembre, appel des commerçants contre le « pied à terre » ([694ef6a](https://github.com/polohelle/pedaler-en-auvergne/commit/694ef6aa3d05a05e6c5b5dca0d96280d4add6006))
+* veille du 21 novembre, appel des commerçants contre le « pied à terre » ([1cbf9e8](https://github.com/polohelle/pedaler-en-auvergne/commit/1cbf9e82cd626b9b30408429c38aa42dc749c4a4))
+* veille du 22 novembre, l'adjoint au commerce répond aux commerçants ([cdb07c2](https://github.com/polohelle/pedaler-en-auvergne/commit/cdb07c2b63d8e4694fc700421d1ff74c38614e8f))
+* veille du 22 novembre, l'adjoint au commerce répond aux commerçants ([667bff6](https://github.com/polohelle/pedaler-en-auvergne/commit/667bff6aba98e7745a9f1fa614a281392f985167))
+* veille du 25 novembre, arrêté SERM et prix InspiRe ([f6eb3b1](https://github.com/polohelle/pedaler-en-auvergne/commit/f6eb3b1eb1c2e6815ba00b76afbce63e8dc451c7))
+* veille du 25 novembre, arrêté SERM et prix InspiRe ([81388bb](https://github.com/polohelle/pedaler-en-auvergne/commit/81388bbb9555cb562531a27b084a6c9bb0cf3af1))
+* veille du 27 novembre, vélorution de Noël place de Jaude ([e82e000](https://github.com/polohelle/pedaler-en-auvergne/commit/e82e0000179e1e3007112527ebc62374124cc85b))
+* veille du 27 novembre, vélorution de Noël place de Jaude ([fe89e41](https://github.com/polohelle/pedaler-en-auvergne/commit/fe89e41461b4b91a4b6f844409cb87993ce89bf3))
+* **veille:** semaine 46, passage du 15 novembre ([d23adea](https://github.com/polohelle/pedaler-en-auvergne/commit/d23adeabca382fc03762c0765e0d78436d48edcb))
+* **veille:** semaine 46, passage du 15 novembre ([7f02133](https://github.com/polohelle/pedaler-en-auvergne/commit/7f021335bb20eac7211edc705e31fd278c42fb9c))
+* **veille:** semaine 47, passage du 18 novembre ([42b0a99](https://github.com/polohelle/pedaler-en-auvergne/commit/42b0a99f157af1a4a054cdf22dfcb303da44e294))
+* **veille:** semaine 47, passage du 18 novembre ([31795df](https://github.com/polohelle/pedaler-en-auvergne/commit/31795dfb7e68531335da464405baeeb1f56aa82f))
+
 ## [0.6.0](https://github.com/polohelle/pedaler-en-auvergne/compare/pedaler-en-auvergne-v0.5.1...pedaler-en-auvergne-v0.6.0) (2026-11-13)
 
 
